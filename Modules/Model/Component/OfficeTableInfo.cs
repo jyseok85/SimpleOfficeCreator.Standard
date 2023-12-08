@@ -43,5 +43,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model.Component
         public bool VerticalMerge { get; set; } = false;
 
         public bool HorizontalMerge { get; set; } = false;
+
+
+        /// <summary>
+        /// 워드 전용
+        /// </summary>
+        public bool MergedRow { get; set; } = false;
     }
 }

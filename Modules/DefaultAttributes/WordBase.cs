@@ -1,11 +1,23 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using System;
+using M = DocumentFormat.OpenXml.Math;
+using Ovml = DocumentFormat.OpenXml.Vml.Office;
+using V = DocumentFormat.OpenXml.Vml;
+using W14 = DocumentFormat.OpenXml.Office2010.Word;
+using W15 = DocumentFormat.OpenXml.Office2013.Word;
 
 namespace SimpleOfficeCreator.Stardard.Modules.DefaultAttributes
 {
-    internal class WORDDefault
+    internal class WordBase
     {
+        private WordBase() { }
+        //private static 인스턴스 객체
+        private static readonly Lazy<WordBase> _instance = new Lazy<WordBase>(() => new WordBase());
+        //public static 의 객체반환 함수
+        public static WordBase Instance { get { return _instance.Value; } }
+
         public void CreateStyleDefinitionsPart(StyleDefinitionsPart part)
         {
             GeneratePartContent(part);
@@ -900,5 +912,370 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultAttributes
 
             part.Styles = styles1;
         }
+
+        public Document GenerateDocument()
+        {
+            Document document1 = new Document() { MCAttributes = new MarkupCompatibilityAttributes() { Ignorable = "w14 w15 w16se wp14" } };
+            document1.AddNamespaceDeclaration("wpc", "http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas");
+            document1.AddNamespaceDeclaration("cx", "http://schemas.microsoft.com/office/drawing/2014/chartex");
+            document1.AddNamespaceDeclaration("cx1", "http://schemas.microsoft.com/office/drawing/2015/9/8/chartex");
+            document1.AddNamespaceDeclaration("mc", "http://schemas.openxmlformats.org/markup-compatibility/2006");
+            document1.AddNamespaceDeclaration("o", "urn:schemas-microsoft-com:office:office");
+            document1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            document1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
+            document1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
+            document1.AddNamespaceDeclaration("wp14", "http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing");
+            document1.AddNamespaceDeclaration("wp", "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
+            document1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
+            document1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+            document1.AddNamespaceDeclaration("w14", "http://schemas.microsoft.com/office/word/2010/wordml");
+            document1.AddNamespaceDeclaration("w15", "http://schemas.microsoft.com/office/word/2012/wordml");
+            document1.AddNamespaceDeclaration("w16se", "http://schemas.microsoft.com/office/word/2015/wordml/symex");
+            document1.AddNamespaceDeclaration("wpg", "http://schemas.microsoft.com/office/word/2010/wordprocessingGroup");
+            document1.AddNamespaceDeclaration("wpi", "http://schemas.microsoft.com/office/word/2010/wordprocessingInk");
+            document1.AddNamespaceDeclaration("wne", "http://schemas.microsoft.com/office/word/2006/wordml");
+            document1.AddNamespaceDeclaration("wps", "http://schemas.microsoft.com/office/word/2010/wordprocessingShape");
+            Body body = new Body();
+            document1.Append(body);
+            return document1;
+        }
+
+        public void GenerateWebSettingsPartContent(WebSettingsPart webSettingsPart1)
+        {
+            WebSettings webSettings1 = new WebSettings() { MCAttributes = new MarkupCompatibilityAttributes() { Ignorable = "w14 w15 w16se" } };
+            webSettings1.AddNamespaceDeclaration("mc", "http://schemas.openxmlformats.org/markup-compatibility/2006");
+            webSettings1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            webSettings1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+            webSettings1.AddNamespaceDeclaration("w14", "http://schemas.microsoft.com/office/word/2010/wordml");
+            webSettings1.AddNamespaceDeclaration("w15", "http://schemas.microsoft.com/office/word/2012/wordml");
+            webSettings1.AddNamespaceDeclaration("w16se", "http://schemas.microsoft.com/office/word/2015/wordml/symex");
+
+            webSettingsPart1.WebSettings = webSettings1;
+        }
+        public void GenerateFontTablePartContent(FontTablePart fontTablePart1)
+        {
+            Fonts fonts1 = new Fonts() { MCAttributes = new MarkupCompatibilityAttributes() { Ignorable = "w14 w15 w16se" } };
+            fonts1.AddNamespaceDeclaration("mc", "http://schemas.openxmlformats.org/markup-compatibility/2006");
+            fonts1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            fonts1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+            fonts1.AddNamespaceDeclaration("w14", "http://schemas.microsoft.com/office/word/2010/wordml");
+            fonts1.AddNamespaceDeclaration("w15", "http://schemas.microsoft.com/office/word/2012/wordml");
+            fonts1.AddNamespaceDeclaration("w16se", "http://schemas.microsoft.com/office/word/2015/wordml/symex");
+
+            Font font1 = new Font() { Name = "맑은 고딕" };
+            Panose1Number panose1Number1 = new Panose1Number() { Val = "020B0503020000020004" };
+            FontCharSet fontCharSet1 = new FontCharSet() { Val = "81" };
+            FontFamily fontFamily1 = new FontFamily() { Val = FontFamilyValues.Modern };
+            Pitch pitch1 = new Pitch() { Val = FontPitchValues.Variable };
+            FontSignature fontSignature1 = new FontSignature() { UnicodeSignature0 = "9000002F", UnicodeSignature1 = "29D77CFB", UnicodeSignature2 = "00000012", UnicodeSignature3 = "00000000", CodePageSignature0 = "00080001", CodePageSignature1 = "00000000" };
+
+            font1.Append(panose1Number1);
+            font1.Append(fontCharSet1);
+            font1.Append(fontFamily1);
+            font1.Append(pitch1);
+            font1.Append(fontSignature1);
+
+            Font font2 = new Font() { Name = "Times New Roman" };
+            Panose1Number panose1Number2 = new Panose1Number() { Val = "02020603050405020304" };
+            FontCharSet fontCharSet2 = new FontCharSet() { Val = "00" };
+            FontFamily fontFamily2 = new FontFamily() { Val = FontFamilyValues.Roman };
+            Pitch pitch2 = new Pitch() { Val = FontPitchValues.Variable };
+            FontSignature fontSignature2 = new FontSignature() { UnicodeSignature0 = "E0002EFF", UnicodeSignature1 = "C000785B", UnicodeSignature2 = "00000009", UnicodeSignature3 = "00000000", CodePageSignature0 = "000001FF", CodePageSignature1 = "00000000" };
+
+            font2.Append(panose1Number2);
+            font2.Append(fontCharSet2);
+            font2.Append(fontFamily2);
+            font2.Append(pitch2);
+            font2.Append(fontSignature2);
+
+            Font font3 = new Font() { Name = "돋움" };
+            AltName altName1 = new AltName() { Val = "Dotum" };
+            Panose1Number panose1Number3 = new Panose1Number() { Val = "020B0600000101010101" };
+            FontCharSet fontCharSet3 = new FontCharSet() { Val = "81" };
+            FontFamily fontFamily3 = new FontFamily() { Val = FontFamilyValues.Modern };
+            Pitch pitch3 = new Pitch() { Val = FontPitchValues.Variable };
+            FontSignature fontSignature3 = new FontSignature() { UnicodeSignature0 = "B00002AF", UnicodeSignature1 = "69D77CFB", UnicodeSignature2 = "00000030", UnicodeSignature3 = "00000000", CodePageSignature0 = "0008009F", CodePageSignature1 = "00000000" };
+
+            font3.Append(altName1);
+            font3.Append(panose1Number3);
+            font3.Append(fontCharSet3);
+            font3.Append(fontFamily3);
+            font3.Append(pitch3);
+            font3.Append(fontSignature3);
+
+            fonts1.Append(font1);
+            fonts1.Append(font2);
+            fonts1.Append(font3);
+
+            fontTablePart1.Fonts = fonts1;
+
+        }
+        public void GenerateDocumentSettingsPart1Content(DocumentSettingsPart documentSettingsPart1)
+        {
+            Settings settings1 = new Settings() { MCAttributes = new MarkupCompatibilityAttributes() { Ignorable = "w14 w15 w16se" } };
+            settings1.AddNamespaceDeclaration("mc", "http://schemas.openxmlformats.org/markup-compatibility/2006");
+            settings1.AddNamespaceDeclaration("o", "urn:schemas-microsoft-com:office:office");
+            settings1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            settings1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
+            settings1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
+            settings1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
+            settings1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+            settings1.AddNamespaceDeclaration("w14", "http://schemas.microsoft.com/office/word/2010/wordml");
+            settings1.AddNamespaceDeclaration("w15", "http://schemas.microsoft.com/office/word/2012/wordml");
+            settings1.AddNamespaceDeclaration("w16se", "http://schemas.microsoft.com/office/word/2015/wordml/symex");
+            settings1.AddNamespaceDeclaration("sl", "http://schemas.openxmlformats.org/schemaLibrary/2006/main");
+            Zoom zoom1 = new Zoom() { Percent = "100" };
+            BordersDoNotSurroundHeader bordersDoNotSurroundHeader1 = new BordersDoNotSurroundHeader();
+            BordersDoNotSurroundFooter bordersDoNotSurroundFooter1 = new BordersDoNotSurroundFooter();
+            DefaultTabStop defaultTabStop1 = new DefaultTabStop() { Val = 800 };
+            CharacterSpacingControl characterSpacingControl1 = new CharacterSpacingControl() { Val = CharacterSpacingValues.DoNotCompress };
+
+            HeaderShapeDefaults headerShapeDefaults1 = new HeaderShapeDefaults();
+            Ovml.ShapeDefaults shapeDefaults1 = new Ovml.ShapeDefaults() { Extension = V.ExtensionHandlingBehaviorValues.Edit, MaxShapeId = 2049 };
+            headerShapeDefaults1.Append(shapeDefaults1);
+
+            FootnoteDocumentWideProperties footnoteDocumentWideProperties1 = new FootnoteDocumentWideProperties();
+            FootnoteSpecialReference footnoteSpecialReference1 = new FootnoteSpecialReference() { Id = -1 };
+            FootnoteSpecialReference footnoteSpecialReference2 = new FootnoteSpecialReference() { Id = 0 };
+
+            footnoteDocumentWideProperties1.Append(footnoteSpecialReference1);
+            footnoteDocumentWideProperties1.Append(footnoteSpecialReference2);
+
+            EndnoteDocumentWideProperties endnoteDocumentWideProperties1 = new EndnoteDocumentWideProperties();
+            EndnoteSpecialReference endnoteSpecialReference1 = new EndnoteSpecialReference() { Id = -1 };
+            EndnoteSpecialReference endnoteSpecialReference2 = new EndnoteSpecialReference() { Id = 0 };
+
+            endnoteDocumentWideProperties1.Append(endnoteSpecialReference1);
+            endnoteDocumentWideProperties1.Append(endnoteSpecialReference2);
+
+            Compatibility compatibility1 = new Compatibility();
+            UseFarEastLayout useFarEastLayout1 = new UseFarEastLayout();
+            CompatibilitySetting compatibilitySetting1 = new CompatibilitySetting() { Name = CompatSettingNameValues.CompatibilityMode, Uri = "http://schemas.microsoft.com/office/word", Val = "15" };
+            CompatibilitySetting compatibilitySetting2 = new CompatibilitySetting() { Name = CompatSettingNameValues.OverrideTableStyleFontSizeAndJustification, Uri = "http://schemas.microsoft.com/office/word", Val = "1" };
+            CompatibilitySetting compatibilitySetting3 = new CompatibilitySetting() { Name = CompatSettingNameValues.EnableOpenTypeFeatures, Uri = "http://schemas.microsoft.com/office/word", Val = "1" };
+            CompatibilitySetting compatibilitySetting4 = new CompatibilitySetting() { Name = CompatSettingNameValues.DoNotFlipMirrorIndents, Uri = "http://schemas.microsoft.com/office/word", Val = "1" };
+            CompatibilitySetting compatibilitySetting5 = new CompatibilitySetting() { Name = CompatSettingNameValues.DifferentiateMultirowTableHeaders, Uri = "http://schemas.microsoft.com/office/word", Val = "1" };
+
+            compatibility1.Append(useFarEastLayout1);
+            compatibility1.Append(compatibilitySetting1);
+            compatibility1.Append(compatibilitySetting2);
+            compatibility1.Append(compatibilitySetting3);
+            compatibility1.Append(compatibilitySetting4);
+            compatibility1.Append(compatibilitySetting5);
+
+            Rsids rsids1 = new Rsids();
+            RsidRoot rsidRoot1 = new RsidRoot() { Val = "0037071F" };
+            Rsid rsid1 = new Rsid() { Val = "0004755D" };
+            Rsid rsid2 = new Rsid() { Val = "0037071F" };
+            Rsid rsid3 = new Rsid() { Val = "00821C91" };
+            Rsid rsid4 = new Rsid() { Val = "00D5165D" };
+            Rsid rsid5 = new Rsid() { Val = "00EA771F" };
+
+            rsids1.Append(rsidRoot1);
+            rsids1.Append(rsid1);
+            rsids1.Append(rsid2);
+            rsids1.Append(rsid3);
+            rsids1.Append(rsid4);
+            rsids1.Append(rsid5);
+
+            M.MathProperties mathProperties1 = new M.MathProperties();
+            M.MathFont mathFont1 = new M.MathFont() { Val = "Cambria Math" };
+            M.BreakBinary breakBinary1 = new M.BreakBinary() { Val = M.BreakBinaryOperatorValues.Before };
+            M.BreakBinarySubtraction breakBinarySubtraction1 = new M.BreakBinarySubtraction() { Val = M.BreakBinarySubtractionValues.MinusMinus };
+            M.SmallFraction smallFraction1 = new M.SmallFraction() { Val = M.BooleanValues.Zero };
+            M.DisplayDefaults displayDefaults1 = new M.DisplayDefaults();
+            M.LeftMargin leftMargin100 = new M.LeftMargin() { Val = (UInt32Value)0U };
+            M.RightMargin rightMargin100 = new M.RightMargin() { Val = (UInt32Value)0U };
+            M.DefaultJustification defaultJustification1 = new M.DefaultJustification() { Val = M.JustificationValues.CenterGroup };
+            M.WrapIndent wrapIndent1 = new M.WrapIndent() { Val = (UInt32Value)1440U };
+            M.IntegralLimitLocation integralLimitLocation1 = new M.IntegralLimitLocation() { Val = M.LimitLocationValues.SubscriptSuperscript };
+            M.NaryLimitLocation naryLimitLocation1 = new M.NaryLimitLocation() { Val = M.LimitLocationValues.UnderOver };
+
+            mathProperties1.Append(mathFont1);
+            mathProperties1.Append(breakBinary1);
+            mathProperties1.Append(breakBinarySubtraction1);
+            mathProperties1.Append(smallFraction1);
+            mathProperties1.Append(displayDefaults1);
+            mathProperties1.Append(leftMargin100);
+            mathProperties1.Append(rightMargin100);
+            mathProperties1.Append(defaultJustification1);
+            mathProperties1.Append(wrapIndent1);
+            mathProperties1.Append(integralLimitLocation1);
+            mathProperties1.Append(naryLimitLocation1);
+            ThemeFontLanguages themeFontLanguages1 = new ThemeFontLanguages() { Val = "en-US", EastAsia = "ko-KR" };
+            ColorSchemeMapping colorSchemeMapping1 = new ColorSchemeMapping() { Background1 = ColorSchemeIndexValues.Light1, Text1 = ColorSchemeIndexValues.Dark1, Background2 = ColorSchemeIndexValues.Light2, Text2 = ColorSchemeIndexValues.Dark2, Accent1 = ColorSchemeIndexValues.Accent1, Accent2 = ColorSchemeIndexValues.Accent2, Accent3 = ColorSchemeIndexValues.Accent3, Accent4 = ColorSchemeIndexValues.Accent4, Accent5 = ColorSchemeIndexValues.Accent5, Accent6 = ColorSchemeIndexValues.Accent6, Hyperlink = ColorSchemeIndexValues.Hyperlink, FollowedHyperlink = ColorSchemeIndexValues.FollowedHyperlink };
+
+            ShapeDefaults shapeDefaults2 = new ShapeDefaults();
+            Ovml.ShapeDefaults shapeDefaults3 = new Ovml.ShapeDefaults() { Extension = V.ExtensionHandlingBehaviorValues.Edit, MaxShapeId = 2049 };
+
+            Ovml.ShapeLayout shapeLayout1 = new Ovml.ShapeLayout() { Extension = V.ExtensionHandlingBehaviorValues.Edit };
+            Ovml.ShapeIdMap shapeIdMap1 = new Ovml.ShapeIdMap() { Extension = V.ExtensionHandlingBehaviorValues.Edit, Data = "1" };
+            shapeLayout1.Append(shapeIdMap1);
+
+            shapeDefaults2.Append(shapeDefaults3);
+            shapeDefaults2.Append(shapeLayout1);
+            DecimalSymbol decimalSymbol1 = new DecimalSymbol() { Val = "." };
+            ListSeparator listSeparator1 = new ListSeparator() { Val = "," };
+            W14.DocumentId documentId1 = new W14.DocumentId() { Val = "703B7AF3" };
+            W15.PersistentDocumentId persistentDocumentId1 = new W15.PersistentDocumentId() { Val = "{64AC64DA-E878-4AB1-9BFB-46ABB5B936CC}" };
+
+            settings1.Append(zoom1);
+            settings1.Append(bordersDoNotSurroundHeader1);
+            settings1.Append(bordersDoNotSurroundFooter1);
+            settings1.Append(defaultTabStop1);
+            settings1.Append(characterSpacingControl1);
+            settings1.Append(headerShapeDefaults1);
+            settings1.Append(footnoteDocumentWideProperties1);
+            settings1.Append(endnoteDocumentWideProperties1);
+            settings1.Append(compatibility1);
+            settings1.Append(rsids1);
+            settings1.Append(mathProperties1);
+            settings1.Append(themeFontLanguages1);
+            settings1.Append(colorSchemeMapping1);
+            settings1.Append(shapeDefaults2);
+            settings1.Append(decimalSymbol1);
+            settings1.Append(listSeparator1);
+            settings1.Append(documentId1);
+            settings1.Append(persistentDocumentId1);
+
+            documentSettingsPart1.Settings = settings1;
+        }
+
+        public void GenerateEndnotesPart1Content(EndnotesPart endnotesPart1)
+        {
+            Endnotes endnotes1 = new Endnotes() { MCAttributes = new MarkupCompatibilityAttributes() { Ignorable = "w14 w15 w16se wp14" } };
+            endnotes1.AddNamespaceDeclaration("wpc", "http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas");
+            endnotes1.AddNamespaceDeclaration("cx", "http://schemas.microsoft.com/office/drawing/2014/chartex");
+            endnotes1.AddNamespaceDeclaration("cx1", "http://schemas.microsoft.com/office/drawing/2015/9/8/chartex");
+            endnotes1.AddNamespaceDeclaration("mc", "http://schemas.openxmlformats.org/markup-compatibility/2006");
+            endnotes1.AddNamespaceDeclaration("o", "urn:schemas-microsoft-com:office:office");
+            endnotes1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            endnotes1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
+            endnotes1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
+            endnotes1.AddNamespaceDeclaration("wp14", "http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing");
+            endnotes1.AddNamespaceDeclaration("wp", "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
+            endnotes1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
+            endnotes1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+            endnotes1.AddNamespaceDeclaration("w14", "http://schemas.microsoft.com/office/word/2010/wordml");
+            endnotes1.AddNamespaceDeclaration("w15", "http://schemas.microsoft.com/office/word/2012/wordml");
+            endnotes1.AddNamespaceDeclaration("w16se", "http://schemas.microsoft.com/office/word/2015/wordml/symex");
+            endnotes1.AddNamespaceDeclaration("wpg", "http://schemas.microsoft.com/office/word/2010/wordprocessingGroup");
+            endnotes1.AddNamespaceDeclaration("wpi", "http://schemas.microsoft.com/office/word/2010/wordprocessingInk");
+            endnotes1.AddNamespaceDeclaration("wne", "http://schemas.microsoft.com/office/word/2006/wordml");
+            endnotes1.AddNamespaceDeclaration("wps", "http://schemas.microsoft.com/office/word/2010/wordprocessingShape");
+
+            Endnote endnote1 = new Endnote() { Type = FootnoteEndnoteValues.Separator, Id = -1 };
+
+            Paragraph paragraph143 = new Paragraph() { RsidParagraphAddition = "0004755D", RsidParagraphProperties = "00EA771F", RsidRunAdditionDefault = "0004755D" };
+
+            ParagraphProperties paragraphProperties106 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines102 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            paragraphProperties106.Append(spacingBetweenLines102);
+
+            Run run112 = new Run();
+            SeparatorMark separatorMark1 = new SeparatorMark();
+
+            run112.Append(separatorMark1);
+
+            paragraph143.Append(paragraphProperties106);
+            paragraph143.Append(run112);
+
+            endnote1.Append(paragraph143);
+
+            Endnote endnote2 = new Endnote() { Type = FootnoteEndnoteValues.ContinuationSeparator, Id = 0 };
+
+            Paragraph paragraph144 = new Paragraph() { RsidParagraphAddition = "0004755D", RsidParagraphProperties = "00EA771F", RsidRunAdditionDefault = "0004755D" };
+
+            ParagraphProperties paragraphProperties107 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines103 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            paragraphProperties107.Append(spacingBetweenLines103);
+
+            Run run113 = new Run();
+            ContinuationSeparatorMark continuationSeparatorMark1 = new ContinuationSeparatorMark();
+
+            run113.Append(continuationSeparatorMark1);
+
+            paragraph144.Append(paragraphProperties107);
+            paragraph144.Append(run113);
+
+            endnote2.Append(paragraph144);
+
+            endnotes1.Append(endnote1);
+            endnotes1.Append(endnote2);
+
+            endnotesPart1.Endnotes = endnotes1;
+        }
+
+        // Generates content of footnotesPart1.
+        public void GenerateFootnotesPart1Content(FootnotesPart footnotesPart1)
+        {
+            Footnotes footnotes1 = new Footnotes() { MCAttributes = new MarkupCompatibilityAttributes() { Ignorable = "w14 w15 w16se wp14" } };
+            footnotes1.AddNamespaceDeclaration("wpc", "http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas");
+            footnotes1.AddNamespaceDeclaration("cx", "http://schemas.microsoft.com/office/drawing/2014/chartex");
+            footnotes1.AddNamespaceDeclaration("cx1", "http://schemas.microsoft.com/office/drawing/2015/9/8/chartex");
+            footnotes1.AddNamespaceDeclaration("mc", "http://schemas.openxmlformats.org/markup-compatibility/2006");
+            footnotes1.AddNamespaceDeclaration("o", "urn:schemas-microsoft-com:office:office");
+            footnotes1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            footnotes1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
+            footnotes1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
+            footnotes1.AddNamespaceDeclaration("wp14", "http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing");
+            footnotes1.AddNamespaceDeclaration("wp", "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
+            footnotes1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
+            footnotes1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+            footnotes1.AddNamespaceDeclaration("w14", "http://schemas.microsoft.com/office/word/2010/wordml");
+            footnotes1.AddNamespaceDeclaration("w15", "http://schemas.microsoft.com/office/word/2012/wordml");
+            footnotes1.AddNamespaceDeclaration("w16se", "http://schemas.microsoft.com/office/word/2015/wordml/symex");
+            footnotes1.AddNamespaceDeclaration("wpg", "http://schemas.microsoft.com/office/word/2010/wordprocessingGroup");
+            footnotes1.AddNamespaceDeclaration("wpi", "http://schemas.microsoft.com/office/word/2010/wordprocessingInk");
+            footnotes1.AddNamespaceDeclaration("wne", "http://schemas.microsoft.com/office/word/2006/wordml");
+            footnotes1.AddNamespaceDeclaration("wps", "http://schemas.microsoft.com/office/word/2010/wordprocessingShape");
+
+            Footnote footnote1 = new Footnote() { Type = FootnoteEndnoteValues.Separator, Id = -1 };
+
+            Paragraph paragraph145 = new Paragraph() { RsidParagraphAddition = "0004755D", RsidParagraphProperties = "00EA771F", RsidRunAdditionDefault = "0004755D" };
+
+            ParagraphProperties paragraphProperties108 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines104 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            paragraphProperties108.Append(spacingBetweenLines104);
+
+            Run run114 = new Run();
+            SeparatorMark separatorMark2 = new SeparatorMark();
+
+            run114.Append(separatorMark2);
+
+            paragraph145.Append(paragraphProperties108);
+            paragraph145.Append(run114);
+
+            footnote1.Append(paragraph145);
+
+            Footnote footnote2 = new Footnote() { Type = FootnoteEndnoteValues.ContinuationSeparator, Id = 0 };
+
+            Paragraph paragraph146 = new Paragraph() { RsidParagraphAddition = "0004755D", RsidParagraphProperties = "00EA771F", RsidRunAdditionDefault = "0004755D" };
+
+            ParagraphProperties paragraphProperties109 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines105 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            paragraphProperties109.Append(spacingBetweenLines105);
+
+            Run run115 = new Run();
+            ContinuationSeparatorMark continuationSeparatorMark2 = new ContinuationSeparatorMark();
+
+            run115.Append(continuationSeparatorMark2);
+
+            paragraph146.Append(paragraphProperties109);
+            paragraph146.Append(run115);
+
+            footnote2.Append(paragraph146);
+
+            footnotes1.Append(footnote1);
+            footnotes1.Append(footnote2);
+
+            footnotesPart1.Footnotes = footnotes1;
+        }
+
+
     }
 }

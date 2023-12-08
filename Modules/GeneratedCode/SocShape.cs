@@ -8,13 +8,13 @@ using System;
 
 namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 {
-    public class GenerateTextBox
+    public class SocShape
     {
-        private GenerateTextBox() { }
+        private SocShape() { }
         //private static 인스턴스 객체
-        private static readonly Lazy<GenerateTextBox> _instance = new Lazy<GenerateTextBox>(() => new GenerateTextBox());
+        private static readonly Lazy<SocShape> _instance = new Lazy<SocShape>(() => new SocShape());
         //public static 의 객체반환 함수
-        public static GenerateTextBox Instance { get { return _instance.Value; } }
+        public static SocShape Instance { get { return _instance.Value; } }
 
         public int EMUPPI { get; set; } = 0;
 
@@ -25,41 +25,14 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         {
             int fontSize = (int)model.Font.Size * 100;
             string fontFace = model.Font.Name;
-            A.TextAlignmentTypeValues textAlignment = model.Paragraph.AlignmentHorizontal;
-            A.TextAnchoringTypeValues textAnchoring = model.Paragraph.AlignmentVertical;
-
-            bool bold = false;
-            bool italic = false;
-            A.TextUnderlineValues underlineValue = A.TextUnderlineValues.None;
-            if (model.Font.UnderLine)
-                underlineValue = A.TextUnderlineValues.Single;
-
-            A.TextStrikeValues strikeValues = A.TextStrikeValues.NoStrike;
-            if (model.Font.Strike)
-                strikeValues =  A.TextStrikeValues.SingleStrike;
-
-            
-
-
+            A.TextAlignmentTypeValues textAlignment = Common.Instance.GetDrawingAlignment(model.Paragraph.AlignmentHorizontal);
+            A.TextAnchoringTypeValues textAnchoring = Common.Instance.GetDrawingAnchoring(model.Paragraph.AlignmentVertical);
+                 
             //텍스트 수직정렬(방향)
-            A.TextVerticalValues textVerticalValue = A.TextVerticalValues.Horizontal;
-            switch (model.Paragraph.TextDirection)
-            {
-                case TextDirection.Vertical:
-                    textVerticalValue = A.TextVerticalValues.EastAsianVetical;
-                    break;
-                case TextDirection.RotateAllText90:
-                    textVerticalValue = A.TextVerticalValues.Vertical;
-                    break;
-                case TextDirection.RotateAllText270:
-                    textVerticalValue = A.TextVerticalValues.Vertical270;
-                    break;
-                case TextDirection.Stacked:
-                    textVerticalValue = A.TextVerticalValues.WordArtVertical;
-                    break;
-            }
-            TextBody textBody1 = new TextBody(); 
-            
+            var textVerticalValue = Common.Instance.GetDrawingTextVertical(model.Paragraph.TextDirection);
+           
+            TextBody textBody1 = new TextBody();
+
             SetBodyProperty();
             textBody1.Append(new A.ListStyle());
 
@@ -79,7 +52,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             A.Run run1 = new A.Run();
             //2. 텍스트 속성 : 폰트, 컬러, 내용, Bold 등
             SetTextProperty();
-            paragraph1.Append(run1);  
+            paragraph1.Append(run1);
             textBody1.Append(paragraph1);
 
             Shape shape1 = new Shape();
@@ -116,7 +89,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
             void SetShapeProperty()
             {
-                shapeProperties1.Append(Transform2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
+                shapeProperties1.Append(Common.Instance.GetDrawingTransfrom2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
 
                 //도형 타입
                 A.PresetGeometry presetGeometry1 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
@@ -130,14 +103,6 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 }
                 else
                 {
-                    //A.SolidFill backgroundColor = new();
-                    //A.RgbColorModelHex rgbBackColor = new A.RgbColorModelHex() { Val = model.ShapeStyle.FillColor };
-                    //if (model.ShapeStyle.FillColor == "transparent")
-                    //{
-                    //    A.Alpha alpha4 = new A.Alpha() { Val = 0 };
-                    //    rgbBackColor.Append(alpha4);
-                    //}
-                    //backgroundColor.Append(rgbBackColor);
                     shapeProperties1.Append(Common.Instance.GenerateSolidFill(model.ShapeStyle.FillColor));
                 }
                 #endregion
@@ -156,32 +121,33 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             void SetTextProperty()
             {
                 //point * 100
-                A.RunProperties runProperties1 = new A.RunProperties() { 
-                    Language = "en-US", 
-                    AlternativeLanguage = "ko-KR", 
-                    Dirty = false,
-                    FontSize = fontSize,
-                    Bold = bold,
-                    Italic = italic,
-                    Underline = underlineValue,
-                    Strike = strikeValues,
-                    Spacing = (int)(model.Font.SpacingValue * 100)
+                //A.RunProperties runProperties1 = new A.RunProperties()
+                //{
+                //    Language = "en-US",
+                //    AlternativeLanguage = "ko-KR",
+                //    Dirty = false,
+                //    FontSize = fontSize,
+                //    Bold = bold,
+                //    Italic = italic,
+                //    Underline = underlineValue,
+                //    Strike = strikeValues,
+                //    Spacing = (int)(model.Font.CharacterSpacing * 100)
 
-                };
+                //};
 
-                //주의! 컬러값 잘못들어가면 문서깨짐.
-                A.SolidFill solidFill1 = Common.Instance.GenerateSolidFill(model.Font.Color);
-                A.LatinFont latinFont1 = new A.LatinFont() { Typeface = fontFace };
-                A.EastAsianFont eastAsianFont1 = new A.EastAsianFont() { Typeface = fontFace };
+                ////주의! 컬러값 잘못들어가면 문서깨짐.
+                //A.SolidFill solidFill1 = Common.Instance.GenerateSolidFill(model.Font.Color);
+                //A.LatinFont latinFont1 = new A.LatinFont() { Typeface = fontFace };
+                //A.EastAsianFont eastAsianFont1 = new A.EastAsianFont() { Typeface = fontFace };
 
-                runProperties1.Append(solidFill1);
-                runProperties1.Append(latinFont1);
-                runProperties1.Append(eastAsianFont1);
-
+                //runProperties1.Append(solidFill1);
+                //runProperties1.Append(latinFont1);
+                //runProperties1.Append(eastAsianFont1);
+                var runProperties = Common.Instance.GetDrawingRunProperty(model.Font);
                 A.Text text1 = new A.Text();
                 text1.Text = model.Text;
 
-                run1.Append(runProperties1);
+                run1.Append(runProperties);
                 run1.Append(text1);
             }
         }
@@ -218,7 +184,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
             void SetShapeProperty()
             {
-                shapeProperties1.Append(Transform2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
+                shapeProperties1.Append(Common.Instance.GetDrawingTransfrom2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
 
                 //도형 타입
                 A.PresetGeometry presetGeometry1 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Ellipse };
@@ -236,28 +202,25 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 }
                 #endregion
 
+                #region 테두리
                 if (model.ShapeStyle.UseOutline && model.ShapeStyle.OutlineWeight > 0)
                 {
-                    A.Outline outline1 = new A.Outline()
-                    {                        
-                        Width = (int)model.ShapeStyle.OutlineWeight * EMUPPI,
-                    };
-                    A.SolidFill solidFill2 = Common.Instance.GenerateSolidFill(model.ShapeStyle.OutlineColor);
-                    outline1.Append(solidFill2);
-                    shapeProperties1.Append(outline1);
+                    var outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor);
+                    shapeProperties1.Append(outline);
                 }
-            }            
+                #endregion
+            }
         }
-        public A.Transform2D Transform2D(int x, int y, int width, int height)
-        {
-            A.Transform2D transform1 = new A.Transform2D();
-            A.Offset offset1 = new A.Offset() { X = x * EMUPPI, Y = y * EMUPPI };
-            A.Extents extents1 = new A.Extents() { Cx = width * EMUPPI, Cy = height * EMUPPI };
+        //public A.Transform2D Transform2D(int x, int y, int width, int height)
+        //{
+        //    A.Transform2D transform1 = new A.Transform2D();
+        //    A.Offset offset1 = new A.Offset() { X = x * EMUPPI, Y = y * EMUPPI };
+        //    A.Extents extents1 = new A.Extents() { Cx = width * EMUPPI, Cy = height * EMUPPI };
 
-            transform1.Append(offset1);
-            transform1.Append(extents1);
-            return transform1;
-        }
+        //    transform1.Append(offset1);
+        //    transform1.Append(extents1);
+        //    return transform1;
+        //}
 
         public Picture GeneratePicture(OfficeModel model)
         {
@@ -309,7 +272,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             presetGeometry1.Append(adjustValueList1);
 
             //shapeProperties1.Append(transform2D1);
-            shapeProperties1.Append(Transform2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
+            shapeProperties1.Append(Common.Instance.GetDrawingTransfrom2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
             shapeProperties1.Append(presetGeometry1);
 
             picture1.Append(nonVisualPictureProperties1);

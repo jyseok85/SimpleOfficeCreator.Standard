@@ -38,31 +38,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab
         public bool Strike { get; set; }
 
         /// <summary>
-        /// 자간
+        /// 문자 간격
+        /// UI상에서 표현되는 좁게 옵션은 - 값으로 입력하면 됩니다.
         /// </summary>
-        public float SpacingValue { get; set; } = 0;
+        public float CharacterSpacing { get; set; } = 0; 
+                                                     
 
         /// <summary>
         /// HexColorValue
         /// </summary>
         public string Color { get; set; } = "000000";
-
-
-
-        /// <summary>
-        /// 자간을 설정합니다. 
-        /// </summary>
-        /// <param name="spacing">Office UI 에 있는 기본 DropDown 값</param>
-        /// <param name="point">Custom 일때 입력할 값\n(pt * 100) 수치를 입력</param>
-        public void SetSpacing(Spacing spacing, int point = 0)
-        {
-            if (spacing == Spacing.Custom)
-            {
-                SpacingValue = point;
-            }
-            else
-                SpacingValue = (int)spacing;
-        }
 
         /// <summary>
         /// 오피스에서는 RGB Hex 값이 사용되며, 투명은 NoFill 속성으로 처리된다.

@@ -1,4 +1,5 @@
 ﻿using SimpleOfficeCreator.Stardard.Modules;
+using SimpleOfficeCreator.Stardard.Modules.GeneratedCode;
 using SimpleOfficeCreator.Stardard.Modules.Model;
 using System;
 using System.Collections.Generic;
@@ -31,14 +32,19 @@ namespace SimpleOfficeCreator.Stardard
             this.OfficeType = type;
             this.memoryStream = new MemoryStream();
 
+            Common.Instance.UniqueId.Clear();
+            Common.Instance.UniqueId.Add(1);
+
             switch (OfficeType)
             {
                 case OfficeType.PowerPoint:
                     powerPoint = new PowerPoint(memoryStream);
+                    //to do:PPT 용지사이즈 설정
                     powerPoint.Initialize(794, 1123, EMU96PPI);
                     break;
                 case OfficeType.Word:
                     word = new Word(memoryStream);
+                    word.Initialize(800,1123, EMU96PPI);
                     break;
                 case OfficeType.Excel:
                     break;
@@ -54,12 +60,27 @@ namespace SimpleOfficeCreator.Stardard
 
         public void ConvertPage(int page, List<OfficeModel> models)
         {
-            powerPoint.ConvertPerPage(page, models);
+            switch (OfficeType)
+            {
+                case OfficeType.PowerPoint:
+                    powerPoint.ConvertPerPage(page, models);
+                    break;
+                case OfficeType.Word:
+                    word.ConvertPerPage(page, models);
+                    break;
+                case OfficeType.Excel:
+                    break;
+            }
         }
 
+        /// <summary>
+        /// 파일을 저장합니다.
+        /// </summary>
+        /// <param name="filePath"></param>
         public void Save(string filePath)
         {
-            powerPoint.Save();
+            SaveOfficeDocument();
+
             if (filePath == string.Empty)
             {
                 switch (OfficeType)
@@ -80,13 +101,31 @@ namespace SimpleOfficeCreator.Stardard
             this.memoryStream.Dispose();
         }
 
+        /// <summary>
+        /// 현재 생성한 문서를 가져옵니다.
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetByteArray()
         {
-            powerPoint.Save();
+            SaveOfficeDocument();
+
             this.memoryStream.Seek(0, SeekOrigin.Begin);
             var result = this.memoryStream.ToArray();
             this.memoryStream.Dispose();
             return result;
+        }
+
+        private void SaveOfficeDocument()
+        {
+            switch (OfficeType)
+            {
+                case OfficeType.PowerPoint:
+                    powerPoint.Save();
+                    break;
+                case OfficeType.Word:
+                    word.Save();
+                    break;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <BaseOutputPath>D:\DR\DRDesigner4.0\Bin\Debug</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

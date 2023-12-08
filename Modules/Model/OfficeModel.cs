@@ -16,6 +16,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
     public enum Type
     { 
         None,
+        Paper,
         Table,
         TableCell,
         Picture,
@@ -57,6 +58,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
         public OfficeTableInfo TableInfo { get; set; } = null;
 
         public OfficePictureStyle PictureStyle { get; set; } = null;
+
+        public PaperInfo PaperInfo { get; set; } = null;
     }
    
 
@@ -82,8 +85,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
     public class Margin
     {
         public float Left { get; set; } = 3.78f;
-        public float Top { get; set; } = 0f;
         public float Right { get; set; } = 3.78f;
-        public float Bottom { get; set; } = 0f;
+        //실제 DR은 0.1cm가 할당되어 있지만, 문서 변환시 0으로 해야 DR과 비슷하게 나온다. 
+        public float Top { get; set; } = 3.78f;
+        public float Bottom { get; set; } = 3.78f;
     }
+
+    public class PaperInfo
+    {
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public bool IsLandscape { get; set; }
+    }
+
 }

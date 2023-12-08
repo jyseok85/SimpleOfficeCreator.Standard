@@ -7,6 +7,19 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 {
     internal static class StaticCode
     {
+        public static NonVisualShapeProperties GenerateNonVisualShapeProperties(string textboxName)
+        {
+            NonVisualShapeProperties nonVisualShapeProperties1 = new NonVisualShapeProperties();
+            NonVisualDrawingProperties nonVisualDrawingProperties2 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = textboxName };
+            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties1 = new NonVisualShapeDrawingProperties() { TextBox = true };
+            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties2 = new ApplicationNonVisualDrawingProperties();
+
+            nonVisualShapeProperties1.Append(nonVisualDrawingProperties2);
+            nonVisualShapeProperties1.Append(nonVisualShapeDrawingProperties1);
+            nonVisualShapeProperties1.Append(applicationNonVisualDrawingProperties2);
+
+            return nonVisualShapeProperties1;
+        }
         public static NonVisualGroupShapeProperties GenerateNonVisualGroupShapeProperties()
         {
             NonVisualGroupShapeProperties nonVisualGroupShapeProperties1 = new NonVisualGroupShapeProperties();
@@ -70,18 +83,5 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             return nonVisualGraphicFrameProperties1;
         }
 
-        public static NonVisualShapeProperties GenerateNonVisualShapeProperties(string textboxName)
-        {
-            NonVisualShapeProperties nonVisualShapeProperties1 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties2 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = textboxName };
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties1 = new NonVisualShapeDrawingProperties() { TextBox = true };
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties2 = new ApplicationNonVisualDrawingProperties();
-
-            nonVisualShapeProperties1.Append(nonVisualDrawingProperties2);
-            nonVisualShapeProperties1.Append(nonVisualShapeDrawingProperties1);
-            nonVisualShapeProperties1.Append(applicationNonVisualDrawingProperties2);
-
-            return nonVisualShapeProperties1;
-        }
     }
 }

@@ -15,6 +15,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
     /// </summary>
     public class OfficeModelCreator
     {
+        //파워포인트와 
+        //워드의 테이블구조가 개판이다.
+
+        //파워포인트는 원본셀 속성만 바라본다. 그러나 모든 빈셀을 만들어둬야 한다. 
+        //워드는 각 개별 셀 속성을 바라본다. 그러나 워드는 개별 셀들을 전부 만들지 않고, 세로 병합되는 셀만 생성한다. 가로 병합 빈셀은 안만든다.
         
         public OfficeModel CreateTextBox(int x, int y, int width, int height, string text, OfficeFont font = null, OfficeParagraph paragraph = null, OfficeShapeStyle style = null)
         {
@@ -120,38 +125,46 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
                 model.TableInfo.Styles = style;
 
             parent.TableInfo.Children.Add(model);
-
+          
+            
+            
             //셀 내용넣고
             if (rowSpan > 1 || colSpan > 1)
-            { 
-                for(int i = 0; i < rowSpan; i++)
+            {
+                bool verticlaMerge = rowSpan > 1 ? true : false;
+
+                for (int i = 0; i < rowSpan; i++)
                 {
-                    CreateEmptyCell(col, row + i);
+                    CreateEmptyCell(col, row , verticlaMerge, 0, i, colSpan);
                 }
                 for (int j = 0; j < colSpan; j++)
                 {
-                    CreateEmptyCell(col + j, row);
-                }
-                //for (int i = 0; i < rowSpan; i++)
-                //{
-                //    for (int j = 0; j < colSpan; j++)
-                //    {
-                //        CreateEmptyCell(col + j, row + i);
-                //    }
-                //}              
+                    CreateEmptyCell(col, row, verticlaMerge, j , 0, 1);
+                }       
             }
 
 
-            void CreateEmptyCell(int c, int r)
+            void CreateEmptyCell(int c, int r, bool isRowSpan, int colindex, int rowindex, int colspan)
             {
                 OfficeModel empty = new OfficeModel("emptycell");
                 empty.TableInfo = new OfficeTableInfo();
-                empty.TableInfo.Cell.Row = r;
-                empty.TableInfo.Cell.Col = c;
+                empty.TableInfo.Cell.Row = r + rowindex;
+                empty.TableInfo.Cell.Col = c + colindex;
                 empty.TableInfo.Cell.Empty = true;
 
+
                 empty.TableInfo.Cell.HorizontalMerge = true;
-                empty.TableInfo.Cell.VerticalMerge = true;
+                empty.TableInfo.Cell.VerticalMerge = isRowSpan;
+
+                //워드 전용속성
+                if(colspan > 1)
+                    empty.TableInfo.Cell.ColSpan = colspan;
+
+                if (rowindex > 0)
+                {
+                    empty.TableInfo.Cell.MergedRow = true;
+                    empty.TableInfo.Styles = style;
+                }
 
                 parent.TableInfo.Children.Add(empty);
             }
@@ -184,7 +197,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
                             empty.TableInfo.Cell.Empty = true;
 
                             empty.TableInfo.Cell.HorizontalMerge = true;
-                            empty.TableInfo.Cell.VerticalMerge = true;
+                            empty.TableInfo.Cell.VerticalMerge = false;
                             listTableCell.Add(empty);
                         }
                     }
@@ -228,6 +241,28 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
             model.Rect.Width = width;
             model.Rect.Height = height;
             model.Type = Type.Shape;
+            return model;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width">용지 가로 크기</param>
+        /// <param name="height">용지 세로 크기</param>
+        /// <param name="landscape">가로 여부</param>
+        /// <returns></returns>
+        public OfficeModel CreateReport(int width, int height, bool landscape, float marginLeft, float marginTop, float marginRight, float marginBottom)
+        {
+            OfficeModel model = new OfficeModel("");
+            model.PaperInfo = new PaperInfo();
+            model.Margin.Left = marginLeft;
+            model.Margin.Top = marginTop;
+            model.Margin.Right = marginRight / 2 ; //왜인지 DR에 두배로 들어가있다..
+            model.Margin.Bottom = marginBottom / 2;
+            model.PaperInfo.Width = width;
+            model.PaperInfo.Height = height;
+            model.PaperInfo.IsLandscape = landscape;
+            model.Type = Type.Paper;
             return model;
         }
     }
