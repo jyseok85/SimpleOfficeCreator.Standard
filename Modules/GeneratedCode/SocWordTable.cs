@@ -1,12 +1,9 @@
-﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.Wordprocessing;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleOfficeCreator.Stardard.Modules.Model;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 
 namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 {
@@ -54,7 +51,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         }
 
 
-        public TableProperties GenerateTableProperties(bool isTableLabel, PointF loc)
+        private TableProperties GenerateTableProperties(bool isTableLabel, PointF loc)
         {
             //Y 값이 0 일경우에 OpenXml 내부적으로 기존테이블과 합쳐버리는 로직이 있다...(아마도..)
             //그래서 어차피 눈에도 안보이는데 1증가시킨다. 실제 테이블할때는 제외하도록하자.
@@ -96,13 +93,13 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             return tableProperties1;
         }
 
-        public TableGrid GenerateTableGrid(List<int> columnWidths)
+        private TableGrid GenerateTableGrid(List<int> columnWidths)
         {
             TableGrid tableGrid = new TableGrid();
 
             foreach (int colWidth in columnWidths)
             {
-                var width = (colWidth ) * wordTableRatio;
+                var width = (colWidth) * wordTableRatio;
                 GridColumn gridColumn1 = new GridColumn() { Width = width.ToString() };
                 tableGrid.Append(gridColumn1);
             }
@@ -111,7 +108,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         }
 
-        public TableRow GenerateTableRow(OfficeModel model, int height, int row)
+        private TableRow GenerateTableRow(OfficeModel model, int height, int row)
         {
             var tableRow = new TableRow();
             TableRowProperties tableRowProperties1 = new TableRowProperties();
@@ -133,7 +130,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                     {
                         if (item.TableInfo.Cell.Empty == true)
                         {
-                            if(item.TableInfo.Cell.MergedRow == true) 
+                            if (item.TableInfo.Cell.MergedRow == true)
                             {
                                 var tableCell = GenerateEmptyTableCell(item);
                                 tableRow.Append(tableCell);
@@ -150,7 +147,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             return tableRow;
         }
 
-        TableCell GenerateTableCell(OfficeModel cell, bool isSingleCell = false)
+        private TableCell GenerateTableCell(OfficeModel cell, bool isSingleCell = false)
         {
             TableCell tableCell1 = new TableCell();
 
@@ -172,115 +169,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 #endregion
 
                 #region 가로정렬
-                paragraphProperties.Append(new Justification() { Val = Common.Instance.GetWordprocessingJustification(cell.Paragraph.AlignmentHorizontal) });
+                paragraphProperties.Append(Common.Instance.GetWordprocessingJustification(cell));
                 #endregion
 
                 #region 줄간격
-                if (cell.Paragraph.LineSpacing > 0)
+                paragraphProperties.Append(Common.Instance.GetSpacingBetweenLines(cell));
+                #endregion
+                //순서 중요함. 뒤에 run 프로퍼티보다 늦게 추가되면 안됨.
+                paragraph1.Append(paragraphProperties);
+
+
+                var run = new Run();
+                var runProperties1 = Common.Instance.GetWordRunProperty(cell.Font);
+
+                #region 텍스트 자동 맞춤(테이블 셀 전용)
+                if (cell.Paragraph.TableCellFitText)
                 {
-                    var lineSpace = cell.Paragraph.LineSpacing * 20f;
-                    SpacingBetweenLines spacingBetweenLines1 = new SpacingBetweenLines() { Line = lineSpace.ToString(), LineRule = LineSpacingRuleValues.Exact };
-                    paragraphProperties.Append(spacingBetweenLines1);
+                    TableCellFitText cellFitText = new TableCellFitText();
+                    runProperties1.Append(cellFitText);
                 }
                 #endregion
 
-                paragraph1.Append(paragraphProperties);
+                run.Append(runProperties1);
 
-                //2. 텍스트 속성 : 폰트, 컬러, 내용, Bold 등
-                paragraph1.Append(SetRun());
+                #region TEXT
+                //워드 텍스트는 개행이 개판이다. 
+                //PPT는 \n 이 자동 처리된다.
+                Common.Instance.SetWordRunText(run, cell);
+                #endregion
+
+                paragraph1.Append(run);
 
                 //todo : 이미지 셀 확인
 
                 return paragraph1;
 
-                Run SetRun()
-                {
-                    var run = new Run();
-                    var runProperties1 = Common.Instance.GetWordRunProperty(cell.Font);
 
-                    //#region 폰트명
-                    //RunFonts runFonts4 = new RunFonts() { Hint = FontTypeHintValues.EastAsia, Ascii = cell.Font.Name, HighAnsi = cell.Font.Name, EastAsia = cell.Font.Name };
-                    //runProperties1.Append(runFonts4);
-                    //#endregion
-
-                    //#region 폰트사이즈
-                    //FontSize fontSize4 = new FontSize() { Val = (cell.Font.Size * 2).ToString() };
-                    //runProperties1.Append(fontSize4);
-                    //#endregion
-
-                    //#region 폰트옵션
-                    //if (cell.Font.UnderLine)
-                    //{
-                    //    Underline style = new Underline() { Val = UnderlineValues.Single };
-                    //    runProperties1.Append(style);
-                    //}
-                    //if (cell.Font.Strike)
-                    //{
-                    //    Strike style = new Strike();
-                    //    runProperties1.Append(style);
-                    //}
-                    //if (cell.Font.Bold)
-                    //{
-                    //    Bold style = new Bold();
-                    //    runProperties1.Append(style);
-                    //}
-                    //if (cell.Font.Italic)
-                    //{
-                    //    Italic style = new Italic();
-                    //    runProperties1.Append(style);
-                    //}
-                    //#endregion
-
-                    //#region 폰트컬러
-                    //runProperties1.Append(new DocumentFormat.OpenXml.Wordprocessing.Color() { Val = cell.Font.Color });
-                    //run.Append(runProperties1);
-                    //#endregion
-
-                    //#region 문자 간격
-                    //Spacing spacing4 = new Spacing() { Val = (int)(cell.Font.CharacterSpacing * 20) };
-                    //runProperties1.Append(spacing4);
-                    //#endregion
-
-                    #region 텍스트 자동 맞춤
-                    if (cell.Paragraph.TableCellFitText)
-                    {
-                        TableCellFitText cellFitText = new TableCellFitText();
-                        runProperties1.Append(cellFitText);
-                    }
-                    #endregion
-                    run.Append(runProperties1);
-
-
-                    #region 텍스트
-                    //워드 텍스트는 개행이 개판이다. 
-                    //PPT는 \n 이 자동 처리된다.
-                    if (cell.Paragraph.TextDirection != Model.Component.HomeTab.TextDirection.Stacked)
-                    {
-                        string[] strs = cell.Text.Split('\n');
-                        for (int i = 0; i < strs.Length; i++)
-                        {
-                            Text text1 = new Text();
-                            text1.Text = strs[i];
-                            text1.Space = SpaceProcessingModeValues.Preserve;
-                            run.Append(text1);
-
-                            if (i < strs.Length - 1)
-                            {
-                                run.AppendChild(new Break());
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Text text1 = new Text();
-                        text1.Space = SpaceProcessingModeValues.Preserve;
-                        text1.Text = cell.Text;
-                        run.Append(text1);
-                    }
-                    #endregion
-
-                    return run;
-                }
             }
 
             TableCellProperties SetCellProperty()
@@ -288,7 +212,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 var tableCellProperties = new TableCellProperties();
 
                 #region 셀병합
-                if(isSingleCell == false)
+                if (isSingleCell == false)
                 {
                     if (cell.TableInfo.Cell.RowSpan > 1)
                     {
@@ -306,7 +230,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 #endregion
 
                 #region 여백
-                tableCellProperties.Append(SetPropertyMargin(cell.Margin.Left, cell.Margin.Right, cell.Margin.Top,cell.Margin.Bottom));
+                tableCellProperties.Append(SetPropertyMargin(cell.Margin.Left, cell.Margin.Right, cell.Margin.Top, cell.Margin.Bottom));
                 #endregion
 
                 #region 테두리
@@ -346,11 +270,10 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
         }
 
-
-        TableCellMargin SetPropertyMargin(float left, float right, float top, float bottom)
+        private TableCellMargin SetPropertyMargin(float left, float right, float top, float bottom)
         {
             TableCellMargin margin = new TableCellMargin();
-            margin.LeftMargin = new LeftMargin() { Width = (left *wordTableRatio).ToString() };
+            margin.LeftMargin = new LeftMargin() { Width = (left * wordTableRatio).ToString() };
             margin.RightMargin = new RightMargin() { Width = (right * wordTableRatio).ToString() };
             margin.TopMargin = new TopMargin() { Width = (top * wordTableRatio).ToString() };
             margin.BottomMargin = new BottomMargin() { Width = (bottom * wordTableRatio).ToString() };
@@ -361,7 +284,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// <summary>
         /// 빈 셀을 생성합니다. 워드의 경우 병합 Column은 생성하지 않고, 병합 Row만 생성됩니다. 
         /// </summary>
-        TableCell GenerateEmptyTableCell(OfficeModel cell)
+        private TableCell GenerateEmptyTableCell(OfficeModel cell)
         {
             TableCell tableCell1 = new TableCell();
             TableCellProperties tableCellProperties1 = new TableCellProperties();
@@ -386,7 +309,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// </summary>
         /// <param name="style"></param>
         /// <returns></returns>
-        TableCellBorders GetTableCellBorders(OfficeTableStyles style)
+        private TableCellBorders GetTableCellBorders(OfficeTableStyles style)
         {
             TableCellBorders tableCellBorders1 = new TableCellBorders();
             //! 주의! 컨트롤 한개씩 그려지는게 아니라. 일괄로 좌측 그리고, 우측그리고 상단 그리고 하단 그리고 하는것 같다. 

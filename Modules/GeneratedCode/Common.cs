@@ -1,5 +1,7 @@
 ﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleOfficeCreator.Stardard.Modules.Model;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Drawing = DocumentFormat.OpenXml.Drawing;
+using PPT = DocumentFormat.OpenXml.Presentation;
 using Wordprocessing = DocumentFormat.OpenXml.Wordprocessing;
 
 namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
@@ -21,29 +24,6 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         public List<uint> UniqueId { get; set; } = new List<uint>();
         public int EMUPPI { get; set; } = 9525;
-
-        /// <summary>
-        /// 배경색 컨트롤을 생성한다.
-        /// </summary>
-        /// <returns></returns>
-        public Drawing.SolidFill GenerateSolidFill(string color)
-        {
-            var borderColor = color;
-            //투명으로 들어왔다면 그냥 흰색으로 변경한다. 대신 추후 Alpha 컴포넌트를 추가한다. 
-            if (borderColor == "transparent" || borderColor == "trasnparent") //오타뭐임??
-                borderColor = "FFFFFF";
-
-            Drawing.SolidFill solidFill = new Drawing.SolidFill();
-            Drawing.RgbColorModelHex rgbBackColor = new Drawing.RgbColorModelHex() { Val = borderColor };
-            if (color == "transparent")
-            {
-                Drawing.Alpha alpha = new Drawing.Alpha() { Val = 0 };
-                rgbBackColor.Append(alpha);
-            }
-            solidFill.Append(rgbBackColor);
-
-            return solidFill;
-        }
 
         /// <summary>
         /// 오피스에서는 RGB Hex 값이 사용되며, 투명은 NoFill 속성으로 처리된다.
@@ -117,6 +97,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         }
 
 
+
+        /// <summary>
+        /// 배경색 컨트롤을 생성한다.
+        /// </summary>
+        /// <returns></returns>
+        public Drawing.SolidFill GenerateSolidFill(string color)
+        {
+            var borderColor = color;
+            //투명으로 들어왔다면 그냥 흰색으로 변경한다. 대신 추후 Alpha 컴포넌트를 추가한다. 
+            if (borderColor == "transparent" || borderColor == "trasnparent") //오타뭐임??
+                borderColor = "FFFFFF";
+
+            Drawing.SolidFill solidFill = new Drawing.SolidFill();
+            Drawing.RgbColorModelHex rgbBackColor = new Drawing.RgbColorModelHex() { Val = borderColor };
+            if (color == "transparent")
+            {
+                Drawing.Alpha alpha = new Drawing.Alpha() { Val = 0 };
+                rgbBackColor.Append(alpha);
+            }
+            solidFill.Append(rgbBackColor);
+
+            return solidFill;
+        }
+
+
         /// <summary>
         /// 수평
         /// </summary>
@@ -183,69 +188,30 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             return textVerticalValue;
         }
 
-        /// <summary>
-        /// 수직
-        /// </summary>
-        /// <param name="textVertical"></param>
-        public Wordprocessing.TableVerticalAlignmentValues GetWordprocessingTableVerticalAlignment(TextAlignmentVertical textVertical)
-        {
-            var value = Wordprocessing.TableVerticalAlignmentValues.Center;
-            switch (textVertical)
-            {
-                case TextAlignmentVertical.Top:
-                    value = Wordprocessing.TableVerticalAlignmentValues.Top;
-                    break;
-                case TextAlignmentVertical.Center:
-                    value = Wordprocessing.TableVerticalAlignmentValues.Center;
-                    break;
-                case TextAlignmentVertical.Bottom:
-                    value = Wordprocessing.TableVerticalAlignmentValues.Bottom;
-                    break;
-            }
-            return value;
-        }
 
-        /// <summary>
-        /// 수평
-        /// </summary>
-        /// <param name="textHorizontal"></param>
-        public Wordprocessing.JustificationValues GetWordprocessingJustification(TextAlignmentHorizontal textHorizontal)
-        {
-            var value = Wordprocessing.JustificationValues.Left;
-            switch (textHorizontal)
-            {
-                case TextAlignmentHorizontal.Left:
-                    value = Wordprocessing.JustificationValues.Left;
-                    break;
-                case TextAlignmentHorizontal.Center:
-                    value = Wordprocessing.JustificationValues.Center;
-                    break;
-                case TextAlignmentHorizontal.Right:
-                    value = Wordprocessing.JustificationValues.Right;
-                    break;
-            }
-            return value;
-        }
 
-        public Wordprocessing.TextDirectionValues GetWordpressingTextDirection(Model.Component.HomeTab.TextDirection direction)
+        public PresetLineDashValues GetDrawingDashValue(string style)
         {
-            var value = Wordprocessing.TextDirectionValues.LefToRightTopToBottom;
-            switch (direction)
+            PresetLineDashValues dashValue = PresetLineDashValues.Solid;
+
+            switch (style.ToUpper())
             {
-                case Model.Component.HomeTab.TextDirection.Vertical:
-                    // textVerticalValue = TextVerticalValues.EastAsianVetical;
+                case "SOLID":
+                    dashValue = PresetLineDashValues.Solid; break;
+                case "DOT":
+                    dashValue = PresetLineDashValues.Dot; break;
+                case "DASH":
+                    dashValue = PresetLineDashValues.Dash; break;
+                case "DASHDOT":
+                    dashValue = PresetLineDashValues.DashDot; break;
+                case "DASHDOTDOT":
+                    dashValue = PresetLineDashValues.SystemDashDotDot; break;
+                default:
                     break;
-                case Model.Component.HomeTab.TextDirection.RotateAllText90:
-                    //textVerticalValue = TextVerticalValues.Vertical;
-                    break;
-                case Model.Component.HomeTab.TextDirection.RotateAllText270:
-                    // textVerticalValue = TextVerticalValues.Vertical270;
-                    break;
-                case Model.Component.HomeTab.TextDirection.Stacked:
-                    value = Wordprocessing.TextDirectionValues.TopToBottomRightToLeftRotated;
-                    break;
+
             }
-            return value;
+
+            return dashValue;
         }
 
         public Drawing.Transform2D GetDrawingTransfrom2D(int x, int y, int width, int height)
@@ -305,17 +271,61 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             return runProperties1;
         }
 
+        public Drawing.Text GetDrawingRunText(OfficeModel model)
+        {
+            var text1 = new Drawing.Text();
+            //텍스트가 없으면 속성이 하나도 안먹는다... 그래서 빈 공백을 추가한다. 이해안감. 버그아님?
+            if (model.Text == string.Empty)
+                model.Text = " ";
+            text1.Text = model.Text;
+            return text1;
+        }
+
+        public PPT.Transform GetPPTTransform(int x, int y, int width, int height)
+        {
+            var transform1 = new PPT.Transform();
+            Offset offset1 = new Offset() { X = x * EMUPPI, Y = y * EMUPPI };
+            Extents extents1 = new Extents() { Cx = width * EMUPPI, Cy = height * EMUPPI };
+
+            transform1.Append(offset1);
+            transform1.Append(extents1);
+            return transform1;
+        }
+
+
+        /// <summary>
+        /// 수직
+        /// </summary>
+        /// <param name="textVertical"></param>
+        public Wordprocessing.TableVerticalAlignmentValues GetWordprocessingTableVerticalAlignment(TextAlignmentVertical textVertical)
+        {
+            var value = Wordprocessing.TableVerticalAlignmentValues.Center;
+            switch (textVertical)
+            {
+                case TextAlignmentVertical.Top:
+                    value = Wordprocessing.TableVerticalAlignmentValues.Top;
+                    break;
+                case TextAlignmentVertical.Center:
+                    value = Wordprocessing.TableVerticalAlignmentValues.Center;
+                    break;
+                case TextAlignmentVertical.Bottom:
+                    value = Wordprocessing.TableVerticalAlignmentValues.Bottom;
+                    break;
+            }
+            return value;
+        }
+
         public Wordprocessing.RunProperties GetWordRunProperty(OfficeFont font)
         {
             var runProperties = new Wordprocessing.RunProperties();
 
             #region 폰트명
-            Wordprocessing.RunFonts runFonts4 = new Wordprocessing.RunFonts() 
-            { 
-                Hint = Wordprocessing.FontTypeHintValues.EastAsia, 
-                Ascii = font.Name, 
-                HighAnsi = font.Name, 
-                EastAsia = font.Name 
+            Wordprocessing.RunFonts runFonts4 = new Wordprocessing.RunFonts()
+            {
+                Hint = Wordprocessing.FontTypeHintValues.EastAsia,
+                Ascii = font.Name,
+                HighAnsi = font.Name,
+                EastAsia = font.Name
             };
             runProperties.Append(runFonts4);
             #endregion
@@ -358,6 +368,89 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             #endregion
 
             return runProperties;
+        }
+
+        public void SetWordRunText(Wordprocessing.Run run, OfficeModel model)
+        {
+            if (model.Paragraph.TextDirection != Model.Component.HomeTab.TextDirection.Stacked)
+            {
+                string[] strs = model.Text.Split('\n');
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    Wordprocessing.Text text1 = new Wordprocessing.Text();
+                    text1.Text = strs[i];
+                    text1.Space = SpaceProcessingModeValues.Preserve;
+                    run.Append(text1);
+
+                    if (i < strs.Length - 1)
+                    {
+                        run.AppendChild(new Wordprocessing.Break());
+                    }
+                }
+            }
+            else
+            {
+                Wordprocessing.Text text1 = new Wordprocessing.Text();
+                text1.Space = SpaceProcessingModeValues.Preserve;
+                text1.Text = model.Text;
+                run.Append(text1);
+            }
+        }
+
+        public SpacingBetweenLines GetSpacingBetweenLines(OfficeModel model)
+        {
+            if (model.Paragraph.LineSpacing > 0)
+            {
+                var lineSpace = model.Paragraph.LineSpacing * 20f;
+                var spacingBetweenLines1 = new SpacingBetweenLines() { Line = lineSpace.ToString(), LineRule = LineSpacingRuleValues.Exact };
+                return spacingBetweenLines1;
+            }
+            else
+                return new SpacingBetweenLines();
+        }
+        /// <summary>
+        /// 수평
+        /// </summary>
+        /// <param name="textHorizontal"></param>
+        public Wordprocessing.Justification GetWordprocessingJustification(OfficeModel model)
+        {
+            TextAlignmentHorizontal textHorizontal = model.Paragraph.AlignmentHorizontal;
+            var value = Wordprocessing.JustificationValues.Left;
+            switch (textHorizontal)
+            {
+                case TextAlignmentHorizontal.Left:
+                    value = Wordprocessing.JustificationValues.Left;
+                    break;
+                case TextAlignmentHorizontal.Center:
+                    value = Wordprocessing.JustificationValues.Center;
+                    break;
+                case TextAlignmentHorizontal.Right:
+                    value = Wordprocessing.JustificationValues.Right;
+                    break;
+            }
+
+            return new Justification() { Val = value };
+        }
+
+        public Wordprocessing.TextDirectionValues GetWordpressingTextDirection(Model.Component.HomeTab.TextDirection direction)
+        {
+            var value = Wordprocessing.TextDirectionValues.LefToRightTopToBottom;
+            switch (direction)
+            {
+                case Model.Component.HomeTab.TextDirection.Vertical:
+                    // textVerticalValue = TextVerticalValues.EastAsianVetical;
+                    break;
+                case Model.Component.HomeTab.TextDirection.RotateAllText90:
+                    //textVerticalValue = TextVerticalValues.Vertical;
+                    break;
+                case Model.Component.HomeTab.TextDirection.RotateAllText270:
+                    // textVerticalValue = TextVerticalValues.Vertical270;
+                    break;
+                case Model.Component.HomeTab.TextDirection.Stacked:
+                    value = Wordprocessing.TextDirectionValues.TopToBottomRightToLeftRotated;
+                    break;
+            }
+            return value;
         }
     }
 }

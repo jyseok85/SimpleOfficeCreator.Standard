@@ -1,10 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab
 {
@@ -16,7 +10,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab
         RotateAllText270,
         Stacked
     }
-    public enum TextAlignmentHorizontal { 
+    public enum TextAlignmentHorizontal
+    {
         Left,
         Center,
         Right

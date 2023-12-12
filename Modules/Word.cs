@@ -1,5 +1,4 @@
 ﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleOfficeCreator.Stardard.Modules.DefaultAttributes;
@@ -7,7 +6,6 @@ using SimpleOfficeCreator.Stardard.Modules.GeneratedCode;
 using SimpleOfficeCreator.Stardard.Modules.Model;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace SimpleOfficeCreator.Stardard.Modules
 {
@@ -66,7 +64,7 @@ namespace SimpleOfficeCreator.Stardard.Modules
             this.document.Dispose();
         }
 
-        public void Initialize(int width, int height, int emuppi, string password = "")
+        public void Initialize(int width, int height, string password = "")
         {
             var document = WordBase.Instance.GenerateDocument();
             this.mainDocumentPart.Document = document;
@@ -79,25 +77,17 @@ namespace SimpleOfficeCreator.Stardard.Modules
         {
             Common.Instance.GenerateImagePart(models, this.mainDocumentPart);
 
-            bool once = false;
-         
+
             foreach (OfficeModel model in models)
             {
                 switch (model.Type)
                 {
-                    case Model.Type.TextBox:
-                        if (once == true)
-                            break;
-                        //once = true;
-                        break;
+                    //todo 도형 해야함.
                     //case Model.Type.Shape:
                     //    this.body.Append(GenerateTextBox.Instance.GenerateShape(model));
                     //    break;
                     case Model.Type.Table:
                         this.body.Append(SocWordTable.Instance.Generate(model));
-                        break;
-                    case Model.Type.Picture:
-                        //this.body.Append(SocParagraph.Instance.GenerateImage(model));
                         break;
                 }
             }
@@ -109,13 +99,12 @@ namespace SimpleOfficeCreator.Stardard.Modules
             //워드 좌측 상단에 줄자가 있고, 여백설정이 가능하다. 
             SectionProperties sectionProperties = new DocumentFormat.OpenXml.Wordprocessing.SectionProperties();
             sectionProperties.Append(용지사이즈설정(report.PaperInfo.Width, report.PaperInfo.Height, report.PaperInfo.IsLandscape));
-            
+
             //PPT 때문에 절대값으로 다 바꿨는데.. 워드는 여백이 따로 있네?? 제길.
-            sectionProperties.Append(용지여백설정(0,0,0,0));
+            sectionProperties.Append(용지여백설정(0, 0, 0, 0));
             //sectionProperties.Append(용지여백설정((int)report.Margin.Left, (int)report.Margin.Top, (int)report.Margin.Right, (int)report.Margin.Bottom));
             this.body.Append(sectionProperties);
 
-            //세로정렬하자!!!!!!! 
         }
 
         private PageSize 용지사이즈설정(int width, int height, bool isLandscape)
@@ -165,5 +154,8 @@ namespace SimpleOfficeCreator.Stardard.Modules
             p.Append(run1);
             return p;
         }
+
+
+        //todo : 인쇄 배포해야함. PDF 대용량 문제
     }
 }

@@ -34,17 +34,18 @@ namespace SimpleOfficeCreator.Stardard
 
             Common.Instance.UniqueId.Clear();
             Common.Instance.UniqueId.Add(1);
+            Common.Instance.EMUPPI = EMU96PPI;
 
             switch (OfficeType)
             {
                 case OfficeType.PowerPoint:
                     powerPoint = new PowerPoint(memoryStream);
                     //to do:PPT 용지사이즈 설정
-                    powerPoint.Initialize(794, 1123, EMU96PPI);
+                    powerPoint.Initialize(794, 1123);
                     break;
                 case OfficeType.Word:
                     word = new Word(memoryStream);
-                    word.Initialize(800,1123, EMU96PPI);
+                    word.Initialize(800, 1123);
                     break;
                 case OfficeType.Excel:
                     break;

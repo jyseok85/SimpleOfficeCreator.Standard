@@ -1,12 +1,8 @@
 ﻿using SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleOfficeCreator.Stardard.Modules.Model.Component
-{ 
+{
     public class OfficeTableInfo
     {
         //public List<ColumnInfo> ColumnInfos { get; set; } = new List<ColumnInfo>();

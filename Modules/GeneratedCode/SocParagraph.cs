@@ -28,28 +28,35 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             Paragraph para = new Paragraph();
             foreach (OfficeModel model in models)
             {
-                if(model.Type == Model.Type.TextBox)
-                    para.Append(GenerateRun(model));
-                else if(model.Type == Model.Type.Picture)
-                    para.Append(GenerateImage(model));
+                para.Append(GenerateRun(model));
             }
             return para;
         }
 
-        public Run GenerateImage(OfficeModel model)
+
+
+
+        private Run GenerateRun(OfficeModel model)
         {
             Run run1 = new Run();
             RunProperties runProperties1 = new RunProperties();
             //이 요소는 문서의 철자와 문법을 검사할 때 이 실행의 내용이 오류를 보고하지 않도록 지정합니다. 
             NoProof noProof1 = new NoProof();
             runProperties1.Append(noProof1);
-
-            Drawing d = GenerateDrawing(model);
             run1.Append(runProperties1);
-            run1.Append(d);
+
+            if (model.Type == Model.Type.TextBox)
+            {
+                var alternateContent1 = GetAlternateContent(model);
+                run1.Append(alternateContent1);
+            }
+            else if (model.Type == Model.Type.Picture)
+            {
+                var drawing = GenerateDrawing(model);
+                run1.Append(drawing);
+            }
             return run1;
         }
-
         private Drawing GenerateDrawing(OfficeModel model)// string imageId, int x, int y, int width, int height, bool outLine, float thickness, bool isBackward)
         {
             var drawing1 = new Drawing();
@@ -96,7 +103,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             blip1.Append(blipExtensionList1);
             A.Stretch stretch1 = new A.Stretch();
             blipFill1.Append(blip1);
-            blipFill1.Append(stretch1);           
+            blipFill1.Append(stretch1);
             picture1.Append(blipFill1);
 
 
@@ -112,7 +119,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             shapeProperties.Append(presetGeometry4);
             #endregion
 
-            
+
 
             #region 테두리
             if (model.PictureStyle.NoOutline == false && model.PictureStyle.Weight > 0)
@@ -154,22 +161,64 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         }
 
-
-        private Run GenerateRun(OfficeModel model)
+        /// <summary>
+        /// 텍스트 상자나 , 도형이나 같은건가보다.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private AlternateContent GetAlternateContent(OfficeModel model)
         {
-            Run run1 = new Run();
+            var alternateContent = new AlternateContent();
+            AlternateContentChoice alternateContentChoice = new AlternateContentChoice() { Requires = "wps" };
+            Drawing drawing4 = new Drawing();
 
-            RunProperties runProperties1 = new RunProperties();
-            //이 요소는 문서의 철자와 문법을 검사할 때 이 실행의 내용이 오류를 보고하지 않도록 지정합니다. 
-            NoProof noProof1 = new NoProof();
-            runProperties1.Append(noProof1);
+            Anchor anchor = new Anchor()
+            {
+                DistanceFromTop = (UInt32Value)0,
+                DistanceFromBottom = (UInt32Value)0,
+                DistanceFromLeft = (UInt32Value)0,
+                DistanceFromRight = (UInt32Value)0,
+                SimplePos = false,
+                RelativeHeight = (UInt32Value)251659264U,
+                BehindDoc = false,
+                Locked = false,
+                LayoutInCell = true,
+                AllowOverlap = true
+            };
 
-            //var alternateContent1 = SocAlternateContent.Instance.GetAlternateContent(model);
-            var alternateContent1 = GetAlternateContent(model);
-            run1.Append(runProperties1);
-            run1.Append(alternateContent1);
-            return run1;
+
+            SetAnchorProperty(anchor, model);
+
+            anchor.Append(SetText(model));
+
+            #region [사용안함]상대적크기 그래픽객체를 anchor에 할당후에 설정해야 합니다.(먼저 등록시 오류발생)
+            bool useRelativeSize = false;
+            if (useRelativeSize)
+            {
+                Wp14.RelativeWidth relativeWidth4 = new Wp14.RelativeWidth() { ObjectId = Wp14.SizeRelativeHorizontallyValues.Margin };
+                Wp14.PercentageWidth percentageWidth4 = new Wp14.PercentageWidth();
+                percentageWidth4.Text = "0";
+                relativeWidth4.Append(percentageWidth4);
+
+                Wp14.RelativeHeight relativeHeight4 = new Wp14.RelativeHeight() { RelativeFrom = Wp14.SizeRelativeVerticallyValues.Margin };
+                Wp14.PercentageHeight percentageHeight4 = new Wp14.PercentageHeight();
+                percentageHeight4.Text = "0";
+                relativeHeight4.Append(percentageHeight4);
+
+                anchor.Append(relativeWidth4);
+                anchor.Append(relativeHeight4);
+            }
+            #endregion
+
+            drawing4.Append(anchor);
+
+            alternateContentChoice.Append(drawing4);
+
+            alternateContent.Append(alternateContentChoice);
+
+            return alternateContent;
         }
+
 
         private void SetAnchorProperty(Anchor anchor, OfficeModel model)
         {
@@ -221,61 +270,10 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
             #endregion
 
-        
+
 
         }
 
-        private AlternateContent GetAlternateContent(OfficeModel model)
-        {
-            var alternateContent = new AlternateContent();
-            AlternateContentChoice alternateContentChoice = new AlternateContentChoice() { Requires = "wps" };
-            Drawing drawing4 = new Drawing();
-
-            Anchor anchor = new Anchor() { 
-                DistanceFromTop = (UInt32Value)0, 
-                DistanceFromBottom = (UInt32Value)0, 
-                DistanceFromLeft = (UInt32Value)0, 
-                DistanceFromRight = (UInt32Value)0, 
-                SimplePos = false, 
-                RelativeHeight = (UInt32Value)251659264U, 
-                BehindDoc = false, 
-                Locked = false, 
-                LayoutInCell = true, 
-                AllowOverlap = true 
-            };
-
-
-            SetAnchorProperty(anchor, model);
-
-            anchor.Append(SetText(model));
-
-            #region [사용안함]상대적크기 그래픽객체를 anchor에 할당후에 설정해야 합니다.(먼저 등록시 오류발생)
-            bool useRelativeSize = false;
-            if (useRelativeSize)
-            {
-                Wp14.RelativeWidth relativeWidth4 = new Wp14.RelativeWidth() { ObjectId = Wp14.SizeRelativeHorizontallyValues.Margin };
-                Wp14.PercentageWidth percentageWidth4 = new Wp14.PercentageWidth();
-                percentageWidth4.Text = "0";
-                relativeWidth4.Append(percentageWidth4);
-
-                Wp14.RelativeHeight relativeHeight4 = new Wp14.RelativeHeight() { RelativeFrom = Wp14.SizeRelativeVerticallyValues.Margin };
-                Wp14.PercentageHeight percentageHeight4 = new Wp14.PercentageHeight();
-                percentageHeight4.Text = "0";
-                relativeHeight4.Append(percentageHeight4);
-
-                anchor.Append(relativeWidth4);
-                anchor.Append(relativeHeight4);
-            }
-            #endregion
-
-            drawing4.Append(anchor);
-
-            alternateContentChoice.Append(drawing4);
-
-            alternateContent.Append(alternateContentChoice);
-
-            return alternateContent;
-        }
 
         private A.Graphic SetText(OfficeModel model)
         {
@@ -294,7 +292,14 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
             wordprocessingShape.Append(GetShapeProperties(model));
 
-            wordprocessingShape.Append(GetTextBoxInfo2(model));
+            if (model.Type == Model.Type.TextBox)
+                //텍스트는 이거가 들어가고
+                wordprocessingShape.Append(GetTextBoxInfo2(model));
+            else if (model.Type == Model.Type.Shape)
+                //도형은 아마이거
+                wordprocessingShape.Append(GetShapeStyle(model)); //다음 속성도 조금 다르려나..
+            else
+                throw new Exception("이 타입은 올수 없습니다. ");
 
             wordprocessingShape.Append(GetTextBodyProperties(model));
 
@@ -303,6 +308,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             graphic.Append(graphicData4);
 
             return graphic;
+        }
+        private Wps.ShapeStyle GetShapeStyle(OfficeModel model)
+        {
+            var shapeStyle1 = new Wps.ShapeStyle();
+
+            A.LineReference lineReference1 = new A.LineReference() { Index = (UInt32Value)2U };
+
+            A.SchemeColor schemeColor2 = new A.SchemeColor() { Val = A.SchemeColorValues.Accent1 };
+            A.Shade shade1 = new A.Shade() { Val = 50000 };
+
+            schemeColor2.Append(shade1);
+
+            lineReference1.Append(schemeColor2);
+
+            A.FillReference fillReference1 = new A.FillReference() { Index = (UInt32Value)1U };
+            A.SchemeColor schemeColor3 = new A.SchemeColor() { Val = A.SchemeColorValues.Accent1 };
+
+            fillReference1.Append(schemeColor3);
+
+            A.EffectReference effectReference1 = new A.EffectReference() { Index = (UInt32Value)0U };
+            A.SchemeColor schemeColor4 = new A.SchemeColor() { Val = A.SchemeColorValues.Accent1 };
+
+            effectReference1.Append(schemeColor4);
+
+            A.FontReference fontReference1 = new A.FontReference() { Index = A.FontCollectionIndexValues.Minor };
+            A.SchemeColor schemeColor5 = new A.SchemeColor() { Val = A.SchemeColorValues.Light1 };
+
+            fontReference1.Append(schemeColor5);
+
+            shapeStyle1.Append(lineReference1);
+            shapeStyle1.Append(fillReference1);
+            shapeStyle1.Append(effectReference1);
+            shapeStyle1.Append(fontReference1);
+
+            return shapeStyle1;
+
         }
         /// <summary>
         /// 배경색, 내부편집 컨트롤 Transform, 테두리
@@ -356,24 +397,13 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             #region 공백없음 속성
             paragraphProperties.Append(new ParagraphStyleId() { Val = "a3" });
             #endregion
-          
-            #region 줄간격
-            if (model.Paragraph.LineSpacing > 0)
-            {
-                var lineSpace = model.Paragraph.LineSpacing * 20f;
-                SpacingBetweenLines spacingBetweenLines1 = new SpacingBetweenLines() { Line = lineSpace.ToString(), LineRule = LineSpacingRuleValues.Exact };
-                paragraphProperties.Append(spacingBetweenLines1);
-            }
-            #endregion
-
 
             #region 줄간격
-            var spacingBetweenLines = new SpacingBetweenLines() { After = "120", AfterLines = 50, Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            paragraphProperties.Append(spacingBetweenLines);
+            paragraphProperties.Append(Common.Instance.GetSpacingBetweenLines(model));
             #endregion
 
             #region 가로정렬
-            paragraphProperties.Append(new Justification() { Val = Common.Instance.GetWordprocessingJustification(model.Paragraph.AlignmentHorizontal) });
+            paragraphProperties.Append(Common.Instance.GetWordprocessingJustification(model));
             #endregion
 
             //#region 단락속성
@@ -383,20 +413,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             //paragraphProperties.Append(paragraphMarkRunProperties);
             //#endregion
 
-            Run run105 = new Run();
-            Text text87 = new Text();
-            text87.Text = model.Text;
-
+            Run run = new Run();
             #region 폰트속성
             var runProperties = Common.Instance.GetWordRunProperty(model.Font);
-            run105.Append(runProperties);
-            run105.Append(text87);
+            run.Append(runProperties);
             #endregion
 
-
+            #region TEXT
+            Common.Instance.SetWordRunText(run, model);
+            #endregion
 
             paragraph.Append(paragraphProperties);
-            paragraph.Append(run105);
+            paragraph.Append(run);
             textBoxContent.Append(paragraph);
             textBoxInfo.Append(textBoxContent);
             return textBoxInfo;
@@ -410,15 +438,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             Wps.TextBodyProperties textBodyProperties = new Wps.TextBodyProperties()
             {
                 Rotation = 0,
+                //텍스트 방향(가로,세로)
                 Vertical = Common.Instance.GetDrawingTextVertical(model.Paragraph.TextDirection),
+
                 Wrap = A.TextWrappingValues.Square, //이걸 적용해야 지정한 사이즈에 딱맞게 생성된다. ppt는 없는듯한데..
                 LeftInset = (int)model.Margin.Left * Common.Instance.EMUPPI,
                 TopInset = (int)model.Margin.Top * Common.Instance.EMUPPI,
                 RightInset = (int)model.Margin.Right * Common.Instance.EMUPPI,
-                //BottomInset = (int)model.Margin.Bottom * Common.Instance.EMUPPI,
-                BottomInset = 0,
-                //Anchor =Common.Instance.GetDrawingAnchoring(model.Paragraph.AlignmentVertical),
-                Anchor = A.TextAnchoringTypeValues.Bottom,
+                BottomInset = (int)model.Margin.Bottom * Common.Instance.EMUPPI,
+                //세로정렬
+                Anchor = Common.Instance.GetDrawingAnchoring(model.Paragraph.AlignmentVertical),
+                //Anchor = A.TextAnchoringTypeValues.Bottom,
 
                 AnchorCenter = false
             };
@@ -474,6 +504,9 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         {
             return new EffectExtent() { LeftEdge = 0L, TopEdge = 0L, RightEdge = 0L, BottomEdge = 0L };
         }
+
+
+        //todo : 소스 중복로직 최적화를 하고, 도형 지원도좀 하고, 깃에 문서작성
     }
 
 }

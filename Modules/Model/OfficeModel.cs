@@ -1,20 +1,12 @@
-﻿using DocumentFormat.OpenXml.Drawing;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component;
+﻿using SimpleOfficeCreator.Stardard.Modules.Model.Component;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.PictureFormatTab;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleOfficeCreator.Stardard.Modules.Model
 {
     public enum Type
-    { 
+    {
         None,
         Paper,
         Table,
@@ -61,7 +53,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
 
         public PaperInfo PaperInfo { get; set; } = null;
     }
-   
+
 
     /// <summary>
     /// 마진을 포함한 절대값으로 설정합니다. 

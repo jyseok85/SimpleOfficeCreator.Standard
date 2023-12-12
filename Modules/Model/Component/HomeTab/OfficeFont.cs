@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab
+﻿namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab
 {
     public enum Spacing
     {
@@ -41,8 +35,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab
         /// 문자 간격
         /// UI상에서 표현되는 좁게 옵션은 - 값으로 입력하면 됩니다.
         /// </summary>
-        public float CharacterSpacing { get; set; } = 0; 
-                                                     
+        public float CharacterSpacing { get; set; } = 0;
+
 
         /// <summary>
         /// HexColorValue

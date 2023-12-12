@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat
+﻿namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat
 {
     public class OfficeShapeStyle
     {
@@ -20,6 +14,6 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat
         public bool UseOutline { get; set; } = false;
         public float OutlineWeight { get; set; } = 1;
         public string OutlineDashes { get; set; } = "Solid";
-        public string OutlineColor { get; set; } = "000000";       
+        public string OutlineColor { get; set; } = "000000";
     }
 }

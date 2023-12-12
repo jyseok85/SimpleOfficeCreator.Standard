@@ -9,7 +9,7 @@ using Thm15 = DocumentFormat.OpenXml.Office2013.Theme;
 
 namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 {
-    public class PPTDefault
+    public class PPTBase
     {
         public int Width { get; set; }
         public int Height { get; set; }
@@ -30,7 +30,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             SlideIdList slideIdList1 = new SlideIdList();
 
             //페이지 만큼 슬라이드를 추가한다. 
-            for(int i = 0; i < relationshipIdList.Count; i++)
+            for (int i = 0; i < relationshipIdList.Count; i++)
             {
                 SlideId slideId = new SlideId() { Id = (UInt32Value)(uint)(i + 256), RelationshipId = relationshipIdList[i] };
                 slideIdList1.Append(slideId);
@@ -250,7 +250,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             presentationPart1.Presentation = presentation1;
         }
 
-        internal void GenerateDefaultSliderPart( SlidePart slidePart, PresentationPart presentation)
+        internal void GenerateDefaultSliderPart(SlidePart slidePart, PresentationPart presentation)
         {
             #region PPT를 구성하는 필수 기본값. 없다고 문서를 못쓴는 것은 아니지만, 실행시 경고 팝업창 생성
             //SlideLayoutPart 는 11개가 기본적으로 생성되며, 기본 설정값이라고 생각하면 편하다. 즉 무조건 필요하다고 생각.
@@ -260,7 +260,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             SlideMasterPart slideMasterPart1 = slideLayoutPart1.AddNewPart<SlideMasterPart>("rId1");
             GenerateSlideMasterPart1Content(slideMasterPart1);
             slideMasterPart1.AddPart(slideLayoutPart1, "rId7");
-            
+
             SlideLayoutPart slideLayoutPart2 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId8");
             GenerateSlideLayoutPart2Content(slideLayoutPart2);
             slideLayoutPart2.AddPart(slideMasterPart1, "rId1");
@@ -422,8 +422,10 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             A.Run run2 = new A.Run();
 
             A.RunProperties runProperties4 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text4 = new A.Text();
-            text4.Text = "마스터 제목 스타일 편집";
+            var text4 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run2.Append(runProperties4);
             run2.Append(text4);
@@ -1490,8 +1492,10 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             A.Field field1 = new A.Field() { Id = "{C764DE79-268F-4C1A-8933-263129D2AF90}", Type = "datetimeFigureOut" };
             A.RunProperties runProperties2 = new A.RunProperties() { Language = "en-US", Dirty = false };
-            A.Text text2 = new A.Text();
-            text2.Text = "11/8/2023";
+            A.Text text2 = new A.Text
+            {
+                Text = "11/8/2023"
+            };
 
             field1.Append(runProperties2);
             field1.Append(text2);
@@ -6008,7 +6012,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             A.Run run59 = new A.Run();
 
             A.RunProperties runProperties79 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            
+
             A.Text text79 = new A.Text();
             text79.Text = "셋째 수준";
 

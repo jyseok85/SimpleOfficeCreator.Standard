@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
-using DocumentFormat.OpenXml.EMMA;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component;
+﻿using SimpleOfficeCreator.Stardard.Modules.Model.Component;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.PictureFormatTab;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat;
@@ -20,7 +18,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
 
         //파워포인트는 원본셀 속성만 바라본다. 그러나 모든 빈셀을 만들어둬야 한다. 
         //워드는 각 개별 셀 속성을 바라본다. 그러나 워드는 개별 셀들을 전부 만들지 않고, 세로 병합되는 셀만 생성한다. 가로 병합 빈셀은 안만든다.
-        
+
         public OfficeModel CreateTextBox(int x, int y, int width, int height, string text, OfficeFont font = null, OfficeParagraph paragraph = null, OfficeShapeStyle style = null)
         {
             OfficeModel model = new OfficeModel("");
@@ -78,7 +76,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
         /// <param name="style"></param>
         public void CreateTableCell(OfficeModel parent, int row, int col, string text, int rowSpan, int colSpan, OfficeFont font = null, OfficeParagraph paragraph = null, OfficeTableStyles style = null)
         {
-            if(parent.TableInfo is null)
+            if (parent.TableInfo is null)
             {
                 Logger.Instance.Write("TableInfo가 없습니다.");
                 return;
@@ -125,9 +123,9 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
                 model.TableInfo.Styles = style;
 
             parent.TableInfo.Children.Add(model);
-          
-            
-            
+
+
+
             //셀 내용넣고
             if (rowSpan > 1 || colSpan > 1)
             {
@@ -135,12 +133,12 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
 
                 for (int i = 0; i < rowSpan; i++)
                 {
-                    CreateEmptyCell(col, row , verticlaMerge, 0, i, colSpan);
+                    CreateEmptyCell(col, row, verticlaMerge, 0, i, colSpan);
                 }
                 for (int j = 0; j < colSpan; j++)
                 {
-                    CreateEmptyCell(col, row, verticlaMerge, j , 0, 1);
-                }       
+                    CreateEmptyCell(col, row, verticlaMerge, j, 0, 1);
+                }
             }
 
 
@@ -157,7 +155,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
                 empty.TableInfo.Cell.VerticalMerge = isRowSpan;
 
                 //워드 전용속성
-                if(colspan > 1)
+                if (colspan > 1)
                     empty.TableInfo.Cell.ColSpan = colspan;
 
                 if (rowindex > 0)
@@ -173,14 +171,14 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
         public List<OfficeModel> End(OfficeModel model)
         {
             List<OfficeModel> listTableCell = new List<OfficeModel>();
-            if(model.Type == Type.Table)
+            if (model.Type == Type.Table)
             {
                 var xList = model.TableInfo.ColumnWidthList;
                 var yList = model.TableInfo.RowHeightList;
 
-                for(int i = 0; i < xList.Count; i++)
+                for (int i = 0; i < xList.Count; i++)
                 {
-                    for(int j = 0; j < yList.Count; j++)
+                    for (int j = 0; j < yList.Count; j++)
                     {
                         var result = model.TableInfo.Children.Find(x => x.TableInfo.Cell.Col == i && x.TableInfo.Cell.Row == j);
                         if (result != null)
@@ -203,7 +201,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
                     }
                 }
             }
-            return listTableCell; 
+            return listTableCell;
         }
 
         public OfficeModel CreatePicture(int x, int y, int width, int height, string base64, OfficePictureStyle style = null)
@@ -226,7 +224,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
 
             model.UID = "id_" + uniqueId;
             return model;
-        }        
+        }
 
         public OfficeModel CreateShape(int x, int y, int width, int height, OfficeShapeStyle style = null)
         {
@@ -257,7 +255,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
             model.PaperInfo = new PaperInfo();
             model.Margin.Left = marginLeft;
             model.Margin.Top = marginTop;
-            model.Margin.Right = marginRight / 2 ; //왜인지 DR에 두배로 들어가있다..
+            model.Margin.Right = marginRight / 2; //왜인지 DR에 두배로 들어가있다..
             model.Margin.Bottom = marginBottom / 2;
             model.PaperInfo.Width = width;
             model.PaperInfo.Height = height;

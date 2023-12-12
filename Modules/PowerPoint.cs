@@ -4,11 +4,9 @@ using DocumentFormat.OpenXml.Presentation;
 using SimpleOfficeCreator.Stardard.Modules.DefaultCreator;
 using SimpleOfficeCreator.Stardard.Modules.GeneratedCode;
 using SimpleOfficeCreator.Stardard.Modules.Model;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using A = DocumentFormat.OpenXml.Drawing;
-using P14 = DocumentFormat.OpenXml.Office2010.PowerPoint;
 namespace SimpleOfficeCreator.Stardard.Modules
 {
     /// <summary>
@@ -22,8 +20,7 @@ namespace SimpleOfficeCreator.Stardard.Modules
         PresentationDocument document;
         PresentationPart presentation;
 
-        int EMUPPI = 9525;
-        PPTDefault pptDefualt;
+        PPTBase pptDefualt;
 
         List<string> relationshipIdList = new List<string>();
         public void Save()
@@ -42,16 +39,13 @@ namespace SimpleOfficeCreator.Stardard.Modules
             presentation = document.AddPresentationPart();
         }
 
-        public void Initialize(int width, int height, int emuppi)
+        public void Initialize(int width, int height)
         {
-            EMUPPI = emuppi;
-            pptDefualt = new PPTDefault()
+            pptDefualt = new PPTBase()
             {
-                Width = EMUPPI * width,
-                Height = EMUPPI * height
+                Width = width * Common.Instance.EMUPPI,
+                Height = height * Common.Instance.EMUPPI
             };
-            SocPowerpointTable.Instance.EMUPPI = emuppi;
-            SocShape.Instance.EMUPPI = emuppi;
         }
 
         public void ConvertPerPage(int page, List<OfficeModel> models)
@@ -79,7 +73,7 @@ namespace SimpleOfficeCreator.Stardard.Modules
             GenerateSlidePartContent(slidePart, models);
         }
 
-        
+
         private void GenerateSlidePartContent(SlidePart slidePart1, List<OfficeModel> models)
         {
             #region Default Pre
@@ -93,20 +87,20 @@ namespace SimpleOfficeCreator.Stardard.Modules
             var commonSlideData1 = new CommonSlideData();
 
             var shapeTree1 = new ShapeTree();
-            shapeTree1.Append(StaticCode.GenerateNonVisualGroupShapeProperties());
-            shapeTree1.Append(StaticCode.GenerateGroupShapeProperties());
+            shapeTree1.Append(GetNonVisualGroupShapeProperties());
+            shapeTree1.Append(GetGroupShapeProperties());
             foreach (OfficeModel model in models)
             {
                 switch (model.Type)
                 {
                     case Model.Type.TextBox:
-                        shapeTree1.Append(SocShape.Instance.Generate(model));
+                        shapeTree1.Append(SocShape.Instance.GenerateTextBox(model));
                         break;
                     case Model.Type.Shape:
                         shapeTree1.Append(SocShape.Instance.GenerateShape(model));
                         break;
                     case Model.Type.Table:
-                        shapeTree1.Append(GenerateGraphicFrame(model));
+                        shapeTree1.Append(SocPowerpointTable.Instance.Generate(model));
                         break;
                     case Model.Type.Picture:
                         shapeTree1.Append(SocShape.Instance.GeneratePicture(model));
@@ -128,22 +122,38 @@ namespace SimpleOfficeCreator.Stardard.Modules
                 colorMapOverride1.Append(masterColorMapping1);
                 return colorMapOverride1;
             }
-        }
 
+            NonVisualGroupShapeProperties GetNonVisualGroupShapeProperties()
+            {
+                NonVisualGroupShapeProperties nonVisualGroupShapeProperties1 = new NonVisualGroupShapeProperties();
+                NonVisualDrawingProperties nonVisualDrawingProperties1 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+                NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties1 = new NonVisualGroupShapeDrawingProperties();
+                ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties1 = new ApplicationNonVisualDrawingProperties();
 
-        private GraphicFrame GenerateGraphicFrame(OfficeModel model)
-        {
-            GraphicFrame graphicFrame = new GraphicFrame();
-            graphicFrame.Append(StaticCode.GenerateNonVisualGraphicFrameProperties("표"));
+                nonVisualGroupShapeProperties1.Append(nonVisualDrawingProperties1);
+                nonVisualGroupShapeProperties1.Append(nonVisualGroupShapeDrawingProperties1);
+                nonVisualGroupShapeProperties1.Append(applicationNonVisualDrawingProperties1);
+                return nonVisualGroupShapeProperties1;
+            }
+            GroupShapeProperties GetGroupShapeProperties()
+            {
+                GroupShapeProperties groupShapeProperties1 = new GroupShapeProperties();
 
-            Transform transform1 = SocPowerpointTable.Instance.Transform(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height);
-            graphicFrame.Append(transform1);
+                A.TransformGroup transformGroup1 = new A.TransformGroup();
+                A.Offset offset1 = new A.Offset() { X = 0L, Y = 0L };
+                A.Extents extents1 = new A.Extents() { Cx = 0L, Cy = 0L };
+                A.ChildOffset childOffset1 = new A.ChildOffset() { X = 0L, Y = 0L };
+                A.ChildExtents childExtents1 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
-            A.Graphic graphic1 = SocPowerpointTable.Instance.Graphic(model);
-            //A.Graphic graphic1 = Graphic(model);
-            graphicFrame.Append(graphic1);
+                transformGroup1.Append(offset1);
+                transformGroup1.Append(extents1);
+                transformGroup1.Append(childOffset1);
+                transformGroup1.Append(childExtents1);
 
-            return graphicFrame;
+                groupShapeProperties1.Append(transformGroup1);
+                return groupShapeProperties1;
+            }
+
         }
 
     }

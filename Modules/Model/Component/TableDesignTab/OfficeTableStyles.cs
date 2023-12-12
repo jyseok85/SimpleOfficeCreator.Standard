@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab
+﻿namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab
 {
     public class OfficeTableStyles
     {
@@ -12,7 +6,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab
         /// 배경색 사용 유무
         /// </summary>
         public bool UseShading { get; set; } = false;
-        
+
         public string ShadingColor { get; set; } = "transparent";
 
         public Border Top { get; set; } = new Border();

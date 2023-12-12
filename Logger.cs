@@ -31,7 +31,7 @@ namespace SimpleOfficeCreator.Stardard
                             fileWrite.Write($"[{timeLog}] ");
                         }
 
-                        if(linebreak)
+                        if (linebreak)
                         {
                             if (minBlank == 0)
                             {
@@ -61,7 +61,7 @@ namespace SimpleOfficeCreator.Stardard
             Console.ForegroundColor = color;
             if (linebreak)
             {
-                if(minBlank == 0)
+                if (minBlank == 0)
                 {
                     Console.WriteLine(log);
                 }
