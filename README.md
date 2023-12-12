@@ -23,3 +23,5 @@ oc.Save(path) ;
 ![image](https://github.com/jyseok85/SimpleOfficeCreator.Stardard/assets/48501866/d2e28df7-0975-4f58-98de-95f86d03f39b)
 ![image](https://github.com/jyseok85/SimpleOfficeCreator.Stardard/assets/48501866/a02d33dd-8712-4134-8a54-edffffef783f)
 
+Word 테이블 셀 텍스트 자동 맞춤
+![image](https://github.com/jyseok85/SimpleOfficeCreator.Stardard/assets/48501866/d7a3e48a-9406-4ba1-beb4-d699e82eee79)
