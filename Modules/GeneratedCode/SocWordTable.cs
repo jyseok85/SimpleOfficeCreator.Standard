@@ -153,37 +153,6 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             return tableRow;
         }
 
-        public TableCellProperties GenerateTableCellProperties()
-        {
-            TableCellProperties tableCellProperties1 = new TableCellProperties();
-            TableCellWidth tableCellWidth1 = new TableCellWidth() { Width = "1890", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders1 = new TableCellBorders();
-            TopBorder topBorder1 = new TopBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder1 = new BottomBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
-
-            tableCellBorders1.Append(topBorder1);
-            tableCellBorders1.Append(bottomBorder1);
-
-            TableCellMargin tableCellMargin1 = new TableCellMargin();
-            TopMargin topMargin1 = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
-            LeftMargin leftMargin1 = new LeftMargin() { Width = "30", Type = TableWidthUnitValues.Dxa };
-            BottomMargin bottomMargin1 = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
-            RightMargin rightMargin1 = new RightMargin() { Width = "30", Type = TableWidthUnitValues.Dxa };
-
-            tableCellMargin1.Append(topMargin1);
-            tableCellMargin1.Append(leftMargin1);
-            tableCellMargin1.Append(bottomMargin1);
-            tableCellMargin1.Append(rightMargin1);
-            TableCellVerticalAlignment tableCellVerticalAlignment1 = new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center };
-
-            tableCellProperties1.Append(tableCellWidth1);
-            tableCellProperties1.Append(tableCellBorders1);
-            tableCellProperties1.Append(tableCellMargin1);
-            tableCellProperties1.Append(tableCellVerticalAlignment1);
-            return tableCellProperties1;
-        }
-
 
         private TableCell GenerateTableCell(OfficeModel cell, bool isSingleCell = false)
         {
@@ -463,7 +432,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         {
             TableCellBorders tableCellBorders1 = new TableCellBorders();
             //! 주의! 컨트롤 한개씩 그려지는게 아니라. 일괄로 좌측 그리고, 우측그리고 상단 그리고 하단 그리고 하는것 같다. 
-            if ((int)style.Left.Weight > 0)
+            if ((int)style.Left.Weight > 0 && style.Left.Color != "transparent")
             {
                 int size = style.Left.Draw ? (int)style.Left.Weight : 0;               
 
@@ -471,40 +440,44 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 {
                     Val = Common.Instance.GetwordBorderStyle(style.Left.Style),
                     Color = style.Left.Color,
-                    Size = Convert.ToUInt32(4 * size)
+                    Size = Convert.ToUInt32(8 * size),
+                    Space = 0
                 };
                 tableCellBorders1.Append(border);
             }
-            if ((int)style.Right.Weight > 0)
+            if ((int)style.Right.Weight > 0 && style.Right.Color != "transparent")
             {
                 int size = style.Right.Draw ? (int)style.Right.Weight : 0;
                 RightBorder border = new RightBorder()
                 {
                     Val = Common.Instance.GetwordBorderStyle(style.Right.Style),
                     Color = style.Right.Color,
-                    Size = Convert.ToUInt32(4 * size)
+                    Size = Convert.ToUInt32(8 * size),
+                    Space = 0
                 };
                 tableCellBorders1.Append(border);
             }
-            if ((int)style.Top.Weight > 0)
+            if ((int)style.Top.Weight > 0 && style.Top.Color != "transparent")
             {
                 int size = style.Top.Draw ? (int)style.Top.Weight : 0;
                 TopBorder border = new TopBorder()
                 {
                     Val = Common.Instance.GetwordBorderStyle(style.Top.Style),
                     Color = style.Top.Color,
-                    Size = Convert.ToUInt32(4 * size)
+                    Size = Convert.ToUInt32(8 * size),
+                    Space = 0
                 };
                 tableCellBorders1.Append(border);
             }
-            if ((int)style.Bottom.Weight > 0)
+            if ((int)style.Bottom.Weight > 0 && style.Bottom.Color != "transparent")
             {
                 int size = style.Bottom.Draw ? (int)style.Bottom.Weight : 0;
                 BottomBorder border = new BottomBorder()
                 {
                     Val = Common.Instance.GetwordBorderStyle(style.Bottom.Style),
                     Color = style.Bottom.Color,
-                    Size = Convert.ToUInt32(4 * size)
+                    Size = Convert.ToUInt32(8 * size),
+                    Space = 0
                 };
                 tableCellBorders1.Append(border);
             }
