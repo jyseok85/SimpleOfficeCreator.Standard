@@ -25,3 +25,11 @@ oc.Save(path) ;
 
 Word 테이블 셀 텍스트 자동 맞춤
 ![image](https://github.com/jyseok85/SimpleOfficeCreator.Stardard/assets/48501866/f747cdd5-b653-4900-b460-bf8a3e1fcd29)
+
+텍스트방향
+- 테이블은 특별히 없음.
+
+워드는 스택형이 없네?
+
+PPT랑 워드랑 디자인은 비슷한데 왜 다른거임?
+- 텍스트박스에서는 가로, 세로만 지원
