@@ -59,7 +59,7 @@ namespace SimpleOfficeCreator.Stardard
             powerPoint.ConvertPerPage(1, models);
         }
 
-        public void ConvertPage(int page, List<OfficeModel> models)
+        public void ConvertPage(int page, List<OfficeModel> models, bool hasNextPage)
         {
             switch (OfficeType)
             {
@@ -67,7 +67,7 @@ namespace SimpleOfficeCreator.Stardard
                     powerPoint.ConvertPerPage(page, models);
                     break;
                 case OfficeType.Word:
-                    word.ConvertPerPage(page, models);
+                    word.ConvertPerPage(page, models, hasNextPage);
                     break;
                 case OfficeType.Excel:
                     break;

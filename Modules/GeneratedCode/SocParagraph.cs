@@ -309,7 +309,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 wordprocessingShape.Append(GetTextBoxInfo2(model));
             else if (model.Type == Model.Type.Shape)
                 //도형은 아마이거
-                wordprocessingShape.Append(GetShapeStyle(model)); //다음 속성도 조금 다르려나..
+                wordprocessingShape.Append(GetShapeStyle()); //다음 속성도 조금 다르려나..
             else
                 throw new Exception("이 타입은 올수 없습니다. ");
 
@@ -325,7 +325,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// <summary>
         /// 고정인듯..
         /// </summary>
-        private Wps.ShapeStyle GetShapeStyle(OfficeModel model)
+        private Wps.ShapeStyle GetShapeStyle()
         {
             ShapeStyle shapeStyle1 = new Wps.ShapeStyle();
 

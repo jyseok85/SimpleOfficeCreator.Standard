@@ -6,6 +6,7 @@ using SimpleOfficeCreator.Stardard.Modules.GeneratedCode;
 using SimpleOfficeCreator.Stardard.Modules.Model;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SimpleOfficeCreator.Stardard.Modules
 {
@@ -73,7 +74,7 @@ namespace SimpleOfficeCreator.Stardard.Modules
             this.password = password;
         }
 
-        public void ConvertPerPage(int page, List<OfficeModel> models)
+        public void ConvertPerPage(int page, List<OfficeModel> models, bool hasNextPage)
         {
             //이미지를 추가한다. 
             Common.Instance.GenerateImagePart(models, this.mainDocumentPart);
@@ -100,6 +101,11 @@ namespace SimpleOfficeCreator.Stardard.Modules
             sectionProperties.Append(용지여백설정(0, 0, 0, 0));
             //sectionProperties.Append(용지여백설정((int)report.Margin.Left, (int)report.Margin.Top, (int)report.Margin.Right, (int)report.Margin.Bottom));
             this.body.Append(sectionProperties);
+
+            //워드는 페이지내에 내용이 넘어가면 다음페이지가 자동으로 입력된다.
+            //그러므로 여백없이 빽빽한 것을 변환한다면 다음페이지 속성이 2번 적용될 수도 있으므로 주의한다. 
+            if(hasNextPage)
+                this.body.Append(다음페이지로());
 
         }
 
