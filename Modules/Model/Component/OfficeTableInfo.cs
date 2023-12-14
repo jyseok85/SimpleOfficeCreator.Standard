@@ -45,5 +45,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model.Component
         /// 워드 전용
         /// </summary>
         public bool MergedRow { get; set; } = false;
+
+        public bool IsImageCell { get; set; } = false;
     }
 }

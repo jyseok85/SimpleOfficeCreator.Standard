@@ -56,9 +56,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
             model.Rect.Width = width;
             model.Rect.Height = height;
             model.Type = Type.Table;
-            model.TableInfo = new OfficeTableInfo();
-            model.TableInfo.ColumnWidthList = colWidths;
-            model.TableInfo.RowHeightList = rowHeights;
+            model.TableInfo = new OfficeTableInfo
+            {
+                ColumnWidthList = colWidths,
+                RowHeightList = rowHeights
+            };
             return model;
         }
 
@@ -74,7 +76,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
         /// <param name="font"></param>
         /// <param name="paragraph"></param>
         /// <param name="style"></param>
-        public void CreateTableCell(OfficeModel parent, int row, int col, string text, int rowSpan, int colSpan, OfficeFont font = null, OfficeParagraph paragraph = null, OfficeTableStyles style = null)
+        public void CreateTableCell(OfficeModel parent, int row, int col, string text, int rowSpan, int colSpan, OfficeFont font = null, OfficeParagraph paragraph = null, OfficeTableStyles style = null, string officeImageId = "")
         {
             if (parent.TableInfo is null)
             {
@@ -100,14 +102,22 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
             //        parent.TableInfo.RowHeight.Add(rowHeight);
             //}
 
-            OfficeModel model = new OfficeModel("");
-            model.Type = Type.TableCell;
-            model.TableInfo = new OfficeTableInfo();
+            OfficeModel model = new OfficeModel("")
+            {
+                Type = Type.TableCell,
+                TableInfo = new OfficeTableInfo()
+            };
             model.TableInfo.Cell.Row = row;
             model.TableInfo.Cell.Col = col;
             model.TableInfo.Cell.RowSpan = rowSpan;
             model.TableInfo.Cell.ColSpan = colSpan;
             model.Text = text;
+
+            if(string.IsNullOrEmpty(officeImageId) == false)
+            {
+                model.TableInfo.Cell.IsImageCell = true;
+                model.UID = officeImageId;
+            }
 
             if (font is null)
                 model.Font = new OfficeFont();
@@ -129,7 +139,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
             //셀 내용넣고
             if (rowSpan > 1 || colSpan > 1)
             {
-                bool verticlaMerge = rowSpan > 1 ? true : false;
+                bool verticlaMerge = rowSpan > 1;
 
                 for (int i = 0; i < rowSpan; i++)
                 {
@@ -144,8 +154,10 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
 
             void CreateEmptyCell(int c, int r, bool isRowSpan, int colindex, int rowindex, int colspan)
             {
-                OfficeModel empty = new OfficeModel("emptycell");
-                empty.TableInfo = new OfficeTableInfo();
+                OfficeModel empty = new OfficeModel("emptycell")
+                {
+                    TableInfo = new OfficeTableInfo()
+                };
                 empty.TableInfo.Cell.Row = r + rowindex;
                 empty.TableInfo.Cell.Col = c + colindex;
                 empty.TableInfo.Cell.Empty = true;
@@ -173,14 +185,14 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
             List<OfficeModel> listTableCell = new List<OfficeModel>();
             if (model.Type == Type.Table)
             {
-                var xList = model.TableInfo.ColumnWidthList;
-                var yList = model.TableInfo.RowHeightList;
+                List<int> xList = model.TableInfo.ColumnWidthList;
+                List<int> yList = model.TableInfo.RowHeightList;
 
                 for (int i = 0; i < xList.Count; i++)
                 {
                     for (int j = 0; j < yList.Count; j++)
                     {
-                        var result = model.TableInfo.Children.Find(x => x.TableInfo.Cell.Col == i && x.TableInfo.Cell.Row == j);
+                        OfficeModel result = model.TableInfo.Children.Find(x => x.TableInfo.Cell.Col == i && x.TableInfo.Cell.Row == j);
                         if (result != null)
                         {
                             listTableCell.Add(result);
@@ -188,8 +200,10 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
                         else
                         {
                             //병합을 위한 빈 모델을 만든다.
-                            OfficeModel empty = new OfficeModel("emptycell");
-                            empty.TableInfo = new OfficeTableInfo();
+                            OfficeModel empty = new OfficeModel("emptycell")
+                            {
+                                TableInfo = new OfficeTableInfo()
+                            };
                             empty.TableInfo.Cell.Row = j;
                             empty.TableInfo.Cell.Col = i;
                             empty.TableInfo.Cell.Empty = true;
@@ -218,9 +232,9 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
             model.Rect.Height = height;
             model.Type = Type.Picture;
             model.Text = base64;
-            var ticks = new DateTime(2016, 1, 1).Ticks;
-            var ans = DateTime.Now.Ticks - ticks;
-            var uniqueId = ans.ToString("x");
+            long ticks = new DateTime(2016, 1, 1).Ticks;
+            long ans = DateTime.Now.Ticks - ticks;
+            string uniqueId = ans.ToString("x");
 
             model.UID = "id_" + uniqueId;
             return model;
@@ -251,8 +265,10 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
         /// <returns></returns>
         public OfficeModel CreateReport(int width, int height, bool landscape, float marginLeft, float marginTop, float marginRight, float marginBottom)
         {
-            OfficeModel model = new OfficeModel("");
-            model.PaperInfo = new PaperInfo();
+            OfficeModel model = new OfficeModel("")
+            {
+                PaperInfo = new PaperInfo()
+            };
             model.Margin.Left = marginLeft;
             model.Margin.Top = marginTop;
             model.Margin.Right = marginRight / 2; //왜인지 DR에 두배로 들어가있다..

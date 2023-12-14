@@ -15,5 +15,7 @@
         public float OutlineWeight { get; set; } = 1;
         public string OutlineDashes { get; set; } = "Solid";
         public string OutlineColor { get; set; } = "000000";
+
+        public string ShapeTypeValue { get; set; } = "rectangle";
     }
 }

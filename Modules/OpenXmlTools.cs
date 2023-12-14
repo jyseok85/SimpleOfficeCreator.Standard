@@ -22,7 +22,7 @@ namespace OpenXMLTools
 
             // generate a 128-bit salt using a secure PRNG
             byte[] salt = new byte[128 / 8];
-            using (var rng = RandomNumberGenerator.Create())
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
@@ -32,16 +32,18 @@ namespace OpenXMLTools
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/63588f50-354f-43ba-b080-e0e6c51a0fb5/hash-and-saltdocumentprotection?forum=clr
             string hashed = GetHashString(password, pasalt, 100000);
 
-            DocumentProtection documentProtection = new DocumentProtection();
-            documentProtection.Edit = DocumentProtectionValues.ReadOnly;
-            documentProtection.Enforcement = new OnOffValue(true);
-            documentProtection.CryptographicAlgorithmClass = CryptAlgorithmClassValues.Hash;
-            documentProtection.CryptographicProviderType = CryptProviderValues.RsaAdvancedEncryptionStandard;
-            documentProtection.CryptographicAlgorithmType = CryptAlgorithmValues.TypeAny;
-            documentProtection.CryptographicAlgorithmSid = 4; // SHA1
-            documentProtection.CryptographicSpinCount = 100000;
-            documentProtection.Hash = new Base64BinaryValue() { Value = hashed };
-            documentProtection.Salt = new Base64BinaryValue() { Value = pasalt };
+            DocumentProtection documentProtection = new DocumentProtection
+            {
+                Edit = DocumentProtectionValues.ReadOnly,
+                Enforcement = new OnOffValue(true),
+                CryptographicAlgorithmClass = CryptAlgorithmClassValues.Hash,
+                CryptographicProviderType = CryptProviderValues.RsaAdvancedEncryptionStandard,
+                CryptographicAlgorithmType = CryptAlgorithmValues.TypeAny,
+                CryptographicAlgorithmSid = 4, // SHA1
+                CryptographicSpinCount = 100000,
+                Hash = new Base64BinaryValue() { Value = hashed },
+                Salt = new Base64BinaryValue() { Value = pasalt }
+            };
             document.MainDocumentPart.DocumentSettingsPart.Settings.AppendChild(documentProtection);
             document.MainDocumentPart.DocumentSettingsPart.Settings.Save();
             return password;

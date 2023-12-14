@@ -11,6 +11,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.Model
         Paper,
         Table,
         TableCell,
+        TableImageCell,
         Picture,
         TextBox,
         Shape

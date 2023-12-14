@@ -38,7 +38,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             #region Run
             //2. 텍스트 속성 : 폰트, 컬러, 내용, Bold 등
             A.Run run1 = new A.Run();
-            var runProperties = Common.Instance.GetDrawingRunProperty(model.Font);
+            A.RunProperties runProperties = Common.Instance.GetDrawingRunProperty(model.Font);
             run1.Append(runProperties);
             run1.Append(Common.Instance.GetDrawingRunText(model));
             #endregion
@@ -153,7 +153,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             //세로 정렬은 여기
             //컨트롤 내부 여백도 여기
             //1cm = 360000 ex)0.2cm = 72000
-            var bodyProperties1 = new A.BodyProperties()
+            A.BodyProperties bodyProperties1 = new A.BodyProperties()
             {
                 //텍스트 방향
                 Vertical = Common.Instance.GetDrawingTextVertical(model.Paragraph.TextDirection),
@@ -174,12 +174,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         private ShapeProperties GetShapeProperty(OfficeModel model)
         {
             ShapeProperties shapeProperties1 = new ShapeProperties();
+
             shapeProperties1.Append(Common.Instance.GetDrawingTransfrom2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
 
             //도형 타입
-            A.PresetGeometry presetGeometry1 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            presetGeometry1.Append(new A.AdjustValueList());
-            shapeProperties1.Append(presetGeometry1);
+            shapeProperties1.Append(Common.Instance.GetPresetGeometry(model.ShapeStyle.ShapeTypeValue));
 
             #region 배경색
             if (model.ShapeStyle.UseFill == false)
@@ -195,7 +194,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             #region 테두리
             if (model.ShapeStyle.UseOutline && model.ShapeStyle.OutlineWeight > 0)
             {
-                var outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor);
+                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor);
                 shapeProperties1.Append(outline);
             }
             #endregion

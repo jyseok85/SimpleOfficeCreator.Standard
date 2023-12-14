@@ -17,47 +17,47 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         List<SlideLayoutPart> SlideLayoutPartList { get; set; } = new List<SlideLayoutPart>();
         internal void GeneratePresentationPartContent(PresentationPart presentationPart1, List<string> relationshipIdList)
         {
-            Presentation presentation1 = new Presentation() { SaveSubsetFonts = true };
+            var presentation1 = new Presentation() { SaveSubsetFonts = true };
             presentation1.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             presentation1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             presentation1.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            SlideMasterIdList slideMasterIdList1 = new SlideMasterIdList();
-            SlideMasterId slideMasterId1 = new SlideMasterId() { Id = (UInt32Value)2147483650U, RelationshipId = "rId1" };
+            var slideMasterIdList1 = new SlideMasterIdList();
+            var slideMasterId1 = new SlideMasterId() { Id = (UInt32Value)2147483650U, RelationshipId = "rId1" };
 
             slideMasterIdList1.Append(slideMasterId1);
 
-            SlideIdList slideIdList1 = new SlideIdList();
+            var slideIdList1 = new SlideIdList();
 
             //페이지 만큼 슬라이드를 추가한다. 
-            for (int i = 0; i < relationshipIdList.Count; i++)
+            for (var i = 0; i < relationshipIdList.Count; i++)
             {
-                SlideId slideId = new SlideId() { Id = (UInt32Value)(uint)(i + 256), RelationshipId = relationshipIdList[i] };
+                var slideId = new SlideId() { Id = (UInt32Value)(uint)(i + 256), RelationshipId = relationshipIdList[i] };
                 slideIdList1.Append(slideId);
             }
 
 
-            SlideSize slideSize1 = new SlideSize() { Cx = Width, Cy = Height, Type = SlideSizeValues.A4 };
-            NotesSize notesSize1 = new NotesSize() { Cx = Width, Cy = Height };
+            var slideSize1 = new SlideSize() { Cx = Width, Cy = Height, Type = SlideSizeValues.A4 };
+            var notesSize1 = new NotesSize() { Cx = Width, Cy = Height };
 
-            DefaultTextStyle defaultTextStyle1 = new DefaultTextStyle();
+            var defaultTextStyle1 = new DefaultTextStyle();
 
-            A.DefaultParagraphProperties defaultParagraphProperties1 = new A.DefaultParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties1 = new A.DefaultRunProperties() { Language = "en-US" };
+            var defaultParagraphProperties1 = new A.DefaultParagraphProperties();
+            var defaultRunProperties1 = new A.DefaultRunProperties() { Language = "en-US" };
 
             defaultParagraphProperties1.Append(defaultRunProperties1);
 
-            A.Level1ParagraphProperties level1ParagraphProperties1 = new A.Level1ParagraphProperties() { LeftMargin = 0, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level1ParagraphProperties1 = new A.Level1ParagraphProperties() { LeftMargin = 0, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties2 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties2 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill1 = new A.SolidFill();
-            A.SchemeColor schemeColor1 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill1 = new A.SolidFill();
+            var schemeColor1 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill1.Append(schemeColor1);
-            A.LatinFont latinFont1 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont1 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont1 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont1 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont1 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont1 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties2.Append(solidFill1);
             defaultRunProperties2.Append(latinFont1);
@@ -66,17 +66,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level1ParagraphProperties1.Append(defaultRunProperties2);
 
-            A.Level2ParagraphProperties level2ParagraphProperties1 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level2ParagraphProperties1 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties3 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties3 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill2 = new A.SolidFill();
-            A.SchemeColor schemeColor2 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill2 = new A.SolidFill();
+            var schemeColor2 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill2.Append(schemeColor2);
-            A.LatinFont latinFont2 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont2 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont2 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont2 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont2 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont2 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties3.Append(solidFill2);
             defaultRunProperties3.Append(latinFont2);
@@ -85,17 +85,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level2ParagraphProperties1.Append(defaultRunProperties3);
 
-            A.Level3ParagraphProperties level3ParagraphProperties1 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level3ParagraphProperties1 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties4 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties4 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill3 = new A.SolidFill();
-            A.SchemeColor schemeColor3 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill3 = new A.SolidFill();
+            var schemeColor3 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill3.Append(schemeColor3);
-            A.LatinFont latinFont3 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont3 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont3 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont3 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont3 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont3 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties4.Append(solidFill3);
             defaultRunProperties4.Append(latinFont3);
@@ -104,17 +104,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level3ParagraphProperties1.Append(defaultRunProperties4);
 
-            A.Level4ParagraphProperties level4ParagraphProperties1 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level4ParagraphProperties1 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties5 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties5 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill4 = new A.SolidFill();
-            A.SchemeColor schemeColor4 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill4 = new A.SolidFill();
+            var schemeColor4 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill4.Append(schemeColor4);
-            A.LatinFont latinFont4 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont4 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont4 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont4 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont4 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont4 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties5.Append(solidFill4);
             defaultRunProperties5.Append(latinFont4);
@@ -123,17 +123,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level4ParagraphProperties1.Append(defaultRunProperties5);
 
-            A.Level5ParagraphProperties level5ParagraphProperties1 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level5ParagraphProperties1 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties6 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties6 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill5 = new A.SolidFill();
-            A.SchemeColor schemeColor5 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill5 = new A.SolidFill();
+            var schemeColor5 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill5.Append(schemeColor5);
-            A.LatinFont latinFont5 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont5 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont5 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont5 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont5 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont5 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties6.Append(solidFill5);
             defaultRunProperties6.Append(latinFont5);
@@ -142,17 +142,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level5ParagraphProperties1.Append(defaultRunProperties6);
 
-            A.Level6ParagraphProperties level6ParagraphProperties1 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level6ParagraphProperties1 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties7 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties7 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill6 = new A.SolidFill();
-            A.SchemeColor schemeColor6 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill6 = new A.SolidFill();
+            var schemeColor6 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill6.Append(schemeColor6);
-            A.LatinFont latinFont6 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont6 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont6 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont6 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont6 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont6 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties7.Append(solidFill6);
             defaultRunProperties7.Append(latinFont6);
@@ -161,17 +161,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level6ParagraphProperties1.Append(defaultRunProperties7);
 
-            A.Level7ParagraphProperties level7ParagraphProperties1 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level7ParagraphProperties1 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties8 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties8 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill7 = new A.SolidFill();
-            A.SchemeColor schemeColor7 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill7 = new A.SolidFill();
+            var schemeColor7 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill7.Append(schemeColor7);
-            A.LatinFont latinFont7 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont7 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont7 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont7 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont7 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont7 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties8.Append(solidFill7);
             defaultRunProperties8.Append(latinFont7);
@@ -180,17 +180,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level7ParagraphProperties1.Append(defaultRunProperties8);
 
-            A.Level8ParagraphProperties level8ParagraphProperties1 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level8ParagraphProperties1 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties9 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties9 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill8 = new A.SolidFill();
-            A.SchemeColor schemeColor8 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill8 = new A.SolidFill();
+            var schemeColor8 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill8.Append(schemeColor8);
-            A.LatinFont latinFont8 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont8 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont8 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont8 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont8 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont8 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties9.Append(solidFill8);
             defaultRunProperties9.Append(latinFont8);
@@ -199,17 +199,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level8ParagraphProperties1.Append(defaultRunProperties9);
 
-            A.Level9ParagraphProperties level9ParagraphProperties1 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
+            var level9ParagraphProperties1 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 457200, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = false, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties10 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties10 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill9 = new A.SolidFill();
-            A.SchemeColor schemeColor9 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill9 = new A.SolidFill();
+            var schemeColor9 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill9.Append(schemeColor9);
-            A.LatinFont latinFont9 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont9 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont9 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont9 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont9 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont9 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties10.Append(solidFill9);
             defaultRunProperties10.Append(latinFont9);
@@ -229,11 +229,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             defaultTextStyle1.Append(level8ParagraphProperties1);
             defaultTextStyle1.Append(level9ParagraphProperties1);
 
-            PresentationExtensionList presentationExtensionList1 = new PresentationExtensionList();
+            var presentationExtensionList1 = new PresentationExtensionList();
 
-            PresentationExtension presentationExtension1 = new PresentationExtension() { Uri = "{EFAFB233-063F-42B5-8137-9DF3F51BA10A}" };
+            var presentationExtension1 = new PresentationExtension() { Uri = "{EFAFB233-063F-42B5-8137-9DF3F51BA10A}" };
 
-            P15.SlideGuideList slideGuideList1 = new P15.SlideGuideList();
+            var slideGuideList1 = new P15.SlideGuideList();
             slideGuideList1.AddNamespaceDeclaration("p15", "http://schemas.microsoft.com/office/powerpoint/2012/main");
 
             presentationExtension1.Append(slideGuideList1);
@@ -254,50 +254,50 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         {
             #region PPT를 구성하는 필수 기본값. 없다고 문서를 못쓴는 것은 아니지만, 실행시 경고 팝업창 생성
             //SlideLayoutPart 는 11개가 기본적으로 생성되며, 기본 설정값이라고 생각하면 편하다. 즉 무조건 필요하다고 생각.
-            SlideLayoutPart slideLayoutPart1 = slidePart.AddNewPart<SlideLayoutPart>("rId1");
+            var slideLayoutPart1 = slidePart.AddNewPart<SlideLayoutPart>("rId1");
             GenerateSlideLayoutPart1Content(slideLayoutPart1);
 
-            SlideMasterPart slideMasterPart1 = slideLayoutPart1.AddNewPart<SlideMasterPart>("rId1");
+            var slideMasterPart1 = slideLayoutPart1.AddNewPart<SlideMasterPart>("rId1");
             GenerateSlideMasterPart1Content(slideMasterPart1);
             slideMasterPart1.AddPart(slideLayoutPart1, "rId7");
 
-            SlideLayoutPart slideLayoutPart2 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId8");
+            var slideLayoutPart2 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId8");
             GenerateSlideLayoutPart2Content(slideLayoutPart2);
             slideLayoutPart2.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart3 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId3");
+            var slideLayoutPart3 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId3");
             GenerateSlideLayoutPart3Content(slideLayoutPart3);
             slideLayoutPart3.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart4 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId2");
+            var slideLayoutPart4 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId2");
             GenerateSlideLayoutPart4Content(slideLayoutPart4);
             slideLayoutPart4.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart5 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId1");
+            var slideLayoutPart5 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId1");
             GenerateSlideLayoutPart5Content(slideLayoutPart5);
             slideLayoutPart5.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart6 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId6");
+            var slideLayoutPart6 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId6");
             GenerateSlideLayoutPart6Content(slideLayoutPart6);
             slideLayoutPart6.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart7 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId11");
+            var slideLayoutPart7 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId11");
             GenerateSlideLayoutPart7Content(slideLayoutPart7);
             slideLayoutPart7.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart8 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId5");
+            var slideLayoutPart8 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId5");
             GenerateSlideLayoutPart8Content(slideLayoutPart8);
             slideLayoutPart8.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart9 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId10");
+            var slideLayoutPart9 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId10");
             GenerateSlideLayoutPart9Content(slideLayoutPart9);
             slideLayoutPart9.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart10 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId4");
+            var slideLayoutPart10 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId4");
             GenerateSlideLayoutPart10Content(slideLayoutPart10);
             slideLayoutPart10.AddPart(slideMasterPart1, "rId1");
 
-            SlideLayoutPart slideLayoutPart11 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId9");
+            var slideLayoutPart11 = slideMasterPart1.AddNewPart<SlideLayoutPart>("rId9");
             GenerateSlideLayoutPart11Content(slideLayoutPart11);
             slideLayoutPart11.AddPart(slideMasterPart1, "rId1");
 
@@ -318,7 +318,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
                 presentation.AddPart(slideMasterPart1, "rId1");
 
                 //필수
-                ThemePart themePart1 = slideMasterPart1.AddNewPart<ThemePart>("rId12");
+                var themePart1 = slideMasterPart1.AddNewPart<ThemePart>("rId12");
                 GenerateThemePart1Content(themePart1);
                 presentation.AddPart(themePart1, "rId5");
             }
@@ -332,39 +332,39 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideMasterPart1.
         private void GenerateSlideMasterPart1Content(SlideMasterPart slideMasterPart1)
         {
-            SlideMaster slideMaster1 = new SlideMaster();
+            var slideMaster1 = new SlideMaster();
             slideMaster1.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideMaster1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideMaster1.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData3 = new CommonSlideData();
+            var commonSlideData3 = new CommonSlideData();
 
-            Background background1 = new Background();
+            var background1 = new Background();
             {
-                BackgroundStyleReference backgroundStyleReference1 = new BackgroundStyleReference() { Index = (UInt32Value)1001U };
-                A.SchemeColor schemeColor10 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+                var backgroundStyleReference1 = new BackgroundStyleReference() { Index = (UInt32Value)1001U };
+                var schemeColor10 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
                 backgroundStyleReference1.Append(schemeColor10);
                 background1.Append(backgroundStyleReference1);
             }
 
-            ShapeTree shapeTree3 = new ShapeTree();
+            var shapeTree3 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties3 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties7 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties3 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties7 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties3 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties7 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties3 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties7 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties3.Append(nonVisualDrawingProperties7);
             nonVisualGroupShapeProperties3.Append(nonVisualGroupShapeDrawingProperties3);
             nonVisualGroupShapeProperties3.Append(applicationNonVisualDrawingProperties7);
 
-            GroupShapeProperties groupShapeProperties3 = new GroupShapeProperties();
+            var groupShapeProperties3 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup3 = new A.TransformGroup();
-            A.Offset offset4 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents4 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset3 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents3 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup3 = new A.TransformGroup();
+            var offset4 = new A.Offset() { X = 0L, Y = 0L };
+            var extents4 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset3 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents3 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup3.Append(offset4);
             transformGroup3.Append(extents4);
@@ -373,18 +373,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties3.Append(transformGroup3);
 
-            Shape shape5 = new Shape();
+            var shape5 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties5 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties8 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title Placeholder 1" };
+            var nonVisualShapeProperties5 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties8 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title Placeholder 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties5 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks4 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties5 = new NonVisualShapeDrawingProperties();
+            var shapeLocks4 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties5.Append(shapeLocks4);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties8 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape4 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties8 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape4 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties8.Append(placeholderShape4);
 
@@ -392,36 +392,36 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties5.Append(nonVisualShapeDrawingProperties5);
             nonVisualShapeProperties5.Append(applicationNonVisualDrawingProperties8);
 
-            ShapeProperties shapeProperties5 = new ShapeProperties();
+            var shapeProperties5 = new ShapeProperties();
 
-            A.Transform2D transform2D2 = new A.Transform2D();
-            A.Offset offset5 = new A.Offset() { X = 628650L, Y = 365126L };
-            A.Extents extents5 = new A.Extents() { Cx = 7886700L, Cy = 1325563L };
+            var transform2D2 = new A.Transform2D();
+            var offset5 = new A.Offset() { X = 628650L, Y = 365126L };
+            var extents5 = new A.Extents() { Cx = 7886700L, Cy = 1325563L };
 
             transform2D2.Append(offset5);
             transform2D2.Append(extents5);
 
-            A.PresetGeometry presetGeometry2 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList2 = new A.AdjustValueList();
+            var presetGeometry2 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
+            var adjustValueList2 = new A.AdjustValueList();
 
             presetGeometry2.Append(adjustValueList2);
 
             shapeProperties5.Append(transform2D2);
             shapeProperties5.Append(presetGeometry2);
 
-            TextBody textBody5 = new TextBody();
+            var textBody5 = new TextBody();
 
-            A.BodyProperties bodyProperties5 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
-            A.NormalAutoFit normalAutoFit1 = new A.NormalAutoFit();
+            var bodyProperties5 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
+            var normalAutoFit1 = new A.NormalAutoFit();
 
             bodyProperties5.Append(normalAutoFit1);
-            A.ListStyle listStyle5 = new A.ListStyle();
+            var listStyle5 = new A.ListStyle();
 
-            A.Paragraph paragraph5 = new A.Paragraph();
+            var paragraph5 = new A.Paragraph();
 
-            A.Run run2 = new A.Run();
+            var run2 = new A.Run();
 
-            A.RunProperties runProperties4 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var runProperties4 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
             var text4 = new A.Text
             {
                 Text = "마스터 제목 스타일 편집"
@@ -429,7 +429,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             run2.Append(runProperties4);
             run2.Append(text4);
-            A.EndParagraphRunProperties endParagraphRunProperties5 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties5 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph5.Append(run2);
             paragraph5.Append(endParagraphRunProperties5);
@@ -442,18 +442,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape5.Append(shapeProperties5);
             shape5.Append(textBody5);
 
-            Shape shape6 = new Shape();
+            var shape6 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties6 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties9 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Text Placeholder 2" };
+            var nonVisualShapeProperties6 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties9 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Text Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties6 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks5 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties6 = new NonVisualShapeDrawingProperties();
+            var shapeLocks5 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties6.Append(shapeLocks5);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties9 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape5 = new PlaceholderShape() { Type = PlaceholderValues.Body, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties9 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape5 = new PlaceholderShape() { Type = PlaceholderValues.Body, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties9.Append(placeholderShape5);
 
@@ -461,39 +461,41 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties6.Append(nonVisualShapeDrawingProperties6);
             nonVisualShapeProperties6.Append(applicationNonVisualDrawingProperties9);
 
-            ShapeProperties shapeProperties6 = new ShapeProperties();
+            var shapeProperties6 = new ShapeProperties();
 
-            A.Transform2D transform2D3 = new A.Transform2D();
-            A.Offset offset6 = new A.Offset() { X = 628650L, Y = 1825625L };
-            A.Extents extents6 = new A.Extents() { Cx = 7886700L, Cy = 4351338L };
+            var transform2D3 = new A.Transform2D();
+            var offset6 = new A.Offset() { X = 628650L, Y = 1825625L };
+            var extents6 = new A.Extents() { Cx = 7886700L, Cy = 4351338L };
 
             transform2D3.Append(offset6);
             transform2D3.Append(extents6);
 
-            A.PresetGeometry presetGeometry3 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList3 = new A.AdjustValueList();
+            var presetGeometry3 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
+            var adjustValueList3 = new A.AdjustValueList();
 
             presetGeometry3.Append(adjustValueList3);
 
             shapeProperties6.Append(transform2D3);
             shapeProperties6.Append(presetGeometry3);
 
-            TextBody textBody6 = new TextBody();
+            var textBody6 = new TextBody();
 
-            A.BodyProperties bodyProperties6 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false };
-            A.NormalAutoFit normalAutoFit2 = new A.NormalAutoFit();
+            var bodyProperties6 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false };
+            var normalAutoFit2 = new A.NormalAutoFit();
 
             bodyProperties6.Append(normalAutoFit2);
-            A.ListStyle listStyle6 = new A.ListStyle();
+            var listStyle6 = new A.ListStyle();
 
-            A.Paragraph paragraph6 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties1 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph6 = new A.Paragraph();
+            var paragraphProperties1 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run3 = new A.Run();
+            var run3 = new A.Run();
 
-            A.RunProperties runProperties5 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text5 = new A.Text();
-            text5.Text = "마스터 텍스트 스타일 편집";
+            var runProperties5 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text5 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run3.Append(runProperties5);
             run3.Append(text5);
@@ -501,14 +503,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph6.Append(paragraphProperties1);
             paragraph6.Append(run3);
 
-            A.Paragraph paragraph7 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties2 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph7 = new A.Paragraph();
+            var paragraphProperties2 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run4 = new A.Run();
+            var run4 = new A.Run();
 
-            A.RunProperties runProperties6 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text6 = new A.Text();
-            text6.Text = "둘째 수준";
+            var runProperties6 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text6 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run4.Append(runProperties6);
             run4.Append(text6);
@@ -516,14 +520,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph7.Append(paragraphProperties2);
             paragraph7.Append(run4);
 
-            A.Paragraph paragraph8 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties3 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph8 = new A.Paragraph();
+            var paragraphProperties3 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run5 = new A.Run();
+            var run5 = new A.Run();
 
-            A.RunProperties runProperties7 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text7 = new A.Text();
-            text7.Text = "셋째 수준";
+            var runProperties7 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text7 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run5.Append(runProperties7);
             run5.Append(text7);
@@ -531,14 +537,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph8.Append(paragraphProperties3);
             paragraph8.Append(run5);
 
-            A.Paragraph paragraph9 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties4 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph9 = new A.Paragraph();
+            var paragraphProperties4 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run6 = new A.Run();
+            var run6 = new A.Run();
 
-            A.RunProperties runProperties8 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text8 = new A.Text();
-            text8.Text = "넷째 수준";
+            var runProperties8 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text8 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run6.Append(runProperties8);
             run6.Append(text8);
@@ -546,18 +554,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph9.Append(paragraphProperties4);
             paragraph9.Append(run6);
 
-            A.Paragraph paragraph10 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties5 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph10 = new A.Paragraph();
+            var paragraphProperties5 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run7 = new A.Run();
+            var run7 = new A.Run();
 
-            A.RunProperties runProperties9 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text9 = new A.Text();
-            text9.Text = "다섯째 수준";
+            var runProperties9 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text9 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run7.Append(runProperties9);
             run7.Append(text9);
-            A.EndParagraphRunProperties endParagraphRunProperties6 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties6 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph10.Append(paragraphProperties5);
             paragraph10.Append(run7);
@@ -575,18 +585,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape6.Append(shapeProperties6);
             shape6.Append(textBody6);
 
-            Shape shape7 = new Shape();
+            var shape7 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties7 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties10 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
+            var nonVisualShapeProperties7 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties10 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties7 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks6 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties7 = new NonVisualShapeDrawingProperties();
+            var shapeLocks6 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties7.Append(shapeLocks6);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties10 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape6 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
+            var applicationNonVisualDrawingProperties10 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape6 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
 
             applicationNonVisualDrawingProperties10.Append(placeholderShape6);
 
@@ -594,36 +604,36 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties7.Append(nonVisualShapeDrawingProperties7);
             nonVisualShapeProperties7.Append(applicationNonVisualDrawingProperties10);
 
-            ShapeProperties shapeProperties7 = new ShapeProperties();
+            var shapeProperties7 = new ShapeProperties();
 
-            A.Transform2D transform2D4 = new A.Transform2D();
-            A.Offset offset7 = new A.Offset() { X = 628650L, Y = 6356351L };
-            A.Extents extents7 = new A.Extents() { Cx = 2057400L, Cy = 365125L };
+            var transform2D4 = new A.Transform2D();
+            var offset7 = new A.Offset() { X = 628650L, Y = 6356351L };
+            var extents7 = new A.Extents() { Cx = 2057400L, Cy = 365125L };
 
             transform2D4.Append(offset7);
             transform2D4.Append(extents7);
 
-            A.PresetGeometry presetGeometry4 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList4 = new A.AdjustValueList();
+            var presetGeometry4 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
+            var adjustValueList4 = new A.AdjustValueList();
 
             presetGeometry4.Append(adjustValueList4);
 
             shapeProperties7.Append(transform2D4);
             shapeProperties7.Append(presetGeometry4);
 
-            TextBody textBody7 = new TextBody();
-            A.BodyProperties bodyProperties7 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
+            var textBody7 = new TextBody();
+            var bodyProperties7 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
 
-            A.ListStyle listStyle7 = new A.ListStyle();
+            var listStyle7 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties2 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Left };
+            var level1ParagraphProperties2 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Left };
 
-            A.DefaultRunProperties defaultRunProperties11 = new A.DefaultRunProperties() { FontSize = 1200 };
+            var defaultRunProperties11 = new A.DefaultRunProperties() { FontSize = 1200 };
 
-            A.SolidFill solidFill10 = new A.SolidFill();
+            var solidFill10 = new A.SolidFill();
 
-            A.SchemeColor schemeColor11 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint1 = new A.Tint() { Val = 75000 };
+            var schemeColor11 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint1 = new A.Tint() { Val = 75000 };
 
             schemeColor11.Append(tint1);
 
@@ -635,17 +645,19 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             listStyle7.Append(level1ParagraphProperties2);
 
-            A.Paragraph paragraph11 = new A.Paragraph();
+            var paragraph11 = new A.Paragraph();
 
-            A.Field field3 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field3 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties10 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text10 = new A.Text();
-            text10.Text = "2023-11-09";
+            var runProperties10 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text10 = new A.Text
+            {
+                Text = "2023-11-09"
+            };
 
             field3.Append(runProperties10);
             field3.Append(text10);
-            A.EndParagraphRunProperties endParagraphRunProperties7 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties7 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph11.Append(field3);
             paragraph11.Append(endParagraphRunProperties7);
@@ -658,18 +670,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape7.Append(shapeProperties7);
             shape7.Append(textBody7);
 
-            Shape shape8 = new Shape();
+            var shape8 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties8 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties11 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
+            var nonVisualShapeProperties8 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties11 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties8 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks7 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties8 = new NonVisualShapeDrawingProperties();
+            var shapeLocks7 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties8.Append(shapeLocks7);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties11 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape7 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)3U };
+            var applicationNonVisualDrawingProperties11 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape7 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)3U };
 
             applicationNonVisualDrawingProperties11.Append(placeholderShape7);
 
@@ -677,36 +689,36 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties8.Append(nonVisualShapeDrawingProperties8);
             nonVisualShapeProperties8.Append(applicationNonVisualDrawingProperties11);
 
-            ShapeProperties shapeProperties8 = new ShapeProperties();
+            var shapeProperties8 = new ShapeProperties();
 
-            A.Transform2D transform2D5 = new A.Transform2D();
-            A.Offset offset8 = new A.Offset() { X = 3028950L, Y = 6356351L };
-            A.Extents extents8 = new A.Extents() { Cx = 3086100L, Cy = 365125L };
+            var transform2D5 = new A.Transform2D();
+            var offset8 = new A.Offset() { X = 3028950L, Y = 6356351L };
+            var extents8 = new A.Extents() { Cx = 3086100L, Cy = 365125L };
 
             transform2D5.Append(offset8);
             transform2D5.Append(extents8);
 
-            A.PresetGeometry presetGeometry5 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList5 = new A.AdjustValueList();
+            var presetGeometry5 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
+            var adjustValueList5 = new A.AdjustValueList();
 
             presetGeometry5.Append(adjustValueList5);
 
             shapeProperties8.Append(transform2D5);
             shapeProperties8.Append(presetGeometry5);
 
-            TextBody textBody8 = new TextBody();
-            A.BodyProperties bodyProperties8 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
+            var textBody8 = new TextBody();
+            var bodyProperties8 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
 
-            A.ListStyle listStyle8 = new A.ListStyle();
+            var listStyle8 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties3 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Center };
+            var level1ParagraphProperties3 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Center };
 
-            A.DefaultRunProperties defaultRunProperties12 = new A.DefaultRunProperties() { FontSize = 1200 };
+            var defaultRunProperties12 = new A.DefaultRunProperties() { FontSize = 1200 };
 
-            A.SolidFill solidFill11 = new A.SolidFill();
+            var solidFill11 = new A.SolidFill();
 
-            A.SchemeColor schemeColor12 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint2 = new A.Tint() { Val = 75000 };
+            var schemeColor12 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint2 = new A.Tint() { Val = 75000 };
 
             schemeColor12.Append(tint2);
 
@@ -718,8 +730,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             listStyle8.Append(level1ParagraphProperties3);
 
-            A.Paragraph paragraph12 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties8 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph12 = new A.Paragraph();
+            var endParagraphRunProperties8 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph12.Append(endParagraphRunProperties8);
 
@@ -731,18 +743,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape8.Append(shapeProperties8);
             shape8.Append(textBody8);
 
-            Shape shape9 = new Shape();
+            var shape9 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties9 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties12 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
+            var nonVisualShapeProperties9 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties12 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties9 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks8 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties9 = new NonVisualShapeDrawingProperties();
+            var shapeLocks8 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties9.Append(shapeLocks8);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties12 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape8 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)4U };
+            var applicationNonVisualDrawingProperties12 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape8 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)4U };
 
             applicationNonVisualDrawingProperties12.Append(placeholderShape8);
 
@@ -750,36 +762,36 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties9.Append(nonVisualShapeDrawingProperties9);
             nonVisualShapeProperties9.Append(applicationNonVisualDrawingProperties12);
 
-            ShapeProperties shapeProperties9 = new ShapeProperties();
+            var shapeProperties9 = new ShapeProperties();
 
-            A.Transform2D transform2D6 = new A.Transform2D();
-            A.Offset offset9 = new A.Offset() { X = 6457950L, Y = 6356351L };
-            A.Extents extents9 = new A.Extents() { Cx = 2057400L, Cy = 365125L };
+            var transform2D6 = new A.Transform2D();
+            var offset9 = new A.Offset() { X = 6457950L, Y = 6356351L };
+            var extents9 = new A.Extents() { Cx = 2057400L, Cy = 365125L };
 
             transform2D6.Append(offset9);
             transform2D6.Append(extents9);
 
-            A.PresetGeometry presetGeometry6 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList6 = new A.AdjustValueList();
+            var presetGeometry6 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
+            var adjustValueList6 = new A.AdjustValueList();
 
             presetGeometry6.Append(adjustValueList6);
 
             shapeProperties9.Append(transform2D6);
             shapeProperties9.Append(presetGeometry6);
 
-            TextBody textBody9 = new TextBody();
-            A.BodyProperties bodyProperties9 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
+            var textBody9 = new TextBody();
+            var bodyProperties9 = new A.BodyProperties() { Vertical = A.TextVerticalValues.Horizontal, LeftInset = 91440, TopInset = 45720, RightInset = 91440, BottomInset = 45720, RightToLeftColumns = false, Anchor = A.TextAnchoringTypeValues.Center };
 
-            A.ListStyle listStyle9 = new A.ListStyle();
+            var listStyle9 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties4 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Right };
+            var level1ParagraphProperties4 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Right };
 
-            A.DefaultRunProperties defaultRunProperties13 = new A.DefaultRunProperties() { FontSize = 1200 };
+            var defaultRunProperties13 = new A.DefaultRunProperties() { FontSize = 1200 };
 
-            A.SolidFill solidFill12 = new A.SolidFill();
+            var solidFill12 = new A.SolidFill();
 
-            A.SchemeColor schemeColor13 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint3 = new A.Tint() { Val = 75000 };
+            var schemeColor13 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint3 = new A.Tint() { Val = 75000 };
 
             schemeColor13.Append(tint3);
 
@@ -791,17 +803,19 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             listStyle9.Append(level1ParagraphProperties4);
 
-            A.Paragraph paragraph13 = new A.Paragraph();
+            var paragraph13 = new A.Paragraph();
 
-            A.Field field4 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field4 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties11 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text11 = new A.Text();
-            text11.Text = "‹#›";
+            var runProperties11 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text11 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field4.Append(runProperties11);
             field4.Append(text11);
-            A.EndParagraphRunProperties endParagraphRunProperties9 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties9 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph13.Append(field4);
             paragraph13.Append(endParagraphRunProperties9);
@@ -822,11 +836,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree3.Append(shape8);
             shapeTree3.Append(shape9);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList2 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList2 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension2 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension2 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId2 = new P14.CreationId() { Val = (UInt32Value)1773436111U };
+            var creationId2 = new P14.CreationId() { Val = (UInt32Value)1773436111U };
             creationId2.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension2.Append(creationId2);
@@ -836,20 +850,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData3.Append(background1);
             commonSlideData3.Append(shapeTree3);
             commonSlideData3.Append(commonSlideDataExtensionList2);
-            ColorMap colorMap1 = new ColorMap() { Background1 = A.ColorSchemeIndexValues.Light1, Text1 = A.ColorSchemeIndexValues.Dark1, Background2 = A.ColorSchemeIndexValues.Light2, Text2 = A.ColorSchemeIndexValues.Dark2, Accent1 = A.ColorSchemeIndexValues.Accent1, Accent2 = A.ColorSchemeIndexValues.Accent2, Accent3 = A.ColorSchemeIndexValues.Accent3, Accent4 = A.ColorSchemeIndexValues.Accent4, Accent5 = A.ColorSchemeIndexValues.Accent5, Accent6 = A.ColorSchemeIndexValues.Accent6, Hyperlink = A.ColorSchemeIndexValues.Hyperlink, FollowedHyperlink = A.ColorSchemeIndexValues.FollowedHyperlink };
+            var colorMap1 = new ColorMap() { Background1 = A.ColorSchemeIndexValues.Light1, Text1 = A.ColorSchemeIndexValues.Dark1, Background2 = A.ColorSchemeIndexValues.Light2, Text2 = A.ColorSchemeIndexValues.Dark2, Accent1 = A.ColorSchemeIndexValues.Accent1, Accent2 = A.ColorSchemeIndexValues.Accent2, Accent3 = A.ColorSchemeIndexValues.Accent3, Accent4 = A.ColorSchemeIndexValues.Accent4, Accent5 = A.ColorSchemeIndexValues.Accent5, Accent6 = A.ColorSchemeIndexValues.Accent6, Hyperlink = A.ColorSchemeIndexValues.Hyperlink, FollowedHyperlink = A.ColorSchemeIndexValues.FollowedHyperlink };
 
-            SlideLayoutIdList slideLayoutIdList1 = new SlideLayoutIdList();
-            SlideLayoutId slideLayoutId1 = new SlideLayoutId() { Id = (UInt32Value)2147483651U, RelationshipId = "rId1" };
-            SlideLayoutId slideLayoutId2 = new SlideLayoutId() { Id = (UInt32Value)2147483652U, RelationshipId = "rId2" };
-            SlideLayoutId slideLayoutId3 = new SlideLayoutId() { Id = (UInt32Value)2147483653U, RelationshipId = "rId3" };
-            SlideLayoutId slideLayoutId4 = new SlideLayoutId() { Id = (UInt32Value)2147483654U, RelationshipId = "rId4" };
-            SlideLayoutId slideLayoutId5 = new SlideLayoutId() { Id = (UInt32Value)2147483655U, RelationshipId = "rId5" };
-            SlideLayoutId slideLayoutId6 = new SlideLayoutId() { Id = (UInt32Value)2147483656U, RelationshipId = "rId6" };
-            SlideLayoutId slideLayoutId7 = new SlideLayoutId() { Id = (UInt32Value)2147483657U, RelationshipId = "rId7" };
-            SlideLayoutId slideLayoutId8 = new SlideLayoutId() { Id = (UInt32Value)2147483658U, RelationshipId = "rId8" };
-            SlideLayoutId slideLayoutId9 = new SlideLayoutId() { Id = (UInt32Value)2147483659U, RelationshipId = "rId9" };
-            SlideLayoutId slideLayoutId10 = new SlideLayoutId() { Id = (UInt32Value)2147483660U, RelationshipId = "rId10" };
-            SlideLayoutId slideLayoutId11 = new SlideLayoutId() { Id = (UInt32Value)2147483661U, RelationshipId = "rId11" };
+            var slideLayoutIdList1 = new SlideLayoutIdList();
+            var slideLayoutId1 = new SlideLayoutId() { Id = (UInt32Value)2147483651U, RelationshipId = "rId1" };
+            var slideLayoutId2 = new SlideLayoutId() { Id = (UInt32Value)2147483652U, RelationshipId = "rId2" };
+            var slideLayoutId3 = new SlideLayoutId() { Id = (UInt32Value)2147483653U, RelationshipId = "rId3" };
+            var slideLayoutId4 = new SlideLayoutId() { Id = (UInt32Value)2147483654U, RelationshipId = "rId4" };
+            var slideLayoutId5 = new SlideLayoutId() { Id = (UInt32Value)2147483655U, RelationshipId = "rId5" };
+            var slideLayoutId6 = new SlideLayoutId() { Id = (UInt32Value)2147483656U, RelationshipId = "rId6" };
+            var slideLayoutId7 = new SlideLayoutId() { Id = (UInt32Value)2147483657U, RelationshipId = "rId7" };
+            var slideLayoutId8 = new SlideLayoutId() { Id = (UInt32Value)2147483658U, RelationshipId = "rId8" };
+            var slideLayoutId9 = new SlideLayoutId() { Id = (UInt32Value)2147483659U, RelationshipId = "rId9" };
+            var slideLayoutId10 = new SlideLayoutId() { Id = (UInt32Value)2147483660U, RelationshipId = "rId10" };
+            var slideLayoutId11 = new SlideLayoutId() { Id = (UInt32Value)2147483661U, RelationshipId = "rId11" };
 
             slideLayoutIdList1.Append(slideLayoutId1);
             slideLayoutIdList1.Append(slideLayoutId2);
@@ -863,32 +877,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             slideLayoutIdList1.Append(slideLayoutId10);
             slideLayoutIdList1.Append(slideLayoutId11);
 
-            TextStyles textStyles1 = new TextStyles();
+            var textStyles1 = new TextStyles();
 
-            TitleStyle titleStyle1 = new TitleStyle();
+            var titleStyle1 = new TitleStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties5 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level1ParagraphProperties5 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing1 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent1 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing1 = new A.LineSpacing();
+            var spacingPercent1 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing1.Append(spacingPercent1);
 
-            A.SpaceBefore spaceBefore1 = new A.SpaceBefore();
-            A.SpacingPercent spacingPercent2 = new A.SpacingPercent() { Val = 0 };
+            var spaceBefore1 = new A.SpaceBefore();
+            var spacingPercent2 = new A.SpacingPercent() { Val = 0 };
 
             spaceBefore1.Append(spacingPercent2);
-            A.NoBullet noBullet1 = new A.NoBullet();
+            var noBullet1 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties14 = new A.DefaultRunProperties() { FontSize = 4400, Kerning = 1200 };
+            var defaultRunProperties14 = new A.DefaultRunProperties() { FontSize = 4400, Kerning = 1200 };
 
-            A.SolidFill solidFill13 = new A.SolidFill();
-            A.SchemeColor schemeColor14 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill13 = new A.SolidFill();
+            var schemeColor14 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill13.Append(schemeColor14);
-            A.LatinFont latinFont10 = new A.LatinFont() { Typeface = "+mj-lt" };
-            A.EastAsianFont eastAsianFont10 = new A.EastAsianFont() { Typeface = "+mj-ea" };
-            A.ComplexScriptFont complexScriptFont10 = new A.ComplexScriptFont() { Typeface = "+mj-cs" };
+            var latinFont10 = new A.LatinFont() { Typeface = "+mj-lt" };
+            var eastAsianFont10 = new A.EastAsianFont() { Typeface = "+mj-ea" };
+            var complexScriptFont10 = new A.ComplexScriptFont() { Typeface = "+mj-cs" };
 
             defaultRunProperties14.Append(solidFill13);
             defaultRunProperties14.Append(latinFont10);
@@ -902,31 +916,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             titleStyle1.Append(level1ParagraphProperties5);
 
-            BodyStyle bodyStyle1 = new BodyStyle();
+            var bodyStyle1 = new BodyStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties6 = new A.Level1ParagraphProperties() { LeftMargin = 228600, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level1ParagraphProperties6 = new A.Level1ParagraphProperties() { LeftMargin = 228600, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing2 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent3 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing2 = new A.LineSpacing();
+            var spacingPercent3 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing2.Append(spacingPercent3);
 
-            A.SpaceBefore spaceBefore2 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints1 = new A.SpacingPoints() { Val = 1000 };
+            var spaceBefore2 = new A.SpaceBefore();
+            var spacingPoints1 = new A.SpacingPoints() { Val = 1000 };
 
             spaceBefore2.Append(spacingPoints1);
-            A.BulletFont bulletFont1 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet1 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont1 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet1 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties15 = new A.DefaultRunProperties() { FontSize = 2800, Kerning = 1200 };
+            var defaultRunProperties15 = new A.DefaultRunProperties() { FontSize = 2800, Kerning = 1200 };
 
-            A.SolidFill solidFill14 = new A.SolidFill();
-            A.SchemeColor schemeColor15 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill14 = new A.SolidFill();
+            var schemeColor15 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill14.Append(schemeColor15);
-            A.LatinFont latinFont11 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont11 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont11 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont11 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont11 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont11 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties15.Append(solidFill14);
             defaultRunProperties15.Append(latinFont11);
@@ -939,29 +953,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level1ParagraphProperties6.Append(characterBullet1);
             level1ParagraphProperties6.Append(defaultRunProperties15);
 
-            A.Level2ParagraphProperties level2ParagraphProperties2 = new A.Level2ParagraphProperties() { LeftMargin = 685800, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level2ParagraphProperties2 = new A.Level2ParagraphProperties() { LeftMargin = 685800, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing3 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent4 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing3 = new A.LineSpacing();
+            var spacingPercent4 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing3.Append(spacingPercent4);
 
-            A.SpaceBefore spaceBefore3 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints2 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore3 = new A.SpaceBefore();
+            var spacingPoints2 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore3.Append(spacingPoints2);
-            A.BulletFont bulletFont2 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet2 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont2 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet2 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties16 = new A.DefaultRunProperties() { FontSize = 2400, Kerning = 1200 };
+            var defaultRunProperties16 = new A.DefaultRunProperties() { FontSize = 2400, Kerning = 1200 };
 
-            A.SolidFill solidFill15 = new A.SolidFill();
-            A.SchemeColor schemeColor16 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill15 = new A.SolidFill();
+            var schemeColor16 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill15.Append(schemeColor16);
-            A.LatinFont latinFont12 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont12 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont12 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont12 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont12 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont12 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties16.Append(solidFill15);
             defaultRunProperties16.Append(latinFont12);
@@ -974,29 +988,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level2ParagraphProperties2.Append(characterBullet2);
             level2ParagraphProperties2.Append(defaultRunProperties16);
 
-            A.Level3ParagraphProperties level3ParagraphProperties2 = new A.Level3ParagraphProperties() { LeftMargin = 1143000, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level3ParagraphProperties2 = new A.Level3ParagraphProperties() { LeftMargin = 1143000, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing4 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent5 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing4 = new A.LineSpacing();
+            var spacingPercent5 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing4.Append(spacingPercent5);
 
-            A.SpaceBefore spaceBefore4 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints3 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore4 = new A.SpaceBefore();
+            var spacingPoints3 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore4.Append(spacingPoints3);
-            A.BulletFont bulletFont3 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet3 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont3 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet3 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties17 = new A.DefaultRunProperties() { FontSize = 2000, Kerning = 1200 };
+            var defaultRunProperties17 = new A.DefaultRunProperties() { FontSize = 2000, Kerning = 1200 };
 
-            A.SolidFill solidFill16 = new A.SolidFill();
-            A.SchemeColor schemeColor17 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill16 = new A.SolidFill();
+            var schemeColor17 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill16.Append(schemeColor17);
-            A.LatinFont latinFont13 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont13 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont13 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont13 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont13 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont13 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties17.Append(solidFill16);
             defaultRunProperties17.Append(latinFont13);
@@ -1009,29 +1023,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level3ParagraphProperties2.Append(characterBullet3);
             level3ParagraphProperties2.Append(defaultRunProperties17);
 
-            A.Level4ParagraphProperties level4ParagraphProperties2 = new A.Level4ParagraphProperties() { LeftMargin = 1600200, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level4ParagraphProperties2 = new A.Level4ParagraphProperties() { LeftMargin = 1600200, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing5 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent6 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing5 = new A.LineSpacing();
+            var spacingPercent6 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing5.Append(spacingPercent6);
 
-            A.SpaceBefore spaceBefore5 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints4 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore5 = new A.SpaceBefore();
+            var spacingPoints4 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore5.Append(spacingPoints4);
-            A.BulletFont bulletFont4 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet4 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont4 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet4 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties18 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties18 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill17 = new A.SolidFill();
-            A.SchemeColor schemeColor18 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill17 = new A.SolidFill();
+            var schemeColor18 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill17.Append(schemeColor18);
-            A.LatinFont latinFont14 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont14 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont14 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont14 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont14 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont14 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties18.Append(solidFill17);
             defaultRunProperties18.Append(latinFont14);
@@ -1044,29 +1058,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level4ParagraphProperties2.Append(characterBullet4);
             level4ParagraphProperties2.Append(defaultRunProperties18);
 
-            A.Level5ParagraphProperties level5ParagraphProperties2 = new A.Level5ParagraphProperties() { LeftMargin = 2057400, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level5ParagraphProperties2 = new A.Level5ParagraphProperties() { LeftMargin = 2057400, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing6 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent7 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing6 = new A.LineSpacing();
+            var spacingPercent7 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing6.Append(spacingPercent7);
 
-            A.SpaceBefore spaceBefore6 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints5 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore6 = new A.SpaceBefore();
+            var spacingPoints5 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore6.Append(spacingPoints5);
-            A.BulletFont bulletFont5 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet5 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont5 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet5 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties19 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties19 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill18 = new A.SolidFill();
-            A.SchemeColor schemeColor19 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill18 = new A.SolidFill();
+            var schemeColor19 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill18.Append(schemeColor19);
-            A.LatinFont latinFont15 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont15 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont15 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont15 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont15 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont15 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties19.Append(solidFill18);
             defaultRunProperties19.Append(latinFont15);
@@ -1079,29 +1093,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level5ParagraphProperties2.Append(characterBullet5);
             level5ParagraphProperties2.Append(defaultRunProperties19);
 
-            A.Level6ParagraphProperties level6ParagraphProperties2 = new A.Level6ParagraphProperties() { LeftMargin = 2514600, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level6ParagraphProperties2 = new A.Level6ParagraphProperties() { LeftMargin = 2514600, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing7 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent8 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing7 = new A.LineSpacing();
+            var spacingPercent8 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing7.Append(spacingPercent8);
 
-            A.SpaceBefore spaceBefore7 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints6 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore7 = new A.SpaceBefore();
+            var spacingPoints6 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore7.Append(spacingPoints6);
-            A.BulletFont bulletFont6 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet6 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont6 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet6 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties20 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties20 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill19 = new A.SolidFill();
-            A.SchemeColor schemeColor20 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill19 = new A.SolidFill();
+            var schemeColor20 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill19.Append(schemeColor20);
-            A.LatinFont latinFont16 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont16 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont16 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont16 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont16 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont16 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties20.Append(solidFill19);
             defaultRunProperties20.Append(latinFont16);
@@ -1114,29 +1128,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level6ParagraphProperties2.Append(characterBullet6);
             level6ParagraphProperties2.Append(defaultRunProperties20);
 
-            A.Level7ParagraphProperties level7ParagraphProperties2 = new A.Level7ParagraphProperties() { LeftMargin = 2971800, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level7ParagraphProperties2 = new A.Level7ParagraphProperties() { LeftMargin = 2971800, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing8 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent9 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing8 = new A.LineSpacing();
+            var spacingPercent9 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing8.Append(spacingPercent9);
 
-            A.SpaceBefore spaceBefore8 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints7 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore8 = new A.SpaceBefore();
+            var spacingPoints7 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore8.Append(spacingPoints7);
-            A.BulletFont bulletFont7 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet7 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont7 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet7 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties21 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties21 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill20 = new A.SolidFill();
-            A.SchemeColor schemeColor21 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill20 = new A.SolidFill();
+            var schemeColor21 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill20.Append(schemeColor21);
-            A.LatinFont latinFont17 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont17 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont17 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont17 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont17 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont17 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties21.Append(solidFill20);
             defaultRunProperties21.Append(latinFont17);
@@ -1149,29 +1163,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level7ParagraphProperties2.Append(characterBullet7);
             level7ParagraphProperties2.Append(defaultRunProperties21);
 
-            A.Level8ParagraphProperties level8ParagraphProperties2 = new A.Level8ParagraphProperties() { LeftMargin = 3429000, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level8ParagraphProperties2 = new A.Level8ParagraphProperties() { LeftMargin = 3429000, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing9 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent10 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing9 = new A.LineSpacing();
+            var spacingPercent10 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing9.Append(spacingPercent10);
 
-            A.SpaceBefore spaceBefore9 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints8 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore9 = new A.SpaceBefore();
+            var spacingPoints8 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore9.Append(spacingPoints8);
-            A.BulletFont bulletFont8 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet8 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont8 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet8 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties22 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties22 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill21 = new A.SolidFill();
-            A.SchemeColor schemeColor22 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill21 = new A.SolidFill();
+            var schemeColor22 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill21.Append(schemeColor22);
-            A.LatinFont latinFont18 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont18 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont18 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont18 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont18 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont18 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties22.Append(solidFill21);
             defaultRunProperties22.Append(latinFont18);
@@ -1184,29 +1198,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level8ParagraphProperties2.Append(characterBullet8);
             level8ParagraphProperties2.Append(defaultRunProperties22);
 
-            A.Level9ParagraphProperties level9ParagraphProperties2 = new A.Level9ParagraphProperties() { LeftMargin = 3886200, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level9ParagraphProperties2 = new A.Level9ParagraphProperties() { LeftMargin = 3886200, Indent = -228600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.LineSpacing lineSpacing10 = new A.LineSpacing();
-            A.SpacingPercent spacingPercent11 = new A.SpacingPercent() { Val = 90000 };
+            var lineSpacing10 = new A.LineSpacing();
+            var spacingPercent11 = new A.SpacingPercent() { Val = 90000 };
 
             lineSpacing10.Append(spacingPercent11);
 
-            A.SpaceBefore spaceBefore10 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints9 = new A.SpacingPoints() { Val = 500 };
+            var spaceBefore10 = new A.SpaceBefore();
+            var spacingPoints9 = new A.SpacingPoints() { Val = 500 };
 
             spaceBefore10.Append(spacingPoints9);
-            A.BulletFont bulletFont9 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
-            A.CharacterBullet characterBullet9 = new A.CharacterBullet() { Char = "•" };
+            var bulletFont9 = new A.BulletFont() { Typeface = "Arial", Panose = "020B0604020202020204", PitchFamily = 34, CharacterSet = 0 };
+            var characterBullet9 = new A.CharacterBullet() { Char = "•" };
 
-            A.DefaultRunProperties defaultRunProperties23 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties23 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill22 = new A.SolidFill();
-            A.SchemeColor schemeColor23 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill22 = new A.SolidFill();
+            var schemeColor23 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill22.Append(schemeColor23);
-            A.LatinFont latinFont19 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont19 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont19 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont19 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont19 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont19 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties23.Append(solidFill22);
             defaultRunProperties23.Append(latinFont19);
@@ -1229,24 +1243,24 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             bodyStyle1.Append(level8ParagraphProperties2);
             bodyStyle1.Append(level9ParagraphProperties2);
 
-            OtherStyle otherStyle1 = new OtherStyle();
+            var otherStyle1 = new OtherStyle();
 
-            A.DefaultParagraphProperties defaultParagraphProperties2 = new A.DefaultParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties24 = new A.DefaultRunProperties() { Language = "en-US" };
+            var defaultParagraphProperties2 = new A.DefaultParagraphProperties();
+            var defaultRunProperties24 = new A.DefaultRunProperties() { Language = "en-US" };
 
             defaultParagraphProperties2.Append(defaultRunProperties24);
 
-            A.Level1ParagraphProperties level1ParagraphProperties7 = new A.Level1ParagraphProperties() { LeftMargin = 0, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level1ParagraphProperties7 = new A.Level1ParagraphProperties() { LeftMargin = 0, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties25 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties25 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill23 = new A.SolidFill();
-            A.SchemeColor schemeColor24 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill23 = new A.SolidFill();
+            var schemeColor24 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill23.Append(schemeColor24);
-            A.LatinFont latinFont20 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont20 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont20 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont20 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont20 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont20 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties25.Append(solidFill23);
             defaultRunProperties25.Append(latinFont20);
@@ -1255,17 +1269,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level1ParagraphProperties7.Append(defaultRunProperties25);
 
-            A.Level2ParagraphProperties level2ParagraphProperties3 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level2ParagraphProperties3 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties26 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties26 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill24 = new A.SolidFill();
-            A.SchemeColor schemeColor25 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill24 = new A.SolidFill();
+            var schemeColor25 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill24.Append(schemeColor25);
-            A.LatinFont latinFont21 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont21 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont21 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont21 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont21 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont21 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties26.Append(solidFill24);
             defaultRunProperties26.Append(latinFont21);
@@ -1274,17 +1288,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level2ParagraphProperties3.Append(defaultRunProperties26);
 
-            A.Level3ParagraphProperties level3ParagraphProperties3 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level3ParagraphProperties3 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties27 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties27 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill25 = new A.SolidFill();
-            A.SchemeColor schemeColor26 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill25 = new A.SolidFill();
+            var schemeColor26 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill25.Append(schemeColor26);
-            A.LatinFont latinFont22 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont22 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont22 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont22 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont22 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont22 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties27.Append(solidFill25);
             defaultRunProperties27.Append(latinFont22);
@@ -1293,17 +1307,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level3ParagraphProperties3.Append(defaultRunProperties27);
 
-            A.Level4ParagraphProperties level4ParagraphProperties3 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level4ParagraphProperties3 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties28 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties28 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill26 = new A.SolidFill();
-            A.SchemeColor schemeColor27 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill26 = new A.SolidFill();
+            var schemeColor27 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill26.Append(schemeColor27);
-            A.LatinFont latinFont23 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont23 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont23 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont23 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont23 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont23 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties28.Append(solidFill26);
             defaultRunProperties28.Append(latinFont23);
@@ -1312,17 +1326,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level4ParagraphProperties3.Append(defaultRunProperties28);
 
-            A.Level5ParagraphProperties level5ParagraphProperties3 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level5ParagraphProperties3 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties29 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties29 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill27 = new A.SolidFill();
-            A.SchemeColor schemeColor28 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill27 = new A.SolidFill();
+            var schemeColor28 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill27.Append(schemeColor28);
-            A.LatinFont latinFont24 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont24 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont24 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont24 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont24 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont24 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties29.Append(solidFill27);
             defaultRunProperties29.Append(latinFont24);
@@ -1331,17 +1345,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level5ParagraphProperties3.Append(defaultRunProperties29);
 
-            A.Level6ParagraphProperties level6ParagraphProperties3 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level6ParagraphProperties3 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties30 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties30 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill28 = new A.SolidFill();
-            A.SchemeColor schemeColor29 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill28 = new A.SolidFill();
+            var schemeColor29 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill28.Append(schemeColor29);
-            A.LatinFont latinFont25 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont25 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont25 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont25 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont25 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont25 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties30.Append(solidFill28);
             defaultRunProperties30.Append(latinFont25);
@@ -1350,17 +1364,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level6ParagraphProperties3.Append(defaultRunProperties30);
 
-            A.Level7ParagraphProperties level7ParagraphProperties3 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level7ParagraphProperties3 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties31 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties31 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill29 = new A.SolidFill();
-            A.SchemeColor schemeColor30 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill29 = new A.SolidFill();
+            var schemeColor30 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill29.Append(schemeColor30);
-            A.LatinFont latinFont26 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont26 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont26 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont26 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont26 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont26 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties31.Append(solidFill29);
             defaultRunProperties31.Append(latinFont26);
@@ -1369,17 +1383,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level7ParagraphProperties3.Append(defaultRunProperties31);
 
-            A.Level8ParagraphProperties level8ParagraphProperties3 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level8ParagraphProperties3 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties32 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties32 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill30 = new A.SolidFill();
-            A.SchemeColor schemeColor31 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill30 = new A.SolidFill();
+            var schemeColor31 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill30.Append(schemeColor31);
-            A.LatinFont latinFont27 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont27 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont27 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont27 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont27 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont27 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties32.Append(solidFill30);
             defaultRunProperties32.Append(latinFont27);
@@ -1388,17 +1402,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             level8ParagraphProperties3.Append(defaultRunProperties32);
 
-            A.Level9ParagraphProperties level9ParagraphProperties3 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
+            var level9ParagraphProperties3 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Alignment = A.TextAlignmentTypeValues.Left, DefaultTabSize = 914400, RightToLeft = false, EastAsianLineBreak = true, LatinLineBreak = true, Height = true };
 
-            A.DefaultRunProperties defaultRunProperties33 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
+            var defaultRunProperties33 = new A.DefaultRunProperties() { FontSize = 1800, Kerning = 1200 };
 
-            A.SolidFill solidFill31 = new A.SolidFill();
-            A.SchemeColor schemeColor32 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill31 = new A.SolidFill();
+            var schemeColor32 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill31.Append(schemeColor32);
-            A.LatinFont latinFont28 = new A.LatinFont() { Typeface = "+mn-lt" };
-            A.EastAsianFont eastAsianFont28 = new A.EastAsianFont() { Typeface = "+mn-ea" };
-            A.ComplexScriptFont complexScriptFont28 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
+            var latinFont28 = new A.LatinFont() { Typeface = "+mn-lt" };
+            var eastAsianFont28 = new A.EastAsianFont() { Typeface = "+mn-ea" };
+            var complexScriptFont28 = new A.ComplexScriptFont() { Typeface = "+mn-cs" };
 
             defaultRunProperties33.Append(solidFill31);
             defaultRunProperties33.Append(latinFont28);
@@ -1431,31 +1445,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         }
         private void GenerateSlideLayoutPart1Content(SlideLayoutPart slideLayoutPart1)
         {
-            SlideLayout slideLayout1 = new SlideLayout() { Type = SlideLayoutValues.Blank, Preserve = true };
+            var slideLayout1 = new SlideLayout() { Type = SlideLayoutValues.Blank, Preserve = true };
             slideLayout1.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout1.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData2 = new CommonSlideData() { Name = "빈 화면" };
+            var commonSlideData2 = new CommonSlideData() { Name = "빈 화면" };
 
-            ShapeTree shapeTree2 = new ShapeTree();
+            var shapeTree2 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties2 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties3 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties2 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties3 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties2 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties3 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties2 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties3 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties2.Append(nonVisualDrawingProperties3);
             nonVisualGroupShapeProperties2.Append(nonVisualGroupShapeDrawingProperties2);
             nonVisualGroupShapeProperties2.Append(applicationNonVisualDrawingProperties3);
 
-            GroupShapeProperties groupShapeProperties2 = new GroupShapeProperties();
+            var groupShapeProperties2 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup2 = new A.TransformGroup();
-            A.Offset offset3 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents3 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset2 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents2 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup2 = new A.TransformGroup();
+            var offset3 = new A.Offset() { X = 0L, Y = 0L };
+            var extents3 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset2 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents2 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup2.Append(offset3);
             transformGroup2.Append(extents3);
@@ -1464,42 +1478,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties2.Append(transformGroup2);
 
-            Shape shape2 = new Shape();
+            var shape2 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties2 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties4 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Date Placeholder 1" };
+            var nonVisualShapeProperties2 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties4 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Date Placeholder 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties2 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks1 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties2 = new NonVisualShapeDrawingProperties();
+            var shapeLocks1 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties2.Append(shapeLocks1);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties4 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape1 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties4 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape1 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties4.Append(placeholderShape1);
 
             nonVisualShapeProperties2.Append(nonVisualDrawingProperties4);
             nonVisualShapeProperties2.Append(nonVisualShapeDrawingProperties2);
             nonVisualShapeProperties2.Append(applicationNonVisualDrawingProperties4);
-            ShapeProperties shapeProperties2 = new ShapeProperties();
+            var shapeProperties2 = new ShapeProperties();
 
-            TextBody textBody2 = new TextBody();
-            A.BodyProperties bodyProperties2 = new A.BodyProperties();
-            A.ListStyle listStyle2 = new A.ListStyle();
+            var textBody2 = new TextBody();
+            var bodyProperties2 = new A.BodyProperties();
+            var listStyle2 = new A.ListStyle();
 
-            A.Paragraph paragraph2 = new A.Paragraph();
+            var paragraph2 = new A.Paragraph();
 
-            A.Field field1 = new A.Field() { Id = "{C764DE79-268F-4C1A-8933-263129D2AF90}", Type = "datetimeFigureOut" };
-            A.RunProperties runProperties2 = new A.RunProperties() { Language = "en-US", Dirty = false };
-            A.Text text2 = new A.Text
+            var field1 = new A.Field() { Id = "{C764DE79-268F-4C1A-8933-263129D2AF90}", Type = "datetimeFigureOut" };
+            var runProperties2 = new A.RunProperties() { Language = "en-US", Dirty = false };
+            var text2 = new A.Text
             {
                 Text = "11/8/2023"
             };
 
             field1.Append(runProperties2);
             field1.Append(text2);
-            A.EndParagraphRunProperties endParagraphRunProperties2 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties2 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph2.Append(field1);
             paragraph2.Append(endParagraphRunProperties2);
@@ -1512,32 +1526,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape2.Append(shapeProperties2);
             shape2.Append(textBody2);
 
-            Shape shape3 = new Shape();
+            var shape3 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties3 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties5 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Footer Placeholder 2" };
+            var nonVisualShapeProperties3 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties5 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Footer Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties3 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks2 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties3 = new NonVisualShapeDrawingProperties();
+            var shapeLocks2 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties3.Append(shapeLocks2);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties5 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape2 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties5 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape2 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties5.Append(placeholderShape2);
 
             nonVisualShapeProperties3.Append(nonVisualDrawingProperties5);
             nonVisualShapeProperties3.Append(nonVisualShapeDrawingProperties3);
             nonVisualShapeProperties3.Append(applicationNonVisualDrawingProperties5);
-            ShapeProperties shapeProperties3 = new ShapeProperties();
+            var shapeProperties3 = new ShapeProperties();
 
-            TextBody textBody3 = new TextBody();
-            A.BodyProperties bodyProperties3 = new A.BodyProperties();
-            A.ListStyle listStyle3 = new A.ListStyle();
+            var textBody3 = new TextBody();
+            var bodyProperties3 = new A.BodyProperties();
+            var listStyle3 = new A.ListStyle();
 
-            A.Paragraph paragraph3 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties3 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var paragraph3 = new A.Paragraph();
+            var endParagraphRunProperties3 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph3.Append(endParagraphRunProperties3);
 
@@ -1549,40 +1563,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape3.Append(shapeProperties3);
             shape3.Append(textBody3);
 
-            Shape shape4 = new Shape();
+            var shape4 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties4 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties6 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Slide Number Placeholder 3" };
+            var nonVisualShapeProperties4 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties6 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Slide Number Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties4 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks3 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties4 = new NonVisualShapeDrawingProperties();
+            var shapeLocks3 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties4.Append(shapeLocks3);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties6 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape3 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties6 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape3 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties6.Append(placeholderShape3);
 
             nonVisualShapeProperties4.Append(nonVisualDrawingProperties6);
             nonVisualShapeProperties4.Append(nonVisualShapeDrawingProperties4);
             nonVisualShapeProperties4.Append(applicationNonVisualDrawingProperties6);
-            ShapeProperties shapeProperties4 = new ShapeProperties();
+            var shapeProperties4 = new ShapeProperties();
 
-            TextBody textBody4 = new TextBody();
-            A.BodyProperties bodyProperties4 = new A.BodyProperties();
-            A.ListStyle listStyle4 = new A.ListStyle();
+            var textBody4 = new TextBody();
+            var bodyProperties4 = new A.BodyProperties();
+            var listStyle4 = new A.ListStyle();
 
-            A.Paragraph paragraph4 = new A.Paragraph();
+            var paragraph4 = new A.Paragraph();
 
-            A.Field field2 = new A.Field() { Id = "{48F63A3B-78C7-47BE-AE5E-E10140E04643}", Type = "slidenum" };
-            A.RunProperties runProperties3 = new A.RunProperties() { Language = "en-US", Dirty = false };
-            A.Text text3 = new A.Text();
-            text3.Text = "‹#›";
+            var field2 = new A.Field() { Id = "{48F63A3B-78C7-47BE-AE5E-E10140E04643}", Type = "slidenum" };
+            var runProperties3 = new A.RunProperties() { Language = "en-US", Dirty = false };
+            var text3 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field2.Append(runProperties3);
             field2.Append(text3);
-            A.EndParagraphRunProperties endParagraphRunProperties4 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties4 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph4.Append(field2);
             paragraph4.Append(endParagraphRunProperties4);
@@ -1601,11 +1617,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree2.Append(shape3);
             shapeTree2.Append(shape4);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList1 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList1 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension1 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension1 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId1 = new P14.CreationId() { Val = (UInt32Value)2298306657U };
+            var creationId1 = new P14.CreationId() { Val = (UInt32Value)2298306657U };
             creationId1.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension1.Append(creationId1);
@@ -1615,8 +1631,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData2.Append(shapeTree2);
             commonSlideData2.Append(commonSlideDataExtensionList1);
 
-            ColorMapOverride colorMapOverride2 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping2 = new A.MasterColorMapping();
+            var colorMapOverride2 = new ColorMapOverride();
+            var masterColorMapping2 = new A.MasterColorMapping();
 
             colorMapOverride2.Append(masterColorMapping2);
 
@@ -1629,31 +1645,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart2.
         private void GenerateSlideLayoutPart2Content(SlideLayoutPart slideLayoutPart2)
         {
-            SlideLayout slideLayout2 = new SlideLayout() { Type = SlideLayoutValues.ObjectText, Preserve = true };
+            var slideLayout2 = new SlideLayout() { Type = SlideLayoutValues.ObjectText, Preserve = true };
             slideLayout2.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout2.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout2.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData4 = new CommonSlideData() { Name = "캡션 있는 콘텐츠" };
+            var commonSlideData4 = new CommonSlideData() { Name = "캡션 있는 콘텐츠" };
 
-            ShapeTree shapeTree4 = new ShapeTree();
+            var shapeTree4 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties4 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties13 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties4 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties13 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties4 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties13 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties4 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties13 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties4.Append(nonVisualDrawingProperties13);
             nonVisualGroupShapeProperties4.Append(nonVisualGroupShapeDrawingProperties4);
             nonVisualGroupShapeProperties4.Append(applicationNonVisualDrawingProperties13);
 
-            GroupShapeProperties groupShapeProperties4 = new GroupShapeProperties();
+            var groupShapeProperties4 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup4 = new A.TransformGroup();
-            A.Offset offset10 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents10 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset4 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents4 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup4 = new A.TransformGroup();
+            var offset10 = new A.Offset() { X = 0L, Y = 0L };
+            var extents10 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset4 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents4 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup4.Append(offset10);
             transformGroup4.Append(extents10);
@@ -1662,18 +1678,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties4.Append(transformGroup4);
 
-            Shape shape10 = new Shape();
+            var shape10 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties10 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties14 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties10 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties14 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties10 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks9 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties10 = new NonVisualShapeDrawingProperties();
+            var shapeLocks9 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties10.Append(shapeLocks9);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties14 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape9 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties14 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape9 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties14.Append(placeholderShape9);
 
@@ -1681,40 +1697,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties10.Append(nonVisualShapeDrawingProperties10);
             nonVisualShapeProperties10.Append(applicationNonVisualDrawingProperties14);
 
-            ShapeProperties shapeProperties10 = new ShapeProperties();
+            var shapeProperties10 = new ShapeProperties();
 
-            A.Transform2D transform2D7 = new A.Transform2D();
-            A.Offset offset11 = new A.Offset() { X = 629841L, Y = 457200L };
-            A.Extents extents11 = new A.Extents() { Cx = 2949178L, Cy = 1600200L };
+            var transform2D7 = new A.Transform2D();
+            var offset11 = new A.Offset() { X = 629841L, Y = 457200L };
+            var extents11 = new A.Extents() { Cx = 2949178L, Cy = 1600200L };
 
             transform2D7.Append(offset11);
             transform2D7.Append(extents11);
 
             shapeProperties10.Append(transform2D7);
 
-            TextBody textBody10 = new TextBody();
-            A.BodyProperties bodyProperties10 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
+            var textBody10 = new TextBody();
+            var bodyProperties10 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
 
-            A.ListStyle listStyle10 = new A.ListStyle();
+            var listStyle10 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties8 = new A.Level1ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties34 = new A.DefaultRunProperties() { FontSize = 3200 };
+            var level1ParagraphProperties8 = new A.Level1ParagraphProperties();
+            var defaultRunProperties34 = new A.DefaultRunProperties() { FontSize = 3200 };
 
             level1ParagraphProperties8.Append(defaultRunProperties34);
 
             listStyle10.Append(level1ParagraphProperties8);
 
-            A.Paragraph paragraph14 = new A.Paragraph();
+            var paragraph14 = new A.Paragraph();
 
-            A.Run run8 = new A.Run();
+            var run8 = new A.Run();
 
-            A.RunProperties runProperties12 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text12 = new A.Text();
-            text12.Text = "마스터 제목 스타일 편집";
+            var runProperties12 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text12 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run8.Append(runProperties12);
             run8.Append(text12);
-            A.EndParagraphRunProperties endParagraphRunProperties10 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties10 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph14.Append(run8);
             paragraph14.Append(endParagraphRunProperties10);
@@ -1727,18 +1745,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape10.Append(shapeProperties10);
             shape10.Append(textBody10);
 
-            Shape shape11 = new Shape();
+            var shape11 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties11 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties15 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Content Placeholder 2" };
+            var nonVisualShapeProperties11 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties15 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Content Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties11 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks10 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties11 = new NonVisualShapeDrawingProperties();
+            var shapeLocks10 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties11.Append(shapeLocks10);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties15 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape10 = new PlaceholderShape() { Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties15 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape10 = new PlaceholderShape() { Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties15.Append(placeholderShape10);
 
@@ -1746,64 +1764,64 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties11.Append(nonVisualShapeDrawingProperties11);
             nonVisualShapeProperties11.Append(applicationNonVisualDrawingProperties15);
 
-            ShapeProperties shapeProperties11 = new ShapeProperties();
+            var shapeProperties11 = new ShapeProperties();
 
-            A.Transform2D transform2D8 = new A.Transform2D();
-            A.Offset offset12 = new A.Offset() { X = 3887391L, Y = 987426L };
-            A.Extents extents12 = new A.Extents() { Cx = 4629150L, Cy = 4873625L };
+            var transform2D8 = new A.Transform2D();
+            var offset12 = new A.Offset() { X = 3887391L, Y = 987426L };
+            var extents12 = new A.Extents() { Cx = 4629150L, Cy = 4873625L };
 
             transform2D8.Append(offset12);
             transform2D8.Append(extents12);
 
             shapeProperties11.Append(transform2D8);
 
-            TextBody textBody11 = new TextBody();
-            A.BodyProperties bodyProperties11 = new A.BodyProperties();
+            var textBody11 = new TextBody();
+            var bodyProperties11 = new A.BodyProperties();
 
-            A.ListStyle listStyle11 = new A.ListStyle();
+            var listStyle11 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties9 = new A.Level1ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties35 = new A.DefaultRunProperties() { FontSize = 3200 };
+            var level1ParagraphProperties9 = new A.Level1ParagraphProperties();
+            var defaultRunProperties35 = new A.DefaultRunProperties() { FontSize = 3200 };
 
             level1ParagraphProperties9.Append(defaultRunProperties35);
 
-            A.Level2ParagraphProperties level2ParagraphProperties4 = new A.Level2ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties36 = new A.DefaultRunProperties() { FontSize = 2800 };
+            var level2ParagraphProperties4 = new A.Level2ParagraphProperties();
+            var defaultRunProperties36 = new A.DefaultRunProperties() { FontSize = 2800 };
 
             level2ParagraphProperties4.Append(defaultRunProperties36);
 
-            A.Level3ParagraphProperties level3ParagraphProperties4 = new A.Level3ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties37 = new A.DefaultRunProperties() { FontSize = 2400 };
+            var level3ParagraphProperties4 = new A.Level3ParagraphProperties();
+            var defaultRunProperties37 = new A.DefaultRunProperties() { FontSize = 2400 };
 
             level3ParagraphProperties4.Append(defaultRunProperties37);
 
-            A.Level4ParagraphProperties level4ParagraphProperties4 = new A.Level4ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties38 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level4ParagraphProperties4 = new A.Level4ParagraphProperties();
+            var defaultRunProperties38 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level4ParagraphProperties4.Append(defaultRunProperties38);
 
-            A.Level5ParagraphProperties level5ParagraphProperties4 = new A.Level5ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties39 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level5ParagraphProperties4 = new A.Level5ParagraphProperties();
+            var defaultRunProperties39 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level5ParagraphProperties4.Append(defaultRunProperties39);
 
-            A.Level6ParagraphProperties level6ParagraphProperties4 = new A.Level6ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties40 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level6ParagraphProperties4 = new A.Level6ParagraphProperties();
+            var defaultRunProperties40 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level6ParagraphProperties4.Append(defaultRunProperties40);
 
-            A.Level7ParagraphProperties level7ParagraphProperties4 = new A.Level7ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties41 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level7ParagraphProperties4 = new A.Level7ParagraphProperties();
+            var defaultRunProperties41 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level7ParagraphProperties4.Append(defaultRunProperties41);
 
-            A.Level8ParagraphProperties level8ParagraphProperties4 = new A.Level8ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties42 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level8ParagraphProperties4 = new A.Level8ParagraphProperties();
+            var defaultRunProperties42 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level8ParagraphProperties4.Append(defaultRunProperties42);
 
-            A.Level9ParagraphProperties level9ParagraphProperties4 = new A.Level9ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties43 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level9ParagraphProperties4 = new A.Level9ParagraphProperties();
+            var defaultRunProperties43 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level9ParagraphProperties4.Append(defaultRunProperties43);
 
@@ -1817,14 +1835,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle11.Append(level8ParagraphProperties4);
             listStyle11.Append(level9ParagraphProperties4);
 
-            A.Paragraph paragraph15 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties6 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph15 = new A.Paragraph();
+            var paragraphProperties6 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run9 = new A.Run();
+            var run9 = new A.Run();
 
-            A.RunProperties runProperties13 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text13 = new A.Text();
-            text13.Text = "마스터 텍스트 스타일 편집";
+            var runProperties13 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text13 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run9.Append(runProperties13);
             run9.Append(text13);
@@ -1832,14 +1852,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph15.Append(paragraphProperties6);
             paragraph15.Append(run9);
 
-            A.Paragraph paragraph16 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties7 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph16 = new A.Paragraph();
+            var paragraphProperties7 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run10 = new A.Run();
+            var run10 = new A.Run();
 
-            A.RunProperties runProperties14 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text14 = new A.Text();
-            text14.Text = "둘째 수준";
+            var runProperties14 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text14 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run10.Append(runProperties14);
             run10.Append(text14);
@@ -1847,14 +1869,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph16.Append(paragraphProperties7);
             paragraph16.Append(run10);
 
-            A.Paragraph paragraph17 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties8 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph17 = new A.Paragraph();
+            var paragraphProperties8 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run11 = new A.Run();
+            var run11 = new A.Run();
 
-            A.RunProperties runProperties15 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text15 = new A.Text();
-            text15.Text = "셋째 수준";
+            var runProperties15 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text15 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run11.Append(runProperties15);
             run11.Append(text15);
@@ -1862,14 +1886,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph17.Append(paragraphProperties8);
             paragraph17.Append(run11);
 
-            A.Paragraph paragraph18 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties9 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph18 = new A.Paragraph();
+            var paragraphProperties9 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run12 = new A.Run();
+            var run12 = new A.Run();
 
-            A.RunProperties runProperties16 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text16 = new A.Text();
-            text16.Text = "넷째 수준";
+            var runProperties16 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text16 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run12.Append(runProperties16);
             run12.Append(text16);
@@ -1877,18 +1903,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph18.Append(paragraphProperties9);
             paragraph18.Append(run12);
 
-            A.Paragraph paragraph19 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties10 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph19 = new A.Paragraph();
+            var paragraphProperties10 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run13 = new A.Run();
+            var run13 = new A.Run();
 
-            A.RunProperties runProperties17 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text17 = new A.Text();
-            text17.Text = "다섯째 수준";
+            var runProperties17 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text17 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run13.Append(runProperties17);
             run13.Append(text17);
-            A.EndParagraphRunProperties endParagraphRunProperties11 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties11 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph19.Append(paragraphProperties10);
             paragraph19.Append(run13);
@@ -1906,18 +1934,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape11.Append(shapeProperties11);
             shape11.Append(textBody11);
 
-            Shape shape12 = new Shape();
+            var shape12 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties12 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties16 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Text Placeholder 3" };
+            var nonVisualShapeProperties12 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties16 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Text Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties12 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks11 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties12 = new NonVisualShapeDrawingProperties();
+            var shapeLocks11 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties12.Append(shapeLocks11);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties16 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape11 = new PlaceholderShape() { Type = PlaceholderValues.Body, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
+            var applicationNonVisualDrawingProperties16 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape11 = new PlaceholderShape() { Type = PlaceholderValues.Body, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
 
             applicationNonVisualDrawingProperties16.Append(placeholderShape11);
 
@@ -1925,81 +1953,81 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties12.Append(nonVisualShapeDrawingProperties12);
             nonVisualShapeProperties12.Append(applicationNonVisualDrawingProperties16);
 
-            ShapeProperties shapeProperties12 = new ShapeProperties();
+            var shapeProperties12 = new ShapeProperties();
 
-            A.Transform2D transform2D9 = new A.Transform2D();
-            A.Offset offset13 = new A.Offset() { X = 629841L, Y = 2057400L };
-            A.Extents extents13 = new A.Extents() { Cx = 2949178L, Cy = 3811588L };
+            var transform2D9 = new A.Transform2D();
+            var offset13 = new A.Offset() { X = 629841L, Y = 2057400L };
+            var extents13 = new A.Extents() { Cx = 2949178L, Cy = 3811588L };
 
             transform2D9.Append(offset13);
             transform2D9.Append(extents13);
 
             shapeProperties12.Append(transform2D9);
 
-            TextBody textBody12 = new TextBody();
-            A.BodyProperties bodyProperties12 = new A.BodyProperties();
+            var textBody12 = new TextBody();
+            var bodyProperties12 = new A.BodyProperties();
 
-            A.ListStyle listStyle12 = new A.ListStyle();
+            var listStyle12 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties10 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
-            A.NoBullet noBullet2 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties44 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level1ParagraphProperties10 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
+            var noBullet2 = new A.NoBullet();
+            var defaultRunProperties44 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level1ParagraphProperties10.Append(noBullet2);
             level1ParagraphProperties10.Append(defaultRunProperties44);
 
-            A.Level2ParagraphProperties level2ParagraphProperties5 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
-            A.NoBullet noBullet3 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties45 = new A.DefaultRunProperties() { FontSize = 1400 };
+            var level2ParagraphProperties5 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
+            var noBullet3 = new A.NoBullet();
+            var defaultRunProperties45 = new A.DefaultRunProperties() { FontSize = 1400 };
 
             level2ParagraphProperties5.Append(noBullet3);
             level2ParagraphProperties5.Append(defaultRunProperties45);
 
-            A.Level3ParagraphProperties level3ParagraphProperties5 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
-            A.NoBullet noBullet4 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties46 = new A.DefaultRunProperties() { FontSize = 1200 };
+            var level3ParagraphProperties5 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
+            var noBullet4 = new A.NoBullet();
+            var defaultRunProperties46 = new A.DefaultRunProperties() { FontSize = 1200 };
 
             level3ParagraphProperties5.Append(noBullet4);
             level3ParagraphProperties5.Append(defaultRunProperties46);
 
-            A.Level4ParagraphProperties level4ParagraphProperties5 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
-            A.NoBullet noBullet5 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties47 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level4ParagraphProperties5 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
+            var noBullet5 = new A.NoBullet();
+            var defaultRunProperties47 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level4ParagraphProperties5.Append(noBullet5);
             level4ParagraphProperties5.Append(defaultRunProperties47);
 
-            A.Level5ParagraphProperties level5ParagraphProperties5 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
-            A.NoBullet noBullet6 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties48 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level5ParagraphProperties5 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
+            var noBullet6 = new A.NoBullet();
+            var defaultRunProperties48 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level5ParagraphProperties5.Append(noBullet6);
             level5ParagraphProperties5.Append(defaultRunProperties48);
 
-            A.Level6ParagraphProperties level6ParagraphProperties5 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
-            A.NoBullet noBullet7 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties49 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level6ParagraphProperties5 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
+            var noBullet7 = new A.NoBullet();
+            var defaultRunProperties49 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level6ParagraphProperties5.Append(noBullet7);
             level6ParagraphProperties5.Append(defaultRunProperties49);
 
-            A.Level7ParagraphProperties level7ParagraphProperties5 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
-            A.NoBullet noBullet8 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties50 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level7ParagraphProperties5 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
+            var noBullet8 = new A.NoBullet();
+            var defaultRunProperties50 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level7ParagraphProperties5.Append(noBullet8);
             level7ParagraphProperties5.Append(defaultRunProperties50);
 
-            A.Level8ParagraphProperties level8ParagraphProperties5 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
-            A.NoBullet noBullet9 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties51 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level8ParagraphProperties5 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
+            var noBullet9 = new A.NoBullet();
+            var defaultRunProperties51 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level8ParagraphProperties5.Append(noBullet9);
             level8ParagraphProperties5.Append(defaultRunProperties51);
 
-            A.Level9ParagraphProperties level9ParagraphProperties5 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
-            A.NoBullet noBullet10 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties52 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level9ParagraphProperties5 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
+            var noBullet10 = new A.NoBullet();
+            var defaultRunProperties52 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level9ParagraphProperties5.Append(noBullet10);
             level9ParagraphProperties5.Append(defaultRunProperties52);
@@ -2014,14 +2042,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle12.Append(level8ParagraphProperties5);
             listStyle12.Append(level9ParagraphProperties5);
 
-            A.Paragraph paragraph20 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties11 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph20 = new A.Paragraph();
+            var paragraphProperties11 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run14 = new A.Run();
+            var run14 = new A.Run();
 
-            A.RunProperties runProperties18 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text18 = new A.Text();
-            text18.Text = "마스터 텍스트 스타일 편집";
+            var runProperties18 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text18 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run14.Append(runProperties18);
             run14.Append(text18);
@@ -2037,41 +2067,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape12.Append(shapeProperties12);
             shape12.Append(textBody12);
 
-            Shape shape13 = new Shape();
+            var shape13 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties13 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties17 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Date Placeholder 4" };
+            var nonVisualShapeProperties13 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties17 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Date Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties13 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks12 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties13 = new NonVisualShapeDrawingProperties();
+            var shapeLocks12 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties13.Append(shapeLocks12);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties17 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape12 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties17 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape12 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties17.Append(placeholderShape12);
 
             nonVisualShapeProperties13.Append(nonVisualDrawingProperties17);
             nonVisualShapeProperties13.Append(nonVisualShapeDrawingProperties13);
             nonVisualShapeProperties13.Append(applicationNonVisualDrawingProperties17);
-            ShapeProperties shapeProperties13 = new ShapeProperties();
+            var shapeProperties13 = new ShapeProperties();
 
-            TextBody textBody13 = new TextBody();
-            A.BodyProperties bodyProperties13 = new A.BodyProperties();
-            A.ListStyle listStyle13 = new A.ListStyle();
+            var textBody13 = new TextBody();
+            var bodyProperties13 = new A.BodyProperties();
+            var listStyle13 = new A.ListStyle();
 
-            A.Paragraph paragraph21 = new A.Paragraph();
+            var paragraph21 = new A.Paragraph();
 
-            A.Field field5 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field5 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties19 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text19 = new A.Text();
-            text19.Text = "2023-11-08";
+            var runProperties19 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text19 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field5.Append(runProperties19);
             field5.Append(text19);
-            A.EndParagraphRunProperties endParagraphRunProperties12 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties12 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph21.Append(field5);
             paragraph21.Append(endParagraphRunProperties12);
@@ -2084,32 +2116,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape13.Append(shapeProperties13);
             shape13.Append(textBody13);
 
-            Shape shape14 = new Shape();
+            var shape14 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties14 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties18 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Footer Placeholder 5" };
+            var nonVisualShapeProperties14 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties18 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Footer Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties14 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks13 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties14 = new NonVisualShapeDrawingProperties();
+            var shapeLocks13 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties14.Append(shapeLocks13);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties18 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape13 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties18 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape13 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties18.Append(placeholderShape13);
 
             nonVisualShapeProperties14.Append(nonVisualDrawingProperties18);
             nonVisualShapeProperties14.Append(nonVisualShapeDrawingProperties14);
             nonVisualShapeProperties14.Append(applicationNonVisualDrawingProperties18);
-            ShapeProperties shapeProperties14 = new ShapeProperties();
+            var shapeProperties14 = new ShapeProperties();
 
-            TextBody textBody14 = new TextBody();
-            A.BodyProperties bodyProperties14 = new A.BodyProperties();
-            A.ListStyle listStyle14 = new A.ListStyle();
+            var textBody14 = new TextBody();
+            var bodyProperties14 = new A.BodyProperties();
+            var listStyle14 = new A.ListStyle();
 
-            A.Paragraph paragraph22 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties13 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph22 = new A.Paragraph();
+            var endParagraphRunProperties13 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph22.Append(endParagraphRunProperties13);
 
@@ -2121,41 +2153,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape14.Append(shapeProperties14);
             shape14.Append(textBody14);
 
-            Shape shape15 = new Shape();
+            var shape15 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties15 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties19 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Slide Number Placeholder 6" };
+            var nonVisualShapeProperties15 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties19 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Slide Number Placeholder 6" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties15 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks14 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties15 = new NonVisualShapeDrawingProperties();
+            var shapeLocks14 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties15.Append(shapeLocks14);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties19 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape14 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties19 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape14 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties19.Append(placeholderShape14);
 
             nonVisualShapeProperties15.Append(nonVisualDrawingProperties19);
             nonVisualShapeProperties15.Append(nonVisualShapeDrawingProperties15);
             nonVisualShapeProperties15.Append(applicationNonVisualDrawingProperties19);
-            ShapeProperties shapeProperties15 = new ShapeProperties();
+            var shapeProperties15 = new ShapeProperties();
 
-            TextBody textBody15 = new TextBody();
-            A.BodyProperties bodyProperties15 = new A.BodyProperties();
-            A.ListStyle listStyle15 = new A.ListStyle();
+            var textBody15 = new TextBody();
+            var bodyProperties15 = new A.BodyProperties();
+            var listStyle15 = new A.ListStyle();
 
-            A.Paragraph paragraph23 = new A.Paragraph();
+            var paragraph23 = new A.Paragraph();
 
-            A.Field field6 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field6 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties20 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text20 = new A.Text();
-            text20.Text = "‹#›";
+            var runProperties20 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text20 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field6.Append(runProperties20);
             field6.Append(text20);
-            A.EndParagraphRunProperties endParagraphRunProperties14 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties14 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph23.Append(field6);
             paragraph23.Append(endParagraphRunProperties14);
@@ -2177,11 +2211,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree4.Append(shape14);
             shapeTree4.Append(shape15);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList3 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList3 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension3 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension3 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId3 = new P14.CreationId() { Val = (UInt32Value)1371527084U };
+            var creationId3 = new P14.CreationId() { Val = (UInt32Value)1371527084U };
             creationId3.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension3.Append(creationId3);
@@ -2191,8 +2225,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData4.Append(shapeTree4);
             commonSlideData4.Append(commonSlideDataExtensionList3);
 
-            ColorMapOverride colorMapOverride3 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping3 = new A.MasterColorMapping();
+            var colorMapOverride3 = new ColorMapOverride();
+            var masterColorMapping3 = new A.MasterColorMapping();
 
             colorMapOverride3.Append(masterColorMapping3);
 
@@ -2205,31 +2239,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart3.
         private void GenerateSlideLayoutPart3Content(SlideLayoutPart slideLayoutPart3)
         {
-            SlideLayout slideLayout3 = new SlideLayout() { Type = SlideLayoutValues.SectionHeader, Preserve = true };
+            var slideLayout3 = new SlideLayout() { Type = SlideLayoutValues.SectionHeader, Preserve = true };
             slideLayout3.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout3.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout3.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData5 = new CommonSlideData() { Name = "구역 머리글" };
+            var commonSlideData5 = new CommonSlideData() { Name = "구역 머리글" };
 
-            ShapeTree shapeTree5 = new ShapeTree();
+            var shapeTree5 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties5 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties20 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties5 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties20 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties5 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties20 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties5 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties20 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties5.Append(nonVisualDrawingProperties20);
             nonVisualGroupShapeProperties5.Append(nonVisualGroupShapeDrawingProperties5);
             nonVisualGroupShapeProperties5.Append(applicationNonVisualDrawingProperties20);
 
-            GroupShapeProperties groupShapeProperties5 = new GroupShapeProperties();
+            var groupShapeProperties5 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup5 = new A.TransformGroup();
-            A.Offset offset14 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents14 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset5 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents5 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup5 = new A.TransformGroup();
+            var offset14 = new A.Offset() { X = 0L, Y = 0L };
+            var extents14 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset5 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents5 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup5.Append(offset14);
             transformGroup5.Append(extents14);
@@ -2238,18 +2272,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties5.Append(transformGroup5);
 
-            Shape shape16 = new Shape();
+            var shape16 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties16 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties21 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties16 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties21 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties16 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks15 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties16 = new NonVisualShapeDrawingProperties();
+            var shapeLocks15 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties16.Append(shapeLocks15);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties21 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape15 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties21 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape15 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties21.Append(placeholderShape15);
 
@@ -2257,40 +2291,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties16.Append(nonVisualShapeDrawingProperties16);
             nonVisualShapeProperties16.Append(applicationNonVisualDrawingProperties21);
 
-            ShapeProperties shapeProperties16 = new ShapeProperties();
+            var shapeProperties16 = new ShapeProperties();
 
-            A.Transform2D transform2D10 = new A.Transform2D();
-            A.Offset offset15 = new A.Offset() { X = 623888L, Y = 1709739L };
-            A.Extents extents15 = new A.Extents() { Cx = 7886700L, Cy = 2852737L };
+            var transform2D10 = new A.Transform2D();
+            var offset15 = new A.Offset() { X = 623888L, Y = 1709739L };
+            var extents15 = new A.Extents() { Cx = 7886700L, Cy = 2852737L };
 
             transform2D10.Append(offset15);
             transform2D10.Append(extents15);
 
             shapeProperties16.Append(transform2D10);
 
-            TextBody textBody16 = new TextBody();
-            A.BodyProperties bodyProperties16 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
+            var textBody16 = new TextBody();
+            var bodyProperties16 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
 
-            A.ListStyle listStyle16 = new A.ListStyle();
+            var listStyle16 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties11 = new A.Level1ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties53 = new A.DefaultRunProperties() { FontSize = 6000 };
+            var level1ParagraphProperties11 = new A.Level1ParagraphProperties();
+            var defaultRunProperties53 = new A.DefaultRunProperties() { FontSize = 6000 };
 
             level1ParagraphProperties11.Append(defaultRunProperties53);
 
             listStyle16.Append(level1ParagraphProperties11);
 
-            A.Paragraph paragraph24 = new A.Paragraph();
+            var paragraph24 = new A.Paragraph();
 
-            A.Run run15 = new A.Run();
+            var run15 = new A.Run();
 
-            A.RunProperties runProperties21 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text21 = new A.Text();
-            text21.Text = "마스터 제목 스타일 편집";
+            var runProperties21 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text21 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run15.Append(runProperties21);
             run15.Append(text21);
-            A.EndParagraphRunProperties endParagraphRunProperties15 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties15 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph24.Append(run15);
             paragraph24.Append(endParagraphRunProperties15);
@@ -2303,18 +2339,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape16.Append(shapeProperties16);
             shape16.Append(textBody16);
 
-            Shape shape17 = new Shape();
+            var shape17 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties17 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties22 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Text Placeholder 2" };
+            var nonVisualShapeProperties17 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties22 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Text Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties17 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks16 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties17 = new NonVisualShapeDrawingProperties();
+            var shapeLocks16 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties17.Append(shapeLocks16);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties22 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape16 = new PlaceholderShape() { Type = PlaceholderValues.Body, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties22 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape16 = new PlaceholderShape() { Type = PlaceholderValues.Body, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties22.Append(placeholderShape16);
 
@@ -2322,29 +2358,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties17.Append(nonVisualShapeDrawingProperties17);
             nonVisualShapeProperties17.Append(applicationNonVisualDrawingProperties22);
 
-            ShapeProperties shapeProperties17 = new ShapeProperties();
+            var shapeProperties17 = new ShapeProperties();
 
-            A.Transform2D transform2D11 = new A.Transform2D();
-            A.Offset offset16 = new A.Offset() { X = 623888L, Y = 4589464L };
-            A.Extents extents16 = new A.Extents() { Cx = 7886700L, Cy = 1500187L };
+            var transform2D11 = new A.Transform2D();
+            var offset16 = new A.Offset() { X = 623888L, Y = 4589464L };
+            var extents16 = new A.Extents() { Cx = 7886700L, Cy = 1500187L };
 
             transform2D11.Append(offset16);
             transform2D11.Append(extents16);
 
             shapeProperties17.Append(transform2D11);
 
-            TextBody textBody17 = new TextBody();
-            A.BodyProperties bodyProperties17 = new A.BodyProperties();
+            var textBody17 = new TextBody();
+            var bodyProperties17 = new A.BodyProperties();
 
-            A.ListStyle listStyle17 = new A.ListStyle();
+            var listStyle17 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties12 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
-            A.NoBullet noBullet11 = new A.NoBullet();
+            var level1ParagraphProperties12 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
+            var noBullet11 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties54 = new A.DefaultRunProperties() { FontSize = 2400 };
+            var defaultRunProperties54 = new A.DefaultRunProperties() { FontSize = 2400 };
 
-            A.SolidFill solidFill32 = new A.SolidFill();
-            A.SchemeColor schemeColor33 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var solidFill32 = new A.SolidFill();
+            var schemeColor33 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
 
             solidFill32.Append(schemeColor33);
 
@@ -2353,15 +2389,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level1ParagraphProperties12.Append(noBullet11);
             level1ParagraphProperties12.Append(defaultRunProperties54);
 
-            A.Level2ParagraphProperties level2ParagraphProperties6 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
-            A.NoBullet noBullet12 = new A.NoBullet();
+            var level2ParagraphProperties6 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
+            var noBullet12 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties55 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var defaultRunProperties55 = new A.DefaultRunProperties() { FontSize = 2000 };
 
-            A.SolidFill solidFill33 = new A.SolidFill();
+            var solidFill33 = new A.SolidFill();
 
-            A.SchemeColor schemeColor34 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint4 = new A.Tint() { Val = 75000 };
+            var schemeColor34 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint4 = new A.Tint() { Val = 75000 };
 
             schemeColor34.Append(tint4);
 
@@ -2372,15 +2408,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level2ParagraphProperties6.Append(noBullet12);
             level2ParagraphProperties6.Append(defaultRunProperties55);
 
-            A.Level3ParagraphProperties level3ParagraphProperties6 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
-            A.NoBullet noBullet13 = new A.NoBullet();
+            var level3ParagraphProperties6 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
+            var noBullet13 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties56 = new A.DefaultRunProperties() { FontSize = 1800 };
+            var defaultRunProperties56 = new A.DefaultRunProperties() { FontSize = 1800 };
 
-            A.SolidFill solidFill34 = new A.SolidFill();
+            var solidFill34 = new A.SolidFill();
 
-            A.SchemeColor schemeColor35 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint5 = new A.Tint() { Val = 75000 };
+            var schemeColor35 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint5 = new A.Tint() { Val = 75000 };
 
             schemeColor35.Append(tint5);
 
@@ -2391,15 +2427,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level3ParagraphProperties6.Append(noBullet13);
             level3ParagraphProperties6.Append(defaultRunProperties56);
 
-            A.Level4ParagraphProperties level4ParagraphProperties6 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
-            A.NoBullet noBullet14 = new A.NoBullet();
+            var level4ParagraphProperties6 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
+            var noBullet14 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties57 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var defaultRunProperties57 = new A.DefaultRunProperties() { FontSize = 1600 };
 
-            A.SolidFill solidFill35 = new A.SolidFill();
+            var solidFill35 = new A.SolidFill();
 
-            A.SchemeColor schemeColor36 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint6 = new A.Tint() { Val = 75000 };
+            var schemeColor36 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint6 = new A.Tint() { Val = 75000 };
 
             schemeColor36.Append(tint6);
 
@@ -2410,15 +2446,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level4ParagraphProperties6.Append(noBullet14);
             level4ParagraphProperties6.Append(defaultRunProperties57);
 
-            A.Level5ParagraphProperties level5ParagraphProperties6 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
-            A.NoBullet noBullet15 = new A.NoBullet();
+            var level5ParagraphProperties6 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
+            var noBullet15 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties58 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var defaultRunProperties58 = new A.DefaultRunProperties() { FontSize = 1600 };
 
-            A.SolidFill solidFill36 = new A.SolidFill();
+            var solidFill36 = new A.SolidFill();
 
-            A.SchemeColor schemeColor37 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint7 = new A.Tint() { Val = 75000 };
+            var schemeColor37 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint7 = new A.Tint() { Val = 75000 };
 
             schemeColor37.Append(tint7);
 
@@ -2429,15 +2465,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level5ParagraphProperties6.Append(noBullet15);
             level5ParagraphProperties6.Append(defaultRunProperties58);
 
-            A.Level6ParagraphProperties level6ParagraphProperties6 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
-            A.NoBullet noBullet16 = new A.NoBullet();
+            var level6ParagraphProperties6 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
+            var noBullet16 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties59 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var defaultRunProperties59 = new A.DefaultRunProperties() { FontSize = 1600 };
 
-            A.SolidFill solidFill37 = new A.SolidFill();
+            var solidFill37 = new A.SolidFill();
 
-            A.SchemeColor schemeColor38 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint8 = new A.Tint() { Val = 75000 };
+            var schemeColor38 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint8 = new A.Tint() { Val = 75000 };
 
             schemeColor38.Append(tint8);
 
@@ -2448,15 +2484,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level6ParagraphProperties6.Append(noBullet16);
             level6ParagraphProperties6.Append(defaultRunProperties59);
 
-            A.Level7ParagraphProperties level7ParagraphProperties6 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
-            A.NoBullet noBullet17 = new A.NoBullet();
+            var level7ParagraphProperties6 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
+            var noBullet17 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties60 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var defaultRunProperties60 = new A.DefaultRunProperties() { FontSize = 1600 };
 
-            A.SolidFill solidFill38 = new A.SolidFill();
+            var solidFill38 = new A.SolidFill();
 
-            A.SchemeColor schemeColor39 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint9 = new A.Tint() { Val = 75000 };
+            var schemeColor39 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint9 = new A.Tint() { Val = 75000 };
 
             schemeColor39.Append(tint9);
 
@@ -2467,15 +2503,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level7ParagraphProperties6.Append(noBullet17);
             level7ParagraphProperties6.Append(defaultRunProperties60);
 
-            A.Level8ParagraphProperties level8ParagraphProperties6 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
-            A.NoBullet noBullet18 = new A.NoBullet();
+            var level8ParagraphProperties6 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
+            var noBullet18 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties61 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var defaultRunProperties61 = new A.DefaultRunProperties() { FontSize = 1600 };
 
-            A.SolidFill solidFill39 = new A.SolidFill();
+            var solidFill39 = new A.SolidFill();
 
-            A.SchemeColor schemeColor40 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint10 = new A.Tint() { Val = 75000 };
+            var schemeColor40 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint10 = new A.Tint() { Val = 75000 };
 
             schemeColor40.Append(tint10);
 
@@ -2486,15 +2522,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             level8ParagraphProperties6.Append(noBullet18);
             level8ParagraphProperties6.Append(defaultRunProperties61);
 
-            A.Level9ParagraphProperties level9ParagraphProperties6 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
-            A.NoBullet noBullet19 = new A.NoBullet();
+            var level9ParagraphProperties6 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
+            var noBullet19 = new A.NoBullet();
 
-            A.DefaultRunProperties defaultRunProperties62 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var defaultRunProperties62 = new A.DefaultRunProperties() { FontSize = 1600 };
 
-            A.SolidFill solidFill40 = new A.SolidFill();
+            var solidFill40 = new A.SolidFill();
 
-            A.SchemeColor schemeColor41 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
-            A.Tint tint11 = new A.Tint() { Val = 75000 };
+            var schemeColor41 = new A.SchemeColor() { Val = A.SchemeColorValues.Text1 };
+            var tint11 = new A.Tint() { Val = 75000 };
 
             schemeColor41.Append(tint11);
 
@@ -2515,14 +2551,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle17.Append(level8ParagraphProperties6);
             listStyle17.Append(level9ParagraphProperties6);
 
-            A.Paragraph paragraph25 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties12 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph25 = new A.Paragraph();
+            var paragraphProperties12 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run16 = new A.Run();
+            var run16 = new A.Run();
 
-            A.RunProperties runProperties22 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text22 = new A.Text();
-            text22.Text = "마스터 텍스트 스타일 편집";
+            var runProperties22 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text22 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run16.Append(runProperties22);
             run16.Append(text22);
@@ -2538,41 +2576,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape17.Append(shapeProperties17);
             shape17.Append(textBody17);
 
-            Shape shape18 = new Shape();
+            var shape18 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties18 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties23 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
+            var nonVisualShapeProperties18 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties23 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties18 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks17 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties18 = new NonVisualShapeDrawingProperties();
+            var shapeLocks17 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties18.Append(shapeLocks17);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties23 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape17 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties23 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape17 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties23.Append(placeholderShape17);
 
             nonVisualShapeProperties18.Append(nonVisualDrawingProperties23);
             nonVisualShapeProperties18.Append(nonVisualShapeDrawingProperties18);
             nonVisualShapeProperties18.Append(applicationNonVisualDrawingProperties23);
-            ShapeProperties shapeProperties18 = new ShapeProperties();
+            var shapeProperties18 = new ShapeProperties();
 
-            TextBody textBody18 = new TextBody();
-            A.BodyProperties bodyProperties18 = new A.BodyProperties();
-            A.ListStyle listStyle18 = new A.ListStyle();
+            var textBody18 = new TextBody();
+            var bodyProperties18 = new A.BodyProperties();
+            var listStyle18 = new A.ListStyle();
 
-            A.Paragraph paragraph26 = new A.Paragraph();
+            var paragraph26 = new A.Paragraph();
 
-            A.Field field7 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field7 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties23 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text23 = new A.Text();
-            text23.Text = "2023-11-08";
+            var runProperties23 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text23 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field7.Append(runProperties23);
             field7.Append(text23);
-            A.EndParagraphRunProperties endParagraphRunProperties16 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties16 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph26.Append(field7);
             paragraph26.Append(endParagraphRunProperties16);
@@ -2585,32 +2625,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape18.Append(shapeProperties18);
             shape18.Append(textBody18);
 
-            Shape shape19 = new Shape();
+            var shape19 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties19 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties24 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
+            var nonVisualShapeProperties19 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties24 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties19 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks18 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties19 = new NonVisualShapeDrawingProperties();
+            var shapeLocks18 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties19.Append(shapeLocks18);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties24 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape18 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties24 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape18 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties24.Append(placeholderShape18);
 
             nonVisualShapeProperties19.Append(nonVisualDrawingProperties24);
             nonVisualShapeProperties19.Append(nonVisualShapeDrawingProperties19);
             nonVisualShapeProperties19.Append(applicationNonVisualDrawingProperties24);
-            ShapeProperties shapeProperties19 = new ShapeProperties();
+            var shapeProperties19 = new ShapeProperties();
 
-            TextBody textBody19 = new TextBody();
-            A.BodyProperties bodyProperties19 = new A.BodyProperties();
-            A.ListStyle listStyle19 = new A.ListStyle();
+            var textBody19 = new TextBody();
+            var bodyProperties19 = new A.BodyProperties();
+            var listStyle19 = new A.ListStyle();
 
-            A.Paragraph paragraph27 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties17 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph27 = new A.Paragraph();
+            var endParagraphRunProperties17 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph27.Append(endParagraphRunProperties17);
 
@@ -2622,41 +2662,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape19.Append(shapeProperties19);
             shape19.Append(textBody19);
 
-            Shape shape20 = new Shape();
+            var shape20 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties20 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties25 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
+            var nonVisualShapeProperties20 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties25 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties20 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks19 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties20 = new NonVisualShapeDrawingProperties();
+            var shapeLocks19 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties20.Append(shapeLocks19);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties25 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape19 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties25 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape19 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties25.Append(placeholderShape19);
 
             nonVisualShapeProperties20.Append(nonVisualDrawingProperties25);
             nonVisualShapeProperties20.Append(nonVisualShapeDrawingProperties20);
             nonVisualShapeProperties20.Append(applicationNonVisualDrawingProperties25);
-            ShapeProperties shapeProperties20 = new ShapeProperties();
+            var shapeProperties20 = new ShapeProperties();
 
-            TextBody textBody20 = new TextBody();
-            A.BodyProperties bodyProperties20 = new A.BodyProperties();
-            A.ListStyle listStyle20 = new A.ListStyle();
+            var textBody20 = new TextBody();
+            var bodyProperties20 = new A.BodyProperties();
+            var listStyle20 = new A.ListStyle();
 
-            A.Paragraph paragraph28 = new A.Paragraph();
+            var paragraph28 = new A.Paragraph();
 
-            A.Field field8 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field8 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties24 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text24 = new A.Text();
-            text24.Text = "‹#›";
+            var runProperties24 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text24 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field8.Append(runProperties24);
             field8.Append(text24);
-            A.EndParagraphRunProperties endParagraphRunProperties18 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties18 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph28.Append(field8);
             paragraph28.Append(endParagraphRunProperties18);
@@ -2677,11 +2719,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree5.Append(shape19);
             shapeTree5.Append(shape20);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList4 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList4 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension4 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension4 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId4 = new P14.CreationId() { Val = (UInt32Value)3929757499U };
+            var creationId4 = new P14.CreationId() { Val = (UInt32Value)3929757499U };
             creationId4.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension4.Append(creationId4);
@@ -2691,8 +2733,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData5.Append(shapeTree5);
             commonSlideData5.Append(commonSlideDataExtensionList4);
 
-            ColorMapOverride colorMapOverride4 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping4 = new A.MasterColorMapping();
+            var colorMapOverride4 = new ColorMapOverride();
+            var masterColorMapping4 = new A.MasterColorMapping();
 
             colorMapOverride4.Append(masterColorMapping4);
 
@@ -2705,70 +2747,70 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of themePart1.
         private void GenerateThemePart1Content(ThemePart themePart1)
         {
-            A.Theme theme1 = new A.Theme() { Name = "Office 테마" };
+            var theme1 = new A.Theme() { Name = "Office 테마" };
             theme1.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
 
-            A.ThemeElements themeElements1 = new A.ThemeElements();
+            var themeElements1 = new A.ThemeElements();
 
-            A.ColorScheme colorScheme1 = new A.ColorScheme() { Name = "Office 테마" };
+            var colorScheme1 = new A.ColorScheme() { Name = "Office 테마" };
 
-            A.Dark1Color dark1Color1 = new A.Dark1Color();
-            A.SystemColor systemColor1 = new A.SystemColor() { Val = A.SystemColorValues.WindowText, LastColor = "000000" };
+            var dark1Color1 = new A.Dark1Color();
+            var systemColor1 = new A.SystemColor() { Val = A.SystemColorValues.WindowText, LastColor = "000000" };
 
             dark1Color1.Append(systemColor1);
 
-            A.Light1Color light1Color1 = new A.Light1Color();
-            A.SystemColor systemColor2 = new A.SystemColor() { Val = A.SystemColorValues.Window, LastColor = "FFFFFF" };
+            var light1Color1 = new A.Light1Color();
+            var systemColor2 = new A.SystemColor() { Val = A.SystemColorValues.Window, LastColor = "FFFFFF" };
 
             light1Color1.Append(systemColor2);
 
-            A.Dark2Color dark2Color1 = new A.Dark2Color();
-            A.RgbColorModelHex rgbColorModelHex1 = new A.RgbColorModelHex() { Val = "44546A" };
+            var dark2Color1 = new A.Dark2Color();
+            var rgbColorModelHex1 = new A.RgbColorModelHex() { Val = "44546A" };
 
             dark2Color1.Append(rgbColorModelHex1);
 
-            A.Light2Color light2Color1 = new A.Light2Color();
-            A.RgbColorModelHex rgbColorModelHex2 = new A.RgbColorModelHex() { Val = "E7E6E6" };
+            var light2Color1 = new A.Light2Color();
+            var rgbColorModelHex2 = new A.RgbColorModelHex() { Val = "E7E6E6" };
 
             light2Color1.Append(rgbColorModelHex2);
 
-            A.Accent1Color accent1Color1 = new A.Accent1Color();
-            A.RgbColorModelHex rgbColorModelHex3 = new A.RgbColorModelHex() { Val = "5B9BD5" };
+            var accent1Color1 = new A.Accent1Color();
+            var rgbColorModelHex3 = new A.RgbColorModelHex() { Val = "5B9BD5" };
 
             accent1Color1.Append(rgbColorModelHex3);
 
-            A.Accent2Color accent2Color1 = new A.Accent2Color();
-            A.RgbColorModelHex rgbColorModelHex4 = new A.RgbColorModelHex() { Val = "ED7D31" };
+            var accent2Color1 = new A.Accent2Color();
+            var rgbColorModelHex4 = new A.RgbColorModelHex() { Val = "ED7D31" };
 
             accent2Color1.Append(rgbColorModelHex4);
 
-            A.Accent3Color accent3Color1 = new A.Accent3Color();
-            A.RgbColorModelHex rgbColorModelHex5 = new A.RgbColorModelHex() { Val = "A5A5A5" };
+            var accent3Color1 = new A.Accent3Color();
+            var rgbColorModelHex5 = new A.RgbColorModelHex() { Val = "A5A5A5" };
 
             accent3Color1.Append(rgbColorModelHex5);
 
-            A.Accent4Color accent4Color1 = new A.Accent4Color();
-            A.RgbColorModelHex rgbColorModelHex6 = new A.RgbColorModelHex() { Val = "FFC000" };
+            var accent4Color1 = new A.Accent4Color();
+            var rgbColorModelHex6 = new A.RgbColorModelHex() { Val = "FFC000" };
 
             accent4Color1.Append(rgbColorModelHex6);
 
-            A.Accent5Color accent5Color1 = new A.Accent5Color();
-            A.RgbColorModelHex rgbColorModelHex7 = new A.RgbColorModelHex() { Val = "4472C4" };
+            var accent5Color1 = new A.Accent5Color();
+            var rgbColorModelHex7 = new A.RgbColorModelHex() { Val = "4472C4" };
 
             accent5Color1.Append(rgbColorModelHex7);
 
-            A.Accent6Color accent6Color1 = new A.Accent6Color();
-            A.RgbColorModelHex rgbColorModelHex8 = new A.RgbColorModelHex() { Val = "70AD47" };
+            var accent6Color1 = new A.Accent6Color();
+            var rgbColorModelHex8 = new A.RgbColorModelHex() { Val = "70AD47" };
 
             accent6Color1.Append(rgbColorModelHex8);
 
-            A.Hyperlink hyperlink1 = new A.Hyperlink();
-            A.RgbColorModelHex rgbColorModelHex9 = new A.RgbColorModelHex() { Val = "0563C1" };
+            var hyperlink1 = new A.Hyperlink();
+            var rgbColorModelHex9 = new A.RgbColorModelHex() { Val = "0563C1" };
 
             hyperlink1.Append(rgbColorModelHex9);
 
-            A.FollowedHyperlinkColor followedHyperlinkColor1 = new A.FollowedHyperlinkColor();
-            A.RgbColorModelHex rgbColorModelHex10 = new A.RgbColorModelHex() { Val = "954F72" };
+            var followedHyperlinkColor1 = new A.FollowedHyperlinkColor();
+            var rgbColorModelHex10 = new A.RgbColorModelHex() { Val = "954F72" };
 
             followedHyperlinkColor1.Append(rgbColorModelHex10);
 
@@ -2785,42 +2827,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             colorScheme1.Append(hyperlink1);
             colorScheme1.Append(followedHyperlinkColor1);
 
-            A.FontScheme fontScheme1 = new A.FontScheme() { Name = "Office 테마" };
+            var fontScheme1 = new A.FontScheme() { Name = "Office 테마" };
 
-            A.MajorFont majorFont1 = new A.MajorFont();
-            A.LatinFont latinFont29 = new A.LatinFont() { Typeface = "Calibri Light", Panose = "020F0302020204030204" };
-            A.EastAsianFont eastAsianFont29 = new A.EastAsianFont() { Typeface = "" };
-            A.ComplexScriptFont complexScriptFont29 = new A.ComplexScriptFont() { Typeface = "" };
-            A.SupplementalFont supplementalFont1 = new A.SupplementalFont() { Script = "Jpan", Typeface = "游ゴシック Light" };
-            A.SupplementalFont supplementalFont2 = new A.SupplementalFont() { Script = "Hang", Typeface = "맑은 고딕" };
-            A.SupplementalFont supplementalFont3 = new A.SupplementalFont() { Script = "Hans", Typeface = "等线 Light" };
-            A.SupplementalFont supplementalFont4 = new A.SupplementalFont() { Script = "Hant", Typeface = "新細明體" };
-            A.SupplementalFont supplementalFont5 = new A.SupplementalFont() { Script = "Arab", Typeface = "Times New Roman" };
-            A.SupplementalFont supplementalFont6 = new A.SupplementalFont() { Script = "Hebr", Typeface = "Times New Roman" };
-            A.SupplementalFont supplementalFont7 = new A.SupplementalFont() { Script = "Thai", Typeface = "Angsana New" };
-            A.SupplementalFont supplementalFont8 = new A.SupplementalFont() { Script = "Ethi", Typeface = "Nyala" };
-            A.SupplementalFont supplementalFont9 = new A.SupplementalFont() { Script = "Beng", Typeface = "Vrinda" };
-            A.SupplementalFont supplementalFont10 = new A.SupplementalFont() { Script = "Gujr", Typeface = "Shruti" };
-            A.SupplementalFont supplementalFont11 = new A.SupplementalFont() { Script = "Khmr", Typeface = "MoolBoran" };
-            A.SupplementalFont supplementalFont12 = new A.SupplementalFont() { Script = "Knda", Typeface = "Tunga" };
-            A.SupplementalFont supplementalFont13 = new A.SupplementalFont() { Script = "Guru", Typeface = "Raavi" };
-            A.SupplementalFont supplementalFont14 = new A.SupplementalFont() { Script = "Cans", Typeface = "Euphemia" };
-            A.SupplementalFont supplementalFont15 = new A.SupplementalFont() { Script = "Cher", Typeface = "Plantagenet Cherokee" };
-            A.SupplementalFont supplementalFont16 = new A.SupplementalFont() { Script = "Yiii", Typeface = "Microsoft Yi Baiti" };
-            A.SupplementalFont supplementalFont17 = new A.SupplementalFont() { Script = "Tibt", Typeface = "Microsoft Himalaya" };
-            A.SupplementalFont supplementalFont18 = new A.SupplementalFont() { Script = "Thaa", Typeface = "MV Boli" };
-            A.SupplementalFont supplementalFont19 = new A.SupplementalFont() { Script = "Deva", Typeface = "Mangal" };
-            A.SupplementalFont supplementalFont20 = new A.SupplementalFont() { Script = "Telu", Typeface = "Gautami" };
-            A.SupplementalFont supplementalFont21 = new A.SupplementalFont() { Script = "Taml", Typeface = "Latha" };
-            A.SupplementalFont supplementalFont22 = new A.SupplementalFont() { Script = "Syrc", Typeface = "Estrangelo Edessa" };
-            A.SupplementalFont supplementalFont23 = new A.SupplementalFont() { Script = "Orya", Typeface = "Kalinga" };
-            A.SupplementalFont supplementalFont24 = new A.SupplementalFont() { Script = "Mlym", Typeface = "Kartika" };
-            A.SupplementalFont supplementalFont25 = new A.SupplementalFont() { Script = "Laoo", Typeface = "DokChampa" };
-            A.SupplementalFont supplementalFont26 = new A.SupplementalFont() { Script = "Sinh", Typeface = "Iskoola Pota" };
-            A.SupplementalFont supplementalFont27 = new A.SupplementalFont() { Script = "Mong", Typeface = "Mongolian Baiti" };
-            A.SupplementalFont supplementalFont28 = new A.SupplementalFont() { Script = "Viet", Typeface = "Times New Roman" };
-            A.SupplementalFont supplementalFont29 = new A.SupplementalFont() { Script = "Uigh", Typeface = "Microsoft Uighur" };
-            A.SupplementalFont supplementalFont30 = new A.SupplementalFont() { Script = "Geor", Typeface = "Sylfaen" };
+            var majorFont1 = new A.MajorFont();
+            var latinFont29 = new A.LatinFont() { Typeface = "Calibri Light", Panose = "020F0302020204030204" };
+            var eastAsianFont29 = new A.EastAsianFont() { Typeface = "" };
+            var complexScriptFont29 = new A.ComplexScriptFont() { Typeface = "" };
+            var supplementalFont1 = new A.SupplementalFont() { Script = "Jpan", Typeface = "游ゴシック Light" };
+            var supplementalFont2 = new A.SupplementalFont() { Script = "Hang", Typeface = "맑은 고딕" };
+            var supplementalFont3 = new A.SupplementalFont() { Script = "Hans", Typeface = "等线 Light" };
+            var supplementalFont4 = new A.SupplementalFont() { Script = "Hant", Typeface = "新細明體" };
+            var supplementalFont5 = new A.SupplementalFont() { Script = "Arab", Typeface = "Times New Roman" };
+            var supplementalFont6 = new A.SupplementalFont() { Script = "Hebr", Typeface = "Times New Roman" };
+            var supplementalFont7 = new A.SupplementalFont() { Script = "Thai", Typeface = "Angsana New" };
+            var supplementalFont8 = new A.SupplementalFont() { Script = "Ethi", Typeface = "Nyala" };
+            var supplementalFont9 = new A.SupplementalFont() { Script = "Beng", Typeface = "Vrinda" };
+            var supplementalFont10 = new A.SupplementalFont() { Script = "Gujr", Typeface = "Shruti" };
+            var supplementalFont11 = new A.SupplementalFont() { Script = "Khmr", Typeface = "MoolBoran" };
+            var supplementalFont12 = new A.SupplementalFont() { Script = "Knda", Typeface = "Tunga" };
+            var supplementalFont13 = new A.SupplementalFont() { Script = "Guru", Typeface = "Raavi" };
+            var supplementalFont14 = new A.SupplementalFont() { Script = "Cans", Typeface = "Euphemia" };
+            var supplementalFont15 = new A.SupplementalFont() { Script = "Cher", Typeface = "Plantagenet Cherokee" };
+            var supplementalFont16 = new A.SupplementalFont() { Script = "Yiii", Typeface = "Microsoft Yi Baiti" };
+            var supplementalFont17 = new A.SupplementalFont() { Script = "Tibt", Typeface = "Microsoft Himalaya" };
+            var supplementalFont18 = new A.SupplementalFont() { Script = "Thaa", Typeface = "MV Boli" };
+            var supplementalFont19 = new A.SupplementalFont() { Script = "Deva", Typeface = "Mangal" };
+            var supplementalFont20 = new A.SupplementalFont() { Script = "Telu", Typeface = "Gautami" };
+            var supplementalFont21 = new A.SupplementalFont() { Script = "Taml", Typeface = "Latha" };
+            var supplementalFont22 = new A.SupplementalFont() { Script = "Syrc", Typeface = "Estrangelo Edessa" };
+            var supplementalFont23 = new A.SupplementalFont() { Script = "Orya", Typeface = "Kalinga" };
+            var supplementalFont24 = new A.SupplementalFont() { Script = "Mlym", Typeface = "Kartika" };
+            var supplementalFont25 = new A.SupplementalFont() { Script = "Laoo", Typeface = "DokChampa" };
+            var supplementalFont26 = new A.SupplementalFont() { Script = "Sinh", Typeface = "Iskoola Pota" };
+            var supplementalFont27 = new A.SupplementalFont() { Script = "Mong", Typeface = "Mongolian Baiti" };
+            var supplementalFont28 = new A.SupplementalFont() { Script = "Viet", Typeface = "Times New Roman" };
+            var supplementalFont29 = new A.SupplementalFont() { Script = "Uigh", Typeface = "Microsoft Uighur" };
+            var supplementalFont30 = new A.SupplementalFont() { Script = "Geor", Typeface = "Sylfaen" };
 
             majorFont1.Append(latinFont29);
             majorFont1.Append(eastAsianFont29);
@@ -2856,40 +2898,40 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             majorFont1.Append(supplementalFont29);
             majorFont1.Append(supplementalFont30);
 
-            A.MinorFont minorFont1 = new A.MinorFont();
-            A.LatinFont latinFont30 = new A.LatinFont() { Typeface = "Calibri", Panose = "020F0502020204030204" };
-            A.EastAsianFont eastAsianFont30 = new A.EastAsianFont() { Typeface = "" };
-            A.ComplexScriptFont complexScriptFont30 = new A.ComplexScriptFont() { Typeface = "" };
-            A.SupplementalFont supplementalFont31 = new A.SupplementalFont() { Script = "Jpan", Typeface = "游ゴシック" };
-            A.SupplementalFont supplementalFont32 = new A.SupplementalFont() { Script = "Hang", Typeface = "맑은 고딕" };
-            A.SupplementalFont supplementalFont33 = new A.SupplementalFont() { Script = "Hans", Typeface = "等线" };
-            A.SupplementalFont supplementalFont34 = new A.SupplementalFont() { Script = "Hant", Typeface = "新細明體" };
-            A.SupplementalFont supplementalFont35 = new A.SupplementalFont() { Script = "Arab", Typeface = "Arial" };
-            A.SupplementalFont supplementalFont36 = new A.SupplementalFont() { Script = "Hebr", Typeface = "Arial" };
-            A.SupplementalFont supplementalFont37 = new A.SupplementalFont() { Script = "Thai", Typeface = "Cordia New" };
-            A.SupplementalFont supplementalFont38 = new A.SupplementalFont() { Script = "Ethi", Typeface = "Nyala" };
-            A.SupplementalFont supplementalFont39 = new A.SupplementalFont() { Script = "Beng", Typeface = "Vrinda" };
-            A.SupplementalFont supplementalFont40 = new A.SupplementalFont() { Script = "Gujr", Typeface = "Shruti" };
-            A.SupplementalFont supplementalFont41 = new A.SupplementalFont() { Script = "Khmr", Typeface = "DaunPenh" };
-            A.SupplementalFont supplementalFont42 = new A.SupplementalFont() { Script = "Knda", Typeface = "Tunga" };
-            A.SupplementalFont supplementalFont43 = new A.SupplementalFont() { Script = "Guru", Typeface = "Raavi" };
-            A.SupplementalFont supplementalFont44 = new A.SupplementalFont() { Script = "Cans", Typeface = "Euphemia" };
-            A.SupplementalFont supplementalFont45 = new A.SupplementalFont() { Script = "Cher", Typeface = "Plantagenet Cherokee" };
-            A.SupplementalFont supplementalFont46 = new A.SupplementalFont() { Script = "Yiii", Typeface = "Microsoft Yi Baiti" };
-            A.SupplementalFont supplementalFont47 = new A.SupplementalFont() { Script = "Tibt", Typeface = "Microsoft Himalaya" };
-            A.SupplementalFont supplementalFont48 = new A.SupplementalFont() { Script = "Thaa", Typeface = "MV Boli" };
-            A.SupplementalFont supplementalFont49 = new A.SupplementalFont() { Script = "Deva", Typeface = "Mangal" };
-            A.SupplementalFont supplementalFont50 = new A.SupplementalFont() { Script = "Telu", Typeface = "Gautami" };
-            A.SupplementalFont supplementalFont51 = new A.SupplementalFont() { Script = "Taml", Typeface = "Latha" };
-            A.SupplementalFont supplementalFont52 = new A.SupplementalFont() { Script = "Syrc", Typeface = "Estrangelo Edessa" };
-            A.SupplementalFont supplementalFont53 = new A.SupplementalFont() { Script = "Orya", Typeface = "Kalinga" };
-            A.SupplementalFont supplementalFont54 = new A.SupplementalFont() { Script = "Mlym", Typeface = "Kartika" };
-            A.SupplementalFont supplementalFont55 = new A.SupplementalFont() { Script = "Laoo", Typeface = "DokChampa" };
-            A.SupplementalFont supplementalFont56 = new A.SupplementalFont() { Script = "Sinh", Typeface = "Iskoola Pota" };
-            A.SupplementalFont supplementalFont57 = new A.SupplementalFont() { Script = "Mong", Typeface = "Mongolian Baiti" };
-            A.SupplementalFont supplementalFont58 = new A.SupplementalFont() { Script = "Viet", Typeface = "Arial" };
-            A.SupplementalFont supplementalFont59 = new A.SupplementalFont() { Script = "Uigh", Typeface = "Microsoft Uighur" };
-            A.SupplementalFont supplementalFont60 = new A.SupplementalFont() { Script = "Geor", Typeface = "Sylfaen" };
+            var minorFont1 = new A.MinorFont();
+            var latinFont30 = new A.LatinFont() { Typeface = "Calibri", Panose = "020F0502020204030204" };
+            var eastAsianFont30 = new A.EastAsianFont() { Typeface = "" };
+            var complexScriptFont30 = new A.ComplexScriptFont() { Typeface = "" };
+            var supplementalFont31 = new A.SupplementalFont() { Script = "Jpan", Typeface = "游ゴシック" };
+            var supplementalFont32 = new A.SupplementalFont() { Script = "Hang", Typeface = "맑은 고딕" };
+            var supplementalFont33 = new A.SupplementalFont() { Script = "Hans", Typeface = "等线" };
+            var supplementalFont34 = new A.SupplementalFont() { Script = "Hant", Typeface = "新細明體" };
+            var supplementalFont35 = new A.SupplementalFont() { Script = "Arab", Typeface = "Arial" };
+            var supplementalFont36 = new A.SupplementalFont() { Script = "Hebr", Typeface = "Arial" };
+            var supplementalFont37 = new A.SupplementalFont() { Script = "Thai", Typeface = "Cordia New" };
+            var supplementalFont38 = new A.SupplementalFont() { Script = "Ethi", Typeface = "Nyala" };
+            var supplementalFont39 = new A.SupplementalFont() { Script = "Beng", Typeface = "Vrinda" };
+            var supplementalFont40 = new A.SupplementalFont() { Script = "Gujr", Typeface = "Shruti" };
+            var supplementalFont41 = new A.SupplementalFont() { Script = "Khmr", Typeface = "DaunPenh" };
+            var supplementalFont42 = new A.SupplementalFont() { Script = "Knda", Typeface = "Tunga" };
+            var supplementalFont43 = new A.SupplementalFont() { Script = "Guru", Typeface = "Raavi" };
+            var supplementalFont44 = new A.SupplementalFont() { Script = "Cans", Typeface = "Euphemia" };
+            var supplementalFont45 = new A.SupplementalFont() { Script = "Cher", Typeface = "Plantagenet Cherokee" };
+            var supplementalFont46 = new A.SupplementalFont() { Script = "Yiii", Typeface = "Microsoft Yi Baiti" };
+            var supplementalFont47 = new A.SupplementalFont() { Script = "Tibt", Typeface = "Microsoft Himalaya" };
+            var supplementalFont48 = new A.SupplementalFont() { Script = "Thaa", Typeface = "MV Boli" };
+            var supplementalFont49 = new A.SupplementalFont() { Script = "Deva", Typeface = "Mangal" };
+            var supplementalFont50 = new A.SupplementalFont() { Script = "Telu", Typeface = "Gautami" };
+            var supplementalFont51 = new A.SupplementalFont() { Script = "Taml", Typeface = "Latha" };
+            var supplementalFont52 = new A.SupplementalFont() { Script = "Syrc", Typeface = "Estrangelo Edessa" };
+            var supplementalFont53 = new A.SupplementalFont() { Script = "Orya", Typeface = "Kalinga" };
+            var supplementalFont54 = new A.SupplementalFont() { Script = "Mlym", Typeface = "Kartika" };
+            var supplementalFont55 = new A.SupplementalFont() { Script = "Laoo", Typeface = "DokChampa" };
+            var supplementalFont56 = new A.SupplementalFont() { Script = "Sinh", Typeface = "Iskoola Pota" };
+            var supplementalFont57 = new A.SupplementalFont() { Script = "Mong", Typeface = "Mongolian Baiti" };
+            var supplementalFont58 = new A.SupplementalFont() { Script = "Viet", Typeface = "Arial" };
+            var supplementalFont59 = new A.SupplementalFont() { Script = "Uigh", Typeface = "Microsoft Uighur" };
+            var supplementalFont60 = new A.SupplementalFont() { Script = "Geor", Typeface = "Sylfaen" };
 
             minorFont1.Append(latinFont30);
             minorFont1.Append(eastAsianFont30);
@@ -2928,25 +2970,25 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             fontScheme1.Append(majorFont1);
             fontScheme1.Append(minorFont1);
 
-            A.FormatScheme formatScheme1 = new A.FormatScheme() { Name = "Office 테마" };
+            var formatScheme1 = new A.FormatScheme() { Name = "Office 테마" };
 
-            A.FillStyleList fillStyleList1 = new A.FillStyleList();
+            var fillStyleList1 = new A.FillStyleList();
 
-            A.SolidFill solidFill41 = new A.SolidFill();
-            A.SchemeColor schemeColor42 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var solidFill41 = new A.SolidFill();
+            var schemeColor42 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
 
             solidFill41.Append(schemeColor42);
 
-            A.GradientFill gradientFill1 = new A.GradientFill() { RotateWithShape = true };
+            var gradientFill1 = new A.GradientFill() { RotateWithShape = true };
 
-            A.GradientStopList gradientStopList1 = new A.GradientStopList();
+            var gradientStopList1 = new A.GradientStopList();
 
-            A.GradientStop gradientStop1 = new A.GradientStop() { Position = 0 };
+            var gradientStop1 = new A.GradientStop() { Position = 0 };
 
-            A.SchemeColor schemeColor43 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.LuminanceModulation luminanceModulation1 = new A.LuminanceModulation() { Val = 110000 };
-            A.SaturationModulation saturationModulation1 = new A.SaturationModulation() { Val = 105000 };
-            A.Tint tint12 = new A.Tint() { Val = 67000 };
+            var schemeColor43 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var luminanceModulation1 = new A.LuminanceModulation() { Val = 110000 };
+            var saturationModulation1 = new A.SaturationModulation() { Val = 105000 };
+            var tint12 = new A.Tint() { Val = 67000 };
 
             schemeColor43.Append(luminanceModulation1);
             schemeColor43.Append(saturationModulation1);
@@ -2954,12 +2996,12 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             gradientStop1.Append(schemeColor43);
 
-            A.GradientStop gradientStop2 = new A.GradientStop() { Position = 50000 };
+            var gradientStop2 = new A.GradientStop() { Position = 50000 };
 
-            A.SchemeColor schemeColor44 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.LuminanceModulation luminanceModulation2 = new A.LuminanceModulation() { Val = 105000 };
-            A.SaturationModulation saturationModulation2 = new A.SaturationModulation() { Val = 103000 };
-            A.Tint tint13 = new A.Tint() { Val = 73000 };
+            var schemeColor44 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var luminanceModulation2 = new A.LuminanceModulation() { Val = 105000 };
+            var saturationModulation2 = new A.SaturationModulation() { Val = 103000 };
+            var tint13 = new A.Tint() { Val = 73000 };
 
             schemeColor44.Append(luminanceModulation2);
             schemeColor44.Append(saturationModulation2);
@@ -2967,12 +3009,12 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             gradientStop2.Append(schemeColor44);
 
-            A.GradientStop gradientStop3 = new A.GradientStop() { Position = 100000 };
+            var gradientStop3 = new A.GradientStop() { Position = 100000 };
 
-            A.SchemeColor schemeColor45 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.LuminanceModulation luminanceModulation3 = new A.LuminanceModulation() { Val = 105000 };
-            A.SaturationModulation saturationModulation3 = new A.SaturationModulation() { Val = 109000 };
-            A.Tint tint14 = new A.Tint() { Val = 81000 };
+            var schemeColor45 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var luminanceModulation3 = new A.LuminanceModulation() { Val = 105000 };
+            var saturationModulation3 = new A.SaturationModulation() { Val = 109000 };
+            var tint14 = new A.Tint() { Val = 81000 };
 
             schemeColor45.Append(luminanceModulation3);
             schemeColor45.Append(saturationModulation3);
@@ -2983,21 +3025,21 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             gradientStopList1.Append(gradientStop1);
             gradientStopList1.Append(gradientStop2);
             gradientStopList1.Append(gradientStop3);
-            A.LinearGradientFill linearGradientFill1 = new A.LinearGradientFill() { Angle = 5400000, Scaled = false };
+            var linearGradientFill1 = new A.LinearGradientFill() { Angle = 5400000, Scaled = false };
 
             gradientFill1.Append(gradientStopList1);
             gradientFill1.Append(linearGradientFill1);
 
-            A.GradientFill gradientFill2 = new A.GradientFill() { RotateWithShape = true };
+            var gradientFill2 = new A.GradientFill() { RotateWithShape = true };
 
-            A.GradientStopList gradientStopList2 = new A.GradientStopList();
+            var gradientStopList2 = new A.GradientStopList();
 
-            A.GradientStop gradientStop4 = new A.GradientStop() { Position = 0 };
+            var gradientStop4 = new A.GradientStop() { Position = 0 };
 
-            A.SchemeColor schemeColor46 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.SaturationModulation saturationModulation4 = new A.SaturationModulation() { Val = 103000 };
-            A.LuminanceModulation luminanceModulation4 = new A.LuminanceModulation() { Val = 102000 };
-            A.Tint tint15 = new A.Tint() { Val = 94000 };
+            var schemeColor46 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var saturationModulation4 = new A.SaturationModulation() { Val = 103000 };
+            var luminanceModulation4 = new A.LuminanceModulation() { Val = 102000 };
+            var tint15 = new A.Tint() { Val = 94000 };
 
             schemeColor46.Append(saturationModulation4);
             schemeColor46.Append(luminanceModulation4);
@@ -3005,12 +3047,12 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             gradientStop4.Append(schemeColor46);
 
-            A.GradientStop gradientStop5 = new A.GradientStop() { Position = 50000 };
+            var gradientStop5 = new A.GradientStop() { Position = 50000 };
 
-            A.SchemeColor schemeColor47 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.SaturationModulation saturationModulation5 = new A.SaturationModulation() { Val = 110000 };
-            A.LuminanceModulation luminanceModulation5 = new A.LuminanceModulation() { Val = 100000 };
-            A.Shade shade1 = new A.Shade() { Val = 100000 };
+            var schemeColor47 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var saturationModulation5 = new A.SaturationModulation() { Val = 110000 };
+            var luminanceModulation5 = new A.LuminanceModulation() { Val = 100000 };
+            var shade1 = new A.Shade() { Val = 100000 };
 
             schemeColor47.Append(saturationModulation5);
             schemeColor47.Append(luminanceModulation5);
@@ -3018,12 +3060,12 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             gradientStop5.Append(schemeColor47);
 
-            A.GradientStop gradientStop6 = new A.GradientStop() { Position = 100000 };
+            var gradientStop6 = new A.GradientStop() { Position = 100000 };
 
-            A.SchemeColor schemeColor48 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.LuminanceModulation luminanceModulation6 = new A.LuminanceModulation() { Val = 99000 };
-            A.SaturationModulation saturationModulation6 = new A.SaturationModulation() { Val = 120000 };
-            A.Shade shade2 = new A.Shade() { Val = 78000 };
+            var schemeColor48 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var luminanceModulation6 = new A.LuminanceModulation() { Val = 99000 };
+            var saturationModulation6 = new A.SaturationModulation() { Val = 120000 };
+            var shade2 = new A.Shade() { Val = 78000 };
 
             schemeColor48.Append(luminanceModulation6);
             schemeColor48.Append(saturationModulation6);
@@ -3034,7 +3076,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             gradientStopList2.Append(gradientStop4);
             gradientStopList2.Append(gradientStop5);
             gradientStopList2.Append(gradientStop6);
-            A.LinearGradientFill linearGradientFill2 = new A.LinearGradientFill() { Angle = 5400000, Scaled = false };
+            var linearGradientFill2 = new A.LinearGradientFill() { Angle = 5400000, Scaled = false };
 
             gradientFill2.Append(gradientStopList2);
             gradientFill2.Append(linearGradientFill2);
@@ -3043,42 +3085,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             fillStyleList1.Append(gradientFill1);
             fillStyleList1.Append(gradientFill2);
 
-            A.LineStyleList lineStyleList1 = new A.LineStyleList();
+            var lineStyleList1 = new A.LineStyleList();
 
-            A.Outline outline1 = new A.Outline() { Width = 6350, CapType = A.LineCapValues.Flat, CompoundLineType = A.CompoundLineValues.Single, Alignment = A.PenAlignmentValues.Center };
+            var outline1 = new A.Outline() { Width = 6350, CapType = A.LineCapValues.Flat, CompoundLineType = A.CompoundLineValues.Single, Alignment = A.PenAlignmentValues.Center };
 
-            A.SolidFill solidFill42 = new A.SolidFill();
-            A.SchemeColor schemeColor49 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var solidFill42 = new A.SolidFill();
+            var schemeColor49 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
 
             solidFill42.Append(schemeColor49);
-            A.PresetDash presetDash1 = new A.PresetDash() { Val = A.PresetLineDashValues.Solid };
-            A.Miter miter1 = new A.Miter() { Limit = 800000 };
+            var presetDash1 = new A.PresetDash() { Val = A.PresetLineDashValues.Solid };
+            var miter1 = new A.Miter() { Limit = 800000 };
 
             outline1.Append(solidFill42);
             outline1.Append(presetDash1);
             outline1.Append(miter1);
 
-            A.Outline outline2 = new A.Outline() { Width = 12700, CapType = A.LineCapValues.Flat, CompoundLineType = A.CompoundLineValues.Single, Alignment = A.PenAlignmentValues.Center };
+            var outline2 = new A.Outline() { Width = 12700, CapType = A.LineCapValues.Flat, CompoundLineType = A.CompoundLineValues.Single, Alignment = A.PenAlignmentValues.Center };
 
-            A.SolidFill solidFill43 = new A.SolidFill();
-            A.SchemeColor schemeColor50 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var solidFill43 = new A.SolidFill();
+            var schemeColor50 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
 
             solidFill43.Append(schemeColor50);
-            A.PresetDash presetDash2 = new A.PresetDash() { Val = A.PresetLineDashValues.Solid };
-            A.Miter miter2 = new A.Miter() { Limit = 800000 };
+            var presetDash2 = new A.PresetDash() { Val = A.PresetLineDashValues.Solid };
+            var miter2 = new A.Miter() { Limit = 800000 };
 
             outline2.Append(solidFill43);
             outline2.Append(presetDash2);
             outline2.Append(miter2);
 
-            A.Outline outline3 = new A.Outline() { Width = 19050, CapType = A.LineCapValues.Flat, CompoundLineType = A.CompoundLineValues.Single, Alignment = A.PenAlignmentValues.Center };
+            var outline3 = new A.Outline() { Width = 19050, CapType = A.LineCapValues.Flat, CompoundLineType = A.CompoundLineValues.Single, Alignment = A.PenAlignmentValues.Center };
 
-            A.SolidFill solidFill44 = new A.SolidFill();
-            A.SchemeColor schemeColor51 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var solidFill44 = new A.SolidFill();
+            var schemeColor51 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
 
             solidFill44.Append(schemeColor51);
-            A.PresetDash presetDash3 = new A.PresetDash() { Val = A.PresetLineDashValues.Solid };
-            A.Miter miter3 = new A.Miter() { Limit = 800000 };
+            var presetDash3 = new A.PresetDash() { Val = A.PresetLineDashValues.Solid };
+            var miter3 = new A.Miter() { Limit = 800000 };
 
             outline3.Append(solidFill44);
             outline3.Append(presetDash3);
@@ -3088,26 +3130,26 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             lineStyleList1.Append(outline2);
             lineStyleList1.Append(outline3);
 
-            A.EffectStyleList effectStyleList1 = new A.EffectStyleList();
+            var effectStyleList1 = new A.EffectStyleList();
 
-            A.EffectStyle effectStyle1 = new A.EffectStyle();
-            A.EffectList effectList1 = new A.EffectList();
+            var effectStyle1 = new A.EffectStyle();
+            var effectList1 = new A.EffectList();
 
             effectStyle1.Append(effectList1);
 
-            A.EffectStyle effectStyle2 = new A.EffectStyle();
-            A.EffectList effectList2 = new A.EffectList();
+            var effectStyle2 = new A.EffectStyle();
+            var effectList2 = new A.EffectList();
 
             effectStyle2.Append(effectList2);
 
-            A.EffectStyle effectStyle3 = new A.EffectStyle();
+            var effectStyle3 = new A.EffectStyle();
 
-            A.EffectList effectList3 = new A.EffectList();
+            var effectList3 = new A.EffectList();
 
-            A.OuterShadow outerShadow1 = new A.OuterShadow() { BlurRadius = 57150L, Distance = 19050L, Direction = 5400000, Alignment = A.RectangleAlignmentValues.Center, RotateWithShape = false };
+            var outerShadow1 = new A.OuterShadow() { BlurRadius = 57150L, Distance = 19050L, Direction = 5400000, Alignment = A.RectangleAlignmentValues.Center, RotateWithShape = false };
 
-            A.RgbColorModelHex rgbColorModelHex11 = new A.RgbColorModelHex() { Val = "000000" };
-            A.Alpha alpha1 = new A.Alpha() { Val = 63000 };
+            var rgbColorModelHex11 = new A.RgbColorModelHex() { Val = "000000" };
+            var alpha1 = new A.Alpha() { Val = 63000 };
 
             rgbColorModelHex11.Append(alpha1);
 
@@ -3121,35 +3163,35 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             effectStyleList1.Append(effectStyle2);
             effectStyleList1.Append(effectStyle3);
 
-            A.BackgroundFillStyleList backgroundFillStyleList1 = new A.BackgroundFillStyleList();
+            var backgroundFillStyleList1 = new A.BackgroundFillStyleList();
 
-            A.SolidFill solidFill45 = new A.SolidFill();
-            A.SchemeColor schemeColor52 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var solidFill45 = new A.SolidFill();
+            var schemeColor52 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
 
             solidFill45.Append(schemeColor52);
 
-            A.SolidFill solidFill46 = new A.SolidFill();
+            var solidFill46 = new A.SolidFill();
 
-            A.SchemeColor schemeColor53 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.Tint tint16 = new A.Tint() { Val = 95000 };
-            A.SaturationModulation saturationModulation7 = new A.SaturationModulation() { Val = 170000 };
+            var schemeColor53 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var tint16 = new A.Tint() { Val = 95000 };
+            var saturationModulation7 = new A.SaturationModulation() { Val = 170000 };
 
             schemeColor53.Append(tint16);
             schemeColor53.Append(saturationModulation7);
 
             solidFill46.Append(schemeColor53);
 
-            A.GradientFill gradientFill3 = new A.GradientFill() { RotateWithShape = true };
+            var gradientFill3 = new A.GradientFill() { RotateWithShape = true };
 
-            A.GradientStopList gradientStopList3 = new A.GradientStopList();
+            var gradientStopList3 = new A.GradientStopList();
 
-            A.GradientStop gradientStop7 = new A.GradientStop() { Position = 0 };
+            var gradientStop7 = new A.GradientStop() { Position = 0 };
 
-            A.SchemeColor schemeColor54 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.Tint tint17 = new A.Tint() { Val = 93000 };
-            A.SaturationModulation saturationModulation8 = new A.SaturationModulation() { Val = 150000 };
-            A.Shade shade3 = new A.Shade() { Val = 98000 };
-            A.LuminanceModulation luminanceModulation7 = new A.LuminanceModulation() { Val = 102000 };
+            var schemeColor54 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var tint17 = new A.Tint() { Val = 93000 };
+            var saturationModulation8 = new A.SaturationModulation() { Val = 150000 };
+            var shade3 = new A.Shade() { Val = 98000 };
+            var luminanceModulation7 = new A.LuminanceModulation() { Val = 102000 };
 
             schemeColor54.Append(tint17);
             schemeColor54.Append(saturationModulation8);
@@ -3158,13 +3200,13 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             gradientStop7.Append(schemeColor54);
 
-            A.GradientStop gradientStop8 = new A.GradientStop() { Position = 50000 };
+            var gradientStop8 = new A.GradientStop() { Position = 50000 };
 
-            A.SchemeColor schemeColor55 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.Tint tint18 = new A.Tint() { Val = 98000 };
-            A.SaturationModulation saturationModulation9 = new A.SaturationModulation() { Val = 130000 };
-            A.Shade shade4 = new A.Shade() { Val = 90000 };
-            A.LuminanceModulation luminanceModulation8 = new A.LuminanceModulation() { Val = 103000 };
+            var schemeColor55 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var tint18 = new A.Tint() { Val = 98000 };
+            var saturationModulation9 = new A.SaturationModulation() { Val = 130000 };
+            var shade4 = new A.Shade() { Val = 90000 };
+            var luminanceModulation8 = new A.LuminanceModulation() { Val = 103000 };
 
             schemeColor55.Append(tint18);
             schemeColor55.Append(saturationModulation9);
@@ -3173,11 +3215,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             gradientStop8.Append(schemeColor55);
 
-            A.GradientStop gradientStop9 = new A.GradientStop() { Position = 100000 };
+            var gradientStop9 = new A.GradientStop() { Position = 100000 };
 
-            A.SchemeColor schemeColor56 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
-            A.Shade shade5 = new A.Shade() { Val = 63000 };
-            A.SaturationModulation saturationModulation10 = new A.SaturationModulation() { Val = 120000 };
+            var schemeColor56 = new A.SchemeColor() { Val = A.SchemeColorValues.PhColor };
+            var shade5 = new A.Shade() { Val = 63000 };
+            var saturationModulation10 = new A.SaturationModulation() { Val = 120000 };
 
             schemeColor56.Append(shade5);
             schemeColor56.Append(saturationModulation10);
@@ -3187,7 +3229,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             gradientStopList3.Append(gradientStop7);
             gradientStopList3.Append(gradientStop8);
             gradientStopList3.Append(gradientStop9);
-            A.LinearGradientFill linearGradientFill3 = new A.LinearGradientFill() { Angle = 5400000, Scaled = false };
+            var linearGradientFill3 = new A.LinearGradientFill() { Angle = 5400000, Scaled = false };
 
             gradientFill3.Append(gradientStopList3);
             gradientFill3.Append(linearGradientFill3);
@@ -3204,14 +3246,14 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             themeElements1.Append(colorScheme1);
             themeElements1.Append(fontScheme1);
             themeElements1.Append(formatScheme1);
-            A.ObjectDefaults objectDefaults1 = new A.ObjectDefaults();
-            A.ExtraColorSchemeList extraColorSchemeList1 = new A.ExtraColorSchemeList();
+            var objectDefaults1 = new A.ObjectDefaults();
+            var extraColorSchemeList1 = new A.ExtraColorSchemeList();
 
-            A.OfficeStyleSheetExtensionList officeStyleSheetExtensionList1 = new A.OfficeStyleSheetExtensionList();
+            var officeStyleSheetExtensionList1 = new A.OfficeStyleSheetExtensionList();
 
-            A.OfficeStyleSheetExtension officeStyleSheetExtension1 = new A.OfficeStyleSheetExtension() { Uri = "{05A4C25C-085E-4340-85A3-A5531E510DB2}" };
+            var officeStyleSheetExtension1 = new A.OfficeStyleSheetExtension() { Uri = "{05A4C25C-085E-4340-85A3-A5531E510DB2}" };
 
-            Thm15.ThemeFamily themeFamily1 = new Thm15.ThemeFamily() { Name = "Office Theme", Id = "{62F939B6-93AF-4DB8-9C6B-D6C7DFDC589F}", Vid = "{4A3C46E8-61CC-4603-A589-7422A47A8E4A}" };
+            var themeFamily1 = new Thm15.ThemeFamily() { Name = "Office Theme", Id = "{62F939B6-93AF-4DB8-9C6B-D6C7DFDC589F}", Vid = "{4A3C46E8-61CC-4603-A589-7422A47A8E4A}" };
             themeFamily1.AddNamespaceDeclaration("thm15", "http://schemas.microsoft.com/office/thememl/2012/main");
 
             officeStyleSheetExtension1.Append(themeFamily1);
@@ -3229,31 +3271,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart4.
         private void GenerateSlideLayoutPart4Content(SlideLayoutPart slideLayoutPart4)
         {
-            SlideLayout slideLayout4 = new SlideLayout() { Type = SlideLayoutValues.Object, Preserve = true };
+            var slideLayout4 = new SlideLayout() { Type = SlideLayoutValues.Object, Preserve = true };
             slideLayout4.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout4.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout4.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData6 = new CommonSlideData() { Name = "제목 및 내용" };
+            var commonSlideData6 = new CommonSlideData() { Name = "제목 및 내용" };
 
-            ShapeTree shapeTree6 = new ShapeTree();
+            var shapeTree6 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties6 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties26 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties6 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties26 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties6 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties26 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties6 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties26 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties6.Append(nonVisualDrawingProperties26);
             nonVisualGroupShapeProperties6.Append(nonVisualGroupShapeDrawingProperties6);
             nonVisualGroupShapeProperties6.Append(applicationNonVisualDrawingProperties26);
 
-            GroupShapeProperties groupShapeProperties6 = new GroupShapeProperties();
+            var groupShapeProperties6 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup6 = new A.TransformGroup();
-            A.Offset offset17 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents17 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset6 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents6 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup6 = new A.TransformGroup();
+            var offset17 = new A.Offset() { X = 0L, Y = 0L };
+            var extents17 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset6 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents6 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup6.Append(offset17);
             transformGroup6.Append(extents17);
@@ -3262,41 +3304,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties6.Append(transformGroup6);
 
-            Shape shape21 = new Shape();
+            var shape21 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties21 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties27 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties21 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties27 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties21 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks20 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties21 = new NonVisualShapeDrawingProperties();
+            var shapeLocks20 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties21.Append(shapeLocks20);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties27 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape20 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties27 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape20 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties27.Append(placeholderShape20);
 
             nonVisualShapeProperties21.Append(nonVisualDrawingProperties27);
             nonVisualShapeProperties21.Append(nonVisualShapeDrawingProperties21);
             nonVisualShapeProperties21.Append(applicationNonVisualDrawingProperties27);
-            ShapeProperties shapeProperties21 = new ShapeProperties();
+            var shapeProperties21 = new ShapeProperties();
 
-            TextBody textBody21 = new TextBody();
-            A.BodyProperties bodyProperties21 = new A.BodyProperties();
-            A.ListStyle listStyle21 = new A.ListStyle();
+            var textBody21 = new TextBody();
+            var bodyProperties21 = new A.BodyProperties();
+            var listStyle21 = new A.ListStyle();
 
-            A.Paragraph paragraph29 = new A.Paragraph();
+            var paragraph29 = new A.Paragraph();
 
-            A.Run run17 = new A.Run();
+            var run17 = new A.Run();
 
-            A.RunProperties runProperties25 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text25 = new A.Text();
-            text25.Text = "마스터 제목 스타일 편집";
+            var runProperties25 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text25 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run17.Append(runProperties25);
             run17.Append(text25);
-            A.EndParagraphRunProperties endParagraphRunProperties19 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties19 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph29.Append(run17);
             paragraph29.Append(endParagraphRunProperties19);
@@ -3309,38 +3353,40 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape21.Append(shapeProperties21);
             shape21.Append(textBody21);
 
-            Shape shape22 = new Shape();
+            var shape22 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties22 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties28 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Content Placeholder 2" };
+            var nonVisualShapeProperties22 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties28 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Content Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties22 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks21 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties22 = new NonVisualShapeDrawingProperties();
+            var shapeLocks21 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties22.Append(shapeLocks21);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties28 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape21 = new PlaceholderShape() { Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties28 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape21 = new PlaceholderShape() { Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties28.Append(placeholderShape21);
 
             nonVisualShapeProperties22.Append(nonVisualDrawingProperties28);
             nonVisualShapeProperties22.Append(nonVisualShapeDrawingProperties22);
             nonVisualShapeProperties22.Append(applicationNonVisualDrawingProperties28);
-            ShapeProperties shapeProperties22 = new ShapeProperties();
+            var shapeProperties22 = new ShapeProperties();
 
-            TextBody textBody22 = new TextBody();
-            A.BodyProperties bodyProperties22 = new A.BodyProperties();
-            A.ListStyle listStyle22 = new A.ListStyle();
+            var textBody22 = new TextBody();
+            var bodyProperties22 = new A.BodyProperties();
+            var listStyle22 = new A.ListStyle();
 
-            A.Paragraph paragraph30 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties13 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph30 = new A.Paragraph();
+            var paragraphProperties13 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run18 = new A.Run();
+            var run18 = new A.Run();
 
-            A.RunProperties runProperties26 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text26 = new A.Text();
-            text26.Text = "마스터 텍스트 스타일 편집";
+            var runProperties26 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text26 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run18.Append(runProperties26);
             run18.Append(text26);
@@ -3348,14 +3394,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph30.Append(paragraphProperties13);
             paragraph30.Append(run18);
 
-            A.Paragraph paragraph31 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties14 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph31 = new A.Paragraph();
+            var paragraphProperties14 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run19 = new A.Run();
+            var run19 = new A.Run();
 
-            A.RunProperties runProperties27 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text27 = new A.Text();
-            text27.Text = "둘째 수준";
+            var runProperties27 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text27 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run19.Append(runProperties27);
             run19.Append(text27);
@@ -3363,14 +3411,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph31.Append(paragraphProperties14);
             paragraph31.Append(run19);
 
-            A.Paragraph paragraph32 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties15 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph32 = new A.Paragraph();
+            var paragraphProperties15 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run20 = new A.Run();
+            var run20 = new A.Run();
 
-            A.RunProperties runProperties28 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text28 = new A.Text();
-            text28.Text = "셋째 수준";
+            var runProperties28 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text28 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run20.Append(runProperties28);
             run20.Append(text28);
@@ -3378,14 +3428,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph32.Append(paragraphProperties15);
             paragraph32.Append(run20);
 
-            A.Paragraph paragraph33 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties16 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph33 = new A.Paragraph();
+            var paragraphProperties16 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run21 = new A.Run();
+            var run21 = new A.Run();
 
-            A.RunProperties runProperties29 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text29 = new A.Text();
-            text29.Text = "넷째 수준";
+            var runProperties29 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text29 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run21.Append(runProperties29);
             run21.Append(text29);
@@ -3393,18 +3445,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph33.Append(paragraphProperties16);
             paragraph33.Append(run21);
 
-            A.Paragraph paragraph34 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties17 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph34 = new A.Paragraph();
+            var paragraphProperties17 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run22 = new A.Run();
+            var run22 = new A.Run();
 
-            A.RunProperties runProperties30 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text30 = new A.Text();
-            text30.Text = "다섯째 수준";
+            var runProperties30 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text30 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run22.Append(runProperties30);
             run22.Append(text30);
-            A.EndParagraphRunProperties endParagraphRunProperties20 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties20 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph34.Append(paragraphProperties17);
             paragraph34.Append(run22);
@@ -3422,41 +3476,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape22.Append(shapeProperties22);
             shape22.Append(textBody22);
 
-            Shape shape23 = new Shape();
+            var shape23 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties23 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties29 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
+            var nonVisualShapeProperties23 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties29 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties23 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks22 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties23 = new NonVisualShapeDrawingProperties();
+            var shapeLocks22 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties23.Append(shapeLocks22);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties29 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape22 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties29 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape22 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties29.Append(placeholderShape22);
 
             nonVisualShapeProperties23.Append(nonVisualDrawingProperties29);
             nonVisualShapeProperties23.Append(nonVisualShapeDrawingProperties23);
             nonVisualShapeProperties23.Append(applicationNonVisualDrawingProperties29);
-            ShapeProperties shapeProperties23 = new ShapeProperties();
+            var shapeProperties23 = new ShapeProperties();
 
-            TextBody textBody23 = new TextBody();
-            A.BodyProperties bodyProperties23 = new A.BodyProperties();
-            A.ListStyle listStyle23 = new A.ListStyle();
+            var textBody23 = new TextBody();
+            var bodyProperties23 = new A.BodyProperties();
+            var listStyle23 = new A.ListStyle();
 
-            A.Paragraph paragraph35 = new A.Paragraph();
+            var paragraph35 = new A.Paragraph();
 
-            A.Field field9 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field9 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties31 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text31 = new A.Text();
-            text31.Text = "2023-11-08";
+            var runProperties31 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text31 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field9.Append(runProperties31);
             field9.Append(text31);
-            A.EndParagraphRunProperties endParagraphRunProperties21 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties21 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph35.Append(field9);
             paragraph35.Append(endParagraphRunProperties21);
@@ -3469,32 +3525,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape23.Append(shapeProperties23);
             shape23.Append(textBody23);
 
-            Shape shape24 = new Shape();
+            var shape24 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties24 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties30 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
+            var nonVisualShapeProperties24 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties30 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties24 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks23 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties24 = new NonVisualShapeDrawingProperties();
+            var shapeLocks23 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties24.Append(shapeLocks23);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties30 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape23 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties30 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape23 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties30.Append(placeholderShape23);
 
             nonVisualShapeProperties24.Append(nonVisualDrawingProperties30);
             nonVisualShapeProperties24.Append(nonVisualShapeDrawingProperties24);
             nonVisualShapeProperties24.Append(applicationNonVisualDrawingProperties30);
-            ShapeProperties shapeProperties24 = new ShapeProperties();
+            var shapeProperties24 = new ShapeProperties();
 
-            TextBody textBody24 = new TextBody();
-            A.BodyProperties bodyProperties24 = new A.BodyProperties();
-            A.ListStyle listStyle24 = new A.ListStyle();
+            var textBody24 = new TextBody();
+            var bodyProperties24 = new A.BodyProperties();
+            var listStyle24 = new A.ListStyle();
 
-            A.Paragraph paragraph36 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties22 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph36 = new A.Paragraph();
+            var endParagraphRunProperties22 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph36.Append(endParagraphRunProperties22);
 
@@ -3506,41 +3562,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape24.Append(shapeProperties24);
             shape24.Append(textBody24);
 
-            Shape shape25 = new Shape();
+            var shape25 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties25 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties31 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
+            var nonVisualShapeProperties25 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties31 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties25 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks24 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties25 = new NonVisualShapeDrawingProperties();
+            var shapeLocks24 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties25.Append(shapeLocks24);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties31 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape24 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties31 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape24 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties31.Append(placeholderShape24);
 
             nonVisualShapeProperties25.Append(nonVisualDrawingProperties31);
             nonVisualShapeProperties25.Append(nonVisualShapeDrawingProperties25);
             nonVisualShapeProperties25.Append(applicationNonVisualDrawingProperties31);
-            ShapeProperties shapeProperties25 = new ShapeProperties();
+            var shapeProperties25 = new ShapeProperties();
 
-            TextBody textBody25 = new TextBody();
-            A.BodyProperties bodyProperties25 = new A.BodyProperties();
-            A.ListStyle listStyle25 = new A.ListStyle();
+            var textBody25 = new TextBody();
+            var bodyProperties25 = new A.BodyProperties();
+            var listStyle25 = new A.ListStyle();
 
-            A.Paragraph paragraph37 = new A.Paragraph();
+            var paragraph37 = new A.Paragraph();
 
-            A.Field field10 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field10 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties32 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text32 = new A.Text();
-            text32.Text = "‹#›";
+            var runProperties32 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text32 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field10.Append(runProperties32);
             field10.Append(text32);
-            A.EndParagraphRunProperties endParagraphRunProperties23 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties23 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph37.Append(field10);
             paragraph37.Append(endParagraphRunProperties23);
@@ -3561,11 +3619,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree6.Append(shape24);
             shapeTree6.Append(shape25);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList5 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList5 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension5 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension5 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId5 = new P14.CreationId() { Val = (UInt32Value)3858533553U };
+            var creationId5 = new P14.CreationId() { Val = (UInt32Value)3858533553U };
             creationId5.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension5.Append(creationId5);
@@ -3575,8 +3633,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData6.Append(shapeTree6);
             commonSlideData6.Append(commonSlideDataExtensionList5);
 
-            ColorMapOverride colorMapOverride5 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping5 = new A.MasterColorMapping();
+            var colorMapOverride5 = new ColorMapOverride();
+            var masterColorMapping5 = new A.MasterColorMapping();
 
             colorMapOverride5.Append(masterColorMapping5);
 
@@ -3589,31 +3647,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart5.
         private void GenerateSlideLayoutPart5Content(SlideLayoutPart slideLayoutPart5)
         {
-            SlideLayout slideLayout5 = new SlideLayout() { Type = SlideLayoutValues.Title, Preserve = true };
+            var slideLayout5 = new SlideLayout() { Type = SlideLayoutValues.Title, Preserve = true };
             slideLayout5.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout5.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout5.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData7 = new CommonSlideData() { Name = "제목 슬라이드" };
+            var commonSlideData7 = new CommonSlideData() { Name = "제목 슬라이드" };
 
-            ShapeTree shapeTree7 = new ShapeTree();
+            var shapeTree7 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties7 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties32 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties7 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties32 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties7 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties32 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties7 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties32 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties7.Append(nonVisualDrawingProperties32);
             nonVisualGroupShapeProperties7.Append(nonVisualGroupShapeDrawingProperties7);
             nonVisualGroupShapeProperties7.Append(applicationNonVisualDrawingProperties32);
 
-            GroupShapeProperties groupShapeProperties7 = new GroupShapeProperties();
+            var groupShapeProperties7 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup7 = new A.TransformGroup();
-            A.Offset offset18 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents18 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset7 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents7 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup7 = new A.TransformGroup();
+            var offset18 = new A.Offset() { X = 0L, Y = 0L };
+            var extents18 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset7 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents7 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup7.Append(offset18);
             transformGroup7.Append(extents18);
@@ -3622,18 +3680,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties7.Append(transformGroup7);
 
-            Shape shape26 = new Shape();
+            var shape26 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties26 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties33 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties26 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties33 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties26 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks25 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties26 = new NonVisualShapeDrawingProperties();
+            var shapeLocks25 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties26.Append(shapeLocks25);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties33 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape25 = new PlaceholderShape() { Type = PlaceholderValues.CenteredTitle };
+            var applicationNonVisualDrawingProperties33 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape25 = new PlaceholderShape() { Type = PlaceholderValues.CenteredTitle };
 
             applicationNonVisualDrawingProperties33.Append(placeholderShape25);
 
@@ -3641,40 +3699,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties26.Append(nonVisualShapeDrawingProperties26);
             nonVisualShapeProperties26.Append(applicationNonVisualDrawingProperties33);
 
-            ShapeProperties shapeProperties26 = new ShapeProperties();
+            var shapeProperties26 = new ShapeProperties();
 
-            A.Transform2D transform2D12 = new A.Transform2D();
-            A.Offset offset19 = new A.Offset() { X = 685800L, Y = 1122363L };
-            A.Extents extents19 = new A.Extents() { Cx = 7772400L, Cy = 2387600L };
+            var transform2D12 = new A.Transform2D();
+            var offset19 = new A.Offset() { X = 685800L, Y = 1122363L };
+            var extents19 = new A.Extents() { Cx = 7772400L, Cy = 2387600L };
 
             transform2D12.Append(offset19);
             transform2D12.Append(extents19);
 
             shapeProperties26.Append(transform2D12);
 
-            TextBody textBody26 = new TextBody();
-            A.BodyProperties bodyProperties26 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
+            var textBody26 = new TextBody();
+            var bodyProperties26 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
 
-            A.ListStyle listStyle26 = new A.ListStyle();
+            var listStyle26 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties13 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Center };
-            A.DefaultRunProperties defaultRunProperties63 = new A.DefaultRunProperties() { FontSize = 6000 };
+            var level1ParagraphProperties13 = new A.Level1ParagraphProperties() { Alignment = A.TextAlignmentTypeValues.Center };
+            var defaultRunProperties63 = new A.DefaultRunProperties() { FontSize = 6000 };
 
             level1ParagraphProperties13.Append(defaultRunProperties63);
 
             listStyle26.Append(level1ParagraphProperties13);
 
-            A.Paragraph paragraph38 = new A.Paragraph();
+            var paragraph38 = new A.Paragraph();
 
-            A.Run run23 = new A.Run();
+            var run23 = new A.Run();
 
-            A.RunProperties runProperties33 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text33 = new A.Text();
-            text33.Text = "마스터 제목 스타일 편집";
+            var runProperties33 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text33 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run23.Append(runProperties33);
             run23.Append(text33);
-            A.EndParagraphRunProperties endParagraphRunProperties24 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties24 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph38.Append(run23);
             paragraph38.Append(endParagraphRunProperties24);
@@ -3687,18 +3747,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape26.Append(shapeProperties26);
             shape26.Append(textBody26);
 
-            Shape shape27 = new Shape();
+            var shape27 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties27 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties34 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Subtitle 2" };
+            var nonVisualShapeProperties27 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties34 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Subtitle 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties27 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks26 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties27 = new NonVisualShapeDrawingProperties();
+            var shapeLocks26 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties27.Append(shapeLocks26);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties34 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape26 = new PlaceholderShape() { Type = PlaceholderValues.SubTitle, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties34 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape26 = new PlaceholderShape() { Type = PlaceholderValues.SubTitle, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties34.Append(placeholderShape26);
 
@@ -3706,81 +3766,81 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties27.Append(nonVisualShapeDrawingProperties27);
             nonVisualShapeProperties27.Append(applicationNonVisualDrawingProperties34);
 
-            ShapeProperties shapeProperties27 = new ShapeProperties();
+            var shapeProperties27 = new ShapeProperties();
 
-            A.Transform2D transform2D13 = new A.Transform2D();
-            A.Offset offset20 = new A.Offset() { X = 1143000L, Y = 3602038L };
-            A.Extents extents20 = new A.Extents() { Cx = 6858000L, Cy = 1655762L };
+            var transform2D13 = new A.Transform2D();
+            var offset20 = new A.Offset() { X = 1143000L, Y = 3602038L };
+            var extents20 = new A.Extents() { Cx = 6858000L, Cy = 1655762L };
 
             transform2D13.Append(offset20);
             transform2D13.Append(extents20);
 
             shapeProperties27.Append(transform2D13);
 
-            TextBody textBody27 = new TextBody();
-            A.BodyProperties bodyProperties27 = new A.BodyProperties();
+            var textBody27 = new TextBody();
+            var bodyProperties27 = new A.BodyProperties();
 
-            A.ListStyle listStyle27 = new A.ListStyle();
+            var listStyle27 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties14 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet20 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties64 = new A.DefaultRunProperties() { FontSize = 2400 };
+            var level1ParagraphProperties14 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet20 = new A.NoBullet();
+            var defaultRunProperties64 = new A.DefaultRunProperties() { FontSize = 2400 };
 
             level1ParagraphProperties14.Append(noBullet20);
             level1ParagraphProperties14.Append(defaultRunProperties64);
 
-            A.Level2ParagraphProperties level2ParagraphProperties7 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet21 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties65 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level2ParagraphProperties7 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet21 = new A.NoBullet();
+            var defaultRunProperties65 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level2ParagraphProperties7.Append(noBullet21);
             level2ParagraphProperties7.Append(defaultRunProperties65);
 
-            A.Level3ParagraphProperties level3ParagraphProperties7 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet22 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties66 = new A.DefaultRunProperties() { FontSize = 1800 };
+            var level3ParagraphProperties7 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet22 = new A.NoBullet();
+            var defaultRunProperties66 = new A.DefaultRunProperties() { FontSize = 1800 };
 
             level3ParagraphProperties7.Append(noBullet22);
             level3ParagraphProperties7.Append(defaultRunProperties66);
 
-            A.Level4ParagraphProperties level4ParagraphProperties7 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet23 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties67 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level4ParagraphProperties7 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet23 = new A.NoBullet();
+            var defaultRunProperties67 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level4ParagraphProperties7.Append(noBullet23);
             level4ParagraphProperties7.Append(defaultRunProperties67);
 
-            A.Level5ParagraphProperties level5ParagraphProperties7 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet24 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties68 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level5ParagraphProperties7 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet24 = new A.NoBullet();
+            var defaultRunProperties68 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level5ParagraphProperties7.Append(noBullet24);
             level5ParagraphProperties7.Append(defaultRunProperties68);
 
-            A.Level6ParagraphProperties level6ParagraphProperties7 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet25 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties69 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level6ParagraphProperties7 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet25 = new A.NoBullet();
+            var defaultRunProperties69 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level6ParagraphProperties7.Append(noBullet25);
             level6ParagraphProperties7.Append(defaultRunProperties69);
 
-            A.Level7ParagraphProperties level7ParagraphProperties7 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet26 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties70 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level7ParagraphProperties7 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet26 = new A.NoBullet();
+            var defaultRunProperties70 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level7ParagraphProperties7.Append(noBullet26);
             level7ParagraphProperties7.Append(defaultRunProperties70);
 
-            A.Level8ParagraphProperties level8ParagraphProperties7 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet27 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties71 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level8ParagraphProperties7 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet27 = new A.NoBullet();
+            var defaultRunProperties71 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level8ParagraphProperties7.Append(noBullet27);
             level8ParagraphProperties7.Append(defaultRunProperties71);
 
-            A.Level9ParagraphProperties level9ParagraphProperties7 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
-            A.NoBullet noBullet28 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties72 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level9ParagraphProperties7 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0, Alignment = A.TextAlignmentTypeValues.Center };
+            var noBullet28 = new A.NoBullet();
+            var defaultRunProperties72 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level9ParagraphProperties7.Append(noBullet28);
             level9ParagraphProperties7.Append(defaultRunProperties72);
@@ -3795,17 +3855,19 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle27.Append(level8ParagraphProperties7);
             listStyle27.Append(level9ParagraphProperties7);
 
-            A.Paragraph paragraph39 = new A.Paragraph();
+            var paragraph39 = new A.Paragraph();
 
-            A.Run run24 = new A.Run();
+            var run24 = new A.Run();
 
-            A.RunProperties runProperties34 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text34 = new A.Text();
-            text34.Text = "클릭하여 마스터 부제목 스타일 편집";
+            var runProperties34 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text34 = new A.Text
+            {
+                Text = "클릭하여 마스터 부제목 스타일 편집"
+            };
 
             run24.Append(runProperties34);
             run24.Append(text34);
-            A.EndParagraphRunProperties endParagraphRunProperties25 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties25 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph39.Append(run24);
             paragraph39.Append(endParagraphRunProperties25);
@@ -3818,41 +3880,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape27.Append(shapeProperties27);
             shape27.Append(textBody27);
 
-            Shape shape28 = new Shape();
+            var shape28 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties28 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties35 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
+            var nonVisualShapeProperties28 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties35 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties28 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks27 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties28 = new NonVisualShapeDrawingProperties();
+            var shapeLocks27 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties28.Append(shapeLocks27);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties35 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape27 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties35 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape27 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties35.Append(placeholderShape27);
 
             nonVisualShapeProperties28.Append(nonVisualDrawingProperties35);
             nonVisualShapeProperties28.Append(nonVisualShapeDrawingProperties28);
             nonVisualShapeProperties28.Append(applicationNonVisualDrawingProperties35);
-            ShapeProperties shapeProperties28 = new ShapeProperties();
+            var shapeProperties28 = new ShapeProperties();
 
-            TextBody textBody28 = new TextBody();
-            A.BodyProperties bodyProperties28 = new A.BodyProperties();
-            A.ListStyle listStyle28 = new A.ListStyle();
+            var textBody28 = new TextBody();
+            var bodyProperties28 = new A.BodyProperties();
+            var listStyle28 = new A.ListStyle();
 
-            A.Paragraph paragraph40 = new A.Paragraph();
+            var paragraph40 = new A.Paragraph();
 
-            A.Field field11 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field11 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties35 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text35 = new A.Text();
-            text35.Text = "2023-11-08";
+            var runProperties35 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text35 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field11.Append(runProperties35);
             field11.Append(text35);
-            A.EndParagraphRunProperties endParagraphRunProperties26 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties26 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph40.Append(field11);
             paragraph40.Append(endParagraphRunProperties26);
@@ -3865,32 +3929,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape28.Append(shapeProperties28);
             shape28.Append(textBody28);
 
-            Shape shape29 = new Shape();
+            var shape29 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties29 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties36 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
+            var nonVisualShapeProperties29 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties36 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties29 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks28 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties29 = new NonVisualShapeDrawingProperties();
+            var shapeLocks28 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties29.Append(shapeLocks28);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties36 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape28 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties36 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape28 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties36.Append(placeholderShape28);
 
             nonVisualShapeProperties29.Append(nonVisualDrawingProperties36);
             nonVisualShapeProperties29.Append(nonVisualShapeDrawingProperties29);
             nonVisualShapeProperties29.Append(applicationNonVisualDrawingProperties36);
-            ShapeProperties shapeProperties29 = new ShapeProperties();
+            var shapeProperties29 = new ShapeProperties();
 
-            TextBody textBody29 = new TextBody();
-            A.BodyProperties bodyProperties29 = new A.BodyProperties();
-            A.ListStyle listStyle29 = new A.ListStyle();
+            var textBody29 = new TextBody();
+            var bodyProperties29 = new A.BodyProperties();
+            var listStyle29 = new A.ListStyle();
 
-            A.Paragraph paragraph41 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties27 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph41 = new A.Paragraph();
+            var endParagraphRunProperties27 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph41.Append(endParagraphRunProperties27);
 
@@ -3902,41 +3966,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape29.Append(shapeProperties29);
             shape29.Append(textBody29);
 
-            Shape shape30 = new Shape();
+            var shape30 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties30 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties37 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
+            var nonVisualShapeProperties30 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties37 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties30 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks29 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties30 = new NonVisualShapeDrawingProperties();
+            var shapeLocks29 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties30.Append(shapeLocks29);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties37 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape29 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties37 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape29 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties37.Append(placeholderShape29);
 
             nonVisualShapeProperties30.Append(nonVisualDrawingProperties37);
             nonVisualShapeProperties30.Append(nonVisualShapeDrawingProperties30);
             nonVisualShapeProperties30.Append(applicationNonVisualDrawingProperties37);
-            ShapeProperties shapeProperties30 = new ShapeProperties();
+            var shapeProperties30 = new ShapeProperties();
 
-            TextBody textBody30 = new TextBody();
-            A.BodyProperties bodyProperties30 = new A.BodyProperties();
-            A.ListStyle listStyle30 = new A.ListStyle();
+            var textBody30 = new TextBody();
+            var bodyProperties30 = new A.BodyProperties();
+            var listStyle30 = new A.ListStyle();
 
-            A.Paragraph paragraph42 = new A.Paragraph();
+            var paragraph42 = new A.Paragraph();
 
-            A.Field field12 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field12 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties36 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text36 = new A.Text();
-            text36.Text = "‹#›";
+            var runProperties36 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text36 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field12.Append(runProperties36);
             field12.Append(text36);
-            A.EndParagraphRunProperties endParagraphRunProperties28 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties28 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph42.Append(field12);
             paragraph42.Append(endParagraphRunProperties28);
@@ -3957,11 +4023,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree7.Append(shape29);
             shapeTree7.Append(shape30);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList6 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList6 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension6 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension6 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId6 = new P14.CreationId() { Val = (UInt32Value)1808189939U };
+            var creationId6 = new P14.CreationId() { Val = (UInt32Value)1808189939U };
             creationId6.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension6.Append(creationId6);
@@ -3971,8 +4037,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData7.Append(shapeTree7);
             commonSlideData7.Append(commonSlideDataExtensionList6);
 
-            ColorMapOverride colorMapOverride6 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping6 = new A.MasterColorMapping();
+            var colorMapOverride6 = new ColorMapOverride();
+            var masterColorMapping6 = new A.MasterColorMapping();
 
             colorMapOverride6.Append(masterColorMapping6);
 
@@ -3985,31 +4051,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart6.
         private void GenerateSlideLayoutPart6Content(SlideLayoutPart slideLayoutPart6)
         {
-            SlideLayout slideLayout6 = new SlideLayout() { Type = SlideLayoutValues.TitleOnly, Preserve = true };
+            var slideLayout6 = new SlideLayout() { Type = SlideLayoutValues.TitleOnly, Preserve = true };
             slideLayout6.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout6.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout6.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData8 = new CommonSlideData() { Name = "제목만" };
+            var commonSlideData8 = new CommonSlideData() { Name = "제목만" };
 
-            ShapeTree shapeTree8 = new ShapeTree();
+            var shapeTree8 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties8 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties38 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties8 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties38 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties8 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties38 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties8 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties38 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties8.Append(nonVisualDrawingProperties38);
             nonVisualGroupShapeProperties8.Append(nonVisualGroupShapeDrawingProperties8);
             nonVisualGroupShapeProperties8.Append(applicationNonVisualDrawingProperties38);
 
-            GroupShapeProperties groupShapeProperties8 = new GroupShapeProperties();
+            var groupShapeProperties8 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup8 = new A.TransformGroup();
-            A.Offset offset21 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents21 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset8 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents8 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup8 = new A.TransformGroup();
+            var offset21 = new A.Offset() { X = 0L, Y = 0L };
+            var extents21 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset8 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents8 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup8.Append(offset21);
             transformGroup8.Append(extents21);
@@ -4018,41 +4084,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties8.Append(transformGroup8);
 
-            Shape shape31 = new Shape();
+            var shape31 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties31 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties39 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties31 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties39 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties31 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks30 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties31 = new NonVisualShapeDrawingProperties();
+            var shapeLocks30 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties31.Append(shapeLocks30);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties39 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape30 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties39 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape30 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties39.Append(placeholderShape30);
 
             nonVisualShapeProperties31.Append(nonVisualDrawingProperties39);
             nonVisualShapeProperties31.Append(nonVisualShapeDrawingProperties31);
             nonVisualShapeProperties31.Append(applicationNonVisualDrawingProperties39);
-            ShapeProperties shapeProperties31 = new ShapeProperties();
+            var shapeProperties31 = new ShapeProperties();
 
-            TextBody textBody31 = new TextBody();
-            A.BodyProperties bodyProperties31 = new A.BodyProperties();
-            A.ListStyle listStyle31 = new A.ListStyle();
+            var textBody31 = new TextBody();
+            var bodyProperties31 = new A.BodyProperties();
+            var listStyle31 = new A.ListStyle();
 
-            A.Paragraph paragraph43 = new A.Paragraph();
+            var paragraph43 = new A.Paragraph();
 
-            A.Run run25 = new A.Run();
+            var run25 = new A.Run();
 
-            A.RunProperties runProperties37 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text37 = new A.Text();
-            text37.Text = "마스터 제목 스타일 편집";
+            var runProperties37 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text37 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run25.Append(runProperties37);
             run25.Append(text37);
-            A.EndParagraphRunProperties endParagraphRunProperties29 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties29 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph43.Append(run25);
             paragraph43.Append(endParagraphRunProperties29);
@@ -4065,41 +4133,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape31.Append(shapeProperties31);
             shape31.Append(textBody31);
 
-            Shape shape32 = new Shape();
+            var shape32 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties32 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties40 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Date Placeholder 2" };
+            var nonVisualShapeProperties32 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties40 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Date Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties32 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks31 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties32 = new NonVisualShapeDrawingProperties();
+            var shapeLocks31 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties32.Append(shapeLocks31);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties40 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape31 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties40 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape31 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties40.Append(placeholderShape31);
 
             nonVisualShapeProperties32.Append(nonVisualDrawingProperties40);
             nonVisualShapeProperties32.Append(nonVisualShapeDrawingProperties32);
             nonVisualShapeProperties32.Append(applicationNonVisualDrawingProperties40);
-            ShapeProperties shapeProperties32 = new ShapeProperties();
+            var shapeProperties32 = new ShapeProperties();
 
-            TextBody textBody32 = new TextBody();
-            A.BodyProperties bodyProperties32 = new A.BodyProperties();
-            A.ListStyle listStyle32 = new A.ListStyle();
+            var textBody32 = new TextBody();
+            var bodyProperties32 = new A.BodyProperties();
+            var listStyle32 = new A.ListStyle();
 
-            A.Paragraph paragraph44 = new A.Paragraph();
+            var paragraph44 = new A.Paragraph();
 
-            A.Field field13 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field13 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties38 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text38 = new A.Text();
-            text38.Text = "2023-11-08";
+            var runProperties38 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text38 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field13.Append(runProperties38);
             field13.Append(text38);
-            A.EndParagraphRunProperties endParagraphRunProperties30 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties30 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph44.Append(field13);
             paragraph44.Append(endParagraphRunProperties30);
@@ -4112,32 +4182,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape32.Append(shapeProperties32);
             shape32.Append(textBody32);
 
-            Shape shape33 = new Shape();
+            var shape33 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties33 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties41 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Footer Placeholder 3" };
+            var nonVisualShapeProperties33 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties41 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Footer Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties33 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks32 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties33 = new NonVisualShapeDrawingProperties();
+            var shapeLocks32 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties33.Append(shapeLocks32);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties41 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape32 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties41 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape32 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties41.Append(placeholderShape32);
 
             nonVisualShapeProperties33.Append(nonVisualDrawingProperties41);
             nonVisualShapeProperties33.Append(nonVisualShapeDrawingProperties33);
             nonVisualShapeProperties33.Append(applicationNonVisualDrawingProperties41);
-            ShapeProperties shapeProperties33 = new ShapeProperties();
+            var shapeProperties33 = new ShapeProperties();
 
-            TextBody textBody33 = new TextBody();
-            A.BodyProperties bodyProperties33 = new A.BodyProperties();
-            A.ListStyle listStyle33 = new A.ListStyle();
+            var textBody33 = new TextBody();
+            var bodyProperties33 = new A.BodyProperties();
+            var listStyle33 = new A.ListStyle();
 
-            A.Paragraph paragraph45 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties31 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph45 = new A.Paragraph();
+            var endParagraphRunProperties31 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph45.Append(endParagraphRunProperties31);
 
@@ -4149,41 +4219,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape33.Append(shapeProperties33);
             shape33.Append(textBody33);
 
-            Shape shape34 = new Shape();
+            var shape34 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties34 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties42 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Slide Number Placeholder 4" };
+            var nonVisualShapeProperties34 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties42 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Slide Number Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties34 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks33 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties34 = new NonVisualShapeDrawingProperties();
+            var shapeLocks33 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties34.Append(shapeLocks33);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties42 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape33 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties42 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape33 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties42.Append(placeholderShape33);
 
             nonVisualShapeProperties34.Append(nonVisualDrawingProperties42);
             nonVisualShapeProperties34.Append(nonVisualShapeDrawingProperties34);
             nonVisualShapeProperties34.Append(applicationNonVisualDrawingProperties42);
-            ShapeProperties shapeProperties34 = new ShapeProperties();
+            var shapeProperties34 = new ShapeProperties();
 
-            TextBody textBody34 = new TextBody();
-            A.BodyProperties bodyProperties34 = new A.BodyProperties();
-            A.ListStyle listStyle34 = new A.ListStyle();
+            var textBody34 = new TextBody();
+            var bodyProperties34 = new A.BodyProperties();
+            var listStyle34 = new A.ListStyle();
 
-            A.Paragraph paragraph46 = new A.Paragraph();
+            var paragraph46 = new A.Paragraph();
 
-            A.Field field14 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field14 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties39 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text39 = new A.Text();
-            text39.Text = "‹#›";
+            var runProperties39 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text39 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field14.Append(runProperties39);
             field14.Append(text39);
-            A.EndParagraphRunProperties endParagraphRunProperties32 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties32 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph46.Append(field14);
             paragraph46.Append(endParagraphRunProperties32);
@@ -4203,11 +4275,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree8.Append(shape33);
             shapeTree8.Append(shape34);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList7 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList7 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension7 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension7 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId7 = new P14.CreationId() { Val = (UInt32Value)1912533133U };
+            var creationId7 = new P14.CreationId() { Val = (UInt32Value)1912533133U };
             creationId7.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension7.Append(creationId7);
@@ -4217,8 +4289,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData8.Append(shapeTree8);
             commonSlideData8.Append(commonSlideDataExtensionList7);
 
-            ColorMapOverride colorMapOverride7 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping7 = new A.MasterColorMapping();
+            var colorMapOverride7 = new ColorMapOverride();
+            var masterColorMapping7 = new A.MasterColorMapping();
 
             colorMapOverride7.Append(masterColorMapping7);
 
@@ -4231,31 +4303,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart7.
         private void GenerateSlideLayoutPart7Content(SlideLayoutPart slideLayoutPart7)
         {
-            SlideLayout slideLayout7 = new SlideLayout() { Type = SlideLayoutValues.VerticalTitleAndText, Preserve = true };
+            var slideLayout7 = new SlideLayout() { Type = SlideLayoutValues.VerticalTitleAndText, Preserve = true };
             slideLayout7.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout7.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout7.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData9 = new CommonSlideData() { Name = "세로 제목 및 텍스트" };
+            var commonSlideData9 = new CommonSlideData() { Name = "세로 제목 및 텍스트" };
 
-            ShapeTree shapeTree9 = new ShapeTree();
+            var shapeTree9 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties9 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties43 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties9 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties43 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties9 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties43 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties9 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties43 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties9.Append(nonVisualDrawingProperties43);
             nonVisualGroupShapeProperties9.Append(nonVisualGroupShapeDrawingProperties9);
             nonVisualGroupShapeProperties9.Append(applicationNonVisualDrawingProperties43);
 
-            GroupShapeProperties groupShapeProperties9 = new GroupShapeProperties();
+            var groupShapeProperties9 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup9 = new A.TransformGroup();
-            A.Offset offset22 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents22 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset9 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents9 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup9 = new A.TransformGroup();
+            var offset22 = new A.Offset() { X = 0L, Y = 0L };
+            var extents22 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset9 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents9 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup9.Append(offset22);
             transformGroup9.Append(extents22);
@@ -4264,18 +4336,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties9.Append(transformGroup9);
 
-            Shape shape35 = new Shape();
+            var shape35 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties35 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties44 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Vertical Title 1" };
+            var nonVisualShapeProperties35 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties44 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Vertical Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties35 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks34 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties35 = new NonVisualShapeDrawingProperties();
+            var shapeLocks34 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties35.Append(shapeLocks34);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties44 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape34 = new PlaceholderShape() { Type = PlaceholderValues.Title, Orientation = DirectionValues.Vertical };
+            var applicationNonVisualDrawingProperties44 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape34 = new PlaceholderShape() { Type = PlaceholderValues.Title, Orientation = DirectionValues.Vertical };
 
             applicationNonVisualDrawingProperties44.Append(placeholderShape34);
 
@@ -4283,32 +4355,34 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties35.Append(nonVisualShapeDrawingProperties35);
             nonVisualShapeProperties35.Append(applicationNonVisualDrawingProperties44);
 
-            ShapeProperties shapeProperties35 = new ShapeProperties();
+            var shapeProperties35 = new ShapeProperties();
 
-            A.Transform2D transform2D14 = new A.Transform2D();
-            A.Offset offset23 = new A.Offset() { X = 6543675L, Y = 365125L };
-            A.Extents extents23 = new A.Extents() { Cx = 1971675L, Cy = 5811838L };
+            var transform2D14 = new A.Transform2D();
+            var offset23 = new A.Offset() { X = 6543675L, Y = 365125L };
+            var extents23 = new A.Extents() { Cx = 1971675L, Cy = 5811838L };
 
             transform2D14.Append(offset23);
             transform2D14.Append(extents23);
 
             shapeProperties35.Append(transform2D14);
 
-            TextBody textBody35 = new TextBody();
-            A.BodyProperties bodyProperties35 = new A.BodyProperties() { Vertical = A.TextVerticalValues.EastAsianVetical };
-            A.ListStyle listStyle35 = new A.ListStyle();
+            var textBody35 = new TextBody();
+            var bodyProperties35 = new A.BodyProperties() { Vertical = A.TextVerticalValues.EastAsianVetical };
+            var listStyle35 = new A.ListStyle();
 
-            A.Paragraph paragraph47 = new A.Paragraph();
+            var paragraph47 = new A.Paragraph();
 
-            A.Run run26 = new A.Run();
+            var run26 = new A.Run();
 
-            A.RunProperties runProperties40 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text40 = new A.Text();
-            text40.Text = "마스터 제목 스타일 편집";
+            var runProperties40 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text40 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run26.Append(runProperties40);
             run26.Append(text40);
-            A.EndParagraphRunProperties endParagraphRunProperties33 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties33 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph47.Append(run26);
             paragraph47.Append(endParagraphRunProperties33);
@@ -4321,18 +4395,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape35.Append(shapeProperties35);
             shape35.Append(textBody35);
 
-            Shape shape36 = new Shape();
+            var shape36 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties36 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties45 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Vertical Text Placeholder 2" };
+            var nonVisualShapeProperties36 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties45 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Vertical Text Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties36 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks35 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties36 = new NonVisualShapeDrawingProperties();
+            var shapeLocks35 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties36.Append(shapeLocks35);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties45 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape35 = new PlaceholderShape() { Type = PlaceholderValues.Body, Orientation = DirectionValues.Vertical, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties45 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape35 = new PlaceholderShape() { Type = PlaceholderValues.Body, Orientation = DirectionValues.Vertical, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties45.Append(placeholderShape35);
 
@@ -4340,29 +4414,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties36.Append(nonVisualShapeDrawingProperties36);
             nonVisualShapeProperties36.Append(applicationNonVisualDrawingProperties45);
 
-            ShapeProperties shapeProperties36 = new ShapeProperties();
+            var shapeProperties36 = new ShapeProperties();
 
-            A.Transform2D transform2D15 = new A.Transform2D();
-            A.Offset offset24 = new A.Offset() { X = 628650L, Y = 365125L };
-            A.Extents extents24 = new A.Extents() { Cx = 5800725L, Cy = 5811838L };
+            var transform2D15 = new A.Transform2D();
+            var offset24 = new A.Offset() { X = 628650L, Y = 365125L };
+            var extents24 = new A.Extents() { Cx = 5800725L, Cy = 5811838L };
 
             transform2D15.Append(offset24);
             transform2D15.Append(extents24);
 
             shapeProperties36.Append(transform2D15);
 
-            TextBody textBody36 = new TextBody();
-            A.BodyProperties bodyProperties36 = new A.BodyProperties() { Vertical = A.TextVerticalValues.EastAsianVetical };
-            A.ListStyle listStyle36 = new A.ListStyle();
+            var textBody36 = new TextBody();
+            var bodyProperties36 = new A.BodyProperties() { Vertical = A.TextVerticalValues.EastAsianVetical };
+            var listStyle36 = new A.ListStyle();
 
-            A.Paragraph paragraph48 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties18 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph48 = new A.Paragraph();
+            var paragraphProperties18 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run27 = new A.Run();
+            var run27 = new A.Run();
 
-            A.RunProperties runProperties41 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text41 = new A.Text();
-            text41.Text = "마스터 텍스트 스타일 편집";
+            var runProperties41 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text41 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run27.Append(runProperties41);
             run27.Append(text41);
@@ -4370,14 +4446,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph48.Append(paragraphProperties18);
             paragraph48.Append(run27);
 
-            A.Paragraph paragraph49 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties19 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph49 = new A.Paragraph();
+            var paragraphProperties19 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run28 = new A.Run();
+            var run28 = new A.Run();
 
-            A.RunProperties runProperties42 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text42 = new A.Text();
-            text42.Text = "둘째 수준";
+            var runProperties42 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text42 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run28.Append(runProperties42);
             run28.Append(text42);
@@ -4385,14 +4463,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph49.Append(paragraphProperties19);
             paragraph49.Append(run28);
 
-            A.Paragraph paragraph50 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties20 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph50 = new A.Paragraph();
+            var paragraphProperties20 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run29 = new A.Run();
+            var run29 = new A.Run();
 
-            A.RunProperties runProperties43 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text43 = new A.Text();
-            text43.Text = "셋째 수준";
+            var runProperties43 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text43 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run29.Append(runProperties43);
             run29.Append(text43);
@@ -4400,14 +4480,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph50.Append(paragraphProperties20);
             paragraph50.Append(run29);
 
-            A.Paragraph paragraph51 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties21 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph51 = new A.Paragraph();
+            var paragraphProperties21 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run30 = new A.Run();
+            var run30 = new A.Run();
 
-            A.RunProperties runProperties44 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text44 = new A.Text();
-            text44.Text = "넷째 수준";
+            var runProperties44 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text44 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run30.Append(runProperties44);
             run30.Append(text44);
@@ -4415,18 +4497,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph51.Append(paragraphProperties21);
             paragraph51.Append(run30);
 
-            A.Paragraph paragraph52 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties22 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph52 = new A.Paragraph();
+            var paragraphProperties22 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run31 = new A.Run();
+            var run31 = new A.Run();
 
-            A.RunProperties runProperties45 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text45 = new A.Text();
-            text45.Text = "다섯째 수준";
+            var runProperties45 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text45 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run31.Append(runProperties45);
             run31.Append(text45);
-            A.EndParagraphRunProperties endParagraphRunProperties34 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties34 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph52.Append(paragraphProperties22);
             paragraph52.Append(run31);
@@ -4444,41 +4528,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape36.Append(shapeProperties36);
             shape36.Append(textBody36);
 
-            Shape shape37 = new Shape();
+            var shape37 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties37 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties46 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
+            var nonVisualShapeProperties37 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties46 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties37 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks36 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties37 = new NonVisualShapeDrawingProperties();
+            var shapeLocks36 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties37.Append(shapeLocks36);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties46 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape36 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties46 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape36 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties46.Append(placeholderShape36);
 
             nonVisualShapeProperties37.Append(nonVisualDrawingProperties46);
             nonVisualShapeProperties37.Append(nonVisualShapeDrawingProperties37);
             nonVisualShapeProperties37.Append(applicationNonVisualDrawingProperties46);
-            ShapeProperties shapeProperties37 = new ShapeProperties();
+            var shapeProperties37 = new ShapeProperties();
 
-            TextBody textBody37 = new TextBody();
-            A.BodyProperties bodyProperties37 = new A.BodyProperties();
-            A.ListStyle listStyle37 = new A.ListStyle();
+            var textBody37 = new TextBody();
+            var bodyProperties37 = new A.BodyProperties();
+            var listStyle37 = new A.ListStyle();
 
-            A.Paragraph paragraph53 = new A.Paragraph();
+            var paragraph53 = new A.Paragraph();
 
-            A.Field field15 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field15 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties46 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text46 = new A.Text();
-            text46.Text = "2023-11-08";
+            var runProperties46 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text46 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field15.Append(runProperties46);
             field15.Append(text46);
-            A.EndParagraphRunProperties endParagraphRunProperties35 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties35 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph53.Append(field15);
             paragraph53.Append(endParagraphRunProperties35);
@@ -4491,32 +4577,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape37.Append(shapeProperties37);
             shape37.Append(textBody37);
 
-            Shape shape38 = new Shape();
+            var shape38 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties38 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties47 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
+            var nonVisualShapeProperties38 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties47 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties38 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks37 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties38 = new NonVisualShapeDrawingProperties();
+            var shapeLocks37 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties38.Append(shapeLocks37);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties47 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape37 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties47 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape37 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties47.Append(placeholderShape37);
 
             nonVisualShapeProperties38.Append(nonVisualDrawingProperties47);
             nonVisualShapeProperties38.Append(nonVisualShapeDrawingProperties38);
             nonVisualShapeProperties38.Append(applicationNonVisualDrawingProperties47);
-            ShapeProperties shapeProperties38 = new ShapeProperties();
+            var shapeProperties38 = new ShapeProperties();
 
-            TextBody textBody38 = new TextBody();
-            A.BodyProperties bodyProperties38 = new A.BodyProperties();
-            A.ListStyle listStyle38 = new A.ListStyle();
+            var textBody38 = new TextBody();
+            var bodyProperties38 = new A.BodyProperties();
+            var listStyle38 = new A.ListStyle();
 
-            A.Paragraph paragraph54 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties36 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph54 = new A.Paragraph();
+            var endParagraphRunProperties36 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph54.Append(endParagraphRunProperties36);
 
@@ -4528,41 +4614,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape38.Append(shapeProperties38);
             shape38.Append(textBody38);
 
-            Shape shape39 = new Shape();
+            var shape39 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties39 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties48 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
+            var nonVisualShapeProperties39 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties48 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties39 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks38 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties39 = new NonVisualShapeDrawingProperties();
+            var shapeLocks38 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties39.Append(shapeLocks38);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties48 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape38 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties48 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape38 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties48.Append(placeholderShape38);
 
             nonVisualShapeProperties39.Append(nonVisualDrawingProperties48);
             nonVisualShapeProperties39.Append(nonVisualShapeDrawingProperties39);
             nonVisualShapeProperties39.Append(applicationNonVisualDrawingProperties48);
-            ShapeProperties shapeProperties39 = new ShapeProperties();
+            var shapeProperties39 = new ShapeProperties();
 
-            TextBody textBody39 = new TextBody();
-            A.BodyProperties bodyProperties39 = new A.BodyProperties();
-            A.ListStyle listStyle39 = new A.ListStyle();
+            var textBody39 = new TextBody();
+            var bodyProperties39 = new A.BodyProperties();
+            var listStyle39 = new A.ListStyle();
 
-            A.Paragraph paragraph55 = new A.Paragraph();
+            var paragraph55 = new A.Paragraph();
 
-            A.Field field16 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field16 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties47 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text47 = new A.Text();
-            text47.Text = "‹#›";
+            var runProperties47 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text47 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field16.Append(runProperties47);
             field16.Append(text47);
-            A.EndParagraphRunProperties endParagraphRunProperties37 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties37 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph55.Append(field16);
             paragraph55.Append(endParagraphRunProperties37);
@@ -4583,11 +4671,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree9.Append(shape38);
             shapeTree9.Append(shape39);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList8 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList8 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension8 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension8 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId8 = new P14.CreationId() { Val = (UInt32Value)924612537U };
+            var creationId8 = new P14.CreationId() { Val = (UInt32Value)924612537U };
             creationId8.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension8.Append(creationId8);
@@ -4597,8 +4685,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData9.Append(shapeTree9);
             commonSlideData9.Append(commonSlideDataExtensionList8);
 
-            ColorMapOverride colorMapOverride8 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping8 = new A.MasterColorMapping();
+            var colorMapOverride8 = new ColorMapOverride();
+            var masterColorMapping8 = new A.MasterColorMapping();
 
             colorMapOverride8.Append(masterColorMapping8);
 
@@ -4611,31 +4699,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart8.
         private void GenerateSlideLayoutPart8Content(SlideLayoutPart slideLayoutPart8)
         {
-            SlideLayout slideLayout8 = new SlideLayout() { Type = SlideLayoutValues.TwoTextAndTwoObjects, Preserve = true };
+            var slideLayout8 = new SlideLayout() { Type = SlideLayoutValues.TwoTextAndTwoObjects, Preserve = true };
             slideLayout8.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout8.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout8.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData10 = new CommonSlideData() { Name = "비교" };
+            var commonSlideData10 = new CommonSlideData() { Name = "비교" };
 
-            ShapeTree shapeTree10 = new ShapeTree();
+            var shapeTree10 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties10 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties49 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties10 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties49 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties10 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties49 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties10 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties49 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties10.Append(nonVisualDrawingProperties49);
             nonVisualGroupShapeProperties10.Append(nonVisualGroupShapeDrawingProperties10);
             nonVisualGroupShapeProperties10.Append(applicationNonVisualDrawingProperties49);
 
-            GroupShapeProperties groupShapeProperties10 = new GroupShapeProperties();
+            var groupShapeProperties10 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup10 = new A.TransformGroup();
-            A.Offset offset25 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents25 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset10 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents10 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup10 = new A.TransformGroup();
+            var offset25 = new A.Offset() { X = 0L, Y = 0L };
+            var extents25 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset10 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents10 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup10.Append(offset25);
             transformGroup10.Append(extents25);
@@ -4644,18 +4732,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties10.Append(transformGroup10);
 
-            Shape shape40 = new Shape();
+            var shape40 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties40 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties50 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties40 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties50 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties40 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks39 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties40 = new NonVisualShapeDrawingProperties();
+            var shapeLocks39 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties40.Append(shapeLocks39);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties50 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape39 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties50 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape39 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties50.Append(placeholderShape39);
 
@@ -4663,32 +4751,34 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties40.Append(nonVisualShapeDrawingProperties40);
             nonVisualShapeProperties40.Append(applicationNonVisualDrawingProperties50);
 
-            ShapeProperties shapeProperties40 = new ShapeProperties();
+            var shapeProperties40 = new ShapeProperties();
 
-            A.Transform2D transform2D16 = new A.Transform2D();
-            A.Offset offset26 = new A.Offset() { X = 629841L, Y = 365126L };
-            A.Extents extents26 = new A.Extents() { Cx = 7886700L, Cy = 1325563L };
+            var transform2D16 = new A.Transform2D();
+            var offset26 = new A.Offset() { X = 629841L, Y = 365126L };
+            var extents26 = new A.Extents() { Cx = 7886700L, Cy = 1325563L };
 
             transform2D16.Append(offset26);
             transform2D16.Append(extents26);
 
             shapeProperties40.Append(transform2D16);
 
-            TextBody textBody40 = new TextBody();
-            A.BodyProperties bodyProperties40 = new A.BodyProperties();
-            A.ListStyle listStyle40 = new A.ListStyle();
+            var textBody40 = new TextBody();
+            var bodyProperties40 = new A.BodyProperties();
+            var listStyle40 = new A.ListStyle();
 
-            A.Paragraph paragraph56 = new A.Paragraph();
+            var paragraph56 = new A.Paragraph();
 
-            A.Run run32 = new A.Run();
+            var run32 = new A.Run();
 
-            A.RunProperties runProperties48 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text48 = new A.Text();
-            text48.Text = "마스터 제목 스타일 편집";
+            var runProperties48 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text48 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run32.Append(runProperties48);
             run32.Append(text48);
-            A.EndParagraphRunProperties endParagraphRunProperties38 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties38 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph56.Append(run32);
             paragraph56.Append(endParagraphRunProperties38);
@@ -4701,18 +4791,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape40.Append(shapeProperties40);
             shape40.Append(textBody40);
 
-            Shape shape41 = new Shape();
+            var shape41 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties41 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties51 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Text Placeholder 2" };
+            var nonVisualShapeProperties41 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties51 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Text Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties41 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks40 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties41 = new NonVisualShapeDrawingProperties();
+            var shapeLocks40 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties41.Append(shapeLocks40);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties51 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape40 = new PlaceholderShape() { Type = PlaceholderValues.Body, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties51 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape40 = new PlaceholderShape() { Type = PlaceholderValues.Body, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties51.Append(placeholderShape40);
 
@@ -4720,81 +4810,81 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties41.Append(nonVisualShapeDrawingProperties41);
             nonVisualShapeProperties41.Append(applicationNonVisualDrawingProperties51);
 
-            ShapeProperties shapeProperties41 = new ShapeProperties();
+            var shapeProperties41 = new ShapeProperties();
 
-            A.Transform2D transform2D17 = new A.Transform2D();
-            A.Offset offset27 = new A.Offset() { X = 629842L, Y = 1681163L };
-            A.Extents extents27 = new A.Extents() { Cx = 3868340L, Cy = 823912L };
+            var transform2D17 = new A.Transform2D();
+            var offset27 = new A.Offset() { X = 629842L, Y = 1681163L };
+            var extents27 = new A.Extents() { Cx = 3868340L, Cy = 823912L };
 
             transform2D17.Append(offset27);
             transform2D17.Append(extents27);
 
             shapeProperties41.Append(transform2D17);
 
-            TextBody textBody41 = new TextBody();
-            A.BodyProperties bodyProperties41 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
+            var textBody41 = new TextBody();
+            var bodyProperties41 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
 
-            A.ListStyle listStyle41 = new A.ListStyle();
+            var listStyle41 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties15 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
-            A.NoBullet noBullet29 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties73 = new A.DefaultRunProperties() { FontSize = 2400, Bold = true };
+            var level1ParagraphProperties15 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
+            var noBullet29 = new A.NoBullet();
+            var defaultRunProperties73 = new A.DefaultRunProperties() { FontSize = 2400, Bold = true };
 
             level1ParagraphProperties15.Append(noBullet29);
             level1ParagraphProperties15.Append(defaultRunProperties73);
 
-            A.Level2ParagraphProperties level2ParagraphProperties8 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
-            A.NoBullet noBullet30 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties74 = new A.DefaultRunProperties() { FontSize = 2000, Bold = true };
+            var level2ParagraphProperties8 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
+            var noBullet30 = new A.NoBullet();
+            var defaultRunProperties74 = new A.DefaultRunProperties() { FontSize = 2000, Bold = true };
 
             level2ParagraphProperties8.Append(noBullet30);
             level2ParagraphProperties8.Append(defaultRunProperties74);
 
-            A.Level3ParagraphProperties level3ParagraphProperties8 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
-            A.NoBullet noBullet31 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties75 = new A.DefaultRunProperties() { FontSize = 1800, Bold = true };
+            var level3ParagraphProperties8 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
+            var noBullet31 = new A.NoBullet();
+            var defaultRunProperties75 = new A.DefaultRunProperties() { FontSize = 1800, Bold = true };
 
             level3ParagraphProperties8.Append(noBullet31);
             level3ParagraphProperties8.Append(defaultRunProperties75);
 
-            A.Level4ParagraphProperties level4ParagraphProperties8 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
-            A.NoBullet noBullet32 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties76 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level4ParagraphProperties8 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
+            var noBullet32 = new A.NoBullet();
+            var defaultRunProperties76 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level4ParagraphProperties8.Append(noBullet32);
             level4ParagraphProperties8.Append(defaultRunProperties76);
 
-            A.Level5ParagraphProperties level5ParagraphProperties8 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
-            A.NoBullet noBullet33 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties77 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level5ParagraphProperties8 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
+            var noBullet33 = new A.NoBullet();
+            var defaultRunProperties77 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level5ParagraphProperties8.Append(noBullet33);
             level5ParagraphProperties8.Append(defaultRunProperties77);
 
-            A.Level6ParagraphProperties level6ParagraphProperties8 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
-            A.NoBullet noBullet34 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties78 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level6ParagraphProperties8 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
+            var noBullet34 = new A.NoBullet();
+            var defaultRunProperties78 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level6ParagraphProperties8.Append(noBullet34);
             level6ParagraphProperties8.Append(defaultRunProperties78);
 
-            A.Level7ParagraphProperties level7ParagraphProperties8 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
-            A.NoBullet noBullet35 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties79 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level7ParagraphProperties8 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
+            var noBullet35 = new A.NoBullet();
+            var defaultRunProperties79 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level7ParagraphProperties8.Append(noBullet35);
             level7ParagraphProperties8.Append(defaultRunProperties79);
 
-            A.Level8ParagraphProperties level8ParagraphProperties8 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
-            A.NoBullet noBullet36 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties80 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level8ParagraphProperties8 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
+            var noBullet36 = new A.NoBullet();
+            var defaultRunProperties80 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level8ParagraphProperties8.Append(noBullet36);
             level8ParagraphProperties8.Append(defaultRunProperties80);
 
-            A.Level9ParagraphProperties level9ParagraphProperties8 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
-            A.NoBullet noBullet37 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties81 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level9ParagraphProperties8 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
+            var noBullet37 = new A.NoBullet();
+            var defaultRunProperties81 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level9ParagraphProperties8.Append(noBullet37);
             level9ParagraphProperties8.Append(defaultRunProperties81);
@@ -4809,14 +4899,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle41.Append(level8ParagraphProperties8);
             listStyle41.Append(level9ParagraphProperties8);
 
-            A.Paragraph paragraph57 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties23 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph57 = new A.Paragraph();
+            var paragraphProperties23 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run33 = new A.Run();
+            var run33 = new A.Run();
 
-            A.RunProperties runProperties49 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text49 = new A.Text();
-            text49.Text = "마스터 텍스트 스타일 편집";
+            var runProperties49 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text49 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run33.Append(runProperties49);
             run33.Append(text49);
@@ -4832,18 +4924,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape41.Append(shapeProperties41);
             shape41.Append(textBody41);
 
-            Shape shape42 = new Shape();
+            var shape42 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties42 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties52 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Content Placeholder 3" };
+            var nonVisualShapeProperties42 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties52 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Content Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties42 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks41 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties42 = new NonVisualShapeDrawingProperties();
+            var shapeLocks41 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties42.Append(shapeLocks41);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties52 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape41 = new PlaceholderShape() { Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
+            var applicationNonVisualDrawingProperties52 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape41 = new PlaceholderShape() { Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
 
             applicationNonVisualDrawingProperties52.Append(placeholderShape41);
 
@@ -4851,29 +4943,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties42.Append(nonVisualShapeDrawingProperties42);
             nonVisualShapeProperties42.Append(applicationNonVisualDrawingProperties52);
 
-            ShapeProperties shapeProperties42 = new ShapeProperties();
+            var shapeProperties42 = new ShapeProperties();
 
-            A.Transform2D transform2D18 = new A.Transform2D();
-            A.Offset offset28 = new A.Offset() { X = 629842L, Y = 2505075L };
-            A.Extents extents28 = new A.Extents() { Cx = 3868340L, Cy = 3684588L };
+            var transform2D18 = new A.Transform2D();
+            var offset28 = new A.Offset() { X = 629842L, Y = 2505075L };
+            var extents28 = new A.Extents() { Cx = 3868340L, Cy = 3684588L };
 
             transform2D18.Append(offset28);
             transform2D18.Append(extents28);
 
             shapeProperties42.Append(transform2D18);
 
-            TextBody textBody42 = new TextBody();
-            A.BodyProperties bodyProperties42 = new A.BodyProperties();
-            A.ListStyle listStyle42 = new A.ListStyle();
+            var textBody42 = new TextBody();
+            var bodyProperties42 = new A.BodyProperties();
+            var listStyle42 = new A.ListStyle();
 
-            A.Paragraph paragraph58 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties24 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph58 = new A.Paragraph();
+            var paragraphProperties24 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run34 = new A.Run();
+            var run34 = new A.Run();
 
-            A.RunProperties runProperties50 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text50 = new A.Text();
-            text50.Text = "마스터 텍스트 스타일 편집";
+            var runProperties50 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text50 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run34.Append(runProperties50);
             run34.Append(text50);
@@ -4881,14 +4975,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph58.Append(paragraphProperties24);
             paragraph58.Append(run34);
 
-            A.Paragraph paragraph59 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties25 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph59 = new A.Paragraph();
+            var paragraphProperties25 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run35 = new A.Run();
+            var run35 = new A.Run();
 
-            A.RunProperties runProperties51 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text51 = new A.Text();
-            text51.Text = "둘째 수준";
+            var runProperties51 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text51 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run35.Append(runProperties51);
             run35.Append(text51);
@@ -4896,14 +4992,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph59.Append(paragraphProperties25);
             paragraph59.Append(run35);
 
-            A.Paragraph paragraph60 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties26 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph60 = new A.Paragraph();
+            var paragraphProperties26 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run36 = new A.Run();
+            var run36 = new A.Run();
 
-            A.RunProperties runProperties52 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text52 = new A.Text();
-            text52.Text = "셋째 수준";
+            var runProperties52 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text52 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run36.Append(runProperties52);
             run36.Append(text52);
@@ -4911,14 +5009,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph60.Append(paragraphProperties26);
             paragraph60.Append(run36);
 
-            A.Paragraph paragraph61 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties27 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph61 = new A.Paragraph();
+            var paragraphProperties27 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run37 = new A.Run();
+            var run37 = new A.Run();
 
-            A.RunProperties runProperties53 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text53 = new A.Text();
-            text53.Text = "넷째 수준";
+            var runProperties53 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text53 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run37.Append(runProperties53);
             run37.Append(text53);
@@ -4926,18 +5026,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph61.Append(paragraphProperties27);
             paragraph61.Append(run37);
 
-            A.Paragraph paragraph62 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties28 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph62 = new A.Paragraph();
+            var paragraphProperties28 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run38 = new A.Run();
+            var run38 = new A.Run();
 
-            A.RunProperties runProperties54 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text54 = new A.Text();
-            text54.Text = "다섯째 수준";
+            var runProperties54 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text54 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run38.Append(runProperties54);
             run38.Append(text54);
-            A.EndParagraphRunProperties endParagraphRunProperties39 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties39 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph62.Append(paragraphProperties28);
             paragraph62.Append(run38);
@@ -4955,18 +5057,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape42.Append(shapeProperties42);
             shape42.Append(textBody42);
 
-            Shape shape43 = new Shape();
+            var shape43 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties43 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties53 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Text Placeholder 4" };
+            var nonVisualShapeProperties43 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties53 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Text Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties43 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks42 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties43 = new NonVisualShapeDrawingProperties();
+            var shapeLocks42 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties43.Append(shapeLocks42);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties53 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape42 = new PlaceholderShape() { Type = PlaceholderValues.Body, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)3U };
+            var applicationNonVisualDrawingProperties53 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape42 = new PlaceholderShape() { Type = PlaceholderValues.Body, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)3U };
 
             applicationNonVisualDrawingProperties53.Append(placeholderShape42);
 
@@ -4974,81 +5076,81 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties43.Append(nonVisualShapeDrawingProperties43);
             nonVisualShapeProperties43.Append(applicationNonVisualDrawingProperties53);
 
-            ShapeProperties shapeProperties43 = new ShapeProperties();
+            var shapeProperties43 = new ShapeProperties();
 
-            A.Transform2D transform2D19 = new A.Transform2D();
-            A.Offset offset29 = new A.Offset() { X = 4629150L, Y = 1681163L };
-            A.Extents extents29 = new A.Extents() { Cx = 3887391L, Cy = 823912L };
+            var transform2D19 = new A.Transform2D();
+            var offset29 = new A.Offset() { X = 4629150L, Y = 1681163L };
+            var extents29 = new A.Extents() { Cx = 3887391L, Cy = 823912L };
 
             transform2D19.Append(offset29);
             transform2D19.Append(extents29);
 
             shapeProperties43.Append(transform2D19);
 
-            TextBody textBody43 = new TextBody();
-            A.BodyProperties bodyProperties43 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
+            var textBody43 = new TextBody();
+            var bodyProperties43 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
 
-            A.ListStyle listStyle43 = new A.ListStyle();
+            var listStyle43 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties16 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
-            A.NoBullet noBullet38 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties82 = new A.DefaultRunProperties() { FontSize = 2400, Bold = true };
+            var level1ParagraphProperties16 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
+            var noBullet38 = new A.NoBullet();
+            var defaultRunProperties82 = new A.DefaultRunProperties() { FontSize = 2400, Bold = true };
 
             level1ParagraphProperties16.Append(noBullet38);
             level1ParagraphProperties16.Append(defaultRunProperties82);
 
-            A.Level2ParagraphProperties level2ParagraphProperties9 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
-            A.NoBullet noBullet39 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties83 = new A.DefaultRunProperties() { FontSize = 2000, Bold = true };
+            var level2ParagraphProperties9 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
+            var noBullet39 = new A.NoBullet();
+            var defaultRunProperties83 = new A.DefaultRunProperties() { FontSize = 2000, Bold = true };
 
             level2ParagraphProperties9.Append(noBullet39);
             level2ParagraphProperties9.Append(defaultRunProperties83);
 
-            A.Level3ParagraphProperties level3ParagraphProperties9 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
-            A.NoBullet noBullet40 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties84 = new A.DefaultRunProperties() { FontSize = 1800, Bold = true };
+            var level3ParagraphProperties9 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
+            var noBullet40 = new A.NoBullet();
+            var defaultRunProperties84 = new A.DefaultRunProperties() { FontSize = 1800, Bold = true };
 
             level3ParagraphProperties9.Append(noBullet40);
             level3ParagraphProperties9.Append(defaultRunProperties84);
 
-            A.Level4ParagraphProperties level4ParagraphProperties9 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
-            A.NoBullet noBullet41 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties85 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level4ParagraphProperties9 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
+            var noBullet41 = new A.NoBullet();
+            var defaultRunProperties85 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level4ParagraphProperties9.Append(noBullet41);
             level4ParagraphProperties9.Append(defaultRunProperties85);
 
-            A.Level5ParagraphProperties level5ParagraphProperties9 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
-            A.NoBullet noBullet42 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties86 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level5ParagraphProperties9 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
+            var noBullet42 = new A.NoBullet();
+            var defaultRunProperties86 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level5ParagraphProperties9.Append(noBullet42);
             level5ParagraphProperties9.Append(defaultRunProperties86);
 
-            A.Level6ParagraphProperties level6ParagraphProperties9 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
-            A.NoBullet noBullet43 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties87 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level6ParagraphProperties9 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
+            var noBullet43 = new A.NoBullet();
+            var defaultRunProperties87 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level6ParagraphProperties9.Append(noBullet43);
             level6ParagraphProperties9.Append(defaultRunProperties87);
 
-            A.Level7ParagraphProperties level7ParagraphProperties9 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
-            A.NoBullet noBullet44 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties88 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level7ParagraphProperties9 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
+            var noBullet44 = new A.NoBullet();
+            var defaultRunProperties88 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level7ParagraphProperties9.Append(noBullet44);
             level7ParagraphProperties9.Append(defaultRunProperties88);
 
-            A.Level8ParagraphProperties level8ParagraphProperties9 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
-            A.NoBullet noBullet45 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties89 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level8ParagraphProperties9 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
+            var noBullet45 = new A.NoBullet();
+            var defaultRunProperties89 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level8ParagraphProperties9.Append(noBullet45);
             level8ParagraphProperties9.Append(defaultRunProperties89);
 
-            A.Level9ParagraphProperties level9ParagraphProperties9 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
-            A.NoBullet noBullet46 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties90 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
+            var level9ParagraphProperties9 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
+            var noBullet46 = new A.NoBullet();
+            var defaultRunProperties90 = new A.DefaultRunProperties() { FontSize = 1600, Bold = true };
 
             level9ParagraphProperties9.Append(noBullet46);
             level9ParagraphProperties9.Append(defaultRunProperties90);
@@ -5063,14 +5165,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle43.Append(level8ParagraphProperties9);
             listStyle43.Append(level9ParagraphProperties9);
 
-            A.Paragraph paragraph63 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties29 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph63 = new A.Paragraph();
+            var paragraphProperties29 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run39 = new A.Run();
+            var run39 = new A.Run();
 
-            A.RunProperties runProperties55 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text55 = new A.Text();
-            text55.Text = "마스터 텍스트 스타일 편집";
+            var runProperties55 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text55 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run39.Append(runProperties55);
             run39.Append(text55);
@@ -5086,18 +5190,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape43.Append(shapeProperties43);
             shape43.Append(textBody43);
 
-            Shape shape44 = new Shape();
+            var shape44 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties44 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties54 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Content Placeholder 5" };
+            var nonVisualShapeProperties44 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties54 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Content Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties44 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks43 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties44 = new NonVisualShapeDrawingProperties();
+            var shapeLocks43 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties44.Append(shapeLocks43);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties54 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape43 = new PlaceholderShape() { Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)4U };
+            var applicationNonVisualDrawingProperties54 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape43 = new PlaceholderShape() { Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)4U };
 
             applicationNonVisualDrawingProperties54.Append(placeholderShape43);
 
@@ -5105,29 +5209,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties44.Append(nonVisualShapeDrawingProperties44);
             nonVisualShapeProperties44.Append(applicationNonVisualDrawingProperties54);
 
-            ShapeProperties shapeProperties44 = new ShapeProperties();
+            var shapeProperties44 = new ShapeProperties();
 
-            A.Transform2D transform2D20 = new A.Transform2D();
-            A.Offset offset30 = new A.Offset() { X = 4629150L, Y = 2505075L };
-            A.Extents extents30 = new A.Extents() { Cx = 3887391L, Cy = 3684588L };
+            var transform2D20 = new A.Transform2D();
+            var offset30 = new A.Offset() { X = 4629150L, Y = 2505075L };
+            var extents30 = new A.Extents() { Cx = 3887391L, Cy = 3684588L };
 
             transform2D20.Append(offset30);
             transform2D20.Append(extents30);
 
             shapeProperties44.Append(transform2D20);
 
-            TextBody textBody44 = new TextBody();
-            A.BodyProperties bodyProperties44 = new A.BodyProperties();
-            A.ListStyle listStyle44 = new A.ListStyle();
+            var textBody44 = new TextBody();
+            var bodyProperties44 = new A.BodyProperties();
+            var listStyle44 = new A.ListStyle();
 
-            A.Paragraph paragraph64 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties30 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph64 = new A.Paragraph();
+            var paragraphProperties30 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run40 = new A.Run();
+            var run40 = new A.Run();
 
-            A.RunProperties runProperties56 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text56 = new A.Text();
-            text56.Text = "마스터 텍스트 스타일 편집";
+            var runProperties56 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text56 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run40.Append(runProperties56);
             run40.Append(text56);
@@ -5135,14 +5241,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph64.Append(paragraphProperties30);
             paragraph64.Append(run40);
 
-            A.Paragraph paragraph65 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties31 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph65 = new A.Paragraph();
+            var paragraphProperties31 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run41 = new A.Run();
+            var run41 = new A.Run();
 
-            A.RunProperties runProperties57 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text57 = new A.Text();
-            text57.Text = "둘째 수준";
+            var runProperties57 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text57 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run41.Append(runProperties57);
             run41.Append(text57);
@@ -5150,14 +5258,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph65.Append(paragraphProperties31);
             paragraph65.Append(run41);
 
-            A.Paragraph paragraph66 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties32 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph66 = new A.Paragraph();
+            var paragraphProperties32 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run42 = new A.Run();
+            var run42 = new A.Run();
 
-            A.RunProperties runProperties58 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text58 = new A.Text();
-            text58.Text = "셋째 수준";
+            var runProperties58 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text58 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run42.Append(runProperties58);
             run42.Append(text58);
@@ -5165,14 +5275,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph66.Append(paragraphProperties32);
             paragraph66.Append(run42);
 
-            A.Paragraph paragraph67 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties33 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph67 = new A.Paragraph();
+            var paragraphProperties33 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run43 = new A.Run();
+            var run43 = new A.Run();
 
-            A.RunProperties runProperties59 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text59 = new A.Text();
-            text59.Text = "넷째 수준";
+            var runProperties59 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text59 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run43.Append(runProperties59);
             run43.Append(text59);
@@ -5180,18 +5292,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph67.Append(paragraphProperties33);
             paragraph67.Append(run43);
 
-            A.Paragraph paragraph68 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties34 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph68 = new A.Paragraph();
+            var paragraphProperties34 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run44 = new A.Run();
+            var run44 = new A.Run();
 
-            A.RunProperties runProperties60 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text60 = new A.Text();
-            text60.Text = "다섯째 수준";
+            var runProperties60 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text60 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run44.Append(runProperties60);
             run44.Append(text60);
-            A.EndParagraphRunProperties endParagraphRunProperties40 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties40 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph68.Append(paragraphProperties34);
             paragraph68.Append(run44);
@@ -5209,41 +5323,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape44.Append(shapeProperties44);
             shape44.Append(textBody44);
 
-            Shape shape45 = new Shape();
+            var shape45 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties45 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties55 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Date Placeholder 6" };
+            var nonVisualShapeProperties45 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties55 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Date Placeholder 6" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties45 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks44 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties45 = new NonVisualShapeDrawingProperties();
+            var shapeLocks44 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties45.Append(shapeLocks44);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties55 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape44 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties55 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape44 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties55.Append(placeholderShape44);
 
             nonVisualShapeProperties45.Append(nonVisualDrawingProperties55);
             nonVisualShapeProperties45.Append(nonVisualShapeDrawingProperties45);
             nonVisualShapeProperties45.Append(applicationNonVisualDrawingProperties55);
-            ShapeProperties shapeProperties45 = new ShapeProperties();
+            var shapeProperties45 = new ShapeProperties();
 
-            TextBody textBody45 = new TextBody();
-            A.BodyProperties bodyProperties45 = new A.BodyProperties();
-            A.ListStyle listStyle45 = new A.ListStyle();
+            var textBody45 = new TextBody();
+            var bodyProperties45 = new A.BodyProperties();
+            var listStyle45 = new A.ListStyle();
 
-            A.Paragraph paragraph69 = new A.Paragraph();
+            var paragraph69 = new A.Paragraph();
 
-            A.Field field17 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field17 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties61 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text61 = new A.Text();
-            text61.Text = "2023-11-08";
+            var runProperties61 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text61 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field17.Append(runProperties61);
             field17.Append(text61);
-            A.EndParagraphRunProperties endParagraphRunProperties41 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties41 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph69.Append(field17);
             paragraph69.Append(endParagraphRunProperties41);
@@ -5256,32 +5372,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape45.Append(shapeProperties45);
             shape45.Append(textBody45);
 
-            Shape shape46 = new Shape();
+            var shape46 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties46 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties56 = new NonVisualDrawingProperties() { Id = (UInt32Value)8U, Name = "Footer Placeholder 7" };
+            var nonVisualShapeProperties46 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties56 = new NonVisualDrawingProperties() { Id = (UInt32Value)8U, Name = "Footer Placeholder 7" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties46 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks45 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties46 = new NonVisualShapeDrawingProperties();
+            var shapeLocks45 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties46.Append(shapeLocks45);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties56 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape45 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties56 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape45 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties56.Append(placeholderShape45);
 
             nonVisualShapeProperties46.Append(nonVisualDrawingProperties56);
             nonVisualShapeProperties46.Append(nonVisualShapeDrawingProperties46);
             nonVisualShapeProperties46.Append(applicationNonVisualDrawingProperties56);
-            ShapeProperties shapeProperties46 = new ShapeProperties();
+            var shapeProperties46 = new ShapeProperties();
 
-            TextBody textBody46 = new TextBody();
-            A.BodyProperties bodyProperties46 = new A.BodyProperties();
-            A.ListStyle listStyle46 = new A.ListStyle();
+            var textBody46 = new TextBody();
+            var bodyProperties46 = new A.BodyProperties();
+            var listStyle46 = new A.ListStyle();
 
-            A.Paragraph paragraph70 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties42 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph70 = new A.Paragraph();
+            var endParagraphRunProperties42 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph70.Append(endParagraphRunProperties42);
 
@@ -5293,41 +5409,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape46.Append(shapeProperties46);
             shape46.Append(textBody46);
 
-            Shape shape47 = new Shape();
+            var shape47 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties47 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties57 = new NonVisualDrawingProperties() { Id = (UInt32Value)9U, Name = "Slide Number Placeholder 8" };
+            var nonVisualShapeProperties47 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties57 = new NonVisualDrawingProperties() { Id = (UInt32Value)9U, Name = "Slide Number Placeholder 8" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties47 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks46 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties47 = new NonVisualShapeDrawingProperties();
+            var shapeLocks46 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties47.Append(shapeLocks46);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties57 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape46 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties57 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape46 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties57.Append(placeholderShape46);
 
             nonVisualShapeProperties47.Append(nonVisualDrawingProperties57);
             nonVisualShapeProperties47.Append(nonVisualShapeDrawingProperties47);
             nonVisualShapeProperties47.Append(applicationNonVisualDrawingProperties57);
-            ShapeProperties shapeProperties47 = new ShapeProperties();
+            var shapeProperties47 = new ShapeProperties();
 
-            TextBody textBody47 = new TextBody();
-            A.BodyProperties bodyProperties47 = new A.BodyProperties();
-            A.ListStyle listStyle47 = new A.ListStyle();
+            var textBody47 = new TextBody();
+            var bodyProperties47 = new A.BodyProperties();
+            var listStyle47 = new A.ListStyle();
 
-            A.Paragraph paragraph71 = new A.Paragraph();
+            var paragraph71 = new A.Paragraph();
 
-            A.Field field18 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field18 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties62 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text62 = new A.Text();
-            text62.Text = "‹#›";
+            var runProperties62 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text62 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field18.Append(runProperties62);
             field18.Append(text62);
-            A.EndParagraphRunProperties endParagraphRunProperties43 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties43 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph71.Append(field18);
             paragraph71.Append(endParagraphRunProperties43);
@@ -5351,11 +5469,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree10.Append(shape46);
             shapeTree10.Append(shape47);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList9 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList9 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension9 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension9 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId9 = new P14.CreationId() { Val = (UInt32Value)4241555500U };
+            var creationId9 = new P14.CreationId() { Val = (UInt32Value)4241555500U };
             creationId9.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension9.Append(creationId9);
@@ -5365,8 +5483,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData10.Append(shapeTree10);
             commonSlideData10.Append(commonSlideDataExtensionList9);
 
-            ColorMapOverride colorMapOverride9 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping9 = new A.MasterColorMapping();
+            var colorMapOverride9 = new ColorMapOverride();
+            var masterColorMapping9 = new A.MasterColorMapping();
 
             colorMapOverride9.Append(masterColorMapping9);
 
@@ -5379,31 +5497,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart9.
         private void GenerateSlideLayoutPart9Content(SlideLayoutPart slideLayoutPart9)
         {
-            SlideLayout slideLayout9 = new SlideLayout() { Type = SlideLayoutValues.VerticalText, Preserve = true };
+            var slideLayout9 = new SlideLayout() { Type = SlideLayoutValues.VerticalText, Preserve = true };
             slideLayout9.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout9.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout9.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData11 = new CommonSlideData() { Name = "제목 및 세로 텍스트" };
+            var commonSlideData11 = new CommonSlideData() { Name = "제목 및 세로 텍스트" };
 
-            ShapeTree shapeTree11 = new ShapeTree();
+            var shapeTree11 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties11 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties58 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties11 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties58 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties11 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties58 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties11 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties58 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties11.Append(nonVisualDrawingProperties58);
             nonVisualGroupShapeProperties11.Append(nonVisualGroupShapeDrawingProperties11);
             nonVisualGroupShapeProperties11.Append(applicationNonVisualDrawingProperties58);
 
-            GroupShapeProperties groupShapeProperties11 = new GroupShapeProperties();
+            var groupShapeProperties11 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup11 = new A.TransformGroup();
-            A.Offset offset31 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents31 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset11 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents11 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup11 = new A.TransformGroup();
+            var offset31 = new A.Offset() { X = 0L, Y = 0L };
+            var extents31 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset11 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents11 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup11.Append(offset31);
             transformGroup11.Append(extents31);
@@ -5412,41 +5530,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties11.Append(transformGroup11);
 
-            Shape shape48 = new Shape();
+            var shape48 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties48 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties59 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties48 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties59 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties48 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks47 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties48 = new NonVisualShapeDrawingProperties();
+            var shapeLocks47 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties48.Append(shapeLocks47);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties59 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape47 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties59 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape47 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties59.Append(placeholderShape47);
 
             nonVisualShapeProperties48.Append(nonVisualDrawingProperties59);
             nonVisualShapeProperties48.Append(nonVisualShapeDrawingProperties48);
             nonVisualShapeProperties48.Append(applicationNonVisualDrawingProperties59);
-            ShapeProperties shapeProperties48 = new ShapeProperties();
+            var shapeProperties48 = new ShapeProperties();
 
-            TextBody textBody48 = new TextBody();
-            A.BodyProperties bodyProperties48 = new A.BodyProperties();
-            A.ListStyle listStyle48 = new A.ListStyle();
+            var textBody48 = new TextBody();
+            var bodyProperties48 = new A.BodyProperties();
+            var listStyle48 = new A.ListStyle();
 
-            A.Paragraph paragraph72 = new A.Paragraph();
+            var paragraph72 = new A.Paragraph();
 
-            A.Run run45 = new A.Run();
+            var run45 = new A.Run();
 
-            A.RunProperties runProperties63 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text63 = new A.Text();
-            text63.Text = "마스터 제목 스타일 편집";
+            var runProperties63 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text63 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run45.Append(runProperties63);
             run45.Append(text63);
-            A.EndParagraphRunProperties endParagraphRunProperties44 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties44 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph72.Append(run45);
             paragraph72.Append(endParagraphRunProperties44);
@@ -5459,38 +5579,40 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape48.Append(shapeProperties48);
             shape48.Append(textBody48);
 
-            Shape shape49 = new Shape();
+            var shape49 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties49 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties60 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Vertical Text Placeholder 2" };
+            var nonVisualShapeProperties49 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties60 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Vertical Text Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties49 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks48 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties49 = new NonVisualShapeDrawingProperties();
+            var shapeLocks48 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties49.Append(shapeLocks48);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties60 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape48 = new PlaceholderShape() { Type = PlaceholderValues.Body, Orientation = DirectionValues.Vertical, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties60 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape48 = new PlaceholderShape() { Type = PlaceholderValues.Body, Orientation = DirectionValues.Vertical, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties60.Append(placeholderShape48);
 
             nonVisualShapeProperties49.Append(nonVisualDrawingProperties60);
             nonVisualShapeProperties49.Append(nonVisualShapeDrawingProperties49);
             nonVisualShapeProperties49.Append(applicationNonVisualDrawingProperties60);
-            ShapeProperties shapeProperties49 = new ShapeProperties();
+            var shapeProperties49 = new ShapeProperties();
 
-            TextBody textBody49 = new TextBody();
-            A.BodyProperties bodyProperties49 = new A.BodyProperties() { Vertical = A.TextVerticalValues.EastAsianVetical };
-            A.ListStyle listStyle49 = new A.ListStyle();
+            var textBody49 = new TextBody();
+            var bodyProperties49 = new A.BodyProperties() { Vertical = A.TextVerticalValues.EastAsianVetical };
+            var listStyle49 = new A.ListStyle();
 
-            A.Paragraph paragraph73 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties35 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph73 = new A.Paragraph();
+            var paragraphProperties35 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run46 = new A.Run();
+            var run46 = new A.Run();
 
-            A.RunProperties runProperties64 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text64 = new A.Text();
-            text64.Text = "마스터 텍스트 스타일 편집";
+            var runProperties64 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text64 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run46.Append(runProperties64);
             run46.Append(text64);
@@ -5498,14 +5620,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph73.Append(paragraphProperties35);
             paragraph73.Append(run46);
 
-            A.Paragraph paragraph74 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties36 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph74 = new A.Paragraph();
+            var paragraphProperties36 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run47 = new A.Run();
+            var run47 = new A.Run();
 
-            A.RunProperties runProperties65 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text65 = new A.Text();
-            text65.Text = "둘째 수준";
+            var runProperties65 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text65 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run47.Append(runProperties65);
             run47.Append(text65);
@@ -5513,14 +5637,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph74.Append(paragraphProperties36);
             paragraph74.Append(run47);
 
-            A.Paragraph paragraph75 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties37 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph75 = new A.Paragraph();
+            var paragraphProperties37 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run48 = new A.Run();
+            var run48 = new A.Run();
 
-            A.RunProperties runProperties66 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text66 = new A.Text();
-            text66.Text = "셋째 수준";
+            var runProperties66 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text66 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run48.Append(runProperties66);
             run48.Append(text66);
@@ -5528,14 +5654,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph75.Append(paragraphProperties37);
             paragraph75.Append(run48);
 
-            A.Paragraph paragraph76 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties38 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph76 = new A.Paragraph();
+            var paragraphProperties38 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run49 = new A.Run();
+            var run49 = new A.Run();
 
-            A.RunProperties runProperties67 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text67 = new A.Text();
-            text67.Text = "넷째 수준";
+            var runProperties67 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text67 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run49.Append(runProperties67);
             run49.Append(text67);
@@ -5543,18 +5671,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph76.Append(paragraphProperties38);
             paragraph76.Append(run49);
 
-            A.Paragraph paragraph77 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties39 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph77 = new A.Paragraph();
+            var paragraphProperties39 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run50 = new A.Run();
+            var run50 = new A.Run();
 
-            A.RunProperties runProperties68 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text68 = new A.Text();
-            text68.Text = "다섯째 수준";
+            var runProperties68 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text68 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run50.Append(runProperties68);
             run50.Append(text68);
-            A.EndParagraphRunProperties endParagraphRunProperties45 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties45 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph77.Append(paragraphProperties39);
             paragraph77.Append(run50);
@@ -5572,41 +5702,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape49.Append(shapeProperties49);
             shape49.Append(textBody49);
 
-            Shape shape50 = new Shape();
+            var shape50 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties50 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties61 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
+            var nonVisualShapeProperties50 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties61 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Date Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties50 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks49 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties50 = new NonVisualShapeDrawingProperties();
+            var shapeLocks49 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties50.Append(shapeLocks49);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties61 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape49 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties61 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape49 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties61.Append(placeholderShape49);
 
             nonVisualShapeProperties50.Append(nonVisualDrawingProperties61);
             nonVisualShapeProperties50.Append(nonVisualShapeDrawingProperties50);
             nonVisualShapeProperties50.Append(applicationNonVisualDrawingProperties61);
-            ShapeProperties shapeProperties50 = new ShapeProperties();
+            var shapeProperties50 = new ShapeProperties();
 
-            TextBody textBody50 = new TextBody();
-            A.BodyProperties bodyProperties50 = new A.BodyProperties();
-            A.ListStyle listStyle50 = new A.ListStyle();
+            var textBody50 = new TextBody();
+            var bodyProperties50 = new A.BodyProperties();
+            var listStyle50 = new A.ListStyle();
 
-            A.Paragraph paragraph78 = new A.Paragraph();
+            var paragraph78 = new A.Paragraph();
 
-            A.Field field19 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field19 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties69 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text69 = new A.Text();
-            text69.Text = "2023-11-08";
+            var runProperties69 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text69 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field19.Append(runProperties69);
             field19.Append(text69);
-            A.EndParagraphRunProperties endParagraphRunProperties46 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties46 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph78.Append(field19);
             paragraph78.Append(endParagraphRunProperties46);
@@ -5619,32 +5751,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape50.Append(shapeProperties50);
             shape50.Append(textBody50);
 
-            Shape shape51 = new Shape();
+            var shape51 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties51 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties62 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
+            var nonVisualShapeProperties51 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties62 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Footer Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties51 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks50 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties51 = new NonVisualShapeDrawingProperties();
+            var shapeLocks50 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties51.Append(shapeLocks50);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties62 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape50 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties62 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape50 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties62.Append(placeholderShape50);
 
             nonVisualShapeProperties51.Append(nonVisualDrawingProperties62);
             nonVisualShapeProperties51.Append(nonVisualShapeDrawingProperties51);
             nonVisualShapeProperties51.Append(applicationNonVisualDrawingProperties62);
-            ShapeProperties shapeProperties51 = new ShapeProperties();
+            var shapeProperties51 = new ShapeProperties();
 
-            TextBody textBody51 = new TextBody();
-            A.BodyProperties bodyProperties51 = new A.BodyProperties();
-            A.ListStyle listStyle51 = new A.ListStyle();
+            var textBody51 = new TextBody();
+            var bodyProperties51 = new A.BodyProperties();
+            var listStyle51 = new A.ListStyle();
 
-            A.Paragraph paragraph79 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties47 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph79 = new A.Paragraph();
+            var endParagraphRunProperties47 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph79.Append(endParagraphRunProperties47);
 
@@ -5656,41 +5788,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape51.Append(shapeProperties51);
             shape51.Append(textBody51);
 
-            Shape shape52 = new Shape();
+            var shape52 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties52 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties63 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
+            var nonVisualShapeProperties52 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties63 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Slide Number Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties52 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks51 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties52 = new NonVisualShapeDrawingProperties();
+            var shapeLocks51 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties52.Append(shapeLocks51);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties63 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape51 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties63 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape51 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties63.Append(placeholderShape51);
 
             nonVisualShapeProperties52.Append(nonVisualDrawingProperties63);
             nonVisualShapeProperties52.Append(nonVisualShapeDrawingProperties52);
             nonVisualShapeProperties52.Append(applicationNonVisualDrawingProperties63);
-            ShapeProperties shapeProperties52 = new ShapeProperties();
+            var shapeProperties52 = new ShapeProperties();
 
-            TextBody textBody52 = new TextBody();
-            A.BodyProperties bodyProperties52 = new A.BodyProperties();
-            A.ListStyle listStyle52 = new A.ListStyle();
+            var textBody52 = new TextBody();
+            var bodyProperties52 = new A.BodyProperties();
+            var listStyle52 = new A.ListStyle();
 
-            A.Paragraph paragraph80 = new A.Paragraph();
+            var paragraph80 = new A.Paragraph();
 
-            A.Field field20 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field20 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties70 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text70 = new A.Text();
-            text70.Text = "‹#›";
+            var runProperties70 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text70 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field20.Append(runProperties70);
             field20.Append(text70);
-            A.EndParagraphRunProperties endParagraphRunProperties48 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties48 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph80.Append(field20);
             paragraph80.Append(endParagraphRunProperties48);
@@ -5711,11 +5845,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree11.Append(shape51);
             shapeTree11.Append(shape52);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList10 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList10 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension10 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension10 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId10 = new P14.CreationId() { Val = (UInt32Value)1010271818U };
+            var creationId10 = new P14.CreationId() { Val = (UInt32Value)1010271818U };
             creationId10.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension10.Append(creationId10);
@@ -5725,8 +5859,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData11.Append(shapeTree11);
             commonSlideData11.Append(commonSlideDataExtensionList10);
 
-            ColorMapOverride colorMapOverride10 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping10 = new A.MasterColorMapping();
+            var colorMapOverride10 = new ColorMapOverride();
+            var masterColorMapping10 = new A.MasterColorMapping();
 
             colorMapOverride10.Append(masterColorMapping10);
 
@@ -5739,31 +5873,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart10.
         private void GenerateSlideLayoutPart10Content(SlideLayoutPart slideLayoutPart10)
         {
-            SlideLayout slideLayout10 = new SlideLayout() { Type = SlideLayoutValues.TwoObjects, Preserve = true };
+            var slideLayout10 = new SlideLayout() { Type = SlideLayoutValues.TwoObjects, Preserve = true };
             slideLayout10.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout10.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout10.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData12 = new CommonSlideData() { Name = "콘텐츠 2개" };
+            var commonSlideData12 = new CommonSlideData() { Name = "콘텐츠 2개" };
 
-            ShapeTree shapeTree12 = new ShapeTree();
+            var shapeTree12 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties12 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties64 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties12 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties64 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties12 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties64 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties12 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties64 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties12.Append(nonVisualDrawingProperties64);
             nonVisualGroupShapeProperties12.Append(nonVisualGroupShapeDrawingProperties12);
             nonVisualGroupShapeProperties12.Append(applicationNonVisualDrawingProperties64);
 
-            GroupShapeProperties groupShapeProperties12 = new GroupShapeProperties();
+            var groupShapeProperties12 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup12 = new A.TransformGroup();
-            A.Offset offset32 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents32 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset12 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents12 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup12 = new A.TransformGroup();
+            var offset32 = new A.Offset() { X = 0L, Y = 0L };
+            var extents32 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset12 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents12 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup12.Append(offset32);
             transformGroup12.Append(extents32);
@@ -5772,41 +5906,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties12.Append(transformGroup12);
 
-            Shape shape53 = new Shape();
+            var shape53 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties53 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties65 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties53 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties65 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties53 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks52 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties53 = new NonVisualShapeDrawingProperties();
+            var shapeLocks52 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties53.Append(shapeLocks52);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties65 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape52 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties65 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape52 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties65.Append(placeholderShape52);
 
             nonVisualShapeProperties53.Append(nonVisualDrawingProperties65);
             nonVisualShapeProperties53.Append(nonVisualShapeDrawingProperties53);
             nonVisualShapeProperties53.Append(applicationNonVisualDrawingProperties65);
-            ShapeProperties shapeProperties53 = new ShapeProperties();
+            var shapeProperties53 = new ShapeProperties();
 
-            TextBody textBody53 = new TextBody();
-            A.BodyProperties bodyProperties53 = new A.BodyProperties();
-            A.ListStyle listStyle53 = new A.ListStyle();
+            var textBody53 = new TextBody();
+            var bodyProperties53 = new A.BodyProperties();
+            var listStyle53 = new A.ListStyle();
 
-            A.Paragraph paragraph81 = new A.Paragraph();
+            var paragraph81 = new A.Paragraph();
 
-            A.Run run51 = new A.Run();
+            var run51 = new A.Run();
 
-            A.RunProperties runProperties71 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text71 = new A.Text();
-            text71.Text = "마스터 제목 스타일 편집";
+            var runProperties71 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text71 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run51.Append(runProperties71);
             run51.Append(text71);
-            A.EndParagraphRunProperties endParagraphRunProperties49 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties49 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph81.Append(run51);
             paragraph81.Append(endParagraphRunProperties49);
@@ -5819,18 +5955,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape53.Append(shapeProperties53);
             shape53.Append(textBody53);
 
-            Shape shape54 = new Shape();
+            var shape54 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties54 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties66 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Content Placeholder 2" };
+            var nonVisualShapeProperties54 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties66 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Content Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties54 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks53 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties54 = new NonVisualShapeDrawingProperties();
+            var shapeLocks53 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties54.Append(shapeLocks53);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties66 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape53 = new PlaceholderShape() { Size = PlaceholderSizeValues.Half, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties66 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape53 = new PlaceholderShape() { Size = PlaceholderSizeValues.Half, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties66.Append(placeholderShape53);
 
@@ -5838,29 +5974,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties54.Append(nonVisualShapeDrawingProperties54);
             nonVisualShapeProperties54.Append(applicationNonVisualDrawingProperties66);
 
-            ShapeProperties shapeProperties54 = new ShapeProperties();
+            var shapeProperties54 = new ShapeProperties();
 
-            A.Transform2D transform2D21 = new A.Transform2D();
-            A.Offset offset33 = new A.Offset() { X = 628650L, Y = 1825625L };
-            A.Extents extents33 = new A.Extents() { Cx = 3886200L, Cy = 4351338L };
+            var transform2D21 = new A.Transform2D();
+            var offset33 = new A.Offset() { X = 628650L, Y = 1825625L };
+            var extents33 = new A.Extents() { Cx = 3886200L, Cy = 4351338L };
 
             transform2D21.Append(offset33);
             transform2D21.Append(extents33);
 
             shapeProperties54.Append(transform2D21);
 
-            TextBody textBody54 = new TextBody();
-            A.BodyProperties bodyProperties54 = new A.BodyProperties();
-            A.ListStyle listStyle54 = new A.ListStyle();
+            var textBody54 = new TextBody();
+            var bodyProperties54 = new A.BodyProperties();
+            var listStyle54 = new A.ListStyle();
 
-            A.Paragraph paragraph82 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties40 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph82 = new A.Paragraph();
+            var paragraphProperties40 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run52 = new A.Run();
+            var run52 = new A.Run();
 
-            A.RunProperties runProperties72 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text72 = new A.Text();
-            text72.Text = "마스터 텍스트 스타일 편집";
+            var runProperties72 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text72 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run52.Append(runProperties72);
             run52.Append(text72);
@@ -5868,14 +6006,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph82.Append(paragraphProperties40);
             paragraph82.Append(run52);
 
-            A.Paragraph paragraph83 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties41 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph83 = new A.Paragraph();
+            var paragraphProperties41 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run53 = new A.Run();
+            var run53 = new A.Run();
 
-            A.RunProperties runProperties73 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text73 = new A.Text();
-            text73.Text = "둘째 수준";
+            var runProperties73 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text73 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run53.Append(runProperties73);
             run53.Append(text73);
@@ -5883,14 +6023,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph83.Append(paragraphProperties41);
             paragraph83.Append(run53);
 
-            A.Paragraph paragraph84 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties42 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph84 = new A.Paragraph();
+            var paragraphProperties42 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run54 = new A.Run();
+            var run54 = new A.Run();
 
-            A.RunProperties runProperties74 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text74 = new A.Text();
-            text74.Text = "셋째 수준";
+            var runProperties74 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text74 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run54.Append(runProperties74);
             run54.Append(text74);
@@ -5898,14 +6040,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph84.Append(paragraphProperties42);
             paragraph84.Append(run54);
 
-            A.Paragraph paragraph85 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties43 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph85 = new A.Paragraph();
+            var paragraphProperties43 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run55 = new A.Run();
+            var run55 = new A.Run();
 
-            A.RunProperties runProperties75 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text75 = new A.Text();
-            text75.Text = "넷째 수준";
+            var runProperties75 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text75 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run55.Append(runProperties75);
             run55.Append(text75);
@@ -5913,18 +6057,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph85.Append(paragraphProperties43);
             paragraph85.Append(run55);
 
-            A.Paragraph paragraph86 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties44 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph86 = new A.Paragraph();
+            var paragraphProperties44 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run56 = new A.Run();
+            var run56 = new A.Run();
 
-            A.RunProperties runProperties76 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text76 = new A.Text();
-            text76.Text = "다섯째 수준";
+            var runProperties76 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text76 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run56.Append(runProperties76);
             run56.Append(text76);
-            A.EndParagraphRunProperties endParagraphRunProperties50 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties50 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph86.Append(paragraphProperties44);
             paragraph86.Append(run56);
@@ -5942,18 +6088,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape54.Append(shapeProperties54);
             shape54.Append(textBody54);
 
-            Shape shape55 = new Shape();
+            var shape55 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties55 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties67 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Content Placeholder 3" };
+            var nonVisualShapeProperties55 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties67 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Content Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties55 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks54 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties55 = new NonVisualShapeDrawingProperties();
+            var shapeLocks54 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties55.Append(shapeLocks54);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties67 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape54 = new PlaceholderShape() { Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
+            var applicationNonVisualDrawingProperties67 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape54 = new PlaceholderShape() { Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
 
             applicationNonVisualDrawingProperties67.Append(placeholderShape54);
 
@@ -5961,29 +6107,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties55.Append(nonVisualShapeDrawingProperties55);
             nonVisualShapeProperties55.Append(applicationNonVisualDrawingProperties67);
 
-            ShapeProperties shapeProperties55 = new ShapeProperties();
+            var shapeProperties55 = new ShapeProperties();
 
-            A.Transform2D transform2D22 = new A.Transform2D();
-            A.Offset offset34 = new A.Offset() { X = 4629150L, Y = 1825625L };
-            A.Extents extents34 = new A.Extents() { Cx = 3886200L, Cy = 4351338L };
+            var transform2D22 = new A.Transform2D();
+            var offset34 = new A.Offset() { X = 4629150L, Y = 1825625L };
+            var extents34 = new A.Extents() { Cx = 3886200L, Cy = 4351338L };
 
             transform2D22.Append(offset34);
             transform2D22.Append(extents34);
 
             shapeProperties55.Append(transform2D22);
 
-            TextBody textBody55 = new TextBody();
-            A.BodyProperties bodyProperties55 = new A.BodyProperties();
-            A.ListStyle listStyle55 = new A.ListStyle();
+            var textBody55 = new TextBody();
+            var bodyProperties55 = new A.BodyProperties();
+            var listStyle55 = new A.ListStyle();
 
-            A.Paragraph paragraph87 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties45 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph87 = new A.Paragraph();
+            var paragraphProperties45 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run57 = new A.Run();
+            var run57 = new A.Run();
 
-            A.RunProperties runProperties77 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text77 = new A.Text();
-            text77.Text = "마스터 텍스트 스타일 편집";
+            var runProperties77 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text77 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run57.Append(runProperties77);
             run57.Append(text77);
@@ -5991,14 +6139,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph87.Append(paragraphProperties45);
             paragraph87.Append(run57);
 
-            A.Paragraph paragraph88 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties46 = new A.ParagraphProperties() { Level = 1 };
+            var paragraph88 = new A.Paragraph();
+            var paragraphProperties46 = new A.ParagraphProperties() { Level = 1 };
 
-            A.Run run58 = new A.Run();
+            var run58 = new A.Run();
 
-            A.RunProperties runProperties78 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text78 = new A.Text();
-            text78.Text = "둘째 수준";
+            var runProperties78 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text78 = new A.Text
+            {
+                Text = "둘째 수준"
+            };
 
             run58.Append(runProperties78);
             run58.Append(text78);
@@ -6006,15 +6156,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph88.Append(paragraphProperties46);
             paragraph88.Append(run58);
 
-            A.Paragraph paragraph89 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties47 = new A.ParagraphProperties() { Level = 2 };
+            var paragraph89 = new A.Paragraph();
+            var paragraphProperties47 = new A.ParagraphProperties() { Level = 2 };
 
-            A.Run run59 = new A.Run();
+            var run59 = new A.Run();
 
-            A.RunProperties runProperties79 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var runProperties79 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
-            A.Text text79 = new A.Text();
-            text79.Text = "셋째 수준";
+            var text79 = new A.Text
+            {
+                Text = "셋째 수준"
+            };
 
             run59.Append(runProperties79);
             run59.Append(text79);
@@ -6022,14 +6174,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph89.Append(paragraphProperties47);
             paragraph89.Append(run59);
 
-            A.Paragraph paragraph90 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties48 = new A.ParagraphProperties() { Level = 3 };
+            var paragraph90 = new A.Paragraph();
+            var paragraphProperties48 = new A.ParagraphProperties() { Level = 3 };
 
-            A.Run run60 = new A.Run();
+            var run60 = new A.Run();
 
-            A.RunProperties runProperties80 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text80 = new A.Text();
-            text80.Text = "넷째 수준";
+            var runProperties80 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text80 = new A.Text
+            {
+                Text = "넷째 수준"
+            };
 
             run60.Append(runProperties80);
             run60.Append(text80);
@@ -6037,18 +6191,20 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             paragraph90.Append(paragraphProperties48);
             paragraph90.Append(run60);
 
-            A.Paragraph paragraph91 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties49 = new A.ParagraphProperties() { Level = 4 };
+            var paragraph91 = new A.Paragraph();
+            var paragraphProperties49 = new A.ParagraphProperties() { Level = 4 };
 
-            A.Run run61 = new A.Run();
+            var run61 = new A.Run();
 
-            A.RunProperties runProperties81 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text81 = new A.Text();
-            text81.Text = "다섯째 수준";
+            var runProperties81 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text81 = new A.Text
+            {
+                Text = "다섯째 수준"
+            };
 
             run61.Append(runProperties81);
             run61.Append(text81);
-            A.EndParagraphRunProperties endParagraphRunProperties51 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties51 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph91.Append(paragraphProperties49);
             paragraph91.Append(run61);
@@ -6066,41 +6222,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape55.Append(shapeProperties55);
             shape55.Append(textBody55);
 
-            Shape shape56 = new Shape();
+            var shape56 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties56 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties68 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Date Placeholder 4" };
+            var nonVisualShapeProperties56 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties68 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Date Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties56 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks55 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties56 = new NonVisualShapeDrawingProperties();
+            var shapeLocks55 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties56.Append(shapeLocks55);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties68 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape55 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties68 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape55 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties68.Append(placeholderShape55);
 
             nonVisualShapeProperties56.Append(nonVisualDrawingProperties68);
             nonVisualShapeProperties56.Append(nonVisualShapeDrawingProperties56);
             nonVisualShapeProperties56.Append(applicationNonVisualDrawingProperties68);
-            ShapeProperties shapeProperties56 = new ShapeProperties();
+            var shapeProperties56 = new ShapeProperties();
 
-            TextBody textBody56 = new TextBody();
-            A.BodyProperties bodyProperties56 = new A.BodyProperties();
-            A.ListStyle listStyle56 = new A.ListStyle();
+            var textBody56 = new TextBody();
+            var bodyProperties56 = new A.BodyProperties();
+            var listStyle56 = new A.ListStyle();
 
-            A.Paragraph paragraph92 = new A.Paragraph();
+            var paragraph92 = new A.Paragraph();
 
-            A.Field field21 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field21 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties82 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text82 = new A.Text();
-            text82.Text = "2023-11-08";
+            var runProperties82 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text82 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field21.Append(runProperties82);
             field21.Append(text82);
-            A.EndParagraphRunProperties endParagraphRunProperties52 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties52 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph92.Append(field21);
             paragraph92.Append(endParagraphRunProperties52);
@@ -6113,32 +6271,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape56.Append(shapeProperties56);
             shape56.Append(textBody56);
 
-            Shape shape57 = new Shape();
+            var shape57 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties57 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties69 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Footer Placeholder 5" };
+            var nonVisualShapeProperties57 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties69 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Footer Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties57 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks56 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties57 = new NonVisualShapeDrawingProperties();
+            var shapeLocks56 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties57.Append(shapeLocks56);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties69 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape56 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties69 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape56 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties69.Append(placeholderShape56);
 
             nonVisualShapeProperties57.Append(nonVisualDrawingProperties69);
             nonVisualShapeProperties57.Append(nonVisualShapeDrawingProperties57);
             nonVisualShapeProperties57.Append(applicationNonVisualDrawingProperties69);
-            ShapeProperties shapeProperties57 = new ShapeProperties();
+            var shapeProperties57 = new ShapeProperties();
 
-            TextBody textBody57 = new TextBody();
-            A.BodyProperties bodyProperties57 = new A.BodyProperties();
-            A.ListStyle listStyle57 = new A.ListStyle();
+            var textBody57 = new TextBody();
+            var bodyProperties57 = new A.BodyProperties();
+            var listStyle57 = new A.ListStyle();
 
-            A.Paragraph paragraph93 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties53 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph93 = new A.Paragraph();
+            var endParagraphRunProperties53 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph93.Append(endParagraphRunProperties53);
 
@@ -6150,41 +6308,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape57.Append(shapeProperties57);
             shape57.Append(textBody57);
 
-            Shape shape58 = new Shape();
+            var shape58 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties58 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties70 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Slide Number Placeholder 6" };
+            var nonVisualShapeProperties58 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties70 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Slide Number Placeholder 6" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties58 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks57 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties58 = new NonVisualShapeDrawingProperties();
+            var shapeLocks57 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties58.Append(shapeLocks57);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties70 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape57 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties70 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape57 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties70.Append(placeholderShape57);
 
             nonVisualShapeProperties58.Append(nonVisualDrawingProperties70);
             nonVisualShapeProperties58.Append(nonVisualShapeDrawingProperties58);
             nonVisualShapeProperties58.Append(applicationNonVisualDrawingProperties70);
-            ShapeProperties shapeProperties58 = new ShapeProperties();
+            var shapeProperties58 = new ShapeProperties();
 
-            TextBody textBody58 = new TextBody();
-            A.BodyProperties bodyProperties58 = new A.BodyProperties();
-            A.ListStyle listStyle58 = new A.ListStyle();
+            var textBody58 = new TextBody();
+            var bodyProperties58 = new A.BodyProperties();
+            var listStyle58 = new A.ListStyle();
 
-            A.Paragraph paragraph94 = new A.Paragraph();
+            var paragraph94 = new A.Paragraph();
 
-            A.Field field22 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field22 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties83 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text83 = new A.Text();
-            text83.Text = "‹#›";
+            var runProperties83 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text83 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field22.Append(runProperties83);
             field22.Append(text83);
-            A.EndParagraphRunProperties endParagraphRunProperties54 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties54 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph94.Append(field22);
             paragraph94.Append(endParagraphRunProperties54);
@@ -6206,11 +6366,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree12.Append(shape57);
             shapeTree12.Append(shape58);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList11 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList11 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension11 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension11 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId11 = new P14.CreationId() { Val = (UInt32Value)2114421887U };
+            var creationId11 = new P14.CreationId() { Val = (UInt32Value)2114421887U };
             creationId11.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension11.Append(creationId11);
@@ -6220,8 +6380,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData12.Append(shapeTree12);
             commonSlideData12.Append(commonSlideDataExtensionList11);
 
-            ColorMapOverride colorMapOverride11 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping11 = new A.MasterColorMapping();
+            var colorMapOverride11 = new ColorMapOverride();
+            var masterColorMapping11 = new A.MasterColorMapping();
 
             colorMapOverride11.Append(masterColorMapping11);
 
@@ -6234,31 +6394,31 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
         // Generates content of slideLayoutPart11.
         private void GenerateSlideLayoutPart11Content(SlideLayoutPart slideLayoutPart11)
         {
-            SlideLayout slideLayout11 = new SlideLayout() { Type = SlideLayoutValues.PictureText, Preserve = true };
+            var slideLayout11 = new SlideLayout() { Type = SlideLayoutValues.PictureText, Preserve = true };
             slideLayout11.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             slideLayout11.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             slideLayout11.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
 
-            CommonSlideData commonSlideData13 = new CommonSlideData() { Name = "캡션 있는 그림" };
+            var commonSlideData13 = new CommonSlideData() { Name = "캡션 있는 그림" };
 
-            ShapeTree shapeTree13 = new ShapeTree();
+            var shapeTree13 = new ShapeTree();
 
-            NonVisualGroupShapeProperties nonVisualGroupShapeProperties13 = new NonVisualGroupShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties71 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
-            NonVisualGroupShapeDrawingProperties nonVisualGroupShapeDrawingProperties13 = new NonVisualGroupShapeDrawingProperties();
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties71 = new ApplicationNonVisualDrawingProperties();
+            var nonVisualGroupShapeProperties13 = new NonVisualGroupShapeProperties();
+            var nonVisualDrawingProperties71 = new NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" };
+            var nonVisualGroupShapeDrawingProperties13 = new NonVisualGroupShapeDrawingProperties();
+            var applicationNonVisualDrawingProperties71 = new ApplicationNonVisualDrawingProperties();
 
             nonVisualGroupShapeProperties13.Append(nonVisualDrawingProperties71);
             nonVisualGroupShapeProperties13.Append(nonVisualGroupShapeDrawingProperties13);
             nonVisualGroupShapeProperties13.Append(applicationNonVisualDrawingProperties71);
 
-            GroupShapeProperties groupShapeProperties13 = new GroupShapeProperties();
+            var groupShapeProperties13 = new GroupShapeProperties();
 
-            A.TransformGroup transformGroup13 = new A.TransformGroup();
-            A.Offset offset35 = new A.Offset() { X = 0L, Y = 0L };
-            A.Extents extents35 = new A.Extents() { Cx = 0L, Cy = 0L };
-            A.ChildOffset childOffset13 = new A.ChildOffset() { X = 0L, Y = 0L };
-            A.ChildExtents childExtents13 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
+            var transformGroup13 = new A.TransformGroup();
+            var offset35 = new A.Offset() { X = 0L, Y = 0L };
+            var extents35 = new A.Extents() { Cx = 0L, Cy = 0L };
+            var childOffset13 = new A.ChildOffset() { X = 0L, Y = 0L };
+            var childExtents13 = new A.ChildExtents() { Cx = 0L, Cy = 0L };
 
             transformGroup13.Append(offset35);
             transformGroup13.Append(extents35);
@@ -6267,18 +6427,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
 
             groupShapeProperties13.Append(transformGroup13);
 
-            Shape shape59 = new Shape();
+            var shape59 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties59 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties72 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
+            var nonVisualShapeProperties59 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties72 = new NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Title 1" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties59 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks58 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties59 = new NonVisualShapeDrawingProperties();
+            var shapeLocks58 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties59.Append(shapeLocks58);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties72 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape58 = new PlaceholderShape() { Type = PlaceholderValues.Title };
+            var applicationNonVisualDrawingProperties72 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape58 = new PlaceholderShape() { Type = PlaceholderValues.Title };
 
             applicationNonVisualDrawingProperties72.Append(placeholderShape58);
 
@@ -6286,40 +6446,42 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties59.Append(nonVisualShapeDrawingProperties59);
             nonVisualShapeProperties59.Append(applicationNonVisualDrawingProperties72);
 
-            ShapeProperties shapeProperties59 = new ShapeProperties();
+            var shapeProperties59 = new ShapeProperties();
 
-            A.Transform2D transform2D23 = new A.Transform2D();
-            A.Offset offset36 = new A.Offset() { X = 629841L, Y = 457200L };
-            A.Extents extents36 = new A.Extents() { Cx = 2949178L, Cy = 1600200L };
+            var transform2D23 = new A.Transform2D();
+            var offset36 = new A.Offset() { X = 629841L, Y = 457200L };
+            var extents36 = new A.Extents() { Cx = 2949178L, Cy = 1600200L };
 
             transform2D23.Append(offset36);
             transform2D23.Append(extents36);
 
             shapeProperties59.Append(transform2D23);
 
-            TextBody textBody59 = new TextBody();
-            A.BodyProperties bodyProperties59 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
+            var textBody59 = new TextBody();
+            var bodyProperties59 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Bottom };
 
-            A.ListStyle listStyle59 = new A.ListStyle();
+            var listStyle59 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties17 = new A.Level1ParagraphProperties();
-            A.DefaultRunProperties defaultRunProperties91 = new A.DefaultRunProperties() { FontSize = 3200 };
+            var level1ParagraphProperties17 = new A.Level1ParagraphProperties();
+            var defaultRunProperties91 = new A.DefaultRunProperties() { FontSize = 3200 };
 
             level1ParagraphProperties17.Append(defaultRunProperties91);
 
             listStyle59.Append(level1ParagraphProperties17);
 
-            A.Paragraph paragraph95 = new A.Paragraph();
+            var paragraph95 = new A.Paragraph();
 
-            A.Run run62 = new A.Run();
+            var run62 = new A.Run();
 
-            A.RunProperties runProperties84 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text84 = new A.Text();
-            text84.Text = "마스터 제목 스타일 편집";
+            var runProperties84 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text84 = new A.Text
+            {
+                Text = "마스터 제목 스타일 편집"
+            };
 
             run62.Append(runProperties84);
             run62.Append(text84);
-            A.EndParagraphRunProperties endParagraphRunProperties55 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties55 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph95.Append(run62);
             paragraph95.Append(endParagraphRunProperties55);
@@ -6332,18 +6494,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape59.Append(shapeProperties59);
             shape59.Append(textBody59);
 
-            Shape shape60 = new Shape();
+            var shape60 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties60 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties73 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Picture Placeholder 2" };
+            var nonVisualShapeProperties60 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties73 = new NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Picture Placeholder 2" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties60 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks59 = new A.ShapeLocks() { NoGrouping = true, NoChangeAspect = true };
+            var nonVisualShapeDrawingProperties60 = new NonVisualShapeDrawingProperties();
+            var shapeLocks59 = new A.ShapeLocks() { NoGrouping = true, NoChangeAspect = true };
 
             nonVisualShapeDrawingProperties60.Append(shapeLocks59);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties73 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape59 = new PlaceholderShape() { Type = PlaceholderValues.Picture, Index = (UInt32Value)1U };
+            var applicationNonVisualDrawingProperties73 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape59 = new PlaceholderShape() { Type = PlaceholderValues.Picture, Index = (UInt32Value)1U };
 
             applicationNonVisualDrawingProperties73.Append(placeholderShape59);
 
@@ -6351,81 +6513,81 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties60.Append(nonVisualShapeDrawingProperties60);
             nonVisualShapeProperties60.Append(applicationNonVisualDrawingProperties73);
 
-            ShapeProperties shapeProperties60 = new ShapeProperties();
+            var shapeProperties60 = new ShapeProperties();
 
-            A.Transform2D transform2D24 = new A.Transform2D();
-            A.Offset offset37 = new A.Offset() { X = 3887391L, Y = 987426L };
-            A.Extents extents37 = new A.Extents() { Cx = 4629150L, Cy = 4873625L };
+            var transform2D24 = new A.Transform2D();
+            var offset37 = new A.Offset() { X = 3887391L, Y = 987426L };
+            var extents37 = new A.Extents() { Cx = 4629150L, Cy = 4873625L };
 
             transform2D24.Append(offset37);
             transform2D24.Append(extents37);
 
             shapeProperties60.Append(transform2D24);
 
-            TextBody textBody60 = new TextBody();
-            A.BodyProperties bodyProperties60 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Top };
+            var textBody60 = new TextBody();
+            var bodyProperties60 = new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Top };
 
-            A.ListStyle listStyle60 = new A.ListStyle();
+            var listStyle60 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties18 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
-            A.NoBullet noBullet47 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties92 = new A.DefaultRunProperties() { FontSize = 3200 };
+            var level1ParagraphProperties18 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
+            var noBullet47 = new A.NoBullet();
+            var defaultRunProperties92 = new A.DefaultRunProperties() { FontSize = 3200 };
 
             level1ParagraphProperties18.Append(noBullet47);
             level1ParagraphProperties18.Append(defaultRunProperties92);
 
-            A.Level2ParagraphProperties level2ParagraphProperties10 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
-            A.NoBullet noBullet48 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties93 = new A.DefaultRunProperties() { FontSize = 2800 };
+            var level2ParagraphProperties10 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
+            var noBullet48 = new A.NoBullet();
+            var defaultRunProperties93 = new A.DefaultRunProperties() { FontSize = 2800 };
 
             level2ParagraphProperties10.Append(noBullet48);
             level2ParagraphProperties10.Append(defaultRunProperties93);
 
-            A.Level3ParagraphProperties level3ParagraphProperties10 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
-            A.NoBullet noBullet49 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties94 = new A.DefaultRunProperties() { FontSize = 2400 };
+            var level3ParagraphProperties10 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
+            var noBullet49 = new A.NoBullet();
+            var defaultRunProperties94 = new A.DefaultRunProperties() { FontSize = 2400 };
 
             level3ParagraphProperties10.Append(noBullet49);
             level3ParagraphProperties10.Append(defaultRunProperties94);
 
-            A.Level4ParagraphProperties level4ParagraphProperties10 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
-            A.NoBullet noBullet50 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties95 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level4ParagraphProperties10 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
+            var noBullet50 = new A.NoBullet();
+            var defaultRunProperties95 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level4ParagraphProperties10.Append(noBullet50);
             level4ParagraphProperties10.Append(defaultRunProperties95);
 
-            A.Level5ParagraphProperties level5ParagraphProperties10 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
-            A.NoBullet noBullet51 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties96 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level5ParagraphProperties10 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
+            var noBullet51 = new A.NoBullet();
+            var defaultRunProperties96 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level5ParagraphProperties10.Append(noBullet51);
             level5ParagraphProperties10.Append(defaultRunProperties96);
 
-            A.Level6ParagraphProperties level6ParagraphProperties10 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
-            A.NoBullet noBullet52 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties97 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level6ParagraphProperties10 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
+            var noBullet52 = new A.NoBullet();
+            var defaultRunProperties97 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level6ParagraphProperties10.Append(noBullet52);
             level6ParagraphProperties10.Append(defaultRunProperties97);
 
-            A.Level7ParagraphProperties level7ParagraphProperties10 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
-            A.NoBullet noBullet53 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties98 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level7ParagraphProperties10 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
+            var noBullet53 = new A.NoBullet();
+            var defaultRunProperties98 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level7ParagraphProperties10.Append(noBullet53);
             level7ParagraphProperties10.Append(defaultRunProperties98);
 
-            A.Level8ParagraphProperties level8ParagraphProperties10 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
-            A.NoBullet noBullet54 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties99 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level8ParagraphProperties10 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
+            var noBullet54 = new A.NoBullet();
+            var defaultRunProperties99 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level8ParagraphProperties10.Append(noBullet54);
             level8ParagraphProperties10.Append(defaultRunProperties99);
 
-            A.Level9ParagraphProperties level9ParagraphProperties10 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
-            A.NoBullet noBullet55 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties100 = new A.DefaultRunProperties() { FontSize = 2000 };
+            var level9ParagraphProperties10 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
+            var noBullet55 = new A.NoBullet();
+            var defaultRunProperties100 = new A.DefaultRunProperties() { FontSize = 2000 };
 
             level9ParagraphProperties10.Append(noBullet55);
             level9ParagraphProperties10.Append(defaultRunProperties100);
@@ -6440,17 +6602,19 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle60.Append(level8ParagraphProperties10);
             listStyle60.Append(level9ParagraphProperties10);
 
-            A.Paragraph paragraph96 = new A.Paragraph();
+            var paragraph96 = new A.Paragraph();
 
-            A.Run run63 = new A.Run();
+            var run63 = new A.Run();
 
-            A.RunProperties runProperties85 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text85 = new A.Text();
-            text85.Text = "그림을 추가하려면 아이콘을 클릭하십시오";
+            var runProperties85 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text85 = new A.Text
+            {
+                Text = "그림을 추가하려면 아이콘을 클릭하십시오"
+            };
 
             run63.Append(runProperties85);
             run63.Append(text85);
-            A.EndParagraphRunProperties endParagraphRunProperties56 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
+            var endParagraphRunProperties56 = new A.EndParagraphRunProperties() { Language = "en-US", Dirty = false };
 
             paragraph96.Append(run63);
             paragraph96.Append(endParagraphRunProperties56);
@@ -6463,18 +6627,18 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape60.Append(shapeProperties60);
             shape60.Append(textBody60);
 
-            Shape shape61 = new Shape();
+            var shape61 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties61 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties74 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Text Placeholder 3" };
+            var nonVisualShapeProperties61 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties74 = new NonVisualDrawingProperties() { Id = (UInt32Value)4U, Name = "Text Placeholder 3" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties61 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks60 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties61 = new NonVisualShapeDrawingProperties();
+            var shapeLocks60 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties61.Append(shapeLocks60);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties74 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape60 = new PlaceholderShape() { Type = PlaceholderValues.Body, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
+            var applicationNonVisualDrawingProperties74 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape60 = new PlaceholderShape() { Type = PlaceholderValues.Body, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)2U };
 
             applicationNonVisualDrawingProperties74.Append(placeholderShape60);
 
@@ -6482,81 +6646,81 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             nonVisualShapeProperties61.Append(nonVisualShapeDrawingProperties61);
             nonVisualShapeProperties61.Append(applicationNonVisualDrawingProperties74);
 
-            ShapeProperties shapeProperties61 = new ShapeProperties();
+            var shapeProperties61 = new ShapeProperties();
 
-            A.Transform2D transform2D25 = new A.Transform2D();
-            A.Offset offset38 = new A.Offset() { X = 629841L, Y = 2057400L };
-            A.Extents extents38 = new A.Extents() { Cx = 2949178L, Cy = 3811588L };
+            var transform2D25 = new A.Transform2D();
+            var offset38 = new A.Offset() { X = 629841L, Y = 2057400L };
+            var extents38 = new A.Extents() { Cx = 2949178L, Cy = 3811588L };
 
             transform2D25.Append(offset38);
             transform2D25.Append(extents38);
 
             shapeProperties61.Append(transform2D25);
 
-            TextBody textBody61 = new TextBody();
-            A.BodyProperties bodyProperties61 = new A.BodyProperties();
+            var textBody61 = new TextBody();
+            var bodyProperties61 = new A.BodyProperties();
 
-            A.ListStyle listStyle61 = new A.ListStyle();
+            var listStyle61 = new A.ListStyle();
 
-            A.Level1ParagraphProperties level1ParagraphProperties19 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
-            A.NoBullet noBullet56 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties101 = new A.DefaultRunProperties() { FontSize = 1600 };
+            var level1ParagraphProperties19 = new A.Level1ParagraphProperties() { LeftMargin = 0, Indent = 0 };
+            var noBullet56 = new A.NoBullet();
+            var defaultRunProperties101 = new A.DefaultRunProperties() { FontSize = 1600 };
 
             level1ParagraphProperties19.Append(noBullet56);
             level1ParagraphProperties19.Append(defaultRunProperties101);
 
-            A.Level2ParagraphProperties level2ParagraphProperties11 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
-            A.NoBullet noBullet57 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties102 = new A.DefaultRunProperties() { FontSize = 1400 };
+            var level2ParagraphProperties11 = new A.Level2ParagraphProperties() { LeftMargin = 457200, Indent = 0 };
+            var noBullet57 = new A.NoBullet();
+            var defaultRunProperties102 = new A.DefaultRunProperties() { FontSize = 1400 };
 
             level2ParagraphProperties11.Append(noBullet57);
             level2ParagraphProperties11.Append(defaultRunProperties102);
 
-            A.Level3ParagraphProperties level3ParagraphProperties11 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
-            A.NoBullet noBullet58 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties103 = new A.DefaultRunProperties() { FontSize = 1200 };
+            var level3ParagraphProperties11 = new A.Level3ParagraphProperties() { LeftMargin = 914400, Indent = 0 };
+            var noBullet58 = new A.NoBullet();
+            var defaultRunProperties103 = new A.DefaultRunProperties() { FontSize = 1200 };
 
             level3ParagraphProperties11.Append(noBullet58);
             level3ParagraphProperties11.Append(defaultRunProperties103);
 
-            A.Level4ParagraphProperties level4ParagraphProperties11 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
-            A.NoBullet noBullet59 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties104 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level4ParagraphProperties11 = new A.Level4ParagraphProperties() { LeftMargin = 1371600, Indent = 0 };
+            var noBullet59 = new A.NoBullet();
+            var defaultRunProperties104 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level4ParagraphProperties11.Append(noBullet59);
             level4ParagraphProperties11.Append(defaultRunProperties104);
 
-            A.Level5ParagraphProperties level5ParagraphProperties11 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
-            A.NoBullet noBullet60 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties105 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level5ParagraphProperties11 = new A.Level5ParagraphProperties() { LeftMargin = 1828800, Indent = 0 };
+            var noBullet60 = new A.NoBullet();
+            var defaultRunProperties105 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level5ParagraphProperties11.Append(noBullet60);
             level5ParagraphProperties11.Append(defaultRunProperties105);
 
-            A.Level6ParagraphProperties level6ParagraphProperties11 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
-            A.NoBullet noBullet61 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties106 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level6ParagraphProperties11 = new A.Level6ParagraphProperties() { LeftMargin = 2286000, Indent = 0 };
+            var noBullet61 = new A.NoBullet();
+            var defaultRunProperties106 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level6ParagraphProperties11.Append(noBullet61);
             level6ParagraphProperties11.Append(defaultRunProperties106);
 
-            A.Level7ParagraphProperties level7ParagraphProperties11 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
-            A.NoBullet noBullet62 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties107 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level7ParagraphProperties11 = new A.Level7ParagraphProperties() { LeftMargin = 2743200, Indent = 0 };
+            var noBullet62 = new A.NoBullet();
+            var defaultRunProperties107 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level7ParagraphProperties11.Append(noBullet62);
             level7ParagraphProperties11.Append(defaultRunProperties107);
 
-            A.Level8ParagraphProperties level8ParagraphProperties11 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
-            A.NoBullet noBullet63 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties108 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level8ParagraphProperties11 = new A.Level8ParagraphProperties() { LeftMargin = 3200400, Indent = 0 };
+            var noBullet63 = new A.NoBullet();
+            var defaultRunProperties108 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level8ParagraphProperties11.Append(noBullet63);
             level8ParagraphProperties11.Append(defaultRunProperties108);
 
-            A.Level9ParagraphProperties level9ParagraphProperties11 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
-            A.NoBullet noBullet64 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties109 = new A.DefaultRunProperties() { FontSize = 1000 };
+            var level9ParagraphProperties11 = new A.Level9ParagraphProperties() { LeftMargin = 3657600, Indent = 0 };
+            var noBullet64 = new A.NoBullet();
+            var defaultRunProperties109 = new A.DefaultRunProperties() { FontSize = 1000 };
 
             level9ParagraphProperties11.Append(noBullet64);
             level9ParagraphProperties11.Append(defaultRunProperties109);
@@ -6571,14 +6735,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             listStyle61.Append(level8ParagraphProperties11);
             listStyle61.Append(level9ParagraphProperties11);
 
-            A.Paragraph paragraph97 = new A.Paragraph();
-            A.ParagraphProperties paragraphProperties50 = new A.ParagraphProperties() { Level = 0 };
+            var paragraph97 = new A.Paragraph();
+            var paragraphProperties50 = new A.ParagraphProperties() { Level = 0 };
 
-            A.Run run64 = new A.Run();
+            var run64 = new A.Run();
 
-            A.RunProperties runProperties86 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text86 = new A.Text();
-            text86.Text = "마스터 텍스트 스타일 편집";
+            var runProperties86 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text86 = new A.Text
+            {
+                Text = "마스터 텍스트 스타일 편집"
+            };
 
             run64.Append(runProperties86);
             run64.Append(text86);
@@ -6594,41 +6760,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape61.Append(shapeProperties61);
             shape61.Append(textBody61);
 
-            Shape shape62 = new Shape();
+            var shape62 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties62 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties75 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Date Placeholder 4" };
+            var nonVisualShapeProperties62 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties75 = new NonVisualDrawingProperties() { Id = (UInt32Value)5U, Name = "Date Placeholder 4" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties62 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks61 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties62 = new NonVisualShapeDrawingProperties();
+            var shapeLocks61 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties62.Append(shapeLocks61);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties75 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape61 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
+            var applicationNonVisualDrawingProperties75 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape61 = new PlaceholderShape() { Type = PlaceholderValues.DateAndTime, Size = PlaceholderSizeValues.Half, Index = (UInt32Value)10U };
 
             applicationNonVisualDrawingProperties75.Append(placeholderShape61);
 
             nonVisualShapeProperties62.Append(nonVisualDrawingProperties75);
             nonVisualShapeProperties62.Append(nonVisualShapeDrawingProperties62);
             nonVisualShapeProperties62.Append(applicationNonVisualDrawingProperties75);
-            ShapeProperties shapeProperties62 = new ShapeProperties();
+            var shapeProperties62 = new ShapeProperties();
 
-            TextBody textBody62 = new TextBody();
-            A.BodyProperties bodyProperties62 = new A.BodyProperties();
-            A.ListStyle listStyle62 = new A.ListStyle();
+            var textBody62 = new TextBody();
+            var bodyProperties62 = new A.BodyProperties();
+            var listStyle62 = new A.ListStyle();
 
-            A.Paragraph paragraph98 = new A.Paragraph();
+            var paragraph98 = new A.Paragraph();
 
-            A.Field field23 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
+            var field23 = new A.Field() { Id = "{448A6840-C15B-4D7E-8B55-063451C21D23}", Type = "datetimeFigureOut" };
 
-            A.RunProperties runProperties87 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text87 = new A.Text();
-            text87.Text = "2023-11-08";
+            var runProperties87 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text87 = new A.Text
+            {
+                Text = "2023-11-08"
+            };
 
             field23.Append(runProperties87);
             field23.Append(text87);
-            A.EndParagraphRunProperties endParagraphRunProperties57 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties57 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph98.Append(field23);
             paragraph98.Append(endParagraphRunProperties57);
@@ -6641,32 +6809,32 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape62.Append(shapeProperties62);
             shape62.Append(textBody62);
 
-            Shape shape63 = new Shape();
+            var shape63 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties63 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties76 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Footer Placeholder 5" };
+            var nonVisualShapeProperties63 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties76 = new NonVisualDrawingProperties() { Id = (UInt32Value)6U, Name = "Footer Placeholder 5" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties63 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks62 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties63 = new NonVisualShapeDrawingProperties();
+            var shapeLocks62 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties63.Append(shapeLocks62);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties76 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape62 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
+            var applicationNonVisualDrawingProperties76 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape62 = new PlaceholderShape() { Type = PlaceholderValues.Footer, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)11U };
 
             applicationNonVisualDrawingProperties76.Append(placeholderShape62);
 
             nonVisualShapeProperties63.Append(nonVisualDrawingProperties76);
             nonVisualShapeProperties63.Append(nonVisualShapeDrawingProperties63);
             nonVisualShapeProperties63.Append(applicationNonVisualDrawingProperties76);
-            ShapeProperties shapeProperties63 = new ShapeProperties();
+            var shapeProperties63 = new ShapeProperties();
 
-            TextBody textBody63 = new TextBody();
-            A.BodyProperties bodyProperties63 = new A.BodyProperties();
-            A.ListStyle listStyle63 = new A.ListStyle();
+            var textBody63 = new TextBody();
+            var bodyProperties63 = new A.BodyProperties();
+            var listStyle63 = new A.ListStyle();
 
-            A.Paragraph paragraph99 = new A.Paragraph();
-            A.EndParagraphRunProperties endParagraphRunProperties58 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var paragraph99 = new A.Paragraph();
+            var endParagraphRunProperties58 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph99.Append(endParagraphRunProperties58);
 
@@ -6678,41 +6846,43 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shape63.Append(shapeProperties63);
             shape63.Append(textBody63);
 
-            Shape shape64 = new Shape();
+            var shape64 = new Shape();
 
-            NonVisualShapeProperties nonVisualShapeProperties64 = new NonVisualShapeProperties();
-            NonVisualDrawingProperties nonVisualDrawingProperties77 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Slide Number Placeholder 6" };
+            var nonVisualShapeProperties64 = new NonVisualShapeProperties();
+            var nonVisualDrawingProperties77 = new NonVisualDrawingProperties() { Id = (UInt32Value)7U, Name = "Slide Number Placeholder 6" };
 
-            NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties64 = new NonVisualShapeDrawingProperties();
-            A.ShapeLocks shapeLocks63 = new A.ShapeLocks() { NoGrouping = true };
+            var nonVisualShapeDrawingProperties64 = new NonVisualShapeDrawingProperties();
+            var shapeLocks63 = new A.ShapeLocks() { NoGrouping = true };
 
             nonVisualShapeDrawingProperties64.Append(shapeLocks63);
 
-            ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties77 = new ApplicationNonVisualDrawingProperties();
-            PlaceholderShape placeholderShape63 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
+            var applicationNonVisualDrawingProperties77 = new ApplicationNonVisualDrawingProperties();
+            var placeholderShape63 = new PlaceholderShape() { Type = PlaceholderValues.SlideNumber, Size = PlaceholderSizeValues.Quarter, Index = (UInt32Value)12U };
 
             applicationNonVisualDrawingProperties77.Append(placeholderShape63);
 
             nonVisualShapeProperties64.Append(nonVisualDrawingProperties77);
             nonVisualShapeProperties64.Append(nonVisualShapeDrawingProperties64);
             nonVisualShapeProperties64.Append(applicationNonVisualDrawingProperties77);
-            ShapeProperties shapeProperties64 = new ShapeProperties();
+            var shapeProperties64 = new ShapeProperties();
 
-            TextBody textBody64 = new TextBody();
-            A.BodyProperties bodyProperties64 = new A.BodyProperties();
-            A.ListStyle listStyle64 = new A.ListStyle();
+            var textBody64 = new TextBody();
+            var bodyProperties64 = new A.BodyProperties();
+            var listStyle64 = new A.ListStyle();
 
-            A.Paragraph paragraph100 = new A.Paragraph();
+            var paragraph100 = new A.Paragraph();
 
-            A.Field field24 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
+            var field24 = new A.Field() { Id = "{053E4EFC-5729-4582-95A2-9693D5F4D6DF}", Type = "slidenum" };
 
-            A.RunProperties runProperties88 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
-            A.Text text88 = new A.Text();
-            text88.Text = "‹#›";
+            var runProperties88 = new A.RunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var text88 = new A.Text
+            {
+                Text = "‹#›"
+            };
 
             field24.Append(runProperties88);
             field24.Append(text88);
-            A.EndParagraphRunProperties endParagraphRunProperties59 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
+            var endParagraphRunProperties59 = new A.EndParagraphRunProperties() { Language = "ko-KR", AlternativeLanguage = "en-US" };
 
             paragraph100.Append(field24);
             paragraph100.Append(endParagraphRunProperties59);
@@ -6734,11 +6904,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             shapeTree13.Append(shape63);
             shapeTree13.Append(shape64);
 
-            CommonSlideDataExtensionList commonSlideDataExtensionList12 = new CommonSlideDataExtensionList();
+            var commonSlideDataExtensionList12 = new CommonSlideDataExtensionList();
 
-            CommonSlideDataExtension commonSlideDataExtension12 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
+            var commonSlideDataExtension12 = new CommonSlideDataExtension() { Uri = "{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}" };
 
-            P14.CreationId creationId12 = new P14.CreationId() { Val = (UInt32Value)1194448055U };
+            var creationId12 = new P14.CreationId() { Val = (UInt32Value)1194448055U };
             creationId12.AddNamespaceDeclaration("p14", "http://schemas.microsoft.com/office/powerpoint/2010/main");
 
             commonSlideDataExtension12.Append(creationId12);
@@ -6748,8 +6918,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
             commonSlideData13.Append(shapeTree13);
             commonSlideData13.Append(commonSlideDataExtensionList12);
 
-            ColorMapOverride colorMapOverride12 = new ColorMapOverride();
-            A.MasterColorMapping masterColorMapping12 = new A.MasterColorMapping();
+            var colorMapOverride12 = new ColorMapOverride();
+            var masterColorMapping12 = new A.MasterColorMapping();
 
             colorMapOverride12.Append(masterColorMapping12);
 

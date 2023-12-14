@@ -1,9 +1,16 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleOfficeCreator.Stardard.Modules.Model;
 using SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using Wp = DocumentFormat.OpenXml.Drawing.Wordprocessing;
+using A = DocumentFormat.OpenXml.Drawing;
+using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
+using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 
 namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 {
@@ -20,8 +27,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         public Table Generate(OfficeModel model)
         {
-            bool isSingleTable = model.TableInfo is null ? true : false;
-            var table = new Table();
+            bool isSingleTable = model.TableInfo is null;
+            Table table = new Table();
 
             PointF loc = new PointF((model.Rect.X) * wordTableRatio, (model.Rect.Y) * wordTableRatio);
             table.Append(GenerateTableProperties(!isSingleTable, loc));
@@ -40,7 +47,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             {
                 for (int i = 0; i < model.TableInfo.RowHeightList.Count; i++)
                 {
-                    var height = model.TableInfo.RowHeightList[i];
+                    int height = model.TableInfo.RowHeightList[i];
                     TableRow tRow = GenerateTableRow(model, height, i);
                     table.Append(tRow);
                 }
@@ -99,7 +106,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
             foreach (int colWidth in columnWidths)
             {
-                var width = (colWidth) * wordTableRatio;
+                int width = (colWidth) * wordTableRatio;
                 GridColumn gridColumn1 = new GridColumn() { Width = width.ToString() };
                 tableGrid.Append(gridColumn1);
             }
@@ -110,15 +117,14 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         private TableRow GenerateTableRow(OfficeModel model, int height, int row)
         {
-            var tableRow = new TableRow();
+            TableRow tableRow = new TableRow();
             TableRowProperties tableRowProperties1 = new TableRowProperties();
             tableRowProperties1.Append(new TableRowHeight() { Val = (uint)(height * wordTableRatio), HeightType = HeightRuleValues.Exact });
             tableRow.Append(tableRowProperties1);
 
             if (row == -1)
             {
-                //todo : 단일 셀일경우 
-                var tableCell = GenerateTableCell(model, true);
+                TableCell tableCell = GenerateTableCell(model, true);
                 tableRow.Append(tableCell);
             }
             else
@@ -126,19 +132,19 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 if (model.TableInfo.Children != null)
                 {
                     List<OfficeModel> items = model.TableInfo.Children.FindAll(x => x.TableInfo.Cell.Row == row);
-                    foreach (var item in items)
+                    foreach (OfficeModel item in items)
                     {
                         if (item.TableInfo.Cell.Empty == true)
                         {
                             if (item.TableInfo.Cell.MergedRow == true)
                             {
-                                var tableCell = GenerateEmptyTableCell(item);
+                                TableCell tableCell = GenerateEmptyTableCell(item);
                                 tableRow.Append(tableCell);
                             }
                         }
                         else
                         {
-                            var tableCell = GenerateTableCell(item);
+                            TableCell tableCell = GenerateTableCell(item);
                             tableRow.Append(tableCell);
                         }
                     }
@@ -147,15 +153,54 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             return tableRow;
         }
 
+        public TableCellProperties GenerateTableCellProperties()
+        {
+            TableCellProperties tableCellProperties1 = new TableCellProperties();
+            TableCellWidth tableCellWidth1 = new TableCellWidth() { Width = "1890", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders1 = new TableCellBorders();
+            TopBorder topBorder1 = new TopBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder1 = new BottomBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders1.Append(topBorder1);
+            tableCellBorders1.Append(bottomBorder1);
+
+            TableCellMargin tableCellMargin1 = new TableCellMargin();
+            TopMargin topMargin1 = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            LeftMargin leftMargin1 = new LeftMargin() { Width = "30", Type = TableWidthUnitValues.Dxa };
+            BottomMargin bottomMargin1 = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            RightMargin rightMargin1 = new RightMargin() { Width = "30", Type = TableWidthUnitValues.Dxa };
+
+            tableCellMargin1.Append(topMargin1);
+            tableCellMargin1.Append(leftMargin1);
+            tableCellMargin1.Append(bottomMargin1);
+            tableCellMargin1.Append(rightMargin1);
+            TableCellVerticalAlignment tableCellVerticalAlignment1 = new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center };
+
+            tableCellProperties1.Append(tableCellWidth1);
+            tableCellProperties1.Append(tableCellBorders1);
+            tableCellProperties1.Append(tableCellMargin1);
+            tableCellProperties1.Append(tableCellVerticalAlignment1);
+            return tableCellProperties1;
+        }
+
+
         private TableCell GenerateTableCell(OfficeModel cell, bool isSingleCell = false)
         {
             TableCell tableCell1 = new TableCell();
-
-            //1. 텍스트 박스 설정
-            tableCell1.Append(SetTextBody());
-
             //2. 테이블 셀 모양설정 : 텍스트 방향, 수직 정렬, 배경색, 테두리 모양 등
             tableCell1.Append(SetCellProperty());
+            
+            //1. 텍스트 박스 설정
+            if(cell.TableInfo.Cell.IsImageCell)
+            {
+                tableCell1.Append(SetPicture());
+            }
+            else
+            {
+                tableCell1.Append(SetTextBody());
+            }
+
 
             return tableCell1;
 
@@ -163,7 +208,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             {
                 //단락 : 단락 속성과 텍스트로 구성됨.
                 Paragraph paragraph1 = new Paragraph();
-                var paragraphProperties = new ParagraphProperties();
+                ParagraphProperties paragraphProperties = new ParagraphProperties();
                 #region 공백없음 속성
                 paragraphProperties.Append(new ParagraphStyleId() { Val = "a3" });
                 #endregion
@@ -179,8 +224,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 paragraph1.Append(paragraphProperties);
 
 
-                var run = new Run();
-                var runProperties1 = Common.Instance.GetWordRunProperty(cell.Font);
+                Run run = new Run();
+                RunProperties runProperties1 = Common.Instance.GetWordRunProperty(cell.Font);
 
                 #region 텍스트 자동 맞춤(테이블 셀 전용)
                 if (cell.Paragraph.TableCellFitText)
@@ -200,24 +245,37 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
                 paragraph1.Append(run);
 
-                //todo : 이미지 셀 확인
-
                 return paragraph1;
 
 
             }
 
+
+            Paragraph SetPicture()
+            {
+                Paragraph paragraph1 = new Paragraph();
+                Run run1 = new Run();
+
+                RunProperties runProperties1 = new RunProperties();
+                NoProof noProof1 = new NoProof();
+                runProperties1.Append(noProof1);
+
+                var darawing = GenerateDrawing(cell);
+                run1.Append(runProperties1);
+                run1.Append(darawing);
+                paragraph1.Append(run1);
+                return paragraph1;
+            }
             TableCellProperties SetCellProperty()
             {
-                var tableCellProperties = new TableCellProperties();
+                TableCellProperties tableCellProperties = new TableCellProperties();
 
                 #region 셀병합
                 if (isSingleCell == false)
                 {
                     if (cell.TableInfo.Cell.RowSpan > 1)
                     {
-                        VerticalMerge verticalMerge = new VerticalMerge();
-                        verticalMerge = new VerticalMerge() { Val = MergedCellValues.Restart };
+                        VerticalMerge verticalMerge = new VerticalMerge() { Val = MergedCellValues.Restart };
                         tableCellProperties.Append(verticalMerge);
                     }
                     if (cell.TableInfo.Cell.ColSpan > 1)
@@ -234,7 +292,6 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 #endregion
 
                 #region 테두리
-
                 tableCellProperties.Append(GetTableCellBorders(cell.TableInfo.Styles));
                 #endregion
 
@@ -270,13 +327,106 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
         }
 
+        internal Drawing GenerateDrawing(OfficeModel model)
+        {
+            Drawing drawing1 = new Drawing();
+
+            Wp.Inline inline1 = new Wp.Inline() { 
+                DistanceFromTop = (UInt32Value)0U,
+                DistanceFromBottom = (UInt32Value)0U, 
+                DistanceFromLeft = (UInt32Value)0U, 
+                DistanceFromRight = (UInt32Value)0U 
+            };
+            //Wp.Extent extent1 = new Wp.Extent() { Cx = 5534797L, Cy = 3429479L };
+
+            var pictureModel = Common.Instance.Pictures.Find(x => x.UID == model.UID);
+            
+
+            var extent1 = AnchorProperty.Instance.GetExtent(pictureModel.Rect.Width, pictureModel.Rect.Height);
+            var effectExtent1 = AnchorProperty.Instance.GetEffectExtent();
+
+            //중복
+            uint uniqueId = Common.Instance.UniqueId.Last() + 1;
+            Common.Instance.UniqueId.Add(uniqueId);
+            Wp.DocProperties docProperties1 = new Wp.DocProperties() { Id = (UInt32Value)uniqueId, Name = "그림 1" };
+
+            //중복
+            #region 그래픽객체
+            Wp.NonVisualGraphicFrameDrawingProperties nonVisualGraphicFrameDrawingProperties1 = new Wp.NonVisualGraphicFrameDrawingProperties();
+            var graphicFrameLocks1 = new DocumentFormat.OpenXml.Drawing.GraphicFrameLocks() { NoChangeAspect = true };
+            graphicFrameLocks1.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
+            nonVisualGraphicFrameDrawingProperties1.Append(graphicFrameLocks1);
+
+
+            A.Graphic graphic1 = new A.Graphic();
+            graphic1.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
+            A.GraphicData graphicData1 = new A.GraphicData() { Uri = "http://schemas.openxmlformats.org/drawingml/2006/picture" };
+            Pic.Picture picture1 = new Pic.Picture();
+            picture1.AddNamespaceDeclaration("pic", "http://schemas.openxmlformats.org/drawingml/2006/picture");
+
+            Pic.NonVisualPictureProperties nonVisualPictureProperties1 = new Pic.NonVisualPictureProperties();
+            Pic.NonVisualDrawingProperties nonVisualDrawingProperties1 = new Pic.NonVisualDrawingProperties() { Id = uniqueId, Name = "capture.PNG" };
+            Pic.NonVisualPictureDrawingProperties nonVisualPictureDrawingProperties1 = new Pic.NonVisualPictureDrawingProperties();
+            nonVisualPictureProperties1.Append(nonVisualDrawingProperties1);
+            nonVisualPictureProperties1.Append(nonVisualPictureDrawingProperties1);
+            picture1.Append(nonVisualPictureProperties1);
+
+
+            Pic.BlipFill blipFill1 = new Pic.BlipFill() { RotateWithShape = true };
+            A.Blip blip1 = new A.Blip() { Embed = model.UID, CompressionState = A.BlipCompressionValues.Print };
+            A.BlipExtensionList blipExtensionList1 = new A.BlipExtensionList();
+            A.BlipExtension blipExtension1 = new A.BlipExtension() { Uri = "{28A0092B-C50C-407E-A947-70E740481C1C}" };
+            A14.UseLocalDpi useLocalDpi1 = new A14.UseLocalDpi() { Val = false };
+            useLocalDpi1.AddNamespaceDeclaration("a14", "http://schemas.microsoft.com/office/drawing/2010/main");
+            blipExtension1.Append(useLocalDpi1);
+            blipExtensionList1.Append(blipExtension1);
+            blip1.Append(blipExtensionList1);
+            A.Stretch stretch1 = new A.Stretch();
+
+            blipFill1.Append(blip1);
+            blipFill1.Append(stretch1);
+            picture1.Append(blipFill1);
+
+
+            Pic.ShapeProperties shapeProperties = new Pic.ShapeProperties();
+            #region 내부 편집 컨트롤 
+            shapeProperties.Append(Common.Instance.GetDrawingTransfrom2D(0, 0, pictureModel.Rect.Width, pictureModel.Rect.Height));
+            #endregion
+
+            #region [뭔지모름] 이 요소는 사용자 정의 기하학적 모양 대신 사전 설정된 기하학적 모양을 사용해야 하는 경우를 지정합니다.
+            A.PresetGeometry presetGeometry4 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
+            A.AdjustValueList adjustValueList4 = new A.AdjustValueList();
+            presetGeometry4.Append(adjustValueList4);
+            shapeProperties.Append(presetGeometry4);
+            #endregion
+
+
+            picture1.Append(shapeProperties);
+
+            graphicData1.Append(picture1);
+
+            graphic1.Append(graphicData1);
+
+            inline1.Append(extent1);
+            inline1.Append(effectExtent1);
+            inline1.Append(docProperties1);
+            inline1.Append(nonVisualGraphicFrameDrawingProperties1);
+            inline1.Append(graphic1);
+            #endregion
+            drawing1.Append(inline1);
+            return drawing1;
+
+        }
+
         private TableCellMargin SetPropertyMargin(float left, float right, float top, float bottom)
         {
-            TableCellMargin margin = new TableCellMargin();
-            margin.LeftMargin = new LeftMargin() { Width = (left * wordTableRatio).ToString() };
-            margin.RightMargin = new RightMargin() { Width = (right * wordTableRatio).ToString() };
-            margin.TopMargin = new TopMargin() { Width = (top * wordTableRatio).ToString() };
-            margin.BottomMargin = new BottomMargin() { Width = (bottom * wordTableRatio).ToString() };
+            TableCellMargin margin = new TableCellMargin
+            {
+                LeftMargin = new LeftMargin() { Width = (left * wordTableRatio).ToString() },
+                RightMargin = new RightMargin() { Width = (right * wordTableRatio).ToString() },
+                TopMargin = new TopMargin() { Width = (top * wordTableRatio).ToString() },
+                BottomMargin = new BottomMargin() { Width = (bottom * wordTableRatio).ToString() }
+            };
 
             return margin;
         }
@@ -315,15 +465,13 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             //! 주의! 컨트롤 한개씩 그려지는게 아니라. 일괄로 좌측 그리고, 우측그리고 상단 그리고 하단 그리고 하는것 같다. 
             if ((int)style.Left.Weight > 0)
             {
-                int size = style.Left.Draw ? (int)style.Left.Weight : 0;
+                int size = style.Left.Draw ? (int)style.Left.Weight : 0;               
 
-                //todo border 스타일 구현안됨.
                 LeftBorder border = new LeftBorder()
                 {
-                    Val = BorderValues.Single,
+                    Val = Common.Instance.GetwordBorderStyle(style.Left.Style),
                     Color = style.Left.Color,
-                    Size = Convert.ToUInt32(4 * size),
-                    Space = 0U
+                    Size = Convert.ToUInt32(4 * size)
                 };
                 tableCellBorders1.Append(border);
             }
@@ -332,10 +480,9 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 int size = style.Right.Draw ? (int)style.Right.Weight : 0;
                 RightBorder border = new RightBorder()
                 {
-                    Val = BorderValues.Single,
+                    Val = Common.Instance.GetwordBorderStyle(style.Right.Style),
                     Color = style.Right.Color,
-                    Size = Convert.ToUInt32(4 * size),
-                    Space = 0U
+                    Size = Convert.ToUInt32(4 * size)
                 };
                 tableCellBorders1.Append(border);
             }
@@ -344,10 +491,9 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 int size = style.Top.Draw ? (int)style.Top.Weight : 0;
                 TopBorder border = new TopBorder()
                 {
-                    Val = BorderValues.Single,
+                    Val = Common.Instance.GetwordBorderStyle(style.Top.Style),
                     Color = style.Top.Color,
-                    Size = Convert.ToUInt32(4 * size),
-                    Space = 0U
+                    Size = Convert.ToUInt32(4 * size)
                 };
                 tableCellBorders1.Append(border);
             }
@@ -356,10 +502,9 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 int size = style.Bottom.Draw ? (int)style.Bottom.Weight : 0;
                 BottomBorder border = new BottomBorder()
                 {
-                    Val = BorderValues.Single,
+                    Val = Common.Instance.GetwordBorderStyle(style.Bottom.Style),
                     Color = style.Bottom.Color,
-                    Size = Convert.ToUInt32(4 * size),
-                    Space = 0U
+                    Size = Convert.ToUInt32(4 * size)
                 };
                 tableCellBorders1.Append(border);
             }

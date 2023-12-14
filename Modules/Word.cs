@@ -11,10 +11,10 @@ namespace SimpleOfficeCreator.Stardard.Modules
 {
     public class Word
     {
-        WordprocessingDocument document;
-        MainDocumentPart mainDocumentPart;
+        readonly WordprocessingDocument document;
+        readonly MainDocumentPart mainDocumentPart;
+        readonly int WORD_RATIO = 15;
         Body body;
-        int WORD_RATIO = 15;
         string password = string.Empty;
 
 
@@ -66,7 +66,7 @@ namespace SimpleOfficeCreator.Stardard.Modules
 
         public void Initialize(int width, int height, string password = "")
         {
-            var document = WordBase.Instance.GenerateDocument();
+            Document document = WordBase.Instance.GenerateDocument();
             this.mainDocumentPart.Document = document;
             this.body = this.mainDocumentPart.Document.Body;
 
@@ -75,24 +75,20 @@ namespace SimpleOfficeCreator.Stardard.Modules
 
         public void ConvertPerPage(int page, List<OfficeModel> models)
         {
+            //이미지를 추가한다. 
             Common.Instance.GenerateImagePart(models, this.mainDocumentPart);
 
-
-            foreach (OfficeModel model in models)
-            {
-                switch (model.Type)
-                {
-                    //todo 도형 해야함.
-                    //case Model.Type.Shape:
-                    //    this.body.Append(GenerateTextBox.Instance.GenerateShape(model));
-                    //    break;
-                    case Model.Type.Table:
-                        this.body.Append(SocWordTable.Instance.Generate(model));
-                        break;
-                }
+            //테이블
+            List<OfficeModel> tables = models.FindAll(x => x.Type == Type.Table);
+            foreach (OfficeModel table in tables)
+            {             
+                this.body.Append(SocWordTable.Instance.Generate(table));
             }
-            var textboxs = models.FindAll(x => x.Type == Type.TextBox || x.Type == Type.Picture);
-            this.body.Append(SocParagraph.Instance.GenerateText(textboxs));
+
+            //기타..
+            //List<OfficeModel> textboxs = models.FindAll(x => x.Type == Type.TextBox || x.Type == Type.Picture || x.Type == Type.Shape);
+            List<OfficeModel> textboxs = models.FindAll(x => x.Type != Type.Table && x.Type != Type.Paper);
+            this.body.Append(SocParagraph.Instance.Generate(textboxs));
 
             //this.body.Append(SocParagraph.Instance.Test2());
             OfficeModel report = models.Find(x => x.Type == Type.Paper);

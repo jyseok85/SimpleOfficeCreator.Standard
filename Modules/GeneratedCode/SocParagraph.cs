@@ -23,7 +23,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         //public static 의 객체반환 함수
         public static SocParagraph Instance { get { return _instance.Value; } }
 
-        public Paragraph GenerateText(List<OfficeModel> models)
+        public Paragraph Generate(List<OfficeModel> models)
         {
             Paragraph para = new Paragraph();
             foreach (OfficeModel model in models)
@@ -45,21 +45,25 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             runProperties1.Append(noProof1);
             run1.Append(runProperties1);
 
-            if (model.Type == Model.Type.TextBox)
+            if (model.Type == Model.Type.TextBox || model.Type == Model.Type.Shape)
             {
-                var alternateContent1 = GetAlternateContent(model);
+                AlternateContent alternateContent1 = GetAlternateContent(model);
                 run1.Append(alternateContent1);
             }
-            else if (model.Type == Model.Type.Picture)
+            else if (model.Type == Model.Type.Picture )
             {
-                var drawing = GenerateDrawing(model);
+                Drawing drawing = GenerateDrawing(model);
                 run1.Append(drawing);
+            }
+            else
+            {
+               // throw new Exception("알수 없는 컨트롤");
             }
             return run1;
         }
-        private Drawing GenerateDrawing(OfficeModel model)// string imageId, int x, int y, int width, int height, bool outLine, float thickness, bool isBackward)
+        internal Drawing GenerateDrawing(OfficeModel model)// string imageId, int x, int y, int width, int height, bool outLine, float thickness, bool isBackward)
         {
-            var drawing1 = new Drawing();
+            Drawing drawing1 = new Drawing();
 
             Anchor anchor1 = new Anchor()
             {
@@ -122,9 +126,9 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
 
             #region 테두리
-            if (model.PictureStyle.NoOutline == false && model.PictureStyle.Weight > 0)
+            if (model.PictureStyle != null && model.PictureStyle.NoOutline == false && model.PictureStyle.Weight > 0)
             {
-                var outline = Common.Instance.GetDrawingOutline(model.PictureStyle.Weight, model.PictureStyle.Color);
+                A.Outline outline = Common.Instance.GetDrawingOutline(model.PictureStyle.Weight, model.PictureStyle.Color);
                 shapeProperties.Append(outline);
             }
             #endregion
@@ -142,13 +146,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             if (useRelativeSize)
             {
                 Wp14.RelativeWidth relativeWidth4 = new Wp14.RelativeWidth() { ObjectId = Wp14.SizeRelativeHorizontallyValues.Margin };
-                Wp14.PercentageWidth percentageWidth4 = new Wp14.PercentageWidth();
-                percentageWidth4.Text = "0";
+                Wp14.PercentageWidth percentageWidth4 = new Wp14.PercentageWidth
+                {
+                    Text = "0"
+                };
                 relativeWidth4.Append(percentageWidth4);
 
                 Wp14.RelativeHeight relativeHeight4 = new Wp14.RelativeHeight() { RelativeFrom = Wp14.SizeRelativeVerticallyValues.Margin };
-                Wp14.PercentageHeight percentageHeight4 = new Wp14.PercentageHeight();
-                percentageHeight4.Text = "0";
+                Wp14.PercentageHeight percentageHeight4 = new Wp14.PercentageHeight
+                {
+                    Text = "0"
+                };
                 relativeHeight4.Append(percentageHeight4);
 
                 anchor1.Append(relativeWidth4);
@@ -168,7 +176,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// <returns></returns>
         private AlternateContent GetAlternateContent(OfficeModel model)
         {
-            var alternateContent = new AlternateContent();
+            AlternateContent alternateContent = new AlternateContent();
             AlternateContentChoice alternateContentChoice = new AlternateContentChoice() { Requires = "wps" };
             Drawing drawing4 = new Drawing();
 
@@ -196,13 +204,17 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             if (useRelativeSize)
             {
                 Wp14.RelativeWidth relativeWidth4 = new Wp14.RelativeWidth() { ObjectId = Wp14.SizeRelativeHorizontallyValues.Margin };
-                Wp14.PercentageWidth percentageWidth4 = new Wp14.PercentageWidth();
-                percentageWidth4.Text = "0";
+                Wp14.PercentageWidth percentageWidth4 = new Wp14.PercentageWidth
+                {
+                    Text = "0"
+                };
                 relativeWidth4.Append(percentageWidth4);
 
                 Wp14.RelativeHeight relativeHeight4 = new Wp14.RelativeHeight() { RelativeFrom = Wp14.SizeRelativeVerticallyValues.Margin };
-                Wp14.PercentageHeight percentageHeight4 = new Wp14.PercentageHeight();
-                percentageHeight4.Text = "0";
+                Wp14.PercentageHeight percentageHeight4 = new Wp14.PercentageHeight
+                {
+                    Text = "0"
+                };
                 relativeHeight4.Append(percentageHeight4);
 
                 anchor.Append(relativeWidth4);
@@ -277,7 +289,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         private A.Graphic SetText(OfficeModel model)
         {
-            var graphic = new A.Graphic();
+            A.Graphic graphic = new A.Graphic();
             graphic.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
             A.GraphicData graphicData4 = new A.GraphicData() { Uri = "http://schemas.microsoft.com/office/word/2010/wordprocessingShape" };
 
@@ -290,7 +302,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             wordprocessingShape.Append(nonVisualDrawingShapeProperties3);
             #endregion           
 
-            wordprocessingShape.Append(GetShapeProperties(model));
+            wordprocessingShape.Append(GetShapeProperty(model));
 
             if (model.Type == Model.Type.TextBox)
                 //텍스트는 이거가 들어가고
@@ -309,9 +321,13 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
             return graphic;
         }
+
+        /// <summary>
+        /// 고정인듯..
+        /// </summary>
         private Wps.ShapeStyle GetShapeStyle(OfficeModel model)
         {
-            var shapeStyle1 = new Wps.ShapeStyle();
+            ShapeStyle shapeStyle1 = new Wps.ShapeStyle();
 
             A.LineReference lineReference1 = new A.LineReference() { Index = (UInt32Value)2U };
 
@@ -348,19 +364,16 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// <summary>
         /// 배경색, 내부편집 컨트롤 Transform, 테두리
         /// </summary>
-        private ShapeProperties GetShapeProperties(OfficeModel model)
+        private ShapeProperties GetShapeProperty(OfficeModel model)
         {
-            var shapeProperties = new Wps.ShapeProperties() { BlackWhiteMode = A.BlackWhiteModeValues.Auto };
+            ShapeProperties shapeProperties = new Wps.ShapeProperties() { BlackWhiteMode = A.BlackWhiteModeValues.Auto };
 
             #region 내부 편집 컨트롤 
             shapeProperties.Append(Common.Instance.GetDrawingTransfrom2D(0, 0, model.Rect.Width, model.Rect.Height));
             #endregion
 
-            #region [뭔지모름] 이 요소는 사용자 정의 기하학적 모양 대신 사전 설정된 기하학적 모양을 사용해야 하는 경우를 지정합니다.
-            A.PresetGeometry presetGeometry4 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList4 = new A.AdjustValueList();
-            presetGeometry4.Append(adjustValueList4);
-            shapeProperties.Append(presetGeometry4);
+            #region 도형 타입
+            shapeProperties.Append(Common.Instance.GetPresetGeometry(model.ShapeStyle.ShapeTypeValue));
             #endregion
 
             #region 배경색
@@ -377,7 +390,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             #region 테두리
             if (model.ShapeStyle.UseOutline && model.ShapeStyle.OutlineWeight > 0)
             {
-                var outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor);
+                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor);
                 shapeProperties.Append(outline);
             }
             #endregion
@@ -389,7 +402,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// </summary>
         private TextBoxInfo2 GetTextBoxInfo2(OfficeModel model)
         {
-            var textBoxInfo = new Wps.TextBoxInfo2();
+            TextBoxInfo2 textBoxInfo = new Wps.TextBoxInfo2();
             TextBoxContent textBoxContent = new TextBoxContent();
             Paragraph paragraph = new Paragraph();
             ParagraphProperties paragraphProperties = new ParagraphProperties();
@@ -415,7 +428,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
             Run run = new Run();
             #region 폰트속성
-            var runProperties = Common.Instance.GetWordRunProperty(model.Font);
+            RunProperties runProperties = Common.Instance.GetWordRunProperty(model.Font);
             run.Append(runProperties);
             #endregion
 
@@ -506,7 +519,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         }
 
 
-        //todo : 소스 중복로직 최적화를 하고, 도형 지원도좀 하고, 깃에 문서작성
+        //todo : 깃에 문서작성
     }
 
 }

@@ -16,12 +16,39 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         //public static 의 객체반환 함수
         public static SocPowerpointTable Instance { get { return _instance.Value; } }
 
-        public GraphicFrame Generate(OfficeModel model)
+        //public PPT.GraphicFrame GenerateGraphicFrame(OfficeModel model)
+        //{
+        //    var graphicFrame = new PPT.GraphicFrame();
+        //    graphicFrame.Append(StaticCode.GenerateNonVisualGraphicFrameProperties("표"));
+
+        //    PPT.Transform transform1 = SocPowerpointTable.Instance.Transform(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height);
+        //    graphicFrame.Append(transform1);
+
+        //    Graphic graphic1 = SocPowerpointTable.Instance.Graphic(model);
+        //    //A.Graphic graphic1 = Graphic(model);
+        //    graphicFrame.Append(graphic1);
+
+        //    return graphicFrame;
+        //}
+
+
+        //public Graphic Graphic(OfficeModel model)
+        //{
+        //    var graphic1 = new Graphic();
+        //    var graphicData1 = new GraphicData() { Uri = "http://schemas.openxmlformats.org/drawingml/2006/table" };
+
+        //    graphicData1.Append(GenerateTable(model));
+
+        //    graphic1.Append(graphicData1);
+        //    return graphic1;
+
+        //}
+        public PPT.GraphicFrame Generate(OfficeModel model)
         {
-            var graphicFrame = new GraphicFrame();
+            var graphicFrame = new PPT.GraphicFrame();
             graphicFrame.Append(GetNonVisualGraphicFrameProperties("표"));
 
-            var transform1 = Common.Instance.GetPPTTransform(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height);
+            var transform1 = Transform(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height);
             graphicFrame.Append(transform1);
 
             var graphic1 = new Graphic();
@@ -64,6 +91,19 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
 
         }
+
+        public PPT.Transform Transform(int x, int y, int width, int height)
+        {
+            PPT.Transform transform1 = new PPT.Transform();
+            Offset offset1 = new Offset() { X = x * Common.Instance.EMUPPI, Y = y * Common.Instance.EMUPPI };
+            Extents extents1 = new Extents() { Cx = width * Common.Instance.EMUPPI, Cy = height * Common.Instance.EMUPPI };
+
+            transform1.Append(offset1);
+            transform1.Append(extents1);
+            return transform1;
+        }
+
+
         private Table GenerateTable(OfficeModel model)
         {
             var table1 = new Table();

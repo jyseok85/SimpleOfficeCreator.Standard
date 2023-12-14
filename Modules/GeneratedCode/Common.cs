@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleOfficeCreator.Stardard.Modules.Model;
@@ -24,6 +25,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         public List<uint> UniqueId { get; set; } = new List<uint>();
         public int EMUPPI { get; set; } = 9525;
+        public List<OfficeModel> Pictures { get; set; }
 
         /// <summary>
         /// 오피스에서는 RGB Hex 값이 사용되며, 투명은 NoFill 속성으로 처리된다.
@@ -46,7 +48,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
             else if (text.Contains(","))
             {
-                var value = text.Split(',').Select(Int32.Parse).ToList();
+                List<int> value = text.Split(',').Select(Int32.Parse).ToList();
                 System.Drawing.Color myColor = System.Drawing.Color.FromArgb(value[0], value[1], value[2]);
                 string hex = myColor.R.ToString("X2") + myColor.G.ToString("X2") + myColor.B.ToString("X2");
                 return hex;
@@ -59,14 +61,15 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
         }
 
+
         public void GenerateImagePart(List<OfficeModel> models, OpenXmlPart openXmlPart)
         {
-            //이미지를 추가한다. 
-            var pictures = models.FindAll(x => x.Type == Model.Type.Picture);
-            foreach (var picture in pictures)
+            this.Pictures = models.FindAll(x => x.Type == Model.Type.Picture || x.Type == Model.Type.TableImageCell);
+
+            foreach (OfficeModel picture in Pictures)
             {
-                var base64 = picture.Text;
-                var id = picture.UID;
+                string base64 = picture.Text;
+                string id = picture.UID;
                 ImagePart imagePart = openXmlPart.AddNewPart<ImagePart>("image/png", id);
 
                 if (string.IsNullOrEmpty(base64) || base64.Contains("http"))
@@ -104,7 +107,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// <returns></returns>
         public Drawing.SolidFill GenerateSolidFill(string color)
         {
-            var borderColor = color;
+            string borderColor = color;
             //투명으로 들어왔다면 그냥 흰색으로 변경한다. 대신 추후 Alpha 컴포넌트를 추가한다. 
             if (borderColor == "transparent" || borderColor == "trasnparent") //오타뭐임??
                 borderColor = "FFFFFF";
@@ -227,7 +230,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         public Drawing.Outline GetDrawingOutline(float weight, string color)
         {
-            var outline1 = new Drawing.Outline()
+            Drawing.Outline outline1 = new Drawing.Outline()
             {
                 Width = (int)weight * EMUPPI,
             };
@@ -246,7 +249,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             if (font.Strike)
                 strikeValues = Drawing.TextStrikeValues.SingleStrike;
 
-            var runProperties1 = new Drawing.RunProperties()
+            Drawing.RunProperties runProperties1 = new Drawing.RunProperties()
             {
                 Language = "en-US",
                 AlternativeLanguage = "ko-KR",
@@ -273,17 +276,22 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         public Drawing.Text GetDrawingRunText(OfficeModel model)
         {
-            var text1 = new Drawing.Text();
+            Drawing.Text text1 = new Drawing.Text();
             //텍스트가 없으면 속성이 하나도 안먹는다... 그래서 빈 공백을 추가한다. 이해안감. 버그아님?
-            if (model.Text == string.Empty)
+            if (model.Text == string.Empty )
                 model.Text = " ";
+
+            //PPT는 테이블안에 이미지가 들어가지 않는다. 그냥 위에 이미지 컨트롤이 추가될 뿐이다. 
+            if(model.TableInfo != null && model.TableInfo.Cell.IsImageCell)
+                model.Text = " ";
+
             text1.Text = model.Text;
             return text1;
         }
 
         public PPT.Transform GetPPTTransform(int x, int y, int width, int height)
         {
-            var transform1 = new PPT.Transform();
+            PPT.Transform transform1 = new PPT.Transform();
             Offset offset1 = new Offset() { X = x * EMUPPI, Y = y * EMUPPI };
             Extents extents1 = new Extents() { Cx = width * EMUPPI, Cy = height * EMUPPI };
 
@@ -299,7 +307,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         /// <param name="textVertical"></param>
         public Wordprocessing.TableVerticalAlignmentValues GetWordprocessingTableVerticalAlignment(TextAlignmentVertical textVertical)
         {
-            var value = Wordprocessing.TableVerticalAlignmentValues.Center;
+            TableVerticalAlignmentValues value = Wordprocessing.TableVerticalAlignmentValues.Center;
             switch (textVertical)
             {
                 case TextAlignmentVertical.Top:
@@ -317,7 +325,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         public Wordprocessing.RunProperties GetWordRunProperty(OfficeFont font)
         {
-            var runProperties = new Wordprocessing.RunProperties();
+            Wordprocessing.RunProperties runProperties = new Wordprocessing.RunProperties();
 
             #region 폰트명
             Wordprocessing.RunFonts runFonts4 = new Wordprocessing.RunFonts()
@@ -331,29 +339,29 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             #endregion
 
             #region 폰트사이즈
-            var fontSize4 = new Wordprocessing.FontSize() { Val = (font.Size * 2).ToString() };
+            FontSize fontSize4 = new Wordprocessing.FontSize() { Val = (font.Size * 2).ToString() };
             runProperties.Append(fontSize4);
             #endregion
 
             #region 폰트옵션
             if (font.UnderLine)
             {
-                var style = new Wordprocessing.Underline() { Val = Wordprocessing.UnderlineValues.Single };
+                Wordprocessing.Underline style = new Wordprocessing.Underline() { Val = Wordprocessing.UnderlineValues.Single };
                 runProperties.Append(style);
             }
             if (font.Strike)
             {
-                var style = new Wordprocessing.Strike();
+                Strike style = new Wordprocessing.Strike();
                 runProperties.Append(style);
             }
             if (font.Bold)
             {
-                var style = new Wordprocessing.Bold();
+                Bold style = new Wordprocessing.Bold();
                 runProperties.Append(style);
             }
             if (font.Italic)
             {
-                var style = new Wordprocessing.Italic();
+                Italic style = new Wordprocessing.Italic();
                 runProperties.Append(style);
             }
             #endregion
@@ -363,11 +371,37 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             #endregion
 
             #region 문자 간격
-            var spacing4 = new Wordprocessing.Spacing() { Val = (int)(font.CharacterSpacing * 20) };
+            Wordprocessing.Spacing spacing4 = new Wordprocessing.Spacing() { Val = (int)(font.CharacterSpacing * 20) };
             runProperties.Append(spacing4);
             #endregion
 
             return runProperties;
+        }
+
+        public Wordprocessing.BorderValues GetwordBorderStyle(string dashStyle)
+        {
+            BorderValues value = BorderValues.Single;
+            switch (dashStyle)
+            {
+                case "Solid":
+                    value = BorderValues.Single;
+                    break;
+                case "Dash":
+                    value = BorderValues.Dashed;
+                    break;
+                case "Dot":
+                    value = BorderValues.Dotted;
+                    break;
+                case "DashDot":
+                    value = BorderValues.DotDash;
+                    break;
+                case "DashDotDot":
+                    value = BorderValues.DotDotDash;
+                    break;
+            }
+
+            return value;
+
         }
 
         public void SetWordRunText(Wordprocessing.Run run, OfficeModel model)
@@ -377,9 +411,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
                 string[] strs = model.Text.Split('\n');
                 for (int i = 0; i < strs.Length; i++)
                 {
-                    Wordprocessing.Text text1 = new Wordprocessing.Text();
-                    text1.Text = strs[i];
-                    text1.Space = SpaceProcessingModeValues.Preserve;
+                    Wordprocessing.Text text1 = new Wordprocessing.Text
+                    {
+                        Text = strs[i],
+                        Space = SpaceProcessingModeValues.Preserve
+                    };
                     run.Append(text1);
 
                     if (i < strs.Length - 1)
@@ -390,9 +426,11 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
             else
             {
-                Wordprocessing.Text text1 = new Wordprocessing.Text();
-                text1.Space = SpaceProcessingModeValues.Preserve;
-                text1.Text = model.Text;
+                Wordprocessing.Text text1 = new Wordprocessing.Text
+                {
+                    Space = SpaceProcessingModeValues.Preserve,
+                    Text = model.Text
+                };
                 run.Append(text1);
             }
         }
@@ -401,8 +439,8 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         {
             if (model.Paragraph.LineSpacing > 0)
             {
-                var lineSpace = model.Paragraph.LineSpacing * 20f;
-                var spacingBetweenLines1 = new SpacingBetweenLines() { Line = lineSpace.ToString(), LineRule = LineSpacingRuleValues.Exact };
+                float lineSpace = model.Paragraph.LineSpacing * 20f;
+                SpacingBetweenLines spacingBetweenLines1 = new SpacingBetweenLines() { Line = lineSpace.ToString(), LineRule = LineSpacingRuleValues.Exact };
                 return spacingBetweenLines1;
             }
             else
@@ -415,7 +453,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
         public Wordprocessing.Justification GetWordprocessingJustification(OfficeModel model)
         {
             TextAlignmentHorizontal textHorizontal = model.Paragraph.AlignmentHorizontal;
-            var value = Wordprocessing.JustificationValues.Left;
+            JustificationValues value = Wordprocessing.JustificationValues.Left;
             switch (textHorizontal)
             {
                 case TextAlignmentHorizontal.Left:
@@ -434,7 +472,7 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
 
         public Wordprocessing.TextDirectionValues GetWordpressingTextDirection(Model.Component.HomeTab.TextDirection direction)
         {
-            var value = Wordprocessing.TextDirectionValues.LefToRightTopToBottom;
+            TextDirectionValues value = Wordprocessing.TextDirectionValues.LefToRightTopToBottom;
             switch (direction)
             {
                 case Model.Component.HomeTab.TextDirection.Vertical:
@@ -452,5 +490,22 @@ namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
             }
             return value;
         }
+
+        public Drawing.PresetGeometry GetPresetGeometry(string shapeTypeValue)
+        {
+            if (shapeTypeValue == "rectangle")
+            {
+                var presetGeometry4 = new Drawing.PresetGeometry() { Preset = Drawing.ShapeTypeValues.Rectangle };
+                presetGeometry4.Append(new Drawing.AdjustValueList());
+                return presetGeometry4;
+            }
+            else
+            {
+                var presetGeometry4 = new Drawing.PresetGeometry() { Preset = Drawing.ShapeTypeValues.Ellipse };
+                presetGeometry4.Append(new Drawing.AdjustValueList());
+                return presetGeometry4;
+            }
+        }
+
     }
 }

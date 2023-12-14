@@ -103,6 +103,7 @@ namespace SimpleOfficeCreator.Stardard.Modules
                         shapeTree1.Append(SocPowerpointTable.Instance.Generate(model));
                         break;
                     case Model.Type.Picture:
+                    case Model.Type.TableImageCell:
                         shapeTree1.Append(SocShape.Instance.GeneratePicture(model));
                         break;
                 }
@@ -155,6 +156,21 @@ namespace SimpleOfficeCreator.Stardard.Modules
             }
 
         }
+
+        //private GraphicFrame GenerateGraphicFrame(OfficeModel model)
+        //{
+        //    GraphicFrame graphicFrame = new GraphicFrame();
+        //    graphicFrame.Append(StaticCode.GenerateNonVisualGraphicFrameProperties("표"));
+
+        //    Transform transform1 = SocPowerpointTable.Instance.Transform(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height);
+        //    graphicFrame.Append(transform1);
+
+        //    A.Graphic graphic1 = SocPowerpointTable.Instance.Graphic(model);
+        //    //A.Graphic graphic1 = Graphic(model);
+        //    graphicFrame.Append(graphic1);
+
+        //    return graphicFrame;
+        //}
 
     }
 }
