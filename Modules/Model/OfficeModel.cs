@@ -1,9 +1,9 @@
-﻿using SimpleOfficeCreator.Stardard.Modules.Model.Component;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.PictureFormatTab;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat;
+﻿using SimpleOfficeCreator.Standard.Modules.Model.Component;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.HomeTab;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.PictureFormatTab;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.ShapeFormat;
 
-namespace SimpleOfficeCreator.Stardard.Modules.Model
+namespace SimpleOfficeCreator.Standard.Modules.Model
 {
     public enum Type
     {

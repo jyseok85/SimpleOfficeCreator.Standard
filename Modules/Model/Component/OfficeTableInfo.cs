@@ -1,7 +1,7 @@
-﻿using SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab;
+﻿using SimpleOfficeCreator.Standard.Modules.Model.Component.TableDesignTab;
 using System.Collections.Generic;
 
-namespace SimpleOfficeCreator.Stardard.Modules.Model.Component
+namespace SimpleOfficeCreator.Standard.Modules.Model.Component
 {
     public class OfficeTableInfo
     {

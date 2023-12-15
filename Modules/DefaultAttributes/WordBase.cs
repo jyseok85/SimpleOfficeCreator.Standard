@@ -8,7 +8,7 @@ using V = DocumentFormat.OpenXml.Vml;
 using W14 = DocumentFormat.OpenXml.Office2010.Word;
 using W15 = DocumentFormat.OpenXml.Office2013.Word;
 
-namespace SimpleOfficeCreator.Stardard.Modules.DefaultAttributes
+namespace SimpleOfficeCreator.Standard.Modules.DefaultAttributes
 {
     internal class WordBase
     {

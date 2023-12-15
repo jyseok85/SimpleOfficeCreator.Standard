@@ -3,8 +3,8 @@ using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using SimpleOfficeCreator.Stardard.Modules.Model;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab;
+using SimpleOfficeCreator.Standard.Modules.Model;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.HomeTab;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using Drawing = DocumentFormat.OpenXml.Drawing;
 using PPT = DocumentFormat.OpenXml.Presentation;
 using Wordprocessing = DocumentFormat.OpenXml.Wordprocessing;
 
-namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
+namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
 {
     public class Common
     {

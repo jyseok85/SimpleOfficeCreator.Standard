@@ -1,12 +1,12 @@
-﻿using SimpleOfficeCreator.Stardard.Modules.Model.Component;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.PictureFormatTab;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab;
+﻿using SimpleOfficeCreator.Standard.Modules.Model.Component;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.HomeTab;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.PictureFormatTab;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.ShapeFormat;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.TableDesignTab;
 using System;
 using System.Collections.Generic;
 
-namespace SimpleOfficeCreator.Stardard.Modules.Model
+namespace SimpleOfficeCreator.Standard.Modules.Model
 {
     /// <summary>
     /// 컨트롤 생성 순서에 따라서 컨트롤의 z-index 가 할당된다.

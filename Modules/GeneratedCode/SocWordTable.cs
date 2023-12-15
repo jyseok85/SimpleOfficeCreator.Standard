@@ -1,8 +1,8 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Wordprocessing;
-using SimpleOfficeCreator.Stardard.Modules.Model;
-using SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab;
+using SimpleOfficeCreator.Standard.Modules.Model;
+using SimpleOfficeCreator.Standard.Modules.Model.Component.TableDesignTab;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,7 +12,7 @@ using A = DocumentFormat.OpenXml.Drawing;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
 using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 
-namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
+namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
 {
     public class SocWordTable
     {

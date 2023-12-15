@@ -7,7 +7,7 @@ using P14 = DocumentFormat.OpenXml.Office2010.PowerPoint;
 using P15 = DocumentFormat.OpenXml.Office2013.PowerPoint;
 using Thm15 = DocumentFormat.OpenXml.Office2013.Theme;
 
-namespace SimpleOfficeCreator.Stardard.Modules.DefaultCreator
+namespace SimpleOfficeCreator.Standard.Modules.DefaultCreator
 {
     public class PPTBase
     {

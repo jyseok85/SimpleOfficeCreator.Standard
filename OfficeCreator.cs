@@ -1,11 +1,11 @@
-﻿using SimpleOfficeCreator.Stardard.Modules;
-using SimpleOfficeCreator.Stardard.Modules.GeneratedCode;
-using SimpleOfficeCreator.Stardard.Modules.Model;
+﻿using SimpleOfficeCreator.Standard.Modules;
+using SimpleOfficeCreator.Standard.Modules.GeneratedCode;
+using SimpleOfficeCreator.Standard.Modules.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace SimpleOfficeCreator.Stardard
+namespace SimpleOfficeCreator.Standard
 {
     public enum OfficeType
     {
@@ -59,7 +59,13 @@ namespace SimpleOfficeCreator.Stardard
             powerPoint.ConvertPerPage(1, models);
         }
 
-        public void ConvertPage(int page, List<OfficeModel> models, bool hasNextPage)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page">페이지는 1번부터 시작됩니다.</param>
+        /// <param name="models"></param>
+        /// <param name="hasNextPage">워드 전용옵션</param>
+        public void ConvertPage(int page, List<OfficeModel> models, bool hasWordNextPage = false)
         {
             switch (OfficeType)
             {
@@ -67,7 +73,7 @@ namespace SimpleOfficeCreator.Stardard
                     powerPoint.ConvertPerPage(page, models);
                     break;
                 case OfficeType.Word:
-                    word.ConvertPerPage(page, models, hasNextPage);
+                    word.ConvertPerPage(page, models, hasWordNextPage);
                     break;
                 case OfficeType.Excel:
                     break;

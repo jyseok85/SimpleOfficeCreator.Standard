@@ -1,4 +1,4 @@
-﻿namespace SimpleOfficeCreator.Stardard.Modules.Model
+﻿namespace SimpleOfficeCreator.Standard.Modules.Model
 {
     internal class PowerPointObject
     {

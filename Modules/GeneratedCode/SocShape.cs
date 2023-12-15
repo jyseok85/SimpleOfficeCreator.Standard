@@ -1,11 +1,11 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Presentation;
-using SimpleOfficeCreator.Stardard.Modules.Model;
+using SimpleOfficeCreator.Standard.Modules.Model;
 using System;
 using A = DocumentFormat.OpenXml.Drawing;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
 
-namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
+namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
 {
     public class SocShape
     {

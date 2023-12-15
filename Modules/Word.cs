@@ -1,14 +1,14 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using SimpleOfficeCreator.Stardard.Modules.DefaultAttributes;
-using SimpleOfficeCreator.Stardard.Modules.GeneratedCode;
-using SimpleOfficeCreator.Stardard.Modules.Model;
+using SimpleOfficeCreator.Standard.Modules.DefaultAttributes;
+using SimpleOfficeCreator.Standard.Modules.GeneratedCode;
+using SimpleOfficeCreator.Standard.Modules.Model;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace SimpleOfficeCreator.Stardard.Modules
+namespace SimpleOfficeCreator.Standard.Modules
 {
     public class Word
     {

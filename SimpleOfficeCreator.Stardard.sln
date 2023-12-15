@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34302.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleOfficeCreator.Stardard", "SimpleOfficeCreator.Stardard.csproj", "{CA52CABE-83DF-48CA-A201-A75EBD9332A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleOfficeCreator.Standard", "SimpleOfficeCreator.Standard.csproj", "{CA52CABE-83DF-48CA-A201-A75EBD9332A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duzon.ReportDesinger.OfficeConverter", "..\..\..\DR\DRDesigner4.0\Duzon.ReportDesinger.OfficeConverter\Duzon.ReportDesinger.OfficeConverter.csproj", "{D83242CF-390C-4662-9268-1AD4387E9309}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "출산휴가확인서 워드변환 테스트", "..\test\출산휴가확인서 워드변환 테스트.csproj", "{8E369AFA-1E00-4516-88B4-EC10CCA0CE01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOfficeCreator.Standard.Sample", "..\SimpleOfficeCreator.Standard.Sample\SimpleOfficeCreator.Standard.Sample.csproj", "{95DAAF0A-5801-49ED-886F-B5DA157F4BBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8E369AFA-1E00-4516-88B4-EC10CCA0CE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E369AFA-1E00-4516-88B4-EC10CCA0CE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E369AFA-1E00-4516-88B4-EC10CCA0CE01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95DAAF0A-5801-49ED-886F-B5DA157F4BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95DAAF0A-5801-49ED-886F-B5DA157F4BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95DAAF0A-5801-49ED-886F-B5DA157F4BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95DAAF0A-5801-49ED-886F-B5DA157F4BBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

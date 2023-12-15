@@ -1,4 +1,4 @@
-﻿namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.PictureFormatTab
+﻿namespace SimpleOfficeCreator.Standard.Modules.Model.Component.PictureFormatTab
 {
 
     public class OfficePictureStyle

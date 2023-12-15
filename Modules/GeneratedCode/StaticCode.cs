@@ -3,7 +3,7 @@ using DocumentFormat.OpenXml.Presentation;
 using A = DocumentFormat.OpenXml.Drawing;
 using P14 = DocumentFormat.OpenXml.Office2010.PowerPoint;
 
-namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
+namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
 {
     internal static class StaticCode
     {

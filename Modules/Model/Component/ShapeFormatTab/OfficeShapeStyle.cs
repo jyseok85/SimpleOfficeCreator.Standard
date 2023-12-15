@@ -1,4 +1,4 @@
-﻿namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.ShapeFormat
+﻿namespace SimpleOfficeCreator.Standard.Modules.Model.Component.ShapeFormat
 {
     public class OfficeShapeStyle
     {

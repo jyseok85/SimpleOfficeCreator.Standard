@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace SimpleOfficeCreator.Stardard
+namespace SimpleOfficeCreator.Standard
 {
     public class Logger
     {

@@ -1,12 +1,12 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Drawing;
-using SimpleOfficeCreator.Stardard.Modules.Model;
+using SimpleOfficeCreator.Standard.Modules.Model;
 using System;
 using System.Collections.Generic;
 using P14 = DocumentFormat.OpenXml.Office2010.PowerPoint;
 using PPT = DocumentFormat.OpenXml.Presentation;
 
-namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
+namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
 {
     public class SocPowerpointTable
     {

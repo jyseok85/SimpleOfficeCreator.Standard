@@ -1,4 +1,4 @@
-﻿namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.TableDesignTab
+﻿namespace SimpleOfficeCreator.Standard.Modules.Model.Component.TableDesignTab
 {
     public class OfficeTableStyles
     {

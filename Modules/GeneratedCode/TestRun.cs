@@ -5,10 +5,10 @@ using A = DocumentFormat.OpenXml.Drawing;
 using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
 using System;
-using SimpleOfficeCreator.Stardard.Modules.Model;
+using SimpleOfficeCreator.Standard.Modules.Model;
 
 
-namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
+namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
 {
     internal class TestRun
     {

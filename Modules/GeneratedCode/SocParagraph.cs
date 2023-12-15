@@ -2,7 +2,7 @@
 using DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using DocumentFormat.OpenXml.Office2010.Word.DrawingShape;
 using DocumentFormat.OpenXml.Wordprocessing;
-using SimpleOfficeCreator.Stardard.Modules.Model;
+using SimpleOfficeCreator.Standard.Modules.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using Wp14 = DocumentFormat.OpenXml.Office2010.Word.Drawing;
 using Wps = DocumentFormat.OpenXml.Office2010.Word.DrawingShape;
 
 
-namespace SimpleOfficeCreator.Stardard.Modules.GeneratedCode
+namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
 {
     internal class SocParagraph
     {

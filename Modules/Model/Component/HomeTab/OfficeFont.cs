@@ -1,4 +1,4 @@
-﻿namespace SimpleOfficeCreator.Stardard.Modules.Model.Component.HomeTab
+﻿namespace SimpleOfficeCreator.Standard.Modules.Model.Component.HomeTab
 {
     public enum Spacing
     {
