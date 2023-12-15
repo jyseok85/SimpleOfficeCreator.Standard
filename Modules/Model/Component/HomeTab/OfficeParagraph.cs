@@ -8,6 +8,9 @@ namespace SimpleOfficeCreator.Standard.Modules.Model.Component.HomeTab
         Vertical,
         RotateAllText90,
         RotateAllText270,
+        /// <summary>
+        /// UI의 마지막 항목, Word랑 PPT랑 좀 다르게 동작함.
+        /// </summary>
         Stacked
     }
     public enum TextAlignmentHorizontal
@@ -58,6 +61,6 @@ namespace SimpleOfficeCreator.Standard.Modules.Model.Component.HomeTab
         /// <summary> 
         /// Word 전용
         /// </summary>
-        public bool TableCellFitText { get; set; } = false;
+        public bool TableCellFitTextForWord { get; set; } = false;
     }
 }

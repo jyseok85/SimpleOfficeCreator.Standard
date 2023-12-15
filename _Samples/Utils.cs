@@ -20,7 +20,7 @@ namespace SimpleOfficeCreator.Standard._Samples
             try
             {
                 WebRequest req = WebRequest.Create(url);
-                req.Timeout = 500;
+                req.Timeout = 1000;
                 using (WebResponse res = req.GetResponse())
                 {
                     using (Stream st = res.GetResponseStream())

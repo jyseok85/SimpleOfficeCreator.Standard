@@ -1,4 +1,5 @@
-﻿using SimpleOfficeCreator.Standard.Modules.Model.Component;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using SimpleOfficeCreator.Standard.Modules.Model.Component;
 using SimpleOfficeCreator.Standard.Modules.Model.Component.HomeTab;
 using SimpleOfficeCreator.Standard.Modules.Model.Component.PictureFormatTab;
 using SimpleOfficeCreator.Standard.Modules.Model.Component.ShapeFormat;
@@ -43,19 +44,48 @@ namespace SimpleOfficeCreator.Standard.Modules.Model
             model.Type = Type.TextBox;
             return model;
         }
-
-        /// <summary>
-        /// !셀의 내용이 Width 보다 커질경우 WordWrap 속성적용으로 인하여 Row Height가 늘어나게 된다(비활성 불가능). Column Width 설정에 주의하자.
-        /// </summary>
-        public OfficeModel CreateTable(int x, int y, int width, int height, List<int> colWidths, List<int> rowHeights)
+        public OfficeModel CreateTable(int x, int y, int width, int height, int colCount, int rowCount)
         {
-            //테이블 생성할 차례.. 잘되고있어요 굿굿   
             OfficeModel model = new OfficeModel("");
             model.Rect.X = x;
             model.Rect.Y = y;
             model.Rect.Width = width;
             model.Rect.Height = height;
             model.Type = Type.Table;
+
+            int w = width / colCount;
+            List<int> colWidths = new List<int>();
+            for (int i = 0; i < colCount; i++)
+            {
+                colWidths.Add(w);
+            }
+
+            int h = height / rowCount;
+            List<int> rowHeights = new List<int>();
+            for (int i = 0; i < rowCount; i++)
+            {
+                rowHeights.Add(h);
+            }
+
+            model.TableInfo = new OfficeTableInfo
+            {
+                ColumnWidthList = colWidths,
+                RowHeightList = rowHeights
+            };
+            return model;
+        }
+        /// <summary>
+        /// !셀의 내용이 Width 보다 커질경우 WordWrap 속성적용으로 인하여 Row Height가 늘어나게 된다(비활성 불가능). Column Width 설정에 주의하자.
+        /// </summary>
+        public OfficeModel CreateTable(int x, int y, int width, int height, List<int> colWidths, List<int> rowHeights)
+        {
+            OfficeModel model = new OfficeModel("");
+            model.Rect.X = x;
+            model.Rect.Y = y;
+            model.Rect.Width = width;
+            model.Rect.Height = height;
+            model.Type = Type.Table;
+
             model.TableInfo = new OfficeTableInfo
             {
                 ColumnWidthList = colWidths,

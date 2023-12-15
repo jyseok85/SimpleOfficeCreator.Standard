@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Drawing = DocumentFormat.OpenXml.Drawing;
 using PPT = DocumentFormat.OpenXml.Presentation;
 using Wordprocessing = DocumentFormat.OpenXml.Wordprocessing;
@@ -34,6 +35,9 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
         /// <returns>RGB Hex 값</returns>
         public string GetOfficeColor(string text)
         {
+            if(IValidHexaCode(text))
+                return text;
+
             if (text == null)
             {
                 return "transparent";
@@ -61,6 +65,15 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             }
         }
 
+        internal bool IValidHexaCode(string str)
+        {
+            string strRegex = @"^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(str))
+                return (true);
+            else
+                return (false);
+        }
 
         public void GenerateImagePart(List<OfficeModel> models, OpenXmlPart openXmlPart)
         {
@@ -107,7 +120,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
         /// <returns></returns>
         public Drawing.SolidFill GenerateSolidFill(string color)
         {
-            string borderColor = color;
+            string borderColor = GetOfficeColor(color);
             //투명으로 들어왔다면 그냥 흰색으로 변경한다. 대신 추후 Alpha 컴포넌트를 추가한다. 
             if (borderColor == "transparent" || borderColor == "trasnparent") //오타뭐임??
                 borderColor = "FFFFFF";
@@ -217,6 +230,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             return dashValue;
         }
 
+ 
         public Drawing.Transform2D GetDrawingTransfrom2D(int x, int y, int width, int height)
         {
             Drawing.Transform2D transform1 = new Drawing.Transform2D();
@@ -228,7 +242,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             return transform1;
         }
 
-        public Drawing.Outline GetDrawingOutline(float weight, string color)
+        public Drawing.Outline GetDrawingOutline(float weight, string color, string dashStyle = "solid")
         {
             Drawing.Outline outline1 = new Drawing.Outline()
             {
@@ -236,6 +250,10 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             };
             Drawing.SolidFill solidFill2 = Common.Instance.GenerateSolidFill(color);
             outline1.Append(solidFill2);
+
+            Drawing.PresetDash presetDash1 = new Drawing.PresetDash() { Val = GetDrawingDashValue(dashStyle) };
+            outline1.Append(presetDash1);
+
             return outline1;
         }
 
@@ -491,7 +509,12 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             return value;
         }
 
-        public Drawing.PresetGeometry GetPresetGeometry(string shapeTypeValue)
+        /// <summary>
+        /// [고정]이 요소는 사용자 정의 기하학적 모양 대신 사전 설정된 기하학적 모양을 사용해야 하는 경우를 지정합니다.
+        /// 테두리로 설정되는 모양(테두리를 괄호처럼 표현한다던가)
+        /// </summary>
+        /// <returns></returns>
+        public Drawing.PresetGeometry GetDrawingPresetGeometry(string shapeTypeValue = "rectangle")
         {
             if (shapeTypeValue == "rectangle")
             {

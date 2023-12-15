@@ -2,7 +2,11 @@
 {
     public class OfficeShapeStyle
     {
+        /// <summary>
+        /// 도형 채우기 사용여부
+        /// </summary>
         public bool UseFill { get; set; } = false;
+
         /// <summary>
         /// 도형 채우기 색
         /// </summary>

@@ -130,19 +130,21 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             blipFill1.Append(blip1);
             blipFill1.Append(stretch1);
 
-            ShapeProperties shapeProperties1 = new ShapeProperties();
+            ShapeProperties shapeProperties = new ShapeProperties();
 
-            shapeProperties1.Append(Common.Instance.GetDrawingTransfrom2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
+            shapeProperties.Append(Common.Instance.GetDrawingTransfrom2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
 
-            A.PresetGeometry presetGeometry1 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList1 = new A.AdjustValueList();
-            presetGeometry1.Append(adjustValueList1);
+            shapeProperties.Append(Common.Instance.GetDrawingPresetGeometry());
 
-            shapeProperties1.Append(presetGeometry1);
+            if (model.PictureStyle != null && model.PictureStyle.NoOutline == false && model.PictureStyle.Weight > 0)
+            {
+                var outline = Common.Instance.GetDrawingOutline(model.PictureStyle.Weight, model.PictureStyle.Color, model.PictureStyle.Dashes);
+                shapeProperties.Append(outline);
+            }
 
             picture1.Append(nonVisualPictureProperties1);
             picture1.Append(blipFill1);
-            picture1.Append(shapeProperties1);
+            picture1.Append(shapeProperties);
             return picture1;
         }
 
@@ -178,7 +180,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             shapeProperties1.Append(Common.Instance.GetDrawingTransfrom2D(model.Rect.X, model.Rect.Y, model.Rect.Width, model.Rect.Height));
 
             //도형 타입
-            shapeProperties1.Append(Common.Instance.GetPresetGeometry(model.ShapeStyle.ShapeTypeValue));
+            shapeProperties1.Append(Common.Instance.GetDrawingPresetGeometry(model.ShapeStyle.ShapeTypeValue));
 
             #region 배경색
             if (model.ShapeStyle.UseFill == false)
@@ -194,7 +196,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             #region 테두리
             if (model.ShapeStyle.UseOutline && model.ShapeStyle.OutlineWeight > 0)
             {
-                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor);
+                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor, model.PictureStyle.Dashes);
                 shapeProperties1.Append(outline);
             }
             #endregion

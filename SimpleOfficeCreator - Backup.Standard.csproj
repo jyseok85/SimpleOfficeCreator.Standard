@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netStandard2.0</TargetFramework>
     <BaseOutputPath>D:\DR\DRDesigner4.0\Bin\Debug</BaseOutputPath>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>

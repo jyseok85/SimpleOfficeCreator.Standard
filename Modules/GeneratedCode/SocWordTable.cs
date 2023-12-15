@@ -197,7 +197,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
                 RunProperties runProperties1 = Common.Instance.GetWordRunProperty(cell.Font);
 
                 #region 텍스트 자동 맞춤(테이블 셀 전용)
-                if (cell.Paragraph.TableCellFitText)
+                if (cell.Paragraph.TableCellFitTextForWord)
                 {
                     TableCellFitText cellFitText = new TableCellFitText();
                     runProperties1.Append(cellFitText);
@@ -271,7 +271,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
                 }
                 else
                 {
-                    Shading shading1 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = cell.TableInfo.Styles.ShadingColor };
+                    Shading shading1 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = Common.Instance.GetOfficeColor(cell.TableInfo.Styles.ShadingColor) };
                     tableCellProperties.Append(shading1);
                 }
                 #endregion

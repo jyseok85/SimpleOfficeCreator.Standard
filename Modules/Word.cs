@@ -18,12 +18,19 @@ namespace SimpleOfficeCreator.Standard.Modules
         Body body;
         string password = string.Empty;
 
+        readonly int defaultReportWidthPixel;
+        readonly int defaultReportHeightPixel;
+        private bool isLandScape = false;
 
-
-        public Word(MemoryStream stream)
+        public Word(MemoryStream stream, int width, int height)
         {
             document = WordprocessingDocument.Create(stream, WordprocessingDocumentType.Document, true);
             mainDocumentPart = document.AddMainDocumentPart();
+            defaultReportWidthPixel = width;
+            defaultReportHeightPixel = height;
+
+            if(width > height)
+                isLandScape = true;
         }
 
         public void Save()
@@ -65,13 +72,13 @@ namespace SimpleOfficeCreator.Standard.Modules
             this.document.Dispose();
         }
 
-        public void Initialize(int width, int height, string password = "")
+        public void Initialize(string password = "")
         {
             Document document = WordBase.Instance.GenerateDocument();
             this.mainDocumentPart.Document = document;
             this.body = this.mainDocumentPart.Document.Body;
-
             this.password = password;
+      
         }
 
         public void ConvertPerPage(int page, List<OfficeModel> models, bool hasNextPage)
@@ -92,14 +99,20 @@ namespace SimpleOfficeCreator.Standard.Modules
             this.body.Append(SocParagraph.Instance.Generate(textboxs));
 
             //this.body.Append(SocParagraph.Instance.Test2());
-            OfficeModel report = models.Find(x => x.Type == Type.Paper);
-            //워드 좌측 상단에 줄자가 있고, 여백설정이 가능하다. 
             SectionProperties sectionProperties = new DocumentFormat.OpenXml.Wordprocessing.SectionProperties();
-            sectionProperties.Append(용지사이즈설정(report.PaperInfo.Width, report.PaperInfo.Height, report.PaperInfo.IsLandscape));
-
+            OfficeModel report = models.Find(x => x.Type == Type.Paper);
+            if(report != null)
+            {
+                //워드 좌측 상단에 줄자가 있고, 여백설정이 가능하다. 
+                sectionProperties.Append(용지사이즈설정(report.PaperInfo.Width, report.PaperInfo.Height, report.PaperInfo.IsLandscape));
+            }
+            else
+            {
+                sectionProperties.Append(용지사이즈설정(defaultReportWidthPixel, defaultReportHeightPixel, this.isLandScape));
+            }
             //PPT 때문에 절대값으로 다 바꿨는데.. 워드는 여백이 따로 있네?? 제길.
-            sectionProperties.Append(용지여백설정(0, 0, 0, 0));
             //sectionProperties.Append(용지여백설정((int)report.Margin.Left, (int)report.Margin.Top, (int)report.Margin.Right, (int)report.Margin.Bottom));
+            sectionProperties.Append(용지여백설정(0, 0, 0, 0));
             this.body.Append(sectionProperties);
 
             //워드는 페이지내에 내용이 넘어가면 다음페이지가 자동으로 입력된다.

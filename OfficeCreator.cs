@@ -24,10 +24,7 @@ namespace SimpleOfficeCreator.Standard
         Word word = null;
         MemoryStream memoryStream = new System.IO.MemoryStream();
 
-
-        OfficeType OfficeType { get; set; }
-
-        public void Initialize(OfficeType type)
+        public OfficeCreator(OfficeType type, int width = 794, int height = 1123)
         {
             this.OfficeType = type;
             this.memoryStream = new MemoryStream();
@@ -44,8 +41,34 @@ namespace SimpleOfficeCreator.Standard
                     powerPoint.Initialize(794, 1123);
                     break;
                 case OfficeType.Word:
-                    word = new Word(memoryStream);
-                    word.Initialize(800, 1123);
+                    word = new Word(memoryStream, width, height);
+                    word.Initialize();
+                    break;
+                case OfficeType.Excel:
+                    break;
+            }
+        }
+        public OfficeType OfficeType { get; set; }
+
+        public void Initialize(OfficeType type, int width = 794, int height = 1123)
+        {
+            this.OfficeType = type;
+            this.memoryStream = new MemoryStream();
+
+            Common.Instance.UniqueId.Clear();
+            Common.Instance.UniqueId.Add(1);
+            Common.Instance.EMUPPI = EMU96PPI;
+
+            switch (OfficeType)
+            {
+                case OfficeType.PowerPoint:
+                    powerPoint = new PowerPoint(memoryStream);
+                    //to do:PPT 용지사이즈 설정
+                    powerPoint.Initialize(794, 1123);
+                    break;
+                case OfficeType.Word:
+                    word = new Word(memoryStream, width, height);
+                    word.Initialize();
                     break;
                 case OfficeType.Excel:
                     break;
@@ -84,28 +107,31 @@ namespace SimpleOfficeCreator.Standard
         /// 파일을 저장합니다.
         /// </summary>
         /// <param name="filePath"></param>
-        public void Save(string filePath)
+        public string Save(string filePath = "")
         {
             SaveOfficeDocument();
 
             if (filePath == string.Empty)
             {
+                string fileName = OfficeType.ToString() + DateTime.Now.ToString("HHmmss");
                 switch (OfficeType)
                 {
                     case OfficeType.PowerPoint:
-                        filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", OfficeType.ToString() + ".pptx");
+                        filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName + ".pptx");
                         break;
                     case OfficeType.Word:
-                        filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", OfficeType.ToString() + ".docx");
+                        filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName + ".docx");
                         break;
                     case OfficeType.Excel:
-                        filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", OfficeType.ToString() + ".xlsx");
+                        filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName + ".xlsx");
                         break;
                 }
             }
 
             File.WriteAllBytes(filePath, this.memoryStream.ToArray());
             this.memoryStream.Dispose();
+
+            return filePath;
         }
 
         /// <summary>

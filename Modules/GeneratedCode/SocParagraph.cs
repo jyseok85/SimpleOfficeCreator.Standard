@@ -65,6 +65,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
         {
             Drawing drawing1 = new Drawing();
 
+            //Tip : 특정영역과 상관없이 추가할때는 anchor 특정영역 내에 추가할때는 Inline
             Anchor anchor1 = new Anchor()
             {
                 DistanceFromTop = 0U,
@@ -116,19 +117,14 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             shapeProperties.Append(Common.Instance.GetDrawingTransfrom2D(0, 0, model.Rect.Width, model.Rect.Height));
             #endregion
 
-            #region [뭔지모름] 이 요소는 사용자 정의 기하학적 모양 대신 사전 설정된 기하학적 모양을 사용해야 하는 경우를 지정합니다.
-            A.PresetGeometry presetGeometry4 = new A.PresetGeometry() { Preset = A.ShapeTypeValues.Rectangle };
-            A.AdjustValueList adjustValueList4 = new A.AdjustValueList();
-            presetGeometry4.Append(adjustValueList4);
-            shapeProperties.Append(presetGeometry4);
-            #endregion
 
 
+            #region 테두리 영역               
+            shapeProperties.Append(Common.Instance.GetDrawingPresetGeometry());
 
-            #region 테두리
             if (model.PictureStyle != null && model.PictureStyle.NoOutline == false && model.PictureStyle.Weight > 0)
             {
-                A.Outline outline = Common.Instance.GetDrawingOutline(model.PictureStyle.Weight, model.PictureStyle.Color);
+                A.Outline outline = Common.Instance.GetDrawingOutline(model.PictureStyle.Weight, model.PictureStyle.Color, model.PictureStyle.Dashes);
                 shapeProperties.Append(outline);
             }
             #endregion
@@ -373,7 +369,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             #endregion
 
             #region 도형 타입
-            shapeProperties.Append(Common.Instance.GetPresetGeometry(model.ShapeStyle.ShapeTypeValue));
+            shapeProperties.Append(Common.Instance.GetDrawingPresetGeometry(model.ShapeStyle.ShapeTypeValue));
             #endregion
 
             #region 배경색
@@ -390,7 +386,13 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             #region 테두리
             if (model.ShapeStyle.UseOutline && model.ShapeStyle.OutlineWeight > 0)
             {
-                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor);
+                string dash = string.Empty;
+                if (model.Type == Model.Type.TextBox || model.Type == Model.Type.Shape)
+                    dash = model.ShapeStyle.OutlineDashes;
+                else
+                    dash = model.PictureStyle.Dashes;
+
+                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor, dash);
                 shapeProperties.Append(outline);
             }
             #endregion
