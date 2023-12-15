@@ -1,4 +1,4 @@
-# SimpleOfficeCreator.Stardard
+# SimpleOfficeCreator.Standard
 Create Word, PPT, Excel Simply
 
 
@@ -18,9 +18,11 @@ PPT처럼 텍스트 상자를 통해서 텍스트를 입력하는 방법을 사�
 <hr/>
 
 # 텍스트 상자
-![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/b4a8d3b0-3262-41f6-9959-e7ba4940e1ff)
 - 필수 : 위치, 크기, 텍스트
 - 선택 : 글꼴설정, 단락설정, 도형스타일
+   ||
+   |:---:|
+   |![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/b4a8d3b0-3262-41f6-9959-e7ba4940e1ff)|
 
    ## 글꼴 설정
    > #### 설정가능한 속성
@@ -31,7 +33,7 @@ PPT처럼 텍스트 상자를 통해서 텍스트를 입력하는 방법을 사�
    > - 색상
    >
    > ###### UI 컨트롤 위치
-   >|Word or Powerpoint|
+   >||
    >|:---:|
    >|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/de262be2-24f0-4c97-b8f7-1d85d3028409)|
    > 
@@ -93,14 +95,14 @@ PPT처럼 텍스트 상자를 통해서 텍스트를 입력하는 방법을 사�
   > - 도형 모양(네모, 원)
   >   
   > ###### UI 컨트롤 위치
-  >|Word or Powerpoint|
+  >||
   >|:---:|
   >|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/39ecd583-3caf-46a3-bcce-ef05e9452d22)|
   > <details><summary>Code</summary>    
   >
   > ``` C# 
   > //도형 스타일을 설정합니다.[옵션]
-  >  var style = new OfficeShapeStyle()
+  > var style = new OfficeShapeStyle()
   > {
   >    UseFill = true,
   >    FillColor = "yellow",
@@ -112,8 +114,8 @@ PPT처럼 텍스트 상자를 통해서 텍스트를 입력하는 방법을 사�
   > };
   > ```
   </details>
+<details><summary><h3>전체코드</h3></summary>    
 
-### 전체코드
 ``` C#
 public string CreateSingleTextBoxDocument()
 {
@@ -139,6 +141,7 @@ public string CreateSingleTextBoxDocument()
         TextDirection = TextDirection.Stacked,
         LineSpacing = 0
     };
+    //도형 스타일을 설정합니다.[옵션]
     var style = new OfficeShapeStyle()
     {
         UseFill = true,
@@ -160,13 +163,47 @@ public string CreateSingleTextBoxDocument()
     return officeCreator.Save();
 }
 ```
+### </details>
+
+<hr/>
 
 # 이미지 
 - 필수 : 위치, 크기, 이미지 Base64 데이터
-- 스타일 지원 : 테두리(색, 두꼐, 모양)  
-- ![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/01fb019e-3336-4d63-bd7c-456c800e4606)
+- 선택 : 그림 스타일
+  
+  |Word|Powerpoint|
+  |:---:|:---:|
+  |![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/9f626aae-3b60-404c-9df1-c39d1109e893)|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/a698a326-83af-4a27-b92a-5bfe2bbbd450)|
 
-<details><summary>Code</summary>
+
+
+
+  ## 그림 스타일 설정
+  > #### 설정가능한 속성
+  > - 그림 테두리 사용 유무
+  > - 그림 테두리 색
+  > - 그림 테두리 두께
+  > - 그림 테두리 스타일  
+  >   
+  > ###### UI 컨트롤 위치
+  >|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/39ecd583-3caf-46a3-bcce-ef05e9452d22)|
+  >|:---:|
+  >|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/01fb019e-3336-4d63-bd7c-456c800e4606)|
+  > <details><summary>Code</summary>    
+  >
+  > ``` C#  
+  > var officePictureStyle = new OfficePictureStyle()
+  > {
+  >    Weight = 3,
+  >    Color = "blue",
+  >    NoOutline = false,
+  >    Dashes = "DashDotDot"
+  >    UseFill = true,
+  > };
+  > ```
+  </details>
+  
+<details><summary><h3>전체코드</h3></summary>    
   
 ``` C#
 public string CreateOneImage()
@@ -201,8 +238,82 @@ public string CreateOneImage()
 ```
 </details>
 
+<hr/>
 
+# 도형
+- 필수 : 위치, 크기
+- 선택 : 도형 스타일(텍스트 박스의 도형 스타일과 동일합니다.)
+  
+  |Word|Powerpoint|
+  |:---:|:---:|
+  |![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/ef1e91ee-286b-4c7b-9ca7-f4b6239cced8)|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/b094c0fb-62fc-471b-903b-82757477136c)|
 
+  ## 도형 스타일 설정
+  > #### 설정가능한 속성
+  > - 도형 채우기 사용유무
+  > - 도형 채우기 색
+  > - 도형 윤곽선 사용 유무
+  > - 도형 윤곽선 색
+  > - 도형 윤곽선 두께
+  > - 도형 윤곽선 스타일
+  > - 도형 모양(네모, 원)
+  >   
+  > ###### UI 컨트롤 위치
+  >||
+  >|:---:|
+  >|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/39ecd583-3caf-46a3-bcce-ef05e9452d22)|
+  > <details><summary>Code</summary>    
+  >
+  > ``` C# 
+  > //도형 스타일을 설정합니다.[옵션]
+  >  var style = new OfficeShapeStyle()
+  > {
+  >    UseFill = true,
+  >    FillColor = "yellow",
+  >    UseOutline = true,
+  >    OutlineWeight = 1,
+  >    OutlineColor = "black",
+  >    OutlineDashes = "solid",
+  >    ShapeTypeValue = "circle"
+  > };
+  > ```
+  </details>
+  
+<details><summary><h3>전체코드</h3></summary>    
+  
+``` C#
+public string CreatesingleShapeDocument()
+{
+    var officeCreator = new OfficeCreator(OfficeType.Word);
+
+    //도형 스타일을 설정합니다.[옵션]
+    var style = new OfficeShapeStyle()
+    {
+        UseFill = true,
+        FillColor = "yellow",
+        UseOutline = true,
+        OutlineWeight = 1,
+        OutlineColor = "black",
+        OutlineDashes = "solid",
+        ShapeTypeValue = "rectangle"
+    };
+
+    //도형 생성
+    var model = new OfficeModelCreator().CreateShape(50, 30, 100, 100, style);
+    
+    //모델 목록을 만들고 이미지를 추가한다. 
+    var officeModels = new List<OfficeModel>();
+    officeModels.Add(model);
+
+    //변환한다. 
+    officeCreator.ConvertPage(1, officeModels);
+
+    return officeCreator.Save();
+}
+```
+</details>
+
+<hr/>
 
 ### 테이블
 
