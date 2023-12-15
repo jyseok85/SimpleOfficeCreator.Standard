@@ -315,9 +315,92 @@ public string CreatesingleShapeDocument()
 
 <hr/>
 
-### 테이블
+# 테이블
+- 필수 : 위치, 크기, (Row Count, ColCount) or (Row Widths, Col Heights)
+- 선택 : 글꼴설정, 단락설정, 테이블스타일, 이미지 아이디 - (글꼴설정과 단락설정은 텍스트박스와 동일합니다)
+  
+  |Word|Powerpoint|
+  |:---:|:---:|
+  |![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/424f5268-b964-40d7-aaba-1c9563a6e09e)|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/25e4020e-09e0-439f-806d-4b9246878947)|
 
-### 도형
+
+
+  ## 테이블 스타일 설정
+  > #### 설정가능한 속성
+  >- 음영 사용유무(왜 오피스에서 명칭이 다 다른지 모르겠네요..)
+  >- 음영 컬러
+  >- 4방향 테두리
+  >> - 테두리 사용유무
+  >> - 테두리 색
+  >> - 테두리 두께
+  >> - 테두리 스타일
+  >   
+  > ###### UI 컨트롤 위치
+  >||
+  >|:---:|
+  >|![image](https://github.com/jyseok85/SimpleOfficeCreator.Standard/assets/48501866/377bc3c7-5d4c-45ce-a9bc-ae769c858e4a)|
+  > <details><summary>Code</summary>    
+  >
+  > ``` C# 
+  > //테이블 스타일을 설정합니다.[옵션]
+  > var style = new OfficeTableStyles()
+  > {
+  >     UseShading = true,
+  >     ShadingColor = "yellow"
+  > };
+  > var border = new Modules.Model.Component.TableDesignTab.Border()
+  > {
+  >     Draw = true, 
+  >     Color = "red",
+  >     Weight = 1,
+  >     Style = "solid"
+  > };
+  > style.Bottom = border;
+  > style.Top = border;
+  > ```
+  </details>
+
+  ## 테이블 생성 예제
+  > 1. 기본
+  > ``` C#
+  > 
+  > 
+<details><summary><h3>전체코드</h3></summary>    
+  
+``` C#
+public string CreatesingleShapeDocument()
+{
+    var officeCreator = new OfficeCreator(OfficeType.Word);
+
+    //도형 스타일을 설정합니다.[옵션]
+    var style = new OfficeShapeStyle()
+    {
+        UseFill = true,
+        FillColor = "yellow",
+        UseOutline = true,
+        OutlineWeight = 1,
+        OutlineColor = "black",
+        OutlineDashes = "solid",
+        ShapeTypeValue = "rectangle"
+    };
+
+    //도형 생성
+    var model = new OfficeModelCreator().CreateShape(50, 30, 100, 100, style);
+    
+    //모델 목록을 만들고 이미지를 추가한다. 
+    var officeModels = new List<OfficeModel>();
+    officeModels.Add(model);
+
+    //변환한다. 
+    officeCreator.ConvertPage(1, officeModels);
+
+    return officeCreator.Save();
+}
+```
+</details>
+
+
+
 
 
 목표
