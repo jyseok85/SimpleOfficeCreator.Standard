@@ -16,8 +16,11 @@ Create Word, PPT, Excel(Not yet) Simply
 
 ---
 > **Info**  
-> 일반 적인 문서 작성용이 아니기 때문에 워드의 경우 텍스트를 기본 배경에 쓰지 않습니다.   
-> 파워포인트 처럼 텍스트 상자를 통해 입력하는 방법을 사용합니다.
+> 1. 일반 적인 문서 작성용이 아니기 때문에 워드의 경우 텍스트를 기본 배경에 쓰지 않습니다.   
+>    파워포인트 처럼 텍스트 상자를 통해 입력하는 방법을 사용합니다.
+> 2. 명칭이 일관적이지 않습니다. 예를들어 사용유무값이 어떤건 UseFill, Draw, NoOutline 이렇게 나눠집니다.
+>    원인은 OpenXml의 속성명을 그대로 사용했기 때문입니다.
+>    (아마도 OpenXml 또한 Office 디자인에서 사용되는 명칭이 달라서 저렇게 만든게 아닐까 합니다.)
 ---
 
 사용가능한 컨트롤은 4종류입니다.
@@ -366,7 +369,7 @@ public string CreatesingleShapeDocument()
   >     Draw = true, 
   >     Color = "red",
   >     Weight = 1,
-  >     Style = "solid"
+  >     Dashes = "solid"
   > };
   > //상하단을 적용합니다.
   > style.Bottom = border;
