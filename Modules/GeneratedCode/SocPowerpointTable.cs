@@ -355,7 +355,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
                         Width = (int)cell.TableInfo.Styles.Left.Weight * Common.Instance.EMUPPI,
                     };
                     AddBorder(leftBorderLineProperties1,
-                              Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Left.Style),
+                              Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Left.Dashes),
                               cell.TableInfo.Styles.Left.Draw,
                               cell.TableInfo.Styles.Left.Color);
                     tableCellProperties1.Append(leftBorderLineProperties1);
@@ -367,7 +367,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
                         Width = (int)cell.TableInfo.Styles.Right.Weight * Common.Instance.EMUPPI,
                     };
                     AddBorder(rightBorderLineProperties1,
-                        Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Right.Style), cell.TableInfo.Styles.Right.Draw, cell.TableInfo.Styles.Right.Color);
+                        Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Right.Dashes), cell.TableInfo.Styles.Right.Draw, cell.TableInfo.Styles.Right.Color);
                     tableCellProperties1.Append(rightBorderLineProperties1);
                 }
                 if ((int)cell.TableInfo.Styles.Top.Weight > 0)
@@ -376,7 +376,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
                     {
                         Width = (int)cell.TableInfo.Styles.Top.Weight * Common.Instance.EMUPPI,
                     };
-                    AddBorder(topBorderLineProperties1, Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Top.Style), cell.TableInfo.Styles.Top.Draw, cell.TableInfo.Styles.Top.Color);
+                    AddBorder(topBorderLineProperties1, Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Top.Dashes), cell.TableInfo.Styles.Top.Draw, cell.TableInfo.Styles.Top.Color);
                     tableCellProperties1.Append(topBorderLineProperties1);
                 }
                 if ((int)cell.TableInfo.Styles.Bottom.Weight > 0)
@@ -385,7 +385,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
                     {
                         Width = (int)cell.TableInfo.Styles.Bottom.Weight * Common.Instance.EMUPPI,
                     };
-                    AddBorder(bottomBorderLineProperties1, Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Bottom.Style), cell.TableInfo.Styles.Bottom.Draw, cell.TableInfo.Styles.Bottom.Color);
+                    AddBorder(bottomBorderLineProperties1, Common.Instance.GetDrawingDashValue(cell.TableInfo.Styles.Bottom.Dashes), cell.TableInfo.Styles.Bottom.Draw, cell.TableInfo.Styles.Bottom.Color);
                     tableCellProperties1.Append(bottomBorderLineProperties1);
                 }
 

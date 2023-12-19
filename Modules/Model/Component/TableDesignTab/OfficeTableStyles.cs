@@ -16,9 +16,9 @@
     }
     public class Border
     {
-        public bool Draw { get; set; } = false;
+        public bool Draw { get; set; } = true;
         public string Color { get; set; } = "Black";
         public float Weight { get; set; } = 1;
-        public string Style { get; set; } = "Solid";
+        public string Dashes { get; set; } = "Solid";
     }
 }

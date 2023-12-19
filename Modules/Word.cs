@@ -31,6 +31,10 @@ namespace SimpleOfficeCreator.Standard.Modules
 
             if(width > height)
                 isLandScape = true;
+
+            this.mainDocumentPart.Document = WordBase.Instance.GenerateDocument(); 
+            this.body = this.mainDocumentPart.Document.Body;
+            //this.password = password;
         }
 
         public void Save()
@@ -72,17 +76,21 @@ namespace SimpleOfficeCreator.Standard.Modules
             this.document.Dispose();
         }
 
-        public void Initialize(string password = "")
-        {
-            Document document = WordBase.Instance.GenerateDocument();
-            this.mainDocumentPart.Document = document;
-            this.body = this.mainDocumentPart.Document.Body;
-            this.password = password;
-      
-        }
 
-        public void ConvertPerPage(int page, List<OfficeModel> models, bool hasNextPage)
+        public void ConvertPerPage(int page, List<OfficeModel> models)
         {
+            if(page == 0)
+            {
+                throw new System.Exception("페이지는 1번부터 시작됩니다.");
+            }
+
+            if(page > 1)
+            {
+                //워드는 페이지의 내용이 용지사이즈를 넘어가면 다음페이지가 자동으로 입력된다.
+                //그러므로 여백없이 빽빽한 것을 변환한다면 다음페이지 속성이 자동으로 적용되어 중복될수도 있으므로 주의한다. 
+                this.body.Append(다음페이지로());
+            }
+
             //이미지를 추가한다. 
             Common.Instance.GenerateImagePart(models, this.mainDocumentPart);
 
@@ -113,12 +121,8 @@ namespace SimpleOfficeCreator.Standard.Modules
             //PPT 때문에 절대값으로 다 바꿨는데.. 워드는 여백이 따로 있네?? 제길.
             //sectionProperties.Append(용지여백설정((int)report.Margin.Left, (int)report.Margin.Top, (int)report.Margin.Right, (int)report.Margin.Bottom));
             sectionProperties.Append(용지여백설정(0, 0, 0, 0));
-            this.body.Append(sectionProperties);
-
-            //워드는 페이지내에 내용이 넘어가면 다음페이지가 자동으로 입력된다.
-            //그러므로 여백없이 빽빽한 것을 변환한다면 다음페이지 속성이 2번 적용될 수도 있으므로 주의한다. 
-            if(hasNextPage)
-                this.body.Append(다음페이지로());
+            this.body.Append(sectionProperties);                    
+ 
 
         }
 

@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Presentation;
+using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleOfficeCreator.Standard.Modules.DefaultCreator;
 using SimpleOfficeCreator.Standard.Modules.GeneratedCode;
 using SimpleOfficeCreator.Standard.Modules.Model;
@@ -33,20 +34,18 @@ namespace SimpleOfficeCreator.Standard.Modules
         /// <summary>
         /// 기본스타일을 생성한다.
         /// </summary>
-        public PowerPoint(MemoryStream stream)
+        public PowerPoint(MemoryStream stream, int width = 794, int height = 1123)
         {
             document = PresentationDocument.Create(stream, PresentationDocumentType.Presentation, true);
             presentation = document.AddPresentationPart();
-        }
 
-        public void Initialize(int width, int height)
-        {
             pptDefualt = new PPTBase()
             {
                 Width = width * Common.Instance.EMUPPI,
                 Height = height * Common.Instance.EMUPPI
             };
         }
+
 
         public void ConvertPerPage(int page, List<OfficeModel> models)
         {

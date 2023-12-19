@@ -36,44 +36,17 @@ namespace SimpleOfficeCreator.Standard
             switch (OfficeType)
             {
                 case OfficeType.PowerPoint:
-                    powerPoint = new PowerPoint(memoryStream);
-                    //to do:PPT 용지사이즈 설정
-                    powerPoint.Initialize(794, 1123);
+                    powerPoint = new PowerPoint(memoryStream, width, height);
                     break;
                 case OfficeType.Word:
                     word = new Word(memoryStream, width, height);
-                    word.Initialize();
                     break;
                 case OfficeType.Excel:
                     break;
             }
         }
         public OfficeType OfficeType { get; set; }
-
-        public void Initialize(OfficeType type, int width = 794, int height = 1123)
-        {
-            this.OfficeType = type;
-            this.memoryStream = new MemoryStream();
-
-            Common.Instance.UniqueId.Clear();
-            Common.Instance.UniqueId.Add(1);
-            Common.Instance.EMUPPI = EMU96PPI;
-
-            switch (OfficeType)
-            {
-                case OfficeType.PowerPoint:
-                    powerPoint = new PowerPoint(memoryStream);
-                    //to do:PPT 용지사이즈 설정
-                    powerPoint.Initialize(794, 1123);
-                    break;
-                case OfficeType.Word:
-                    word = new Word(memoryStream, width, height);
-                    word.Initialize();
-                    break;
-                case OfficeType.Excel:
-                    break;
-            }
-        }
+   
 
         public void Convert(List<OfficeModel> models)
         {
@@ -88,7 +61,7 @@ namespace SimpleOfficeCreator.Standard
         /// <param name="page">페이지는 1번부터 시작됩니다.</param>
         /// <param name="models"></param>
         /// <param name="hasNextPage">워드 전용옵션</param>
-        public void ConvertPage(int page, List<OfficeModel> models, bool hasWordNextPage = false)
+        public void ConvertPage(int page, List<OfficeModel> models)
         {
             switch (OfficeType)
             {
@@ -96,7 +69,7 @@ namespace SimpleOfficeCreator.Standard
                     powerPoint.ConvertPerPage(page, models);
                     break;
                 case OfficeType.Word:
-                    word.ConvertPerPage(page, models, hasWordNextPage);
+                    word.ConvertPerPage(page, models);
                     break;
                 case OfficeType.Excel:
                     break;

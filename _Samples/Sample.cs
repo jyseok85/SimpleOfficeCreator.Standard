@@ -15,6 +15,7 @@ namespace SimpleOfficeCreator.Standard._Samples
 {
     public class Sample
     {
+
         public string CreateSingleImageDocument()
         {
             //생성할 문서를 지정한다.
@@ -164,10 +165,10 @@ namespace SimpleOfficeCreator.Standard._Samples
             };
             var border = new Modules.Model.Component.TableDesignTab.Border()
             {
-                Draw = false, //todo : 옵션 안됨.
+                Draw = true, 
                 Color = "red",
                 Weight = 1,
-                Style = "solid"
+                Dashes = "solid"
             };
             style.Bottom = border;
 
@@ -190,7 +191,6 @@ namespace SimpleOfficeCreator.Standard._Samples
             new OfficeModelCreator().CreateTableCell(table1, 0, 1, "Word", 1 , 1 , font, paragraph, style);
             new OfficeModelCreator().CreateTableCell(table1, 1, 0, "조금씩", 1 , 1 , font, paragraph, style);
             new OfficeModelCreator().CreateTableCell(table1, 1, 1, "다르다", 1 , 1 , font, paragraph, style);
-
             #endregion
 
             #region Case2 셀 병합
@@ -230,6 +230,10 @@ namespace SimpleOfficeCreator.Standard._Samples
                 officeModels.Add(image);
                 new OfficeModelCreator().CreateTableCell(table3, 1, 1, "", 1, 1, font, paragraph, style2, image.UID);
             }
+            else
+            {
+                new OfficeModelCreator().CreateTableCell(table3, 1, 0, "이 좌표 계산해서 이미지를 추가한다. ", 1, 1, font, paragraph, style2);
+            }
             #endregion
 
             //변환
@@ -238,6 +242,42 @@ namespace SimpleOfficeCreator.Standard._Samples
             return officeCreator.Save();
         }
 
-        //todo : ppt 보더안됨.
+        public string CreateCommonProperty()
+        {
+            //생성할 문서를 지정한다.
+            //오피스에는 페이지별로 용지 사이즈 설정기능이 없습니다.
+            var officeCreator = new OfficeCreator(OfficeType.Word, 600, 700);
+
+            {
+                //여백이 정상인지 확인하기 위해서 테두리 표시
+                var style = new OfficeShapeStyle()
+                {
+                    UseOutline = true
+                };
+
+                //텍스트 박스 생성
+                var model = new OfficeModelCreator().CreateTextBox(50, 50, 100, 100, "1번페이지", null, null, style);
+                model.Margin.Left = 20;
+                model.Margin.Top = 50;
+                //모델 목록을 만들고 생성한 컨트롤을 추가한다. 
+                var officeModels = new List<OfficeModel>();
+                officeModels.Add(model);
+
+                //변환한다. 
+                officeCreator.ConvertPage(1, officeModels);
+            }
+            {
+                //텍스트 박스 생성
+                var model = new OfficeModelCreator().CreateTextBox(50, 50, 100, 100, "2번 페이지");
+                //모델 목록을 만들고 생성한 컨트롤을 추가한다. 
+                var officeModels = new List<OfficeModel>();
+                officeModels.Add(model);
+
+                //변환한다. 
+                officeCreator.ConvertPage(2, officeModels);
+            }
+            return officeCreator.Save();
+
+        }
     }
 }

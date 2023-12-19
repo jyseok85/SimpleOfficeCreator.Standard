@@ -432,51 +432,46 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
         {
             TableCellBorders tableCellBorders1 = new TableCellBorders();
             //! 주의! 컨트롤 한개씩 그려지는게 아니라. 일괄로 좌측 그리고, 우측그리고 상단 그리고 하단 그리고 하는것 같다. 
-            if ((int)style.Left.Weight > 0 && style.Left.Color != "transparent")
+            if ((int)style.Left.Weight > 0 && style.Left.Draw && style.Left.Color != "transparent")
             {
-                int size = style.Left.Draw ? (int)style.Left.Weight : 0;               
-
                 LeftBorder border = new LeftBorder()
                 {
-                    Val = Common.Instance.GetwordBorderStyle(style.Left.Style),
+                    Val = Common.Instance.GetwordBorderStyle(style.Left.Dashes),
                     Color = style.Left.Color,
-                    Size = Convert.ToUInt32(8 * size),
+                    Size = Convert.ToUInt32(8 * style.Left.Weight),
                     Space = 0
                 };
                 tableCellBorders1.Append(border);
             }
-            if ((int)style.Right.Weight > 0 && style.Right.Color != "transparent")
+            if ((int)style.Right.Weight > 0 && style.Right.Draw && style.Right.Color != "transparent")
             {
-                int size = style.Right.Draw ? (int)style.Right.Weight : 0;
                 RightBorder border = new RightBorder()
                 {
-                    Val = Common.Instance.GetwordBorderStyle(style.Right.Style),
+                    Val = Common.Instance.GetwordBorderStyle(style.Right.Dashes),
                     Color = style.Right.Color,
-                    Size = Convert.ToUInt32(8 * size),
+                    Size = Convert.ToUInt32(8 * style.Right.Weight),
                     Space = 0
                 };
                 tableCellBorders1.Append(border);
             }
-            if ((int)style.Top.Weight > 0 && style.Top.Color != "transparent")
+            if ((int)style.Top.Weight > 0 && style.Top.Draw &&  style.Top.Color != "transparent")
             {
-                int size = style.Top.Draw ? (int)style.Top.Weight : 0;
                 TopBorder border = new TopBorder()
                 {
-                    Val = Common.Instance.GetwordBorderStyle(style.Top.Style),
+                    Val = Common.Instance.GetwordBorderStyle(style.Top.Dashes),
                     Color = style.Top.Color,
-                    Size = Convert.ToUInt32(8 * size),
+                    Size = Convert.ToUInt32(8 * style.Top.Weight),
                     Space = 0
                 };
                 tableCellBorders1.Append(border);
             }
-            if ((int)style.Bottom.Weight > 0 && style.Bottom.Color != "transparent")
+            if ((int)style.Bottom.Weight > 0 && style.Bottom.Draw &&  style.Bottom.Color != "transparent")
             {
-                int size = style.Bottom.Draw ? (int)style.Bottom.Weight : 0;
                 BottomBorder border = new BottomBorder()
                 {
-                    Val = Common.Instance.GetwordBorderStyle(style.Bottom.Style),
+                    Val = Common.Instance.GetwordBorderStyle(style.Bottom.Dashes),
                     Color = style.Bottom.Color,
-                    Size = Convert.ToUInt32(8 * size),
+                    Size = Convert.ToUInt32(8 * style.Bottom.Weight),
                     Space = 0
                 };
                 tableCellBorders1.Append(border);

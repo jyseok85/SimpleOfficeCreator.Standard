@@ -293,16 +293,12 @@ namespace SimpleOfficeCreator.Standard.Modules.Model
         /// <param name="height">용지 세로 크기</param>
         /// <param name="landscape">가로 여부</param>
         /// <returns></returns>
-        public OfficeModel CreateReport(int width, int height, bool landscape, float marginLeft, float marginTop, float marginRight, float marginBottom)
+        public OfficeModel CreateReport(int width, int height, bool landscape)
         {
             OfficeModel model = new OfficeModel("")
             {
                 PaperInfo = new PaperInfo()
             };
-            model.Margin.Left = marginLeft;
-            model.Margin.Top = marginTop;
-            model.Margin.Right = marginRight / 2; //왜인지 DR에 두배로 들어가있다..
-            model.Margin.Bottom = marginBottom / 2;
             model.PaperInfo.Width = width;
             model.PaperInfo.Height = height;
             model.PaperInfo.IsLandscape = landscape;

@@ -15,7 +15,6 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
         //public static 의 객체반환 함수
         public static SocShape Instance { get { return _instance.Value; } }
 
-        public int EMUPPI { get; set; } = 0;
 
         /// <summary>
         /// PPT에서 일반 텍스트 label은 Shape 이라고 간주한다.
@@ -163,10 +162,10 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
                 RightToLeftColumns = false,
                 //텍스트 수직정렬
                 Anchor = Common.Instance.GetDrawingAnchoring(model.Paragraph.AlignmentVertical),
-                LeftInset = (int)model.Margin.Left * EMUPPI,
-                TopInset = (int)model.Margin.Top * EMUPPI,
-                RightInset = (int)model.Margin.Right * EMUPPI,
-                BottomInset = (int)model.Margin.Bottom * EMUPPI
+                LeftInset = (int)model.Margin.Left * Common.Instance.EMUPPI,
+                TopInset = (int)model.Margin.Top * Common.Instance.EMUPPI,
+                RightInset = (int)model.Margin.Right * Common.Instance.EMUPPI,
+                BottomInset = (int)model.Margin.Bottom * Common.Instance.EMUPPI
             };
             A.ShapeAutoFit shapeAutoFit1 = new A.ShapeAutoFit();
             bodyProperties1.Append(shapeAutoFit1);
@@ -196,7 +195,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             #region 테두리
             if (model.ShapeStyle.UseOutline && model.ShapeStyle.OutlineWeight > 0)
             {
-                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor, model.PictureStyle.Dashes);
+                A.Outline outline = Common.Instance.GetDrawingOutline(model.ShapeStyle.OutlineWeight, model.ShapeStyle.OutlineColor, model.ShapeStyle.OutlineDashes);
                 shapeProperties1.Append(outline);
             }
             #endregion
