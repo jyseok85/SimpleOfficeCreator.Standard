@@ -35,8 +35,14 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
         /// <returns>RGB Hex 값</returns>
         public string GetOfficeColor(string text)
         {
-            if(IValidHexaCode(text))
+            if(IsValidHexaCode(text))
                 return text;
+
+            if (text.Contains("#") == false)
+            {
+                if(IsValidHexaCode("#" + text))
+                    return text;
+            }
 
             if (text == null)
             {
@@ -65,7 +71,7 @@ namespace SimpleOfficeCreator.Standard.Modules.GeneratedCode
             }
         }
 
-        internal bool IValidHexaCode(string str)
+        internal bool IsValidHexaCode(string str)
         {
             string strRegex = @"^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
             Regex re = new Regex(strRegex);
