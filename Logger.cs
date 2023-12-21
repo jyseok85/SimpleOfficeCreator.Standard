@@ -17,10 +17,10 @@ namespace SimpleOfficeCreator.Standard
             string path = Path.Combine(Environment.CurrentDirectory, "Log");
             if (Directory.Exists(path))
             {
-                string configFile = Path.Combine(path, "office.enable");
+                string configFile = Path.Combine(path, "officelog.enable");
                 if (File.Exists(configFile))
                 {
-                    string strLogFileName = string.Format("{0}.txt", DateTime.Now.ToString("yyyyMMdd_HH"));
+                    string strLogFileName = string.Format("officelog_{0}.txt", DateTime.Now.ToString("yyyyMMdd_HH"));
                     string strLogPath = Path.Combine(path, strLogFileName);
 
                     using (StreamWriter fileWrite = new StreamWriter(strLogPath, true))
